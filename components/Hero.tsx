@@ -5,6 +5,9 @@ import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 
+/** Put your hero PNG in `public/` and point this path at it (e.g. `/hero.png`). */
+export const HERO_PRODUCT_IMAGE_SRC = "/product-preview.png";
+
 function useFadeUp(delay = 0) {
   const reduced = useReducedMotion();
   if (reduced) return {};
@@ -17,8 +20,12 @@ function useFadeUp(delay = 0) {
 
 function ProductImageReveal({
   heroRef,
+  imageSrc,
+  imageAlt,
 }: {
   heroRef: React.RefObject<HTMLElement | null>;
+  imageSrc: string;
+  imageAlt: string;
 }) {
   const reduced = useReducedMotion();
 
@@ -58,7 +65,7 @@ function ProductImageReveal({
       >
         {/* Drop-shadow to give depth */}
         <div
-          className="w-full rounded-t-2xl overflow-hidden"
+          className="w-full rounded-t-2xl overflow-hidden relative aspect-[8/5]"
           style={{
             boxShadow:
               "0 -4px 6px rgba(26,18,8,0.03), 0 20px 60px rgba(26,18,8,0.10), 0 8px 24px rgba(26,18,8,0.07)",
@@ -67,11 +74,11 @@ function ProductImageReveal({
           }}
         >
           <Image
-            src="/product-preview.png"
-            alt="Vyavasth studio management dashboard"
-            width={1200}
-            height={750}
-            className="w-full h-auto block"
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1024px"
+            className="object-cover object-top"
             priority
           />
         </div>
@@ -191,8 +198,12 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll-tilt product image */}
-      <ProductImageReveal heroRef={heroRef} />
+      {/* Scroll-tilt product image — add file at `public` path matching HERO_PRODUCT_IMAGE_SRC */}
+      <ProductImageReveal
+        heroRef={heroRef}
+        imageSrc={HERO_PRODUCT_IMAGE_SRC}
+        imageAlt="Vyavasth product preview"
+      />
     </section>
   );
 }
