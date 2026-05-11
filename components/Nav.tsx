@@ -98,13 +98,24 @@ export default function Nav() {
                 See How It Works
               </Link>
             )}
-            <Link
-              href="/contact"
-              className={btnPrimary}
-              style={{ backgroundColor: "#F59E0B" }}
-            >
-              Contact Us
-            </Link>
+            {isHome ? (
+              <button
+                type="button"
+                onClick={() => scrollTo("contact")}
+                className={btnPrimary}
+                style={{ backgroundColor: "#F59E0B" }}
+              >
+                Contact Us
+              </button>
+            ) : (
+              <Link
+                href="/#contact"
+                className={btnPrimary}
+                style={{ backgroundColor: "#F59E0B" }}
+              >
+                Contact Us
+              </Link>
+            )}
           </nav>
 
           <button
@@ -172,14 +183,25 @@ export default function Nav() {
               See How It Works
             </Link>
           )}
-          <Link
-            href="/contact"
-            onClick={() => setDrawerOpen(false)}
-            className={`w-full text-center py-3 text-sm ${btnPrimary}`}
-            style={{ backgroundColor: "#F59E0B" }}
-          >
-            Contact Us
-          </Link>
+          {isHome ? (
+            <button
+              type="button"
+              onClick={() => scrollTo("contact")}
+              className={`w-full text-center py-3 text-sm ${btnPrimary}`}
+              style={{ backgroundColor: "#F59E0B" }}
+            >
+              Contact Us
+            </button>
+          ) : (
+            <Link
+              href="/#contact"
+              onClick={() => setDrawerOpen(false)}
+              className={`w-full text-center py-3 text-sm ${btnPrimary}`}
+              style={{ backgroundColor: "#F59E0B" }}
+            >
+              Contact Us
+            </Link>
+          )}
         </div>
       </div>
     </>
