@@ -1,54 +1,227 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Eye, Smartphone, Unlock, Lock, ArrowRight } from "lucide-react";
+import {
+  ArrowRight,
+  FileSpreadsheet,
+  Inbox,
+  MessageCircle,
+  MessagesSquare,
+  UsersRound,
+} from "lucide-react";
 
-function PhotoGrid({ locked }: { locked: boolean }) {
+function UnifiedWorkflowMockup() {
+  const stages = ["Inquiry", "Follow-up", "Booked", "Deliver"];
   return (
-    <div className="grid grid-cols-3 gap-2">
-      {Array.from({ length: 6 }).map((_, i) => (
+    <div
+      className="relative rounded-2xl"
+      style={{
+        background: "#FFFFFF",
+        border: "1px solid rgba(26,18,8,0.08)",
+      }}
+    >
+      <div className="relative grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-2xl">
+        {/* Before — fragmented */}
         <div
-          key={i}
-          className="relative rounded-lg overflow-hidden"
-          style={{ aspectRatio: "4/3" }}
+          className="p-5 md:p-6 flex flex-col gap-4 md:border-r border-b-0 md:border-b-0 min-h-[280px] md:min-h-0"
+          style={{ borderColor: "rgba(26,18,8,0.07)" }}
         >
-          <div
-            className="absolute inset-0"
+          <span
+            className="self-start text-xs px-2.5 py-1 rounded-full font-medium"
             style={{
-              background: locked
-                ? "linear-gradient(135deg, #E8E3DC 0%, #D4CFC9 100%)"
-                : `linear-gradient(135deg, hsl(${30 + i * 12}, 35%, 80%) 0%, hsl(${40 + i * 10}, 28%, 88%) 100%)`,
+              background: "rgba(239,68,68,0.08)",
+              color: "#DC2626",
+              border: "1px solid rgba(239,68,68,0.18)",
             }}
-          />
-          {locked && (
+          >
+            Tools everywhere
+          </span>
+          <p
+            className="text-xs font-medium uppercase tracking-wide"
+            style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+          >
+            Typical day
+          </p>
+          <div className="flex flex-col gap-2.5">
             <div
-              className="absolute inset-0 flex items-center justify-center"
-              style={{ background: "rgba(26,18,8,0.12)" }}
+              className="rounded-xl px-3 py-2.5 flex items-center gap-3"
+              style={{
+                background: "#F2EFE9",
+                border: "1px solid rgba(26,18,8,0.06)",
+              }}
             >
-              <Lock size={14} style={{ color: "#7A6F63" }} strokeWidth={2} />
+              <MessageCircle size={16} style={{ color: "#7A6F63" }} />
+              <span className="text-xs" style={{ color: "#1A1208" }}>
+                14 WhatsApp threads · 6 still unanswered
+              </span>
             </div>
-          )}
+            <div
+              className="rounded-xl px-3 py-2.5 flex items-center gap-3"
+              style={{
+                background: "#F2EFE9",
+                border: "1px solid rgba(26,18,8,0.06)",
+              }}
+            >
+              <FileSpreadsheet size={16} style={{ color: "#7A6F63" }} />
+              <span className="text-xs" style={{ color: "#1A1208" }}>
+                Bookings_master.xlsx · crew list on paper
+              </span>
+            </div>
+            <div
+              className="rounded-xl px-3 py-2.5 flex items-center gap-3"
+              style={{
+                background: "#F2EFE9",
+                border: "1px solid rgba(26,18,8,0.06)",
+              }}
+            >
+              <span className="text-xs font-medium" style={{ color: "#DC2626" }}>
+                ?
+              </span>
+              <span className="text-xs" style={{ color: "#1A1208" }}>
+                Which inquiry was &quot;call back Tuesday&quot;?
+              </span>
+            </div>
+          </div>
+          <span
+            className="text-[11px] mt-auto pt-2 text-center md:text-left font-medium"
+            style={{ color: "#DC2626" }}
+          >
+            Nothing talks to anything else.
+          </span>
         </div>
-      ))}
+
+        {/* Mobile-only arrow between panels */}
+        <div
+          className="md:hidden flex justify-center py-2 border-y"
+          style={{ borderColor: "rgba(26,18,8,0.07)", background: "#FAF8F5" }}
+          aria-hidden
+        >
+          <ArrowRight
+            size={16}
+            style={{ color: "#7A6F63", transform: "rotate(90deg)" }}
+          />
+        </div>
+
+        {/* After — Vyavasth */}
+        <div className="p-5 md:p-6 flex flex-col gap-4 min-h-[280px] md:min-h-0">
+          <span
+            className="self-start text-xs px-2.5 py-1 rounded-full font-medium"
+            style={{
+              background: "rgba(22,163,74,0.08)",
+              color: "#16A34A",
+              border: "1px solid rgba(22,163,74,0.18)",
+            }}
+          >
+            On Vyavasth
+          </span>
+          <p
+            className="text-xs font-medium uppercase tracking-wide"
+            style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+          >
+            Same studio · one flow
+          </p>
+          {/* Mini pipeline */}
+          <div className="flex flex-wrap gap-1.5 items-center">
+            {stages.map((label, i) => (
+              <div key={label} className="flex items-center gap-1.5">
+                <span
+                  className="text-[10px] px-2 py-1 rounded-md font-medium"
+                  style={{
+                    background:
+                      i === 0
+                        ? "rgba(79,70,229,0.12)"
+                        : "rgba(26,18,8,0.05)",
+                    color: i === 0 ? "#4F46E5" : "#7A6F63",
+                    border: `1px solid ${
+                      i === 0
+                        ? "rgba(79,70,229,0.2)"
+                        : "rgba(26,18,8,0.07)"
+                    }`,
+                  }}
+                >
+                  {label}
+                </span>
+                {i < stages.length - 1 && (
+                  <span style={{ color: "#D4CFC9", fontSize: "10px" }}>→</span>
+                )}
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-col gap-2.5">
+            <div
+              className="rounded-xl px-3 py-2.5 flex items-start gap-3"
+              style={{
+                background: "rgba(79,70,229,0.06)",
+                border: "1px solid rgba(79,70,229,0.12)",
+              }}
+            >
+              <MessagesSquare size={16} className="shrink-0 mt-0.5" style={{ color: "#4F46E5" }} />
+              <div className="flex flex-col gap-0.5">
+                <span className="text-xs font-medium" style={{ color: "#1A1208" }}>
+                  Follow-up queued · Meera · wedding enquiry
+                </span>
+                <span className="text-[11px]" style={{ color: "#7A6F63" }}>
+                  Sends tomorrow 10 AM · template saved
+                </span>
+              </div>
+            </div>
+            <div
+              className="rounded-xl px-3 py-2.5 flex items-center gap-3"
+              style={{
+                background: "#F2EFE9",
+                border: "1px solid rgba(26,18,8,0.06)",
+              }}
+            >
+              <UsersRound size={16} style={{ color: "#7A6F63" }} />
+              <span className="text-xs" style={{ color: "#1A1208" }}>
+                Crew · Rahul · Sangeet · Sat 6 PM · deliverables tracked
+              </span>
+            </div>
+          </div>
+          <span
+            className="text-[11px] mt-auto pt-2 text-center md:text-left font-medium"
+            style={{ color: "#16A34A" }}
+          >
+            One workspace · everyone sees the same truth.
+          </span>
+        </div>
+      </div>
+
+      {/* Center arrow — desktop only */}
+      <div
+        className="hidden md:flex pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
+        aria-hidden
+      >
+        <div
+          className="w-9 h-9 rounded-full flex items-center justify-center"
+          style={{
+            background: "#FAF8F5",
+            border: "1px solid rgba(26,18,8,0.10)",
+            boxShadow: "0 2px 8px rgba(26,18,8,0.06)",
+          }}
+        >
+          <ArrowRight size={16} style={{ color: "#7A6F63" }} />
+        </div>
+      </div>
     </div>
   );
 }
 
 const supportingPoints = [
   {
-    icon: Eye,
-    title: "Watermarked Preview",
-    body: "Client sees the quality before paying.",
+    icon: Inbox,
+    title: "Leads & CRM in one inbox",
+    body: "Inquiries land in one place — so you know who to call back first before they book someone else.",
   },
   {
-    icon: Smartphone,
-    title: "UPI + Card via Razorpay",
-    body: "Payment in under 30 seconds.",
+    icon: MessagesSquare,
+    title: "WhatsApp workflows that keep moving",
+    body: "Saved replies and scheduled nudges — follow-ups don’t die when you’re on a shoot all day.",
   },
   {
-    icon: Unlock,
-    title: "Instant Auto-Unlock",
-    body: "No manual step needed from your end.",
+    icon: UsersRound,
+    title: "Crew, deliverables & money together",
+    body: "Assignments, what’s delivered, and what’s earned vs pending — without midnight spreadsheet detective work.",
   },
 ];
 
@@ -61,7 +234,6 @@ export default function FeatureSection() {
       className="relative py-24 overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
-      {/* Subtle indigo wash */}
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
@@ -71,7 +243,6 @@ export default function FeatureSection() {
       />
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-        {/* Eyebrow */}
         <motion.p
           initial={reduced ? {} : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -83,7 +254,6 @@ export default function FeatureSection() {
           How It Works
         </motion.p>
 
-        {/* Headline */}
         <motion.h2
           initial={reduced ? {} : { opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -98,12 +268,11 @@ export default function FeatureSection() {
             letterSpacing: "-0.02em",
           }}
         >
-          Client Pays First.
+          One Place to Run the Studio.
           <br />
-          Then the Photos Unlock.
+          Automations That Keep Things Moving.
         </motion.h2>
 
-        {/* Subheadline */}
         <motion.p
           initial={reduced ? {} : { opacity: 0, y: 12 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -117,13 +286,11 @@ export default function FeatureSection() {
             fontFamily: "var(--font-dm-sans)",
           }}
         >
-          Send your client a delivery link. They see a preview — five
-          watermarked photos. The rest is locked. The moment UPI payment clears,
-          the full gallery unlocks automatically. No awkward follow-ups. No
-          &ldquo;I&rsquo;ll pay you tomorrow.&rdquo;
+          Vyavasth connects leads, WhatsApp, crew jobs, deliverables, and your
+          numbers in one workflow — so day-to-day operations stay visible and the
+          repetitive follow-up work scales down.
         </motion.p>
 
-        {/* Split-screen mockup */}
         <motion.div
           initial={reduced ? {} : { opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -135,87 +302,9 @@ export default function FeatureSection() {
             filter: "drop-shadow(0 8px 40px rgba(26,18,8,0.08))",
           }}
         >
-          <div
-            className="relative rounded-2xl overflow-hidden"
-            style={{
-              background: "#FFFFFF",
-              border: "1px solid rgba(26,18,8,0.08)",
-            }}
-          >
-            <div className="grid grid-cols-2">
-              {/* Before panel */}
-              <div
-                className="p-5 flex flex-col gap-4"
-                style={{
-                  borderRight: "1px solid rgba(26,18,8,0.07)",
-                }}
-              >
-                <span
-                  className="self-start text-xs px-2.5 py-1 rounded-full font-medium"
-                  style={{
-                    background: "rgba(239,68,68,0.08)",
-                    color: "#DC2626",
-                    border: "1px solid rgba(239,68,68,0.18)",
-                  }}
-                >
-                  Before Payment
-                </span>
-                <PhotoGrid locked />
-                <span
-                  className="text-xs px-3 py-1.5 rounded-full text-center font-medium"
-                  style={{
-                    background: "rgba(239,68,68,0.07)",
-                    color: "#DC2626",
-                    border: "1px solid rgba(239,68,68,0.16)",
-                  }}
-                >
-                  Payment Pending · ₹15,000 due
-                </span>
-              </div>
-
-              {/* Divider with arrow */}
-              <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
-                <div
-                  className="w-8 h-8 rounded-full flex items-center justify-center"
-                  style={{
-                    background: "#FAF8F5",
-                    border: "1px solid rgba(26,18,8,0.10)",
-                    boxShadow: "0 2px 8px rgba(26,18,8,0.06)",
-                  }}
-                >
-                  <ArrowRight size={14} style={{ color: "#7A6F63" }} />
-                </div>
-              </div>
-
-              {/* After panel */}
-              <div className="p-5 flex flex-col gap-4">
-                <span
-                  className="self-start text-xs px-2.5 py-1 rounded-full font-medium"
-                  style={{
-                    background: "rgba(22,163,74,0.08)",
-                    color: "#16A34A",
-                    border: "1px solid rgba(22,163,74,0.18)",
-                  }}
-                >
-                  After Payment
-                </span>
-                <PhotoGrid locked={false} />
-                <span
-                  className="text-xs px-3 py-1.5 rounded-full text-center font-medium"
-                  style={{
-                    background: "rgba(22,163,74,0.08)",
-                    color: "#16A34A",
-                    border: "1px solid rgba(22,163,74,0.18)",
-                  }}
-                >
-                  Paid · Gallery Unlocked ✓
-                </span>
-              </div>
-            </div>
-          </div>
+          <UnifiedWorkflowMockup />
         </motion.div>
 
-        {/* Three supporting points */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-3xl mx-auto">
           {supportingPoints.map((pt, i) => {
             const Icon = pt.icon;

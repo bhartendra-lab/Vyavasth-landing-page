@@ -1,26 +1,26 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { MessageCircleOff, Clock, TrendingDown } from "lucide-react";
+import { Layers, ListTodo, Wallet } from "lucide-react";
 
 const problems = [
   {
-    icon: MessageCircleOff,
+    icon: Layers,
     accentColor: "#F97316",
-    title: "Inquiries Fall Through the Cracks",
-    body: "You're on a shoot. Three people messaged asking about availability. By the time you check, two of them have already booked someone else. There's no system — just a WhatsApp thread you forgot to reply to.",
+    title: "Your Studio Runs on Too Many Tools",
+    body: "Leads live in WhatsApp, bookings in your head, crew on calls, and money in a spreadsheet. Nothing talks to everything else — so you spend your day switching tabs instead of growing the studio.",
   },
   {
-    icon: Clock,
+    icon: ListTodo,
     accentColor: "#EF4444",
-    title: "You Deliver First, Chase Payment Later",
-    body: "You spend 40 hours editing. You send the Google Drive link. Client downloads everything. Now begins the follow-up — two weeks of 'payment kal tak ho jayega.' The work is done but the money isn't in.",
+    title: "Follow-Ups Slip When You're on a Shoot",
+    body: "Estimates, reminders, and status updates stack up the moment you step on location. Without a clear workflow, warm inquiries cool down — not because you don't care, but because there's no system catching what you miss.",
   },
   {
-    icon: TrendingDown,
+    icon: Wallet,
     accentColor: "#F59E0B",
-    title: "Five Months of Silence After Wedding Season",
-    body: "November to February is packed. March onwards — the bookings dry up but the EMIs don't. No retainer clients, no recurring income, no system to fill the calendar during off-season.",
+    title: "You Can't See What's Earned vs. What's Still Pending",
+    body: "Advances, balances, expenses, and payouts sit in different chats and sheets. Closing the month feels like detective work instead of a five-minute check on how the business actually did.",
   },
 ];
 
@@ -71,7 +71,7 @@ export default function ProblemSection() {
             letterSpacing: "-0.02em",
           }}
         >
-          Every Studio Faces the Same Three Problems.
+          Three Ways Chaos Creeps Into Your Studio.
         </motion.h2>
 
         {/* Cards */}

@@ -191,9 +191,9 @@ export default function ContactSection() {
                 lineHeight: "1.15",
               }}
             >
-              Be Among the First
+              Be Part of the
               <br />
-              Studios on Vyavasth.
+              Vyavasth Community.
             </motion.h2>
 
             <motion.p
