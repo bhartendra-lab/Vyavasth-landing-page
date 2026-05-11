@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import HeroTrustStrip from "@/components/HeroTrustStrip";
 
 /** Put your hero PNG in `public/` and point this path at it (e.g. `/hero.png`). */
 export const HERO_PRODUCT_IMAGE_SRC = "/product-preview.png";
@@ -89,7 +90,6 @@ function ProductImageReveal({
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const reduced = useReducedMotion();
 
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -195,6 +195,13 @@ export default function Hero() {
               {chip}
             </span>
           ))}
+        </motion.div>
+      </div>
+
+      {/* Social proof: rating + scrolling logo strip */}
+      <div className="relative w-full max-w-6xl mx-auto px-6 lg:px-8 mt-4 pb-2">
+        <motion.div {...useFadeUp(0.28)}>
+          <HeroTrustStrip />
         </motion.div>
       </div>
 

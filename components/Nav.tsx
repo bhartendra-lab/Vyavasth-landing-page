@@ -1,9 +1,19 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
+const btnOutline =
+  "px-4 py-2 text-sm font-medium rounded-lg border border-[#4F46E5] text-[#4F46E5] transition-all duration-200 hover:bg-[#4F46E5] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5]/50";
+const btnPrimary =
+  "px-4 py-2 text-sm font-semibold rounded-lg text-[#0A0A0A] transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50";
+
 export default function Nav() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+
   const [scrolled, setScrolled] = useState(false);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
@@ -30,13 +40,19 @@ export default function Nav() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
+  const logoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isHome) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    setDrawerOpen(false);
+  };
+
   return (
     <>
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "backdrop-blur-md border-b"
-            : "bg-transparent"
+          scrolled ? "backdrop-blur-md border-b" : "bg-transparent"
         }`}
         style={
           scrolled
@@ -48,9 +64,9 @@ export default function Nav() {
         }
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
-          {/* Logo */}
-          <button
-            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          <Link
+            href="/"
+            onClick={logoClick}
             className="flex items-center gap-2.5 focus:outline-none"
             aria-label="Vyavasth home"
           >
@@ -66,26 +82,31 @@ export default function Nav() {
             >
               Vyavasth
             </span>
-          </button>
+          </Link>
 
-          {/* Desktop nav */}
           <nav className="hidden md:flex items-center gap-3">
-            <button
-              onClick={() => scrollTo("feature")}
-              className="px-4 py-2 text-sm font-medium rounded-lg border border-[#4F46E5] text-[#4F46E5] transition-all duration-200 hover:bg-[#4F46E5] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5]/50"
-            >
-              See How It Works
-            </button>
-            <button
-              onClick={() => scrollTo("contact")}
-              className="px-4 py-2 text-sm font-semibold rounded-lg text-[#0A0A0A] transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50"
+            {isHome ? (
+              <button
+                type="button"
+                onClick={() => scrollTo("feature")}
+                className={btnOutline}
+              >
+                See How It Works
+              </button>
+            ) : (
+              <Link href="/#feature" className={btnOutline}>
+                See How It Works
+              </Link>
+            )}
+            <Link
+              href="/contact"
+              className={btnPrimary}
               style={{ backgroundColor: "#F59E0B" }}
             >
               Contact Us
-            </button>
+            </Link>
           </nav>
 
-          {/* Mobile hamburger */}
           <button
             className="md:hidden p-1 focus:outline-none"
             style={{ color: "#1A1208" }}
@@ -97,7 +118,6 @@ export default function Nav() {
         </div>
       </header>
 
-      {/* Mobile drawer overlay */}
       {drawerOpen && (
         <div
           className="fixed inset-0 z-50 backdrop-blur-sm md:hidden"
@@ -106,7 +126,6 @@ export default function Nav() {
         />
       )}
 
-      {/* Mobile drawer */}
       <div
         className={`fixed top-0 right-0 bottom-0 z-50 w-72 flex flex-col transition-transform duration-300 ease-in-out md:hidden ${
           drawerOpen ? "translate-x-0" : "translate-x-full"
@@ -136,19 +155,31 @@ export default function Nav() {
           </button>
         </div>
         <div className="flex flex-col gap-3 p-6">
-          <button
-            onClick={() => scrollTo("feature")}
-            className="w-full px-4 py-3 text-sm font-medium rounded-lg border border-[#4F46E5] text-[#4F46E5] transition-all duration-200 hover:bg-[#4F46E5] hover:text-white focus:outline-none"
-          >
-            See How It Works
-          </button>
-          <button
-            onClick={() => scrollTo("contact")}
-            className="w-full px-4 py-3 text-sm font-semibold rounded-lg text-[#0A0A0A] transition-all duration-200 hover:brightness-110 focus:outline-none"
+          {isHome ? (
+            <button
+              type="button"
+              onClick={() => scrollTo("feature")}
+              className={`w-full py-3 text-sm ${btnOutline}`}
+            >
+              See How It Works
+            </button>
+          ) : (
+            <Link
+              href="/#feature"
+              onClick={() => setDrawerOpen(false)}
+              className={`w-full text-center py-3 text-sm ${btnOutline}`}
+            >
+              See How It Works
+            </Link>
+          )}
+          <Link
+            href="/contact"
+            onClick={() => setDrawerOpen(false)}
+            className={`w-full text-center py-3 text-sm ${btnPrimary}`}
             style={{ backgroundColor: "#F59E0B" }}
           >
             Contact Us
-          </button>
+          </Link>
         </div>
       </div>
     </>

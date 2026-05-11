@@ -53,3 +53,25 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #bdb7af;
 }
+
+/* Hero logo marquee — paused when user prefers reduced motion */
+@keyframes hero-marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.hero-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: hero-marquee 40s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-marquee-track {
+    animation: none;
+  }
+}
