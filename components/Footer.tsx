@@ -51,6 +51,24 @@ export default function Footer() {
           </Link>
         </nav>
 
+        <div
+          className="w-full max-w-full overflow-x-hidden py-1 sm:py-2 pointer-events-none select-none"
+          aria-hidden="true"
+        >
+          <p
+            className="text-center leading-none whitespace-nowrap mx-auto max-w-full"
+            style={{
+              fontFamily: "var(--font-dm-sans)",
+              fontWeight: 800,
+              fontSize: "clamp(2.75rem, 18vw, 8.75rem)",
+              letterSpacing: "-0.02em",
+              color: "rgba(26, 18, 8, 0.07)",
+            }}
+          >
+            Vyavasth
+          </p>
+        </div>
+
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-[rgba(26,18,8,0.06)]">
           <div className="flex items-center gap-2">
             <span
