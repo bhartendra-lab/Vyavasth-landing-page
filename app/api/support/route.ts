@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connectDB } from "@/lib/db";
-import SupportInquiry from "@/lib/models/SupportInquiry";
+import { createSupportTicket } from "@/lib/vyavasth-api";
 
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const MAX_MESSAGE = 5000;
@@ -68,17 +67,21 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await connectDB();
-
-    await SupportInquiry.create({
+    const trimmedPhone = phone?.trim();
+    const result = await createSupportTicket({
       name: name.trim(),
       email: email.trim().toLowerCase(),
-      phone: phone?.trim() || undefined,
+      phone: trimmedPhone || undefined,
       subject: subject.trim(),
       message: message.trim(),
-      source: "contact_page",
-      submittedAt: new Date(),
     });
+
+    if (!result.ok) {
+      return NextResponse.json(
+        { success: false, error: result.error },
+        { status: result.status >= 400 && result.status < 600 ? result.status : 502 }
+      );
+    }
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (err) {

@@ -239,14 +239,6 @@ export default function ContactPageForm() {
       >
         Support ticket
       </h2>
-      <p
-        className="text-sm mb-6"
-        style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
-      >
-        Submit the form below and we will get back to you. You can also email us
-        directly.
-      </p>
-
       {state === "success" ? (
         <div className="flex flex-col items-center justify-center gap-4 py-8 text-center">
           <div
@@ -269,7 +261,15 @@ export default function ContactPageForm() {
           </p>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
+        <>
+          <p
+            className="text-sm mb-6"
+            style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+          >
+            Submit the form below and we will get back to you. You can also email
+            us directly.
+          </p>
+          <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
           <TextField
             label="Your name"
             id="name"
@@ -348,7 +348,8 @@ export default function ContactPageForm() {
               </>
             )}
           </button>
-        </form>
+          </form>
+        </>
       )}
     </div>
   );

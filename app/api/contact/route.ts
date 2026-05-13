@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connectDB } from "@/lib/db";
-import Waitlist from "@/lib/models/Waitlist";
+import { createEnquiry } from "@/lib/vyavasth-api";
 
 export async function POST(req: NextRequest) {
   try {
@@ -38,16 +37,19 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    await connectDB();
-
-    await Waitlist.create({
-      studioName: studioName.trim(),
+    const result = await createEnquiry({
       name: name.trim(),
-      whatsapp: whatsapp.trim(),
+      business_name: studioName.trim(),
+      phone: whatsapp.trim(),
       city: city.trim(),
-      source: "landing_page",
-      submittedAt: new Date(),
     });
+
+    if (!result.ok) {
+      return NextResponse.json(
+        { success: false, error: result.error },
+        { status: result.status >= 400 && result.status < 600 ? result.status : 502 }
+      );
+    }
 
     return NextResponse.json({ success: true }, { status: 201 });
   } catch (err) {
