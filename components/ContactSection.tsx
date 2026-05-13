@@ -352,7 +352,7 @@ export default function ContactSection() {
                     </>
                   ) : (
                     <>
-                      Contact Us
+                      Submit
                       <ArrowRight size={16} />
                     </>
                   )}

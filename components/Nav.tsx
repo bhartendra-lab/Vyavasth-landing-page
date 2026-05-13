@@ -105,7 +105,7 @@ export default function Nav() {
                 className={btnPrimary}
                 style={{ backgroundColor: "#F59E0B" }}
               >
-                Contact Us
+                Get Access
               </button>
             ) : (
               <Link
@@ -113,7 +113,7 @@ export default function Nav() {
                 className={btnPrimary}
                 style={{ backgroundColor: "#F59E0B" }}
               >
-                Contact Us
+                Get Access
               </Link>
             )}
           </nav>
@@ -190,7 +190,7 @@ export default function Nav() {
               className={`w-full text-center py-3 text-sm ${btnPrimary}`}
               style={{ backgroundColor: "#F59E0B" }}
             >
-              Contact Us
+              Get Access
             </button>
           ) : (
             <Link
@@ -199,7 +199,7 @@ export default function Nav() {
               className={`w-full text-center py-3 text-sm ${btnPrimary}`}
               style={{ backgroundColor: "#F59E0B" }}
             >
-              Contact Us
+              Get Access
             </Link>
           )}
         </div>

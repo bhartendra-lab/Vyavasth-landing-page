@@ -99,15 +99,17 @@ export default function Hero() {
     <section
       ref={heroRef}
       className="relative flex flex-col items-center overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{
+        background:
+          "linear-gradient(165deg, #F3F0FF 0%, #FAF8F5 38%, #FFF6E8 72%, #FAF8F5 100%)",
+      }}
     >
-      {/* Subtle indigo radial glow at top */}
+      {/* Soft indigo and amber glows */}
       <div
-        className="absolute top-0 left-0 right-0 pointer-events-none"
+        className="absolute inset-0 pointer-events-none"
         style={{
-          height: "600px",
           background:
-            "radial-gradient(ellipse 70% 50% at 50% 0%, rgba(79,70,229,0.05) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 55% at 50% -10%, rgba(79,70,229,0.12) 0%, transparent 68%), radial-gradient(ellipse 60% 45% at 85% 20%, rgba(245,158,11,0.08) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 10% 35%, rgba(79,70,229,0.06) 0%, transparent 72%)",
         }}
       />
 
@@ -166,7 +168,7 @@ export default function Hero() {
             className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-[#0A0A0A] transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50"
             style={{ backgroundColor: "#F59E0B" }}
           >
-            Contact Us
+            Use Vyavasth for Free
             <ArrowRight
               size={18}
               className="transition-transform duration-200 group-hover:translate-x-0.5"
