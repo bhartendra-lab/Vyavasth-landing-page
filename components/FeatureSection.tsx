@@ -231,7 +231,7 @@ export default function FeatureSection() {
   return (
     <section
       id="feature"
-      className="relative py-24 overflow-hidden"
+      className="relative py-16 md:py-24 overflow-hidden"
       style={{ background: "#FAF8F5" }}
     >
       <div
@@ -269,8 +269,8 @@ export default function FeatureSection() {
           }}
         >
           One Place to Run the Studio.
-          <br />
-          Automations That Keep Things Moving.
+          <br className="hidden sm:block" />
+          {" "}Automations That Keep Things Moving.
         </motion.h2>
 
         <motion.p
@@ -278,7 +278,7 @@ export default function FeatureSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-center max-w-2xl mx-auto mb-14"
+          className="text-center max-w-2xl mx-auto mb-10 md:mb-14"
           style={{
             fontSize: "17px",
             lineHeight: "1.65",
@@ -296,7 +296,7 @@ export default function FeatureSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          className="relative mx-auto mb-14"
+          className="relative mx-auto mb-10 md:mb-14"
           style={{
             maxWidth: "820px",
             filter: "drop-shadow(0 8px 40px rgba(26,18,8,0.08))",

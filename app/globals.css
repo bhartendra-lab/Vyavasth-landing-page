@@ -22,9 +22,11 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
 body {
+  overflow-x: hidden;
   background-color: #faf8f5;
   color: #1a1208;
   font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;

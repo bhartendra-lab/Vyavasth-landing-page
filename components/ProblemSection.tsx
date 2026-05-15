@@ -40,7 +40,7 @@ export default function ProblemSection() {
   return (
     <section
       id="problem"
-      className="py-24"
+      className="py-16 md:py-24"
       style={{ background: "#F2EFE9" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -62,7 +62,7 @@ export default function ProblemSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.05 }}
-          className="text-center mb-14"
+          className="text-center mb-8 md:mb-14"
           style={{
             fontFamily: "var(--font-syne)",
             fontWeight: 700,
@@ -126,7 +126,7 @@ export default function ProblemSection() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-14"
+          className="mt-8 md:mt-14"
         >
           <div
             className="w-full mb-8"

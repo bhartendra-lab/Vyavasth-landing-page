@@ -39,7 +39,7 @@ const inputStyle: React.CSSProperties = {
   borderRadius: "12px",
   padding: "12px 16px",
   color: "#1A1208",
-  fontSize: "15px",
+  fontSize: "16px",
   width: "100%",
   outline: "none",
   fontFamily: "var(--font-dm-sans)",
@@ -165,7 +165,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-24"
+      className="py-16 md:py-24"
       style={{ background: "#F2EFE9" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -192,8 +192,8 @@ export default function ContactSection() {
               }}
             >
               Be Part of the
-              <br />
-              Vyavasth Community.
+              <br className="hidden sm:block" />
+              {" "}Vyavasth Community.
             </motion.h2>
 
             <motion.p
@@ -252,7 +252,7 @@ export default function ContactSection() {
           {/* Right — form */}
           <motion.div
             {...fadeUp(0.1)}
-            className="rounded-2xl p-8"
+            className="rounded-2xl p-5 sm:p-8"
             style={{
               background: "#FFFFFF",
               border: "1px solid rgba(26,18,8,0.08)",

@@ -114,15 +114,15 @@ export default function Hero() {
       />
 
       {/* Centered text content */}
-      <div className="relative max-w-3xl mx-auto px-6 lg:px-8 pt-36 pb-8 text-center flex flex-col items-center gap-6">
+      <div className="relative w-full max-w-3xl mx-auto px-6 lg:px-8 pt-24 sm:pt-32 md:pt-36 pb-8 text-center flex flex-col items-center gap-5 sm:gap-6">
         {/* Eyebrow pill */}
-        <motion.div {...useFadeUp(0)}>
+        <motion.div {...useFadeUp(0)} className="max-w-full">
           <span
             className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium uppercase"
             style={{
               background: "rgba(79,70,229,0.08)",
               color: "#4F46E5",
-              letterSpacing: "0.12em",
+              letterSpacing: "0.08em",
               border: "1px solid rgba(79,70,229,0.14)",
             }}
           >
@@ -133,11 +133,11 @@ export default function Hero() {
         {/* Headline */}
         <motion.h1
           {...useFadeUp(0.06)}
-          className="leading-[1.05] tracking-[-0.03em]"
+          className="w-full leading-[1.08] tracking-[-0.03em]"
           style={{
             fontFamily: "var(--font-syne)",
             fontWeight: 800,
-            fontSize: "clamp(42px, 6vw, 64px)",
+            fontSize: "clamp(26px, 7.5vw, 64px)",
             color: "#1A1208",
           }}
         >
@@ -149,9 +149,9 @@ export default function Hero() {
         {/* Subheadline */}
         <motion.p
           {...useFadeUp(0.12)}
-          className="max-w-xl"
+          className="w-full max-w-xl"
           style={{
-            fontSize: "17px",
+            fontSize: "clamp(15px, 4vw, 17px)",
             lineHeight: "1.65",
             color: "#7A6F63",
             fontFamily: "var(--font-dm-sans)",
