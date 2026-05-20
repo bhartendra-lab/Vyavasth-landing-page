@@ -57,7 +57,7 @@ export default function HeroTrustStrip() {
           className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-12 sm:w-20"
           style={{
             background:
-              "linear-gradient(to right, #FAF8F5 0%, transparent 100%)",
+              "linear-gradient(to right, #FFF5E0 0%, transparent 100%)",
           }}
           aria-hidden
         />
@@ -65,7 +65,7 @@ export default function HeroTrustStrip() {
           className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-12 sm:w-20"
           style={{
             background:
-              "linear-gradient(to left, #FAF8F5 0%, transparent 100%)",
+              "linear-gradient(to left, #FFF5E0 0%, transparent 100%)",
           }}
           aria-hidden
         />
