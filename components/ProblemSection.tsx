@@ -18,7 +18,7 @@ const problems = [
   },
   {
     icon: Wallet,
-    accentColor: "#F59E0B",
+    accentColor: "#D4500A",
     title: "You Can't See What's Earned vs. What's Still Pending",
     body: "Advances, balances, expenses, and payouts sit in different chats and sheets. Closing the month feels like detective work instead of a five-minute check on how the business actually did.",
   },
@@ -41,7 +41,7 @@ export default function ProblemSection() {
     <section
       id="problem"
       className="py-16 md:py-24"
-      style={{ background: "#F2EFE9" }}
+      style={{ background: "#EDE7DA" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* Eyebrow */}
@@ -51,7 +51,7 @@ export default function ProblemSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
           className="mb-4 text-center uppercase tracking-[0.12em] text-xs font-medium"
-          style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+          style={{ color: "#6B5240", fontFamily: "var(--font-inter)" }}
         >
           The Problem
         </motion.p>
@@ -64,10 +64,10 @@ export default function ProblemSection() {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="text-center mb-8 md:mb-14"
           style={{
-            fontFamily: "var(--font-syne)",
+            fontFamily: "var(--font-playfair)",
             fontWeight: 700,
             fontSize: "clamp(30px, 4vw, 40px)",
-            color: "#1A1208",
+            color: "#2B1F17",
             letterSpacing: "-0.02em",
           }}
         >
@@ -85,7 +85,7 @@ export default function ProblemSection() {
                 className="rounded-2xl p-6 flex flex-col gap-4"
                 style={{
                   background: "#FFFFFF",
-                  border: `1px solid rgba(26,18,8,0.07)`,
+                  border: `1px solid rgba(43,31,23,0.07)`,
                   borderLeftWidth: "4px",
                   borderLeftColor: p.accentColor,
                 }}
@@ -98,8 +98,8 @@ export default function ProblemSection() {
                 <h3
                   className="font-semibold leading-snug"
                   style={{
-                    fontFamily: "var(--font-syne)",
-                    color: "#1A1208",
+                    fontFamily: "var(--font-playfair)",
+                    color: "#2B1F17",
                     fontSize: "16px",
                   }}
                 >
@@ -107,10 +107,10 @@ export default function ProblemSection() {
                 </h3>
                 <p
                   style={{
-                    color: "#7A6F63",
+                    color: "#6B5240",
                     fontSize: "15px",
                     lineHeight: "1.65",
-                    fontFamily: "var(--font-dm-sans)",
+                    fontFamily: "var(--font-inter)",
                   }}
                 >
                   {p.body}
@@ -130,22 +130,22 @@ export default function ProblemSection() {
         >
           <div
             className="w-full mb-8"
-            style={{ borderTop: "1px solid rgba(26,18,8,0.08)" }}
+            style={{ borderTop: "1px solid rgba(43,31,23,0.08)" }}
           />
           <p
             className="text-center"
             style={{
-              color: "#7A6F63",
+              color: "#6B5240",
               fontSize: "16px",
-              fontFamily: "var(--font-dm-sans)",
+              fontFamily: "var(--font-inter)",
             }}
           >
             Vyavasth is built to fix{" "}
             <span
               className="font-medium"
               style={{
-                color: "#1A1208",
-                borderBottom: "2px solid #4F46E5",
+                color: "#2B1F17",
+                borderBottom: "2px solid #D4500A",
                 paddingBottom: "1px",
               }}
             >

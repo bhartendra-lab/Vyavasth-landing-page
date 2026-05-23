@@ -208,8 +208,8 @@ function ProductImageReveal({
           className="w-full rounded-t-2xl overflow-hidden relative aspect-[8/5]"
           style={{
             boxShadow:
-              "0 -4px 6px rgba(26,18,8,0.03), 0 20px 60px rgba(26,18,8,0.10), 0 8px 24px rgba(26,18,8,0.07)",
-            border: "1px solid rgba(26,18,8,0.07)",
+              "0 -4px 6px rgba(43,31,23,0.03), 0 20px 60px rgba(43,31,23,0.10), 0 8px 24px rgba(43,31,23,0.07)",
+            border: "1px solid rgba(43,31,23,0.07)",
             borderBottom: "none",
           }}
         >
@@ -283,10 +283,10 @@ export default function Hero() {
           {...useFadeUp(0.06)}
           className="w-full leading-[1.08] tracking-[-0.03em]"
           style={{
-            fontFamily: "var(--font-syne)",
+            fontFamily: "var(--font-playfair)",
             fontWeight: 800,
             fontSize: "clamp(26px, 7.5vw, 64px)",
-            color: "#1A1208",
+            color: "#2B1F17",
           }}
         >
           Run Your Studio.
@@ -336,8 +336,8 @@ export default function Hero() {
           style={{
             fontSize: "clamp(15px, 4vw, 17px)",
             lineHeight: "1.65",
-            color: "#7A6F63",
-            fontFamily: "var(--font-dm-sans)",
+            color: "#6B5240",
+            fontFamily: "var(--font-inter)",
           }}
         >
           From the first enquiry to the final delivery — Vyavasth keeps your
@@ -348,8 +348,8 @@ export default function Hero() {
         <motion.div {...useFadeUp(0.18)}>
           <button
             onClick={scrollToContact}
-            className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-[#0A0A0A] transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50"
-            style={{ backgroundColor: "#F59E0B" }}
+            className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-white transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4500A]/50"
+            style={{ backgroundColor: "#D4500A" }}
           >
             Use Vyavasth for Free
             <ArrowRight
@@ -373,8 +373,8 @@ export default function Hero() {
               key={chip}
               className="text-xs"
               style={{
-                color: "#7A6F63",
-                fontFamily: "var(--font-dm-sans)",
+                color: "#6B5240",
+                fontFamily: "var(--font-inter)",
               }}
             >
               {chip}

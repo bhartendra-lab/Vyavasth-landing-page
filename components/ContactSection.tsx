@@ -35,14 +35,14 @@ function validate(data: FormData): FormErrors {
 
 const inputStyle: React.CSSProperties = {
   background: "#FFFFFF",
-  border: "1px solid rgba(26,18,8,0.12)",
+  border: "1px solid rgba(43,31,23,0.12)",
   borderRadius: "12px",
   padding: "12px 16px",
-  color: "#1A1208",
+  color: "#2B1F17",
   fontSize: "16px",
   width: "100%",
   outline: "none",
-  fontFamily: "var(--font-dm-sans)",
+  fontFamily: "var(--font-inter)",
   transition: "border-color 0.2s, box-shadow 0.2s",
 };
 
@@ -70,7 +70,7 @@ function Field({
       <label
         htmlFor={id}
         className="text-sm font-medium"
-        style={{ color: "#1A1208", fontFamily: "var(--font-dm-sans)" }}
+        style={{ color: "#2B1F17", fontFamily: "var(--font-inter)" }}
       >
         {label}
       </label>
@@ -88,12 +88,12 @@ function Field({
           borderColor: error
             ? "#EF4444"
             : focused
-            ? "#4F46E5"
-            : "rgba(26,18,8,0.12)",
+            ? "#D4500A"
+            : "rgba(43,31,23,0.12)",
           boxShadow: error
             ? "0 0 0 3px rgba(239,68,68,0.08)"
             : focused
-            ? "0 0 0 3px rgba(79,70,229,0.12)"
+            ? "0 0 0 3px rgba(212,80,10,0.12)"
             : "none",
         }}
       />
@@ -166,7 +166,7 @@ export default function ContactSection() {
     <section
       id="contact"
       className="py-16 md:py-24"
-      style={{ background: "#F2EFE9" }}
+      style={{ background: "#EDE7DA" }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
@@ -175,7 +175,7 @@ export default function ContactSection() {
             <motion.p
               {...fadeUp(0)}
               className="uppercase tracking-[0.12em] text-xs font-medium"
-              style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+              style={{ color: "#6B5240", fontFamily: "var(--font-inter)" }}
             >
               Contact Us
             </motion.p>
@@ -183,10 +183,10 @@ export default function ContactSection() {
             <motion.h2
               {...fadeUp(0.05)}
               style={{
-                fontFamily: "var(--font-syne)",
+                fontFamily: "var(--font-playfair)",
                 fontWeight: 700,
                 fontSize: "clamp(30px, 4vw, 40px)",
-                color: "#1A1208",
+                color: "#2B1F17",
                 letterSpacing: "-0.02em",
                 lineHeight: "1.15",
               }}
@@ -201,8 +201,8 @@ export default function ContactSection() {
               style={{
                 fontSize: "17px",
                 lineHeight: "1.65",
-                color: "#7A6F63",
-                fontFamily: "var(--font-dm-sans)",
+                color: "#6B5240",
+                fontFamily: "var(--font-inter)",
               }}
             >
               We&rsquo;re onboarding photography and videography studios right
@@ -233,8 +233,8 @@ export default function ContactSection() {
                 <span
                   className="text-xs"
                   style={{
-                    color: "#7A6F63",
-                    fontFamily: "var(--font-dm-sans)",
+                    color: "#6B5240",
+                    fontFamily: "var(--font-inter)",
                   }}
                 >
                   Prefer to talk directly?
@@ -255,8 +255,8 @@ export default function ContactSection() {
             className="rounded-2xl p-5 sm:p-8"
             style={{
               background: "#FFFFFF",
-              border: "1px solid rgba(26,18,8,0.08)",
-              boxShadow: "0 4px 24px rgba(26,18,8,0.05)",
+              border: "1px solid rgba(43,31,23,0.08)",
+              boxShadow: "0 4px 24px rgba(43,31,23,0.05)",
             }}
           >
             {state === "success" ? (
@@ -270,8 +270,8 @@ export default function ContactSection() {
                 <h3
                   className="text-lg font-semibold"
                   style={{
-                    fontFamily: "var(--font-syne)",
-                    color: "#1A1208",
+                    fontFamily: "var(--font-playfair)",
+                    color: "#2B1F17",
                   }}
                 >
                   You&rsquo;re on the list.
@@ -279,8 +279,8 @@ export default function ContactSection() {
                 <p
                   className="text-sm"
                   style={{
-                    color: "#7A6F63",
-                    fontFamily: "var(--font-dm-sans)",
+                    color: "#6B5240",
+                    fontFamily: "var(--font-inter)",
                   }}
                 >
                   We&rsquo;ll be in touch soon. Keep an eye on your WhatsApp.
@@ -338,11 +338,11 @@ export default function ContactSection() {
                 <button
                   type="submit"
                   disabled={state === "loading"}
-                  className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-[#0A0A0A] transition-all duration-200 hover:brightness-110 disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50"
+                  className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-white transition-all duration-200 hover:brightness-110 disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4500A]/50"
                   style={{
-                    backgroundColor: "#F59E0B",
+                    backgroundColor: "#D4500A",
                     fontSize: "15px",
-                    fontFamily: "var(--font-dm-sans)",
+                    fontFamily: "var(--font-inter)",
                   }}
                 >
                   {state === "loading" ? (

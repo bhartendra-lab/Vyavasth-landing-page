@@ -3,8 +3,8 @@ import { LAST_UPDATED } from "@/lib/site-legal";
 import Footer from "@/components/Footer";
 import Nav from "@/components/Nav";
 
-const muted = "#7A6F63";
-const text = "#1A1208";
+const muted = "#6B5240";
+const text = "#2B1F17";
 
 export default function LegalPageShell({
   title,
@@ -14,21 +14,21 @@ export default function LegalPageShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: "#FAF8F5" }}>
+    <div className="min-h-screen flex flex-col" style={{ background: "#F5F0E8" }}>
       <Nav />
       <main className="flex-1 pt-24 pb-16 px-6 lg:px-8">
         <article className="max-w-3xl mx-auto w-full">
           <div
             className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8 pb-6"
-            style={{ borderBottom: "1px solid rgba(26,18,8,0.08)" }}
+            style={{ borderBottom: "1px solid rgba(43,31,23,0.08)" }}
           >
-            <p className="text-sm m-0" style={{ color: muted, fontFamily: "var(--font-dm-sans)" }}>
+            <p className="text-sm m-0" style={{ color: muted, fontFamily: "var(--font-inter)" }}>
               Last Updated: {LAST_UPDATED}
             </p>
             <Link
               href="/"
               className="text-sm font-medium shrink-0 transition-colors hover:opacity-80"
-              style={{ color: "#4F46E5", fontFamily: "var(--font-dm-sans)" }}
+              style={{ color: "#D4500A", fontFamily: "var(--font-inter)" }}
             >
               ← Back to home
             </Link>
@@ -37,7 +37,7 @@ export default function LegalPageShell({
           <h1
             className="text-3xl sm:text-4xl font-bold tracking-tight mb-10"
             style={{
-              fontFamily: "var(--font-syne)",
+              fontFamily: "var(--font-playfair)",
               color: text,
               letterSpacing: "-0.02em",
               lineHeight: 1.15,
@@ -50,7 +50,7 @@ export default function LegalPageShell({
             className="flex flex-col gap-8 text-[15px] sm:text-base leading-relaxed"
             style={{
               color: text,
-              fontFamily: "var(--font-dm-sans)",
+              fontFamily: "var(--font-inter)",
             }}
           >
             {children}

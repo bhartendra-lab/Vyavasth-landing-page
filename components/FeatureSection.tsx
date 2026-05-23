@@ -17,14 +17,14 @@ function UnifiedWorkflowMockup() {
       className="relative rounded-2xl"
       style={{
         background: "#FFFFFF",
-        border: "1px solid rgba(26,18,8,0.08)",
+        border: "1px solid rgba(43,31,23,0.08)",
       }}
     >
       <div className="relative grid grid-cols-1 md:grid-cols-2 overflow-hidden rounded-2xl">
         {/* Before — fragmented */}
         <div
           className="p-5 md:p-6 flex flex-col gap-4 md:border-r border-b-0 md:border-b-0 min-h-[280px] md:min-h-0"
-          style={{ borderColor: "rgba(26,18,8,0.07)" }}
+          style={{ borderColor: "rgba(43,31,23,0.07)" }}
         >
           <span
             className="self-start text-xs px-2.5 py-1 rounded-full font-medium"
@@ -38,7 +38,7 @@ function UnifiedWorkflowMockup() {
           </span>
           <p
             className="text-xs font-medium uppercase tracking-wide"
-            style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+            style={{ color: "#6B5240", fontFamily: "var(--font-inter)" }}
           >
             Typical day
           </p>
@@ -46,38 +46,38 @@ function UnifiedWorkflowMockup() {
             <div
               className="rounded-xl px-3 py-2.5 flex items-center gap-3"
               style={{
-                background: "#F2EFE9",
-                border: "1px solid rgba(26,18,8,0.06)",
+                background: "#EDE7DA",
+                border: "1px solid rgba(43,31,23,0.06)",
               }}
             >
-              <MessageCircle size={16} style={{ color: "#7A6F63" }} />
-              <span className="text-xs" style={{ color: "#1A1208" }}>
+              <MessageCircle size={16} style={{ color: "#6B5240" }} />
+              <span className="text-xs" style={{ color: "#2B1F17" }}>
                 14 WhatsApp threads · 6 still unanswered
               </span>
             </div>
             <div
               className="rounded-xl px-3 py-2.5 flex items-center gap-3"
               style={{
-                background: "#F2EFE9",
-                border: "1px solid rgba(26,18,8,0.06)",
+                background: "#EDE7DA",
+                border: "1px solid rgba(43,31,23,0.06)",
               }}
             >
-              <FileSpreadsheet size={16} style={{ color: "#7A6F63" }} />
-              <span className="text-xs" style={{ color: "#1A1208" }}>
+              <FileSpreadsheet size={16} style={{ color: "#6B5240" }} />
+              <span className="text-xs" style={{ color: "#2B1F17" }}>
                 Bookings_master.xlsx · crew list on paper
               </span>
             </div>
             <div
               className="rounded-xl px-3 py-2.5 flex items-center gap-3"
               style={{
-                background: "#F2EFE9",
-                border: "1px solid rgba(26,18,8,0.06)",
+                background: "#EDE7DA",
+                border: "1px solid rgba(43,31,23,0.06)",
               }}
             >
               <span className="text-xs font-medium" style={{ color: "#DC2626" }}>
                 ?
               </span>
-              <span className="text-xs" style={{ color: "#1A1208" }}>
+              <span className="text-xs" style={{ color: "#2B1F17" }}>
                 Which inquiry was &quot;call back Tuesday&quot;?
               </span>
             </div>
@@ -93,12 +93,12 @@ function UnifiedWorkflowMockup() {
         {/* Mobile-only arrow between panels */}
         <div
           className="md:hidden flex justify-center py-2 border-y"
-          style={{ borderColor: "rgba(26,18,8,0.07)", background: "#FAF8F5" }}
+          style={{ borderColor: "rgba(43,31,23,0.07)", background: "#F5F0E8" }}
           aria-hidden
         >
           <ArrowRight
             size={16}
-            style={{ color: "#7A6F63", transform: "rotate(90deg)" }}
+            style={{ color: "#6B5240", transform: "rotate(90deg)" }}
           />
         </div>
 
@@ -116,7 +116,7 @@ function UnifiedWorkflowMockup() {
           </span>
           <p
             className="text-xs font-medium uppercase tracking-wide"
-            style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+            style={{ color: "#6B5240", fontFamily: "var(--font-inter)" }}
           >
             Same studio · one flow
           </p>
@@ -129,13 +129,13 @@ function UnifiedWorkflowMockup() {
                   style={{
                     background:
                       i === 0
-                        ? "rgba(79,70,229,0.12)"
-                        : "rgba(26,18,8,0.05)",
-                    color: i === 0 ? "#4F46E5" : "#7A6F63",
+                        ? "rgba(212,80,10,0.12)"
+                        : "rgba(43,31,23,0.05)",
+                    color: i === 0 ? "#D4500A" : "#6B5240",
                     border: `1px solid ${
                       i === 0
-                        ? "rgba(79,70,229,0.2)"
-                        : "rgba(26,18,8,0.07)"
+                        ? "rgba(212,80,10,0.2)"
+                        : "rgba(43,31,23,0.07)"
                     }`,
                   }}
                 >
@@ -151,16 +151,16 @@ function UnifiedWorkflowMockup() {
             <div
               className="rounded-xl px-3 py-2.5 flex items-start gap-3"
               style={{
-                background: "rgba(79,70,229,0.06)",
-                border: "1px solid rgba(79,70,229,0.12)",
+                background: "rgba(212,80,10,0.06)",
+                border: "1px solid rgba(212,80,10,0.12)",
               }}
             >
-              <MessagesSquare size={16} className="shrink-0 mt-0.5" style={{ color: "#4F46E5" }} />
+              <MessagesSquare size={16} className="shrink-0 mt-0.5" style={{ color: "#D4500A" }} />
               <div className="flex flex-col gap-0.5">
-                <span className="text-xs font-medium" style={{ color: "#1A1208" }}>
+                <span className="text-xs font-medium" style={{ color: "#2B1F17" }}>
                   Follow-up queued · Meera · wedding enquiry
                 </span>
-                <span className="text-[11px]" style={{ color: "#7A6F63" }}>
+                <span className="text-[11px]" style={{ color: "#6B5240" }}>
                   Sends tomorrow 10 AM · template saved
                 </span>
               </div>
@@ -168,12 +168,12 @@ function UnifiedWorkflowMockup() {
             <div
               className="rounded-xl px-3 py-2.5 flex items-center gap-3"
               style={{
-                background: "#F2EFE9",
-                border: "1px solid rgba(26,18,8,0.06)",
+                background: "#EDE7DA",
+                border: "1px solid rgba(43,31,23,0.06)",
               }}
             >
-              <UsersRound size={16} style={{ color: "#7A6F63" }} />
-              <span className="text-xs" style={{ color: "#1A1208" }}>
+              <UsersRound size={16} style={{ color: "#6B5240" }} />
+              <span className="text-xs" style={{ color: "#2B1F17" }}>
                 Crew · Rahul · Sangeet · Sat 6 PM · deliverables tracked
               </span>
             </div>
@@ -195,12 +195,12 @@ function UnifiedWorkflowMockup() {
         <div
           className="w-9 h-9 rounded-full flex items-center justify-center"
           style={{
-            background: "#FAF8F5",
-            border: "1px solid rgba(26,18,8,0.10)",
-            boxShadow: "0 2px 8px rgba(26,18,8,0.06)",
+            background: "#F5F0E8",
+            border: "1px solid rgba(43,31,23,0.10)",
+            boxShadow: "0 2px 8px rgba(43,31,23,0.06)",
           }}
         >
-          <ArrowRight size={16} style={{ color: "#7A6F63" }} />
+          <ArrowRight size={16} style={{ color: "#6B5240" }} />
         </div>
       </div>
     </div>
@@ -216,12 +216,12 @@ const supportingPoints = [
   {
     icon: MessagesSquare,
     title: "WhatsApp workflows that keep moving",
-    body: "Saved replies and scheduled nudges — follow-ups don’t die when you’re on a shoot all day.",
+    body: "Saved replies and scheduled nudges — follow-ups don't die when you're on a shoot all day.",
   },
   {
     icon: UsersRound,
     title: "Crew, deliverables & money together",
-    body: "Assignments, what’s delivered, and what’s earned vs pending — without midnight spreadsheet detective work.",
+    body: "Assignments, what's delivered, and what's earned vs pending — without midnight spreadsheet detective work.",
   },
 ];
 
@@ -232,13 +232,13 @@ export default function FeatureSection() {
     <section
       id="feature"
       className="relative py-16 md:py-24 overflow-hidden"
-      style={{ background: "#FAF8F5" }}
+      style={{ background: "#F5F0E8" }}
     >
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(79,70,229,0.04) 0%, transparent 70%)",
+            "radial-gradient(ellipse 80% 60% at 50% 50%, rgba(212,80,10,0.04) 0%, transparent 70%)",
         }}
       />
 
@@ -249,7 +249,7 @@ export default function FeatureSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.4 }}
           className="text-center uppercase tracking-[0.12em] text-xs font-medium mb-4"
-          style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+          style={{ color: "#6B5240", fontFamily: "var(--font-inter)" }}
         >
           How It Works
         </motion.p>
@@ -261,10 +261,10 @@ export default function FeatureSection() {
           transition={{ duration: 0.5, delay: 0.05 }}
           className="text-center mb-4"
           style={{
-            fontFamily: "var(--font-syne)",
+            fontFamily: "var(--font-playfair)",
             fontWeight: 700,
             fontSize: "clamp(30px, 4vw, 40px)",
-            color: "#1A1208",
+            color: "#2B1F17",
             letterSpacing: "-0.02em",
           }}
         >
@@ -282,8 +282,8 @@ export default function FeatureSection() {
           style={{
             fontSize: "17px",
             lineHeight: "1.65",
-            color: "#7A6F63",
-            fontFamily: "var(--font-dm-sans)",
+            color: "#6B5240",
+            fontFamily: "var(--font-inter)",
           }}
         >
           Vyavasth connects leads, WhatsApp, crew jobs, deliverables, and your
@@ -299,7 +299,7 @@ export default function FeatureSection() {
           className="relative mx-auto mb-10 md:mb-14"
           style={{
             maxWidth: "820px",
-            filter: "drop-shadow(0 8px 40px rgba(26,18,8,0.08))",
+            filter: "drop-shadow(0 8px 40px rgba(43,31,23,0.08))",
           }}
         >
           <UnifiedWorkflowMockup />
@@ -319,15 +319,15 @@ export default function FeatureSection() {
               >
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center"
-                  style={{ background: "rgba(79,70,229,0.08)" }}
+                  style={{ background: "rgba(212,80,10,0.08)" }}
                 >
-                  <Icon size={18} style={{ color: "#4F46E5" }} strokeWidth={1.8} />
+                  <Icon size={18} style={{ color: "#D4500A" }} strokeWidth={1.8} />
                 </div>
                 <p
                   className="font-semibold text-sm"
                   style={{
-                    fontFamily: "var(--font-syne)",
-                    color: "#1A1208",
+                    fontFamily: "var(--font-playfair)",
+                    color: "#2B1F17",
                   }}
                 >
                   {pt.title}
@@ -335,8 +335,8 @@ export default function FeatureSection() {
                 <p
                   className="text-sm"
                   style={{
-                    color: "#7A6F63",
-                    fontFamily: "var(--font-dm-sans)",
+                    color: "#6B5240",
+                    fontFamily: "var(--font-inter)",
                     lineHeight: "1.5",
                   }}
                 >

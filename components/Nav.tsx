@@ -6,9 +6,9 @@ import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
 const btnOutline =
-  "px-4 py-2 text-sm font-medium rounded-lg border border-[#4F46E5] text-[#4F46E5] transition-all duration-200 hover:bg-[#4F46E5] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4F46E5]/50";
+  "px-4 py-2 text-sm font-medium rounded-lg border border-[#D4500A] text-[#D4500A] transition-all duration-200 hover:bg-[#D4500A] hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4500A]/50";
 const btnPrimary =
-  "px-4 py-2 text-sm font-semibold rounded-lg text-[#0A0A0A] transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50";
+  "px-4 py-2 text-sm font-semibold rounded-lg text-white transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4500A]/50";
 
 export default function Nav() {
   const pathname = usePathname();
@@ -57,8 +57,8 @@ export default function Nav() {
         style={
           scrolled
             ? {
-                backgroundColor: "rgba(250,248,245,0.9)",
-                borderBottomColor: "rgba(26,18,8,0.06)",
+                backgroundColor: "rgba(245,240,232,0.9)",
+                borderBottomColor: "rgba(43,31,23,0.06)",
               }
             : undefined
         }
@@ -72,13 +72,13 @@ export default function Nav() {
           >
             <span
               className="flex items-center justify-center w-8 h-8 rounded-[10px] text-white font-bold text-sm select-none"
-              style={{ backgroundColor: "#4F46E5" }}
+              style={{ backgroundColor: "#D4500A" }}
             >
               V
             </span>
             <span
               className="text-lg font-semibold tracking-tight"
-              style={{ fontFamily: "var(--font-syne)", color: "#1A1208" }}
+              style={{ fontFamily: "var(--font-playfair)", color: "#2B1F17" }}
             >
               Vyavasth
             </span>
@@ -103,7 +103,7 @@ export default function Nav() {
                 type="button"
                 onClick={() => scrollTo("contact")}
                 className={btnPrimary}
-                style={{ backgroundColor: "#F59E0B" }}
+                style={{ backgroundColor: "#D4500A" }}
               >
                 Get Access
               </button>
@@ -111,7 +111,7 @@ export default function Nav() {
               <Link
                 href="/#contact"
                 className={btnPrimary}
-                style={{ backgroundColor: "#F59E0B" }}
+                style={{ backgroundColor: "#D4500A" }}
               >
                 Get Access
               </Link>
@@ -120,7 +120,7 @@ export default function Nav() {
 
           <button
             className="md:hidden p-1 focus:outline-none"
-            style={{ color: "#1A1208" }}
+            style={{ color: "#2B1F17" }}
             onClick={() => setDrawerOpen(true)}
             aria-label="Open menu"
           >
@@ -132,7 +132,7 @@ export default function Nav() {
       {drawerOpen && (
         <div
           className="fixed inset-0 z-50 backdrop-blur-sm md:hidden"
-          style={{ backgroundColor: "rgba(26,18,8,0.3)" }}
+          style={{ backgroundColor: "rgba(43,31,23,0.3)" }}
           onClick={() => setDrawerOpen(false)}
         />
       )}
@@ -142,24 +142,24 @@ export default function Nav() {
           drawerOpen ? "translate-x-0" : "translate-x-full"
         }`}
         style={{
-          backgroundColor: "#FAF8F5",
-          borderLeft: "1px solid rgba(26,18,8,0.07)",
+          backgroundColor: "#F5F0E8",
+          borderLeft: "1px solid rgba(43,31,23,0.07)",
         }}
       >
         <div
           className="flex items-center justify-between px-6 h-16"
-          style={{ borderBottom: "1px solid rgba(26,18,8,0.07)" }}
+          style={{ borderBottom: "1px solid rgba(43,31,23,0.07)" }}
         >
           <span
             className="text-lg font-semibold"
-            style={{ fontFamily: "var(--font-syne)", color: "#1A1208" }}
+            style={{ fontFamily: "var(--font-playfair)", color: "#2B1F17" }}
           >
             Vyavasth
           </span>
           <button
             onClick={() => setDrawerOpen(false)}
             className="transition-colors focus:outline-none"
-            style={{ color: "#7A6F63" }}
+            style={{ color: "#6B5240" }}
             aria-label="Close menu"
           >
             <X size={20} />
@@ -188,7 +188,7 @@ export default function Nav() {
               type="button"
               onClick={() => scrollTo("contact")}
               className={`w-full text-center py-3 text-sm ${btnPrimary}`}
-              style={{ backgroundColor: "#F59E0B" }}
+              style={{ backgroundColor: "#D4500A" }}
             >
               Get Access
             </button>
@@ -197,7 +197,7 @@ export default function Nav() {
               href="/#contact"
               onClick={() => setDrawerOpen(false)}
               className={`w-full text-center py-3 text-sm ${btnPrimary}`}
-              style={{ backgroundColor: "#F59E0B" }}
+              style={{ backgroundColor: "#D4500A" }}
             >
               Get Access
             </Link>

@@ -44,14 +44,14 @@ function validate(data: FormData): FormErrors {
 
 const inputStyle: React.CSSProperties = {
   background: "#FFFFFF",
-  border: "1px solid rgba(26,18,8,0.12)",
+  border: "1px solid rgba(43,31,23,0.12)",
   borderRadius: "12px",
   padding: "12px 16px",
-  color: "#1A1208",
+  color: "#2B1F17",
   fontSize: "16px",
   width: "100%",
   outline: "none",
-  fontFamily: "var(--font-dm-sans)",
+  fontFamily: "var(--font-inter)",
   transition: "border-color 0.2s, box-shadow 0.2s",
 };
 
@@ -79,7 +79,7 @@ function TextField({
       <label
         htmlFor={id}
         className="text-sm font-medium"
-        style={{ color: "#1A1208", fontFamily: "var(--font-dm-sans)" }}
+        style={{ color: "#2B1F17", fontFamily: "var(--font-inter)" }}
       >
         {label}
       </label>
@@ -97,12 +97,12 @@ function TextField({
           borderColor: error
             ? "#EF4444"
             : focused
-              ? "#4F46E5"
-              : "rgba(26,18,8,0.12)",
+              ? "#D4500A"
+              : "rgba(43,31,23,0.12)",
           boxShadow: error
             ? "0 0 0 3px rgba(239,68,68,0.08)"
             : focused
-              ? "0 0 0 3px rgba(79,70,229,0.12)"
+              ? "0 0 0 3px rgba(212,80,10,0.12)"
               : "none",
         }}
       />
@@ -137,7 +137,7 @@ function TextAreaField({
       <label
         htmlFor={id}
         className="text-sm font-medium"
-        style={{ color: "#1A1208", fontFamily: "var(--font-dm-sans)" }}
+        style={{ color: "#2B1F17", fontFamily: "var(--font-inter)" }}
       >
         {label}
       </label>
@@ -155,12 +155,12 @@ function TextAreaField({
           borderColor: error
             ? "#EF4444"
             : focused
-              ? "#4F46E5"
-              : "rgba(26,18,8,0.12)",
+              ? "#D4500A"
+              : "rgba(43,31,23,0.12)",
           boxShadow: error
             ? "0 0 0 3px rgba(239,68,68,0.08)"
             : focused
-              ? "0 0 0 3px rgba(79,70,229,0.12)"
+              ? "0 0 0 3px rgba(212,80,10,0.12)"
               : "none",
         }}
       />
@@ -229,13 +229,13 @@ export default function ContactPageForm() {
       className="rounded-2xl p-6 sm:p-8"
       style={{
         background: "#FFFFFF",
-        border: "1px solid rgba(26,18,8,0.08)",
-        boxShadow: "0 4px 24px rgba(26,18,8,0.05)",
+        border: "1px solid rgba(43,31,23,0.08)",
+        boxShadow: "0 4px 24px rgba(43,31,23,0.05)",
       }}
     >
       <h2
         className="text-lg font-semibold mb-1"
-        style={{ fontFamily: "var(--font-syne)", color: "#1A1208" }}
+        style={{ fontFamily: "var(--font-playfair)", color: "#2B1F17" }}
       >
         Support ticket
       </h2>
@@ -249,13 +249,13 @@ export default function ContactPageForm() {
           </div>
           <h3
             className="text-lg font-semibold"
-            style={{ fontFamily: "var(--font-syne)", color: "#1A1208" }}
+            style={{ fontFamily: "var(--font-playfair)", color: "#2B1F17" }}
           >
             Message received
           </h3>
           <p
             className="text-sm max-w-md"
-            style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+            style={{ color: "#6B5240", fontFamily: "var(--font-inter)" }}
           >
             Thank you. We aim to respond within 48 business hours.
           </p>
@@ -264,7 +264,7 @@ export default function ContactPageForm() {
         <>
           <p
             className="text-sm mb-6"
-            style={{ color: "#7A6F63", fontFamily: "var(--font-dm-sans)" }}
+            style={{ color: "#6B5240", fontFamily: "var(--font-inter)" }}
           >
             Submit the form below and we will get back to you. You can also email
             us directly.
@@ -329,11 +329,11 @@ export default function ContactPageForm() {
           <button
             type="submit"
             disabled={state === "loading"}
-            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-[#0A0A0A] transition-all duration-200 hover:brightness-110 disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50"
+            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-white transition-all duration-200 hover:brightness-110 disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#D4500A]/50"
             style={{
-              backgroundColor: "#F59E0B",
+              backgroundColor: "#D4500A",
               fontSize: "15px",
-              fontFamily: "var(--font-dm-sans)",
+              fontFamily: "var(--font-inter)",
             }}
           >
             {state === "loading" ? (

@@ -19,11 +19,11 @@ export default function HeroTrustStrip() {
       {/* Trust copy (rating hidden for now) */}
       <div className="flex gap-4 shrink-0 lg:max-w-[min(100%,280px)]">
         <div
-          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full ring-2 ring-[#4F46E5]/15"
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full ring-2 ring-[#D4500A]/15"
           style={{
-            background: "linear-gradient(155deg, #FBBF24 0%, #F59E0B 45%, #D97706 100%)",
+            background: "linear-gradient(155deg, #E86810 0%, #D4500A 45%, #B83D06 100%)",
             boxShadow:
-              "0 2px 10px rgba(245, 158, 11, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35)",
+              "0 2px 10px rgba(212, 80, 10, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.35)",
           }}
           role="img"
           aria-label="Verified trust badge"
@@ -39,8 +39,8 @@ export default function HeroTrustStrip() {
           <p
             className="text-[13px] font-semibold leading-snug sm:text-sm"
             style={{
-              color: "#1A1208",
-              fontFamily: "var(--font-syne)",
+              color: "#2B1F17",
+              fontFamily: "var(--font-playfair)",
             }}
           >
             Trusted by photography &amp; video studios across India
@@ -57,7 +57,7 @@ export default function HeroTrustStrip() {
           className="pointer-events-none absolute inset-y-0 left-0 z-[1] w-12 sm:w-20"
           style={{
             background:
-              "linear-gradient(to right, #FFF5E0 0%, transparent 100%)",
+              "linear-gradient(to right, #F5F0E8 0%, transparent 100%)",
           }}
           aria-hidden
         />
@@ -65,7 +65,7 @@ export default function HeroTrustStrip() {
           className="pointer-events-none absolute inset-y-0 right-0 z-[1] w-12 sm:w-20"
           style={{
             background:
-              "linear-gradient(to left, #FFF5E0 0%, transparent 100%)",
+              "linear-gradient(to left, #F5F0E8 0%, transparent 100%)",
           }}
           aria-hidden
         />
@@ -78,7 +78,7 @@ export default function HeroTrustStrip() {
                 className="whitespace-nowrap text-sm font-semibold uppercase tracking-[0.15em] select-none"
                 style={{
                   color: "#B8B2A8",
-                  fontFamily: "var(--font-dm-sans)",
+                  fontFamily: "var(--font-inter)",
                   letterSpacing: "0.12em",
                 }}
               >
