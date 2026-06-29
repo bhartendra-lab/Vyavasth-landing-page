@@ -1,6 +1,6 @@
 /** Single source of truth for legal / compliance copy (Razorpay, India). */
 
-export const LAST_UPDATED = "11 May 2026";
+export const LAST_UPDATED = "29 June 2026";
 
 export const BUSINESS_NAME = "Vyavasth";
 

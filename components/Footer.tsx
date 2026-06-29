@@ -22,6 +22,13 @@ export default function Footer() {
             Privacy Policy
           </Link>
           <Link
+            href="/cookie-policy"
+            className={linkClass}
+            style={{ color: "#6B5240", fontFamily: "var(--font-inter)" }}
+          >
+            Cookie Policy
+          </Link>
+          <Link
             href="/refund-policy"
             className={linkClass}
             style={{ color: "#6B5240", fontFamily: "var(--font-inter)" }}
