@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
@@ -67,21 +68,17 @@ export default function Nav() {
           <Link
             href="/"
             onClick={logoClick}
-            className="flex items-center gap-2.5 focus:outline-none"
+            className="flex items-center focus:outline-none"
             aria-label="Vyavasth home"
           >
-            <span
-              className="flex items-center justify-center w-8 h-8 rounded-[10px] text-white font-bold text-sm select-none"
-              style={{ backgroundColor: "#4F46E5" }}
-            >
-              V
-            </span>
-            <span
-              className="text-lg font-semibold tracking-tight"
-              style={{ fontFamily: "var(--font-syne)", color: "#1A1208" }}
-            >
-              Vyavasth
-            </span>
+            <Image
+              src="/vyavasth-full-logo.svg"
+              alt="Vyavasth"
+              width={148}
+              height={26}
+              priority
+              className="h-6 w-auto"
+            />
           </Link>
 
           <nav className="hidden md:flex items-center gap-3">
@@ -150,12 +147,13 @@ export default function Nav() {
           className="flex items-center justify-between px-6 h-16"
           style={{ borderBottom: "1px solid rgba(26,18,8,0.07)" }}
         >
-          <span
-            className="text-lg font-semibold"
-            style={{ fontFamily: "var(--font-syne)", color: "#1A1208" }}
-          >
-            Vyavasth
-          </span>
+          <Image
+            src="/vyavasth-full-logo.svg"
+            alt="Vyavasth"
+            width={148}
+            height={26}
+            className="h-6 w-auto"
+          />
           <button
             onClick={() => setDrawerOpen(false)}
             className="transition-colors focus:outline-none"

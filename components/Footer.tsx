@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 
 const linkClass =
@@ -70,22 +71,14 @@ export default function Footer() {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-2 border-t border-[rgba(26,18,8,0.06)]">
-          <div className="flex items-center gap-2">
-            <span
-              className="flex items-center justify-center w-7 h-7 rounded-[8px] text-white font-bold text-xs select-none"
-              style={{ backgroundColor: "#4F46E5" }}
-            >
-              V
-            </span>
-            <span
-              className="text-sm font-semibold"
-              style={{
-                fontFamily: "var(--font-syne)",
-                color: "#1A1208",
-              }}
-            >
-              Vyavasth
-            </span>
+          <div className="flex items-center">
+            <Image
+              src="/vyavasth-full-logo.svg"
+              alt="Vyavasth"
+              width={130}
+              height={23}
+              className="h-5 w-auto"
+            />
           </div>
 
           <p
