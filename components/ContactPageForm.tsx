@@ -43,7 +43,7 @@ function validate(data: FormData): FormErrors {
 }
 
 const inputStyle: React.CSSProperties = {
-  background: "#FFFFFF",
+  background: "var(--color-surface)",
   border: "1px solid rgba(26,18,8,0.12)",
   borderRadius: "12px",
   padding: "12px 16px",
@@ -97,12 +97,12 @@ function TextField({
           borderColor: error
             ? "#EF4444"
             : focused
-              ? "#4F46E5"
+              ? "#C25A3A"
               : "rgba(26,18,8,0.12)",
           boxShadow: error
             ? "0 0 0 3px rgba(239,68,68,0.08)"
             : focused
-              ? "0 0 0 3px rgba(79,70,229,0.12)"
+              ? "0 0 0 3px rgba(194,90,58,0.12)"
               : "none",
         }}
       />
@@ -155,12 +155,12 @@ function TextAreaField({
           borderColor: error
             ? "#EF4444"
             : focused
-              ? "#4F46E5"
+              ? "#C25A3A"
               : "rgba(26,18,8,0.12)",
           boxShadow: error
             ? "0 0 0 3px rgba(239,68,68,0.08)"
             : focused
-              ? "0 0 0 3px rgba(79,70,229,0.12)"
+              ? "0 0 0 3px rgba(194,90,58,0.12)"
               : "none",
         }}
       />
@@ -228,7 +228,7 @@ export default function ContactPageForm() {
     <div
       className="rounded-2xl p-6 sm:p-8"
       style={{
-        background: "#FFFFFF",
+        background: "var(--color-surface)",
         border: "1px solid rgba(26,18,8,0.08)",
         boxShadow: "0 4px 24px rgba(26,18,8,0.05)",
       }}
@@ -329,9 +329,9 @@ export default function ContactPageForm() {
           <button
             type="submit"
             disabled={state === "loading"}
-            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-[#0A0A0A] transition-all duration-200 hover:brightness-110 disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50"
+            className="w-full flex items-center justify-center gap-2 py-4 rounded-xl font-semibold text-white transition-all duration-200 hover:brightness-110 disabled:opacity-70 disabled:cursor-not-allowed focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C25A3A]/50"
             style={{
-              backgroundColor: "#F59E0B",
+              backgroundColor: "#C25A3A",
               fontSize: "15px",
               fontFamily: "var(--font-dm-sans)",
             }}

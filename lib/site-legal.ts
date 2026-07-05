@@ -11,6 +11,9 @@ export const SUPPORT_PHONE_DISPLAY = "+91-8929163903";
 /** E.164-style for tel: links */
 export const SUPPORT_PHONE_TEL = "+918929163903";
 
+/** Digits-only (with country code) for wa.me links */
+export const WHATSAPP_NUMBER = "918929163903";
+
 export const REGISTERED_ADDRESS =
   "Ward No. 06, Rajghat road, Chanderi, Ashoknagar, M.P., 473446";
 

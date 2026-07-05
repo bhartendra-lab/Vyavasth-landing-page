@@ -61,7 +61,7 @@ export default function TermsPage() {
           You must provide accurate registration information and keep it updated.
           You are responsible for safeguarding passwords and for all activity
           under your account. Notify us promptly at{" "}
-          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#4F46E5] underline">
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
             {SUPPORT_EMAIL}
           </a>{" "}
           if you suspect unauthorized access.
@@ -112,7 +112,7 @@ export default function TermsPage() {
           applicable amounts. Taxes may be added as required by law. Failure to
           pay may result in suspension or termination of access. Refunds and
           cancellations are governed by our{" "}
-          <a href="/refund-policy" className="text-[#4F46E5] underline">
+          <a href="/refund-policy" className="text-[#C25A3A] underline">
             Refund &amp; Cancellation Policy
           </a>
           .
@@ -216,11 +216,11 @@ export default function TermsPage() {
         </h2>
         <p>
           Questions about these Terms:{" "}
-          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#4F46E5] underline">
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
             {SUPPORT_EMAIL}
           </a>{" "}
           or{" "}
-          <a href="/contact" className="text-[#4F46E5] underline">
+          <a href="/contact" className="text-[#C25A3A] underline">
             /contact
           </a>
           .

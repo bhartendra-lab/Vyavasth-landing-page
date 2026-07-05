@@ -78,18 +78,18 @@ export default function AboutPage() {
           <li>
             We are committed to <strong>data privacy</strong> and transparent
             handling of personal and business information—see our{" "}
-            <Link href="/privacy-policy" className="text-[#4F46E5] underline">
+            <Link href="/privacy-policy" className="text-[#C25A3A] underline">
               Privacy Policy
             </Link>
             .
           </li>
           <li>
             Billing, refunds, and cancellations are explained in our{" "}
-            <Link href="/refund-policy" className="text-[#4F46E5] underline">
+            <Link href="/refund-policy" className="text-[#C25A3A] underline">
               Refund &amp; Cancellation Policy
             </Link>{" "}
             and{" "}
-            <Link href="/terms" className="text-[#4F46E5] underline">
+            <Link href="/terms" className="text-[#C25A3A] underline">
               Terms &amp; Conditions
             </Link>
             .
@@ -107,8 +107,8 @@ export default function AboutPage() {
         </p>
         <Link
           href="/contact"
-          className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-[#0A0A0A] transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50 no-underline w-full sm:w-auto text-center"
-          style={{ backgroundColor: "#F59E0B", fontFamily: "var(--font-dm-sans)" }}
+          className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-white transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C25A3A]/50 no-underline w-full sm:w-auto text-center"
+          style={{ backgroundColor: "#C25A3A", fontFamily: "var(--font-dm-sans)" }}
         >
           Contact us for pricing
         </Link>

@@ -14,7 +14,7 @@ export default function LegalPageShell({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen flex flex-col" style={{ background: "#FAF8F5" }}>
+    <div className="min-h-screen flex flex-col" style={{ background: "var(--color-bg)" }}>
       <Nav />
       <main className="flex-1 pt-24 pb-16 px-6 lg:px-8">
         <article className="max-w-3xl mx-auto w-full">
@@ -28,7 +28,7 @@ export default function LegalPageShell({
             <Link
               href="/"
               className="text-sm font-medium shrink-0 transition-colors hover:opacity-80"
-              style={{ color: "#4F46E5", fontFamily: "var(--font-dm-sans)" }}
+              style={{ color: "#C25A3A", fontFamily: "var(--font-dm-sans)" }}
             >
               ← Back to home
             </Link>

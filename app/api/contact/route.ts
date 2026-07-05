@@ -1,20 +1,25 @@
 import { NextRequest, NextResponse } from "next/server";
 import { createEnquiry } from "@/lib/vyavasth-api";
 
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+// Receives "Book a demo" enquiries from the landing page and forwards them to
+// the Vyavasth onboarding backend. Name, studio, phone and city are required;
+// email, website and message are optional extras the backend now records too.
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { studioName, name, whatsapp, city } = body;
+    const { studioName, name, whatsapp, city, email, website, message } = body;
 
-    if (!studioName?.trim()) {
-      return NextResponse.json(
-        { success: false, error: "Studio name is required." },
-        { status: 400 }
-      );
-    }
     if (!name?.trim()) {
       return NextResponse.json(
         { success: false, error: "Your name is required." },
+        { status: 400 }
+      );
+    }
+    if (!studioName?.trim()) {
+      return NextResponse.json(
+        { success: false, error: "Studio name is required." },
         { status: 400 }
       );
     }
@@ -36,12 +41,22 @@ export async function POST(req: NextRequest) {
         { status: 400 }
       );
     }
+    if (email?.trim() && !EMAIL_RE.test(email.trim())) {
+      return NextResponse.json(
+        { success: false, error: "Enter a valid email address." },
+        { status: 400 }
+      );
+    }
 
     const result = await createEnquiry({
       name: name.trim(),
       business_name: studioName.trim(),
       phone: whatsapp.trim(),
       city: city.trim(),
+      email: email?.trim() ? email.trim().slice(0, 254) : undefined,
+      website: website?.trim() ? website.trim().slice(0, 300) : undefined,
+      message: message?.trim() ? message.trim().slice(0, 2000) : undefined,
+      source: "landing_page",
     });
 
     if (!result.ok) {

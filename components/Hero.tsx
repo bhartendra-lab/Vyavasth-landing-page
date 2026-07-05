@@ -1,401 +1,349 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
-import { ArrowRight } from "lucide-react";
 import Image from "next/image";
-import HeroTrustStrip from "@/components/HeroTrustStrip";
+import { motion, useReducedMotion } from "framer-motion";
+import { ArrowRight, Check, Sparkles } from "lucide-react";
+import { useEnquiry } from "@/components/EnquiryProvider";
 
-export const HERO_PRODUCT_IMAGE_SRC = "/product-preview.png";
+// Curated event photos for the live-gallery collage — a deliberate mix of
+// weddings, concerts, conferences and parties (Vyavasth serves all events).
+const HERO_PHOTOS = [
+  "photo-1519741497674-611481863552",
+  "photo-1492684223066-81342ee5ff30",
+  "photo-1606216794074-735e91aa2c92",
+  "photo-1540575467063-178a50c2df87",
+  "photo-1583939003579-730e3918a45a",
+  "photo-1533174072545-7a4b6ad7a6c3",
+  "photo-1591604466107-ec97de577aff",
+  "photo-1511578314322-379afb476865",
+  "photo-1530023367847-a683933f4172",
+  "photo-1531058020387-3be344556be6",
+  "photo-1621184455862-c163dfb30e0f",
+  "photo-1537633552985-df8429e8048b",
+].map((id) => `https://images.unsplash.com/${id}?w=800&q=80`);
 
-function useFadeUp(delay = 0) {
-  const reduced = useReducedMotion();
-  if (reduced) return {};
-  return {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.5, ease: "easeOut" as const, delay },
-  };
-}
+const TRUST_PILLS = [
+  "AI face-matching",
+  "Same-evening delivery",
+  "One place for the studio",
+];
 
-// Rangoli/mandala-inspired background circle — very faint, purely decorative
-function BackgroundMandala() {
-  const rings = [340, 270, 200, 130, 65, 25];
-  const petalCount = 8;
-
-  return (
-    <svg
-      className="absolute left-1/2 top-0 -translate-x-1/2 -translate-y-[28%] pointer-events-none select-none"
-      width="960"
-      height="960"
-      viewBox="0 0 960 960"
-      fill="none"
-      aria-hidden="true"
-      style={{ opacity: 0.042 }}
-    >
-      {/* Concentric rings — alternating solid and dashed */}
-      {rings.map((r, i) => (
-        <circle
-          key={r}
-          cx="480"
-          cy="480"
-          r={r}
-          stroke="#92400E"
-          strokeWidth={i % 2 === 0 ? "1.5" : "1"}
-          strokeDasharray={i % 2 !== 0 ? "6 5" : undefined}
-        />
-      ))}
-
-      {/* 8 lotus petals radiating outward */}
-      {Array.from({ length: petalCount }).map((_, i) => {
-        const angle = (i * 360) / petalCount;
-        const rad = (angle * Math.PI) / 180;
-        const px = 480 + 200 * Math.cos(rad);
-        const py = 480 + 200 * Math.sin(rad);
-        return (
-          <ellipse
-            key={i}
-            cx={px}
-            cy={py}
-            rx="52"
-            ry="116"
-            transform={`rotate(${angle + 90}, ${px}, ${py})`}
-            stroke="#92400E"
-            strokeWidth="1"
-            fill="none"
-          />
-        );
-      })}
-
-      {/* 16 outer dots */}
-      {Array.from({ length: 16 }).map((_, i) => {
-        const rad = ((i * 360) / 16) * (Math.PI / 180);
-        return (
-          <circle
-            key={i}
-            cx={480 + 340 * Math.cos(rad)}
-            cy={480 + 340 * Math.sin(rad)}
-            r="4.5"
-            fill="#92400E"
-          />
-        );
-      })}
-
-      {/* 8 mid dots between petals */}
-      {Array.from({ length: 8 }).map((_, i) => {
-        const rad = ((i * 360) / 8 + 22.5) * (Math.PI / 180);
-        return (
-          <circle
-            key={i}
-            cx={480 + 270 * Math.cos(rad)}
-            cy={480 + 270 * Math.sin(rad)}
-            r="3"
-            fill="#92400E"
-          />
-        );
-      })}
-
-      {/* Center dot cluster */}
-      <circle cx="480" cy="480" r="6" fill="#92400E" />
-      {Array.from({ length: 8 }).map((_, i) => {
-        const rad = ((i * 360) / 8) * (Math.PI / 180);
-        return (
-          <circle
-            key={i}
-            cx={480 + 25 * Math.cos(rad)}
-            cy={480 + 25 * Math.sin(rad)}
-            r="2.5"
-            fill="#92400E"
-          />
-        );
-      })}
-    </svg>
-  );
-}
-
-// Torana/invitation-border inspired corner ornament
-function CornerOrnament({ flip = false }: { flip?: boolean }) {
-  return (
-    <svg
-      className={`absolute top-0 ${flip ? "right-0" : "left-0"} pointer-events-none select-none`}
-      width="180"
-      height="180"
-      viewBox="0 0 180 180"
-      fill="none"
-      aria-hidden="true"
-      style={{ transform: flip ? "scaleX(-1)" : undefined }}
-    >
-      {/* Curved arc lines — like a quarter of a torana arch */}
-      <path d="M0 160 Q100 100 160 0" stroke="rgba(146,64,14,0.13)" strokeWidth="1" fill="none" />
-      <path d="M0 130 Q82 82 130 0" stroke="rgba(146,64,14,0.10)" strokeWidth="1" fill="none" />
-      <path d="M0 100 Q62 62 100 0" stroke="rgba(146,64,14,0.08)" strokeWidth="1" fill="none" />
-      <path d="M0 72 Q44 44 72 0" stroke="rgba(146,64,14,0.06)" strokeWidth="1" fill="none" />
-
-      {/* Corner diamond */}
-      <rect
-        x="9"
-        y="9"
-        width="12"
-        height="12"
-        transform="rotate(45 15 15)"
-        fill="rgba(146,64,14,0.28)"
-      />
-
-      {/* Dots along top edge */}
-      <circle cx="42" cy="10" r="2.5" fill="rgba(146,64,14,0.20)" />
-      <circle cx="70" cy="10" r="2" fill="rgba(146,64,14,0.14)" />
-      <circle cx="100" cy="10" r="1.5" fill="rgba(146,64,14,0.09)" />
-
-      {/* Dots along left edge */}
-      <circle cx="10" cy="42" r="2.5" fill="rgba(146,64,14,0.20)" />
-      <circle cx="10" cy="70" r="2" fill="rgba(146,64,14,0.14)" />
-      <circle cx="10" cy="100" r="1.5" fill="rgba(146,64,14,0.09)" />
-
-      {/* Inner accent dots */}
-      <circle cx="32" cy="22" r="2" fill="rgba(146,64,14,0.16)" />
-      <circle cx="22" cy="32" r="2" fill="rgba(146,64,14,0.16)" />
-      <circle cx="26" cy="26" r="1.5" fill="rgba(146,64,14,0.12)" />
-    </svg>
-  );
-}
-
-function ProductImageReveal({
-  heroRef,
-  imageSrc,
-  imageAlt,
+function CollageColumn({
+  photos,
+  columnIndex,
 }: {
-  heroRef: React.RefObject<HTMLElement | null>;
-  imageSrc: string;
-  imageAlt: string;
+  photos: string[];
+  columnIndex: number;
 }) {
-  const reduced = useReducedMotion();
-
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  const rotateX = useTransform(
-    scrollYProgress,
-    [0, 0.45],
-    reduced ? [0, 0] : [13, 0]
-  );
-  const y = useTransform(
-    scrollYProgress,
-    [0, 0.45],
-    reduced ? [0, 0] : [56, -10]
-  );
-  const scale = useTransform(
-    scrollYProgress,
-    [0, 0.45],
-    reduced ? [1, 1] : [0.93, 1]
-  );
+  const directionUp = columnIndex % 2 === 0;
+  const duration = 38 + columnIndex * 8;
+  const delay = -columnIndex * 5;
+  // Two copies of the column give a seamless, gap-free loop.
+  const loopList = [...photos, ...photos];
 
   return (
     <div
-      className="w-full max-w-5xl mx-auto px-6 lg:px-8 mt-16 pb-0"
-      style={{ perspective: "1200px" }}
+      className={`collage-column flex flex-col gap-2 ${
+        directionUp ? "collage-column-up" : "collage-column-down"
+      }`}
+      style={{
+        animationDuration: `${duration}s`,
+        animationDelay: `${delay}s`,
+      }}
+      aria-hidden="true"
     >
-      <motion.div
-        style={{ rotateX, y, scale }}
-        className="w-full rounded-t-2xl overflow-hidden"
-        initial={reduced ? {} : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        aria-hidden="true"
-      >
+      {loopList.map((src, i) => (
         <div
-          className="w-full rounded-t-2xl overflow-hidden relative aspect-[8/5]"
+          key={`${columnIndex}-${i}`}
+          className="relative w-full shrink-0 overflow-hidden rounded-lg"
           style={{
-            boxShadow:
-              "0 -4px 6px rgba(26,18,8,0.03), 0 20px 60px rgba(26,18,8,0.10), 0 8px 24px rgba(26,18,8,0.07)",
-            border: "1px solid rgba(26,18,8,0.07)",
-            borderBottom: "none",
+            aspectRatio: "4 / 5",
+            background: "rgba(42, 34, 24, 0.05)",
           }}
         >
           <Image
-            src={imageSrc}
-            alt={imageAlt}
+            src={src}
+            alt=""
             fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 90vw, 1024px"
-            className="object-cover object-top"
-            priority
+            sizes="(max-width: 900px) 45vw, 240px"
+            priority={i === 0 && columnIndex === 0}
+            loading={i === 0 && columnIndex === 0 ? "eager" : "lazy"}
+            className="object-cover"
           />
         </div>
-      </motion.div>
+      ))}
     </div>
   );
 }
 
 export default function Hero() {
-  const heroRef = useRef<HTMLElement>(null);
+  const { openEnquiry } = useEnquiry();
+  const reduced = useReducedMotion();
 
-  const scrollToContact = () => {
-    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
-  };
+  const fadeUp = (delay = 0) =>
+    reduced
+      ? {}
+      : {
+          initial: { opacity: 0, y: 22 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.6, ease: "easeOut" as const, delay },
+        };
+
+  const columns = [
+    HERO_PHOTOS.filter((_, i) => i % 2 === 0),
+    HERO_PHOTOS.filter((_, i) => i % 2 === 1),
+  ];
 
   return (
     <section
-      ref={heroRef}
-      className="relative flex flex-col items-center overflow-hidden"
+      className="relative overflow-hidden"
       style={{
-        background:
-          "linear-gradient(165deg, #FFF8ED 0%, #FDF3E3 35%, #FFF0CC 65%, #FAF6EC 100%)",
+        background: "var(--color-bg)",
+        padding:
+          "clamp(112px, 15vh, 168px) var(--gutter) clamp(56px, 8vh, 96px)",
+        isolation: "isolate",
       }}
+      aria-label="Hero"
     >
-      {/* Warm saffron / marigold / terracotta glows — no indigo */}
+      {/* Warm terracotta glow — subtle, never a gradient background */}
       <div
-        className="absolute inset-0 pointer-events-none"
+        className="pointer-events-none absolute -top-[20%] -right-[10%] -z-10"
         style={{
+          width: "55vw",
+          height: "55vw",
+          maxWidth: 720,
+          maxHeight: 720,
           background:
-            "radial-gradient(ellipse 80% 55% at 50% -10%, rgba(217,119,6,0.11) 0%, transparent 68%), radial-gradient(ellipse 60% 45% at 85% 20%, rgba(245,158,11,0.10) 0%, transparent 70%), radial-gradient(ellipse 50% 40% at 10% 35%, rgba(196,78,0,0.07) 0%, transparent 72%)",
+            "radial-gradient(circle at 60% 40%, rgba(194,90,58,0.14) 0%, rgba(194,90,58,0.05) 42%, transparent 70%)",
         }}
+        aria-hidden
       />
 
-      {/* Rangoli-inspired mandala in the upper background */}
-      <BackgroundMandala />
-
-      {/* Corner torana ornaments */}
-      <CornerOrnament />
-      <CornerOrnament flip />
-
-      {/* Centered text content */}
-      <div className="relative w-full max-w-3xl mx-auto px-6 lg:px-8 pt-24 sm:pt-32 md:pt-36 pb-8 text-center flex flex-col items-center gap-5 sm:gap-6">
-
-        {/* Eyebrow pill — saffron/terracotta instead of indigo */}
-        <motion.div {...useFadeUp(0)} className="max-w-full">
-          <span
-            className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium uppercase"
+      <div
+        className="mx-auto grid items-center gap-11 max-[900px]:grid-cols-1 min-[901px]:grid-cols-2 min-[901px]:gap-[clamp(40px,6vw,88px)]"
+        style={{ maxWidth: "var(--max-w)" }}
+      >
+        {/* ---------- Copy ---------- */}
+        <div className="flex max-w-[620px] flex-col items-start">
+          <motion.h1
+            {...fadeUp(0)}
+            className="font-extrabold"
             style={{
-              background: "rgba(146,64,14,0.08)",
-              color: "#92400E",
-              letterSpacing: "0.08em",
-              border: "1px solid rgba(146,64,14,0.16)",
+              fontSize: "clamp(2.5rem, 5.6vw, 4.4rem)",
+              lineHeight: 1.03,
+              letterSpacing: "-0.035em",
+              color: "var(--color-primary)",
             }}
           >
-            <span aria-hidden style={{ fontSize: "10px" }}>✦</span>
-            Built for Indian Photography Studios
-          </span>
-        </motion.div>
+            The{" "}
+            <span style={{ color: "var(--color-accent)" }}>AI Companion</span>{" "}
+            for photography studios.
+          </motion.h1>
 
-        {/* Headline */}
-        <motion.h1
-          {...useFadeUp(0.06)}
-          className="w-full leading-[1.08] tracking-[-0.03em]"
-          style={{
-            fontFamily: "var(--font-syne)",
-            fontWeight: 800,
-            fontSize: "clamp(26px, 7.5vw, 64px)",
-            color: "#1A1208",
-          }}
-        >
-          Run Your Studio.
-          <br />
-          Not Spreadsheets.
-        </motion.h1>
-
-        {/* Decorative divider — rangoli dot row */}
-        <motion.div
-          {...useFadeUp(0.09)}
-          className="flex items-center justify-center gap-2"
-          aria-hidden="true"
-        >
-          <span style={{ color: "rgba(146,64,14,0.30)", fontSize: "9px" }}>◆</span>
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              style={{
-                display: "inline-block",
-                width: 3,
-                height: 3,
-                borderRadius: "50%",
-                backgroundColor: "rgba(146,64,14,0.18)",
-              }}
-            />
-          ))}
-          <span style={{ color: "rgba(146,64,14,0.30)", fontSize: "9px" }}>◆</span>
-          {[0, 1, 2].map((i) => (
-            <span
-              key={i}
-              style={{
-                display: "inline-block",
-                width: 3,
-                height: 3,
-                borderRadius: "50%",
-                backgroundColor: "rgba(146,64,14,0.18)",
-              }}
-            />
-          ))}
-          <span style={{ color: "rgba(146,64,14,0.30)", fontSize: "9px" }}>◆</span>
-        </motion.div>
-
-        {/* Subheadline */}
-        <motion.p
-          {...useFadeUp(0.12)}
-          className="w-full max-w-xl"
-          style={{
-            fontSize: "clamp(15px, 4vw, 17px)",
-            lineHeight: "1.65",
-            color: "#7A6F63",
-            fontFamily: "var(--font-dm-sans)",
-          }}
-        >
-          From the first enquiry to the final delivery — Vyavasth keeps your
-          bookings, payments, and team in order, so you focus on the frame.
-        </motion.p>
-
-        {/* CTA */}
-        <motion.div {...useFadeUp(0.18)}>
-          <button
-            onClick={scrollToContact}
-            className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl font-semibold text-[#0A0A0A] transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#F59E0B]/50"
-            style={{ backgroundColor: "#F59E0B" }}
+          <motion.p
+            {...fadeUp(0.08)}
+            className="mt-5 max-w-[520px]"
+            style={{
+              fontSize: "clamp(1rem, 1.35vw, 1.18rem)",
+              lineHeight: 1.6,
+              color: "var(--color-muted)",
+            }}
           >
-            Use Vyavasth for Free
-            <ArrowRight
-              size={18}
-              className="transition-transform duration-200 group-hover:translate-x-0.5"
-            />
-          </button>
-        </motion.div>
+            Leads, shoots, payments and thousands of photos — scattered across
+            WhatsApp, spreadsheets and Drive links. Vyavasth brings it into one
+            place, and an AI-powered gallery delivers photos to guests{" "}
+            <em className="italic" style={{ color: "var(--color-primary)" }}>
+              during
+            </em>{" "}
+            the event.
+          </motion.p>
 
-        {/* Trust chips */}
-        <motion.div
-          {...useFadeUp(0.24)}
-          className="flex flex-wrap justify-center gap-5"
-        >
-          {[
-            "✓ 2-minute setup",
-            "✓ UPI-native payments",
-            "✓ GST-ready billing",
-          ].map((chip) => (
-            <span
-              key={chip}
-              className="text-xs"
+          <motion.div {...fadeUp(0.16)} className="mt-8">
+            <button
+              type="button"
+              onClick={openEnquiry}
+              className="group inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-accent-deep)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
               style={{
-                color: "#7A6F63",
-                fontFamily: "var(--font-dm-sans)",
+                background: "var(--color-accent)",
+                boxShadow: "0 6px 18px rgba(194, 90, 58, 0.28)",
               }}
             >
-              {chip}
-            </span>
-          ))}
+              Book a demo
+              <ArrowRight
+                size={18}
+                className="transition-transform duration-200 group-hover:translate-x-1"
+              />
+            </button>
+          </motion.div>
+
+          <motion.ul
+            {...fadeUp(0.24)}
+            className="mt-7 flex flex-wrap gap-x-4 gap-y-2.5"
+            role="list"
+          >
+            {TRUST_PILLS.map((t) => (
+              <li
+                key={t}
+                className="inline-flex items-center gap-2 text-[13px] font-medium"
+                style={{ color: "var(--color-muted)" }}
+              >
+                <span
+                  className="inline-flex h-[18px] w-[18px] items-center justify-center rounded-full"
+                  style={{
+                    background: "var(--color-success-soft)",
+                    color: "var(--color-success)",
+                  }}
+                  aria-hidden
+                >
+                  <Check size={11} strokeWidth={2.4} />
+                </span>
+                {t}
+              </li>
+            ))}
+          </motion.ul>
+        </div>
+
+        {/* ---------- Live-gallery visual ---------- */}
+        <motion.div
+          {...fadeUp(0.2)}
+          className="flex w-full flex-col items-center gap-4"
+        >
+          <div
+            className="relative w-full max-w-[440px] overflow-hidden rounded-[20px]"
+            style={{
+              background: "var(--color-surface)",
+              border: "1px solid var(--color-line)",
+              boxShadow: "var(--shadow-floating)",
+            }}
+          >
+            {/* Browser bar */}
+            <div
+              className="flex items-center gap-3 px-4 py-3"
+              style={{
+                borderBottom: "1px solid var(--color-line)",
+                background: "var(--color-surface)",
+              }}
+            >
+              <span className="flex shrink-0 gap-1.5" aria-hidden>
+                {[0, 1, 2].map((i) => (
+                  <i
+                    key={i}
+                    className="h-[9px] w-[9px] rounded-full"
+                    style={{ background: "var(--color-line-strong)" }}
+                  />
+                ))}
+              </span>
+              <span
+                className="min-w-0 flex-1 truncate text-center text-xs font-medium"
+                style={{ color: "var(--color-muted)" }}
+              >
+                the annual gala · live gallery
+              </span>
+              <span
+                className="inline-flex shrink-0 items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-bold uppercase tracking-wide"
+                style={{
+                  background: "var(--color-success-soft)",
+                  color: "var(--color-success)",
+                }}
+              >
+                <span
+                  className="brand-pulse h-1.5 w-1.5 rounded-full"
+                  style={{ background: "var(--color-success)" }}
+                  aria-hidden
+                />
+                Live
+              </span>
+            </div>
+
+            {/* Scrolling collage */}
+            <div
+              className="relative overflow-hidden"
+              style={{
+                height: "clamp(360px, 46vw, 440px)",
+                background: "var(--color-surface-2)",
+              }}
+            >
+              <div
+                className="absolute inset-0 grid grid-cols-2 gap-2 p-2"
+                style={{
+                  maskImage:
+                    "linear-gradient(to bottom, transparent 0%, #000 9%, #000 82%, transparent 100%)",
+                  WebkitMaskImage:
+                    "linear-gradient(to bottom, transparent 0%, #000 9%, #000 82%, transparent 100%)",
+                }}
+                aria-hidden
+              >
+                {columns.map((col, i) => (
+                  <CollageColumn key={i} photos={col} columnIndex={i} />
+                ))}
+              </div>
+
+              {/* Inner vignette so chips read against photos */}
+              <div
+                className="pointer-events-none absolute inset-0"
+                style={{
+                  background:
+                    "linear-gradient(to top, rgba(42,34,24,0.22) 0%, transparent 34%)",
+                }}
+                aria-hidden
+              />
+
+              {/* Face-match chip — AI galleries */}
+              <div
+                className="floaty absolute left-3.5 bottom-14 inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-3 py-2 text-[13px] font-medium"
+                style={{
+                  background: "rgba(251, 248, 241, 0.94)",
+                  backdropFilter: "blur(8px)",
+                  border: "1px solid var(--color-line)",
+                  boxShadow: "var(--shadow-raised)",
+                  color: "var(--color-primary)",
+                }}
+              >
+                <span
+                  className="inline-flex h-[22px] w-[22px] shrink-0 items-center justify-center rounded-[7px] text-white"
+                  style={{ background: "var(--color-accent)" }}
+                >
+                  <Sparkles size={13} />
+                </span>
+                <span>
+                  <strong className="font-bold">128 photos</strong> matched to
+                  your face
+                </span>
+              </div>
+
+              {/* Live-delivery chip */}
+              <div
+                className="floaty absolute right-3.5 bottom-4 inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-3 py-2 text-[13px] font-semibold"
+                style={{
+                  background: "rgba(251, 248, 241, 0.94)",
+                  backdropFilter: "blur(8px)",
+                  border: "1px solid var(--color-line)",
+                  boxShadow: "var(--shadow-raised)",
+                  color: "var(--color-success)",
+                  animationDelay: "0.6s",
+                }}
+              >
+                <span
+                  className="h-2 w-2 rounded-full"
+                  style={{
+                    background: "var(--color-success)",
+                    boxShadow: "0 0 0 4px rgba(46, 125, 82, 0.16)",
+                  }}
+                  aria-hidden
+                />
+                Delivered live · tonight
+              </div>
+            </div>
+          </div>
+
+          <p
+            className="hidden max-w-[320px] text-center text-[13px] min-[901px]:block"
+            style={{ color: "var(--color-faint)" }}
+          >
+            A branded, guest-facing gallery — photos land the same evening.
+          </p>
         </motion.div>
       </div>
-
-      {/* Social proof: trust badge + scrolling studio name strip */}
-      <div className="relative w-full max-w-6xl mx-auto px-6 lg:px-8 mt-4 pb-2">
-        <motion.div {...useFadeUp(0.28)}>
-          <HeroTrustStrip />
-        </motion.div>
-      </div>
-
-      {/* Scroll-tilt product image */}
-      <ProductImageReveal
-        heroRef={heroRef}
-        imageSrc={HERO_PRODUCT_IMAGE_SRC}
-        imageAlt="Vyavasth product preview"
-      />
     </section>
   );
 }

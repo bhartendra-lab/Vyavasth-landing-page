@@ -1,17 +1,48 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #faf8f5;
-  --color-surface: #ffffff;
-  --color-surface-alt: #f2efe9;
-  --color-text: #1a1208;
-  --color-muted: #7a6f63;
-  --color-indigo: #4f46e5;
-  --color-amber: #f59e0b;
-  --color-border: rgba(26, 18, 8, 0.07);
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+}
 
-  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-heading: var(--font-syne), ui-sans-serif, system-ui, sans-serif;
+/* Vyavasth Design System — single source of truth: one accent (terracotta),
+   cream canvas, one typeface (Plus Jakarta Sans). */
+:root {
+  /* Canvas — cream, always */
+  --color-bg: #f5ede0;
+  --color-surface: #fbf8f1;
+  --color-surface-2: #ede3d3;
+
+  /* Ink — text + dark bands (warm charcoal, never pure black) */
+  --color-primary: #2a2218;
+  --color-muted: #7a6f63;
+  --color-faint: #b5ada4;
+
+  /* Lines */
+  --color-line: #ddd4c4;
+  --color-line-strong: #c4b9a8;
+
+  /* Accent — terracotta, the only accent */
+  --color-accent: #c25a3a;
+  --color-accent-deep: #a8442a;
+  --color-accent-soft: #f7e8e3;
+
+  /* Functional — status only, never decorative */
+  --color-success: #2e7d52;
+  --color-success-soft: #e8f5ee;
+
+  /* Layout */
+  --max-w: 1240px;
+  --gutter: clamp(20px, 4vw, 56px);
+
+  /* Elevation — warm charcoal at low opacity */
+  --shadow-subtle: 0 1px 3px rgba(42, 34, 24, 0.08);
+  --shadow-raised: 0 8px 24px rgba(42, 34, 24, 0.1);
+  --shadow-floating: 0 24px 60px rgba(42, 34, 24, 0.14);
+
+  /* Legacy font vars from the pre-rebrand theme. Retained pages (legal,
+     contact, about) still reference them; both resolve to Plus Jakarta Sans. */
+  --font-syne: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  --font-dm-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 }
 
 *,
@@ -23,20 +54,24 @@
 html {
   scroll-behavior: smooth;
   overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   overflow-x: hidden;
-  background-color: #faf8f5;
-  color: #1a1208;
-  font-family: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-primary);
+  font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+  line-height: 1.55;
+  letter-spacing: -0.006em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 ::selection {
-  background-color: #4f46e5;
-  color: #ffffff;
+  background-color: var(--color-accent);
+  color: var(--color-bg);
 }
 
 ::-webkit-scrollbar {
@@ -44,36 +79,129 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #faf8f5;
+  background: var(--color-bg);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #d4cfc9;
+  background: var(--color-line-strong);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #bdb7af;
+  background: var(--color-muted);
 }
 
-/* Hero logo marquee — paused when user prefers reduced motion */
-@keyframes hero-marquee {
-  0% {
-    transform: translateX(0);
+/* ---------------- Shared brand animations ---------------- */
+
+@keyframes marquee-slide {
+  from {
+    transform: translate3d(0, 0, 0);
   }
-  100% {
-    transform: translateX(-50%);
+  to {
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
-.hero-marquee-track {
+.marquee-track {
   display: flex;
   width: max-content;
-  animation: hero-marquee 40s linear infinite;
+  animation: marquee-slide 42s linear infinite;
+}
+
+.marquee-paused-on-hover:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes collage-up {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+@keyframes collage-down {
+  from {
+    transform: translate3d(0, -50%, 0);
+  }
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.collage-column {
+  will-change: transform;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: both;
+}
+
+.collage-column-up {
+  animation-name: collage-up;
+}
+
+.collage-column-down {
+  animation-name: collage-down;
+}
+
+@keyframes brand-pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+
+.brand-pulse {
+  animation: brand-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes floaty {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.floaty {
+  animation: floaty 5s ease-in-out infinite;
+}
+
+/* Strikethrough treatment for the story headline */
+.strike {
+  position: relative;
+  color: var(--color-muted);
+  white-space: nowrap;
+}
+
+.strike::after {
+  content: "";
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  top: 54%;
+  height: 3px;
+  background: var(--color-accent);
+  border-radius: 2px;
+  transform: rotate(-1.2deg);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-marquee-track {
-    animation: none;
+  html {
+    scroll-behavior: auto;
+  }
+
+  .marquee-track,
+  .collage-column,
+  .brand-pulse,
+  .floaty {
+    animation: none !important;
+    transform: none !important;
   }
 }

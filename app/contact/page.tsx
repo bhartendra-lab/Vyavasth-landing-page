@@ -48,7 +48,7 @@ export default function ContactPage() {
         <ul className="list-none pl-0 space-y-2 m-0">
           <li>
             <strong>Email:</strong>{" "}
-            <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#4F46E5] underline">
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
               {SUPPORT_EMAIL}
             </a>
           </li>
@@ -56,7 +56,7 @@ export default function ContactPage() {
             <strong>Phone:</strong>{" "}
             <a
               href={`tel:${SUPPORT_PHONE_TEL}`}
-              className="text-[#4F46E5] underline"
+              className="text-[#C25A3A] underline"
             >
               {SUPPORT_PHONE_DISPLAY}
             </a>
@@ -83,7 +83,7 @@ export default function ContactPage() {
             <strong>Email:</strong>{" "}
             <a
               href={`mailto:${GRIEVANCE_OFFICER_EMAIL}`}
-              className="text-[#4F46E5] underline"
+              className="text-[#C25A3A] underline"
             >
               {GRIEVANCE_OFFICER_EMAIL}
             </a>
@@ -92,7 +92,7 @@ export default function ContactPage() {
             <strong>Phone:</strong>{" "}
             <a
               href={`tel:${GRIEVANCE_OFFICER_PHONE_TEL}`}
-              className="text-[#4F46E5] underline"
+              className="text-[#C25A3A] underline"
             >
               {GRIEVANCE_OFFICER_PHONE_DISPLAY}
             </a>

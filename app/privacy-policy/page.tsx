@@ -37,7 +37,7 @@ export default function PrivacyPolicyPage() {
           <strong>{BUSINESS_NAME}</strong> operates a subscription-based SaaS
           platform for business operations management. Registered address:{" "}
           {REGISTERED_ADDRESS}. For privacy-related requests, contact{" "}
-          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#4F46E5] underline">
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
             {SUPPORT_EMAIL}
           </a>
           .
@@ -188,7 +188,7 @@ export default function PrivacyPolicyPage() {
           processing is consent-based, or object to certain processing. You may
           also be able to export or delete content you have uploaded through
           in-product controls where available. To exercise these rights, contact{" "}
-          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#4F46E5] underline">
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
             {SUPPORT_EMAIL}
           </a>
           . We may need to verify your identity before fulfilling a request.
@@ -261,11 +261,11 @@ export default function PrivacyPolicyPage() {
         </h2>
         <p>
           For questions or concerns about privacy or this policy, write to{" "}
-          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#4F46E5] underline">
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
             {SUPPORT_EMAIL}
           </a>{" "}
           or use the contact form on our{" "}
-          <a href="/contact" className="text-[#4F46E5] underline">
+          <a href="/contact" className="text-[#C25A3A] underline">
             Contact
           </a>{" "}
           page.

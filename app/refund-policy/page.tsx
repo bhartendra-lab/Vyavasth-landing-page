@@ -128,11 +128,11 @@ export default function RefundPolicyPage() {
         </h2>
         <p>
           Email{" "}
-          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#4F46E5] underline">
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
             {SUPPORT_EMAIL}
           </a>{" "}
           from your registered account email, or submit a request through the{" "}
-          <a href="/contact" className="text-[#4F46E5] underline">
+          <a href="/contact" className="text-[#C25A3A] underline">
             Contact
           </a>{" "}
           page with your account identifier and invoice details. We will confirm
