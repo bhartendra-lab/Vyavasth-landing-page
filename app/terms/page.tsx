@@ -9,7 +9,7 @@ import {
 export const metadata: Metadata = {
   title: "Terms & Conditions — Vyavasth",
   description:
-    "Terms of use for the Vyavasth SaaS platform, including billing, IP, and governing law in India.",
+    "Terms of use for the Vyavasth SaaS platform, including billing, IP, face recognition, and governing law in India.",
   alternates: { canonical: "/terms" },
 };
 
@@ -50,6 +50,16 @@ export default function TermsPage() {
           in India manage internal operations, tasks, workflows, and day-to-day
           business activity in one place. We may add, modify, or discontinue
           features to improve the product or comply with law.
+        </p>
+        <p>
+          The platform also includes a <strong>Delivery Hub</strong> that lets
+          Studios host event media, publish face-searchable galleries, and
+          deliver them to Hosts. Face search processes uploaded photos via
+          automated image recognition to produce numerical face embeddings, and a
+          Guest may optionally submit a selfie to locate their own photos within
+          a published gallery. These features are described further in the
+          section &ldquo;Face Recognition and Face Embeddings&rdquo; below and in
+          our Privacy Policy.
         </p>
       </section>
 
@@ -208,11 +218,72 @@ export default function TermsPage() {
         <p>
           Registered address for notices (where not emailed): {REGISTERED_ADDRESS}.
         </p>
+        <p>
+          In addition, for individuals located in India, personal data processing
+          is also carried out in accordance with applicable Indian law, including
+          the Digital Personal Data Protection Act, 2023 (DPDPA), as described in
+          our Privacy Policy.
+        </p>
       </section>
 
       <section>
         <h2 className={h2} style={h2Style}>
-          13. Contact
+          13. Face recognition and face embeddings
+        </h2>
+        <p>
+          When a Studio publishes a gallery, an automated pipeline processes the
+          uploaded photos to extract face embeddings (numerical representations
+          of facial geometry). Original photos are not sent to any third party in
+          original form for this purpose; only the derived embedding is stored.
+        </p>
+        <ul className={list}>
+          <li>Embeddings are stored for the lifetime of the published gallery.</li>
+          <li>
+            When a Guest uses face search, the submitted selfie is converted to
+            an embedding in-session, matched, then discarded. The selfie is not
+            stored.
+          </li>
+          <li>
+            Embeddings are never used for profiling, advertising, retargeting, or
+            cross-event or cross-platform identification.
+          </li>
+          <li>
+            Vyavasth does not set advertising or retargeting cookies on gallery
+            pages, and a Guest&rsquo;s presence in a gallery is never used for ad
+            targeting.
+          </li>
+        </ul>
+        <p>
+          A Guest may request deletion of their face embedding by emailing{" "}
+          <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
+            {SUPPORT_EMAIL}
+          </a>
+          ; requests are handled manually and the relevant Studio is notified.
+        </p>
+      </section>
+
+      <section>
+        <h2 className={h2} style={h2Style}>
+          14. Studio responsibilities for uploaded content
+        </h2>
+        <ul className={list}>
+          <li>
+            The Studio warrants that it holds the rights to all media it uploads
+            and that relevant Hosts and Guests have been informed the media is
+            hosted on a platform that includes face recognition functionality.
+          </li>
+          <li>
+            The Studio is the data controller for uploaded media and the personal
+            data of identifiable individuals within it; Vyavasth acts as data
+            processor on the Studio&rsquo;s instruction. Obtaining Guest consent
+            rests with the Studio.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className={h2} style={h2Style}>
+          15. Contact
         </h2>
         <p>
           Questions about these Terms:{" "}

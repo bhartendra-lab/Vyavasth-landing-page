@@ -18,6 +18,7 @@ const SOCIALS = [
 
 const LEGAL_LINKS = [
   { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Cookie Policy", href: "/cookie-policy" },
   { label: "Refund & Cancellation", href: "/refund-policy" },
   { label: "Terms & Conditions", href: "/terms" },
   { label: "Contact Us", href: "/contact" },

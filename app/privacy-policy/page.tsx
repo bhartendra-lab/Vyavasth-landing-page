@@ -9,7 +9,7 @@ import {
 export const metadata: Metadata = {
   title: "Privacy Policy — Vyavasth",
   description:
-    "How Vyavasth collects, uses, and protects personal data, including payments and cookies.",
+    "How Vyavasth collects, uses, and protects personal data, including payments, face embeddings, and cookies.",
   alternates: { canonical: "/privacy-policy" },
 };
 
@@ -70,6 +70,12 @@ export default function PrivacyPolicyPage() {
             the service.
           </li>
           <li>
+            <strong>Event media and derived data:</strong> Studios upload photos
+            and videos that may contain identifiable individuals; automated
+            processing generates face embeddings; a Guest&rsquo;s face-search
+            selfie is processed in-session and not stored.
+          </li>
+          <li>
             <strong>Payment and billing information:</strong> when you subscribe,
             payment-related data is collected and processed by our payment
             partners (for example, card or UPI identifiers and transaction
@@ -85,7 +91,59 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          3. Why we collect information and how we use it
+          3. Biometric and facial data
+        </h2>
+        <p>
+          Face embeddings derived from event media are treated as sensitive
+          personal data. Their purpose is strictly limited to letting a Guest
+          find their own photos within a specific published gallery. They are
+          never used for cross-event identification, profiling, or advertising.
+        </p>
+        <ul className={list}>
+          <li>
+            <strong>Legal basis:</strong> consent, recorded when a Guest accepts
+            the Terms and submits a selfie for face search.
+          </li>
+          <li>
+            <strong>Selfies:</strong> converted to an embedding in-session,
+            matched, then discarded. The selfie is not stored.
+          </li>
+          <li>
+            <strong>Embeddings:</strong> retained for the lifetime of the
+            published gallery.
+          </li>
+          <li>
+            <strong>Sub-processors:</strong> the providers that compute and
+            store embeddings are disclosed in &ldquo;Sharing with third
+            parties&rdquo; below.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className={h2} style={h2Style}>
+          4. Guest data
+        </h2>
+        <ul className={list}>
+          <li>Guests are not registered Members; they access galleries via share links.</li>
+          <li>Images of Guests may appear in media uploaded by a Studio.</li>
+          <li>
+            Face search produces a temporary embedding only. Guests who do not
+            use face search have no embedding stored against them.
+          </li>
+          <li>
+            A Guest may request deletion of their face embedding by emailing{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
+              {SUPPORT_EMAIL}
+            </a>
+            ; requests are handled manually and the relevant Studio is notified.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className={h2} style={h2Style}>
+          5. Why we collect information and how we use it
         </h2>
         <p>We use personal information for purposes including:</p>
         <ul className={list}>
@@ -118,18 +176,21 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          4. Legal bases (where applicable)
+          6. Legal bases (where applicable)
         </h2>
         <p>
           Depending on the context, we rely on performance of a contract,
           legitimate interests (such as securing and improving the service),
-          consent where required, and compliance with legal obligations.
+          consent where required, and compliance with legal obligations. For
+          individuals located in India, we process personal data in accordance
+          with applicable Indian law, including the Digital Personal Data
+          Protection Act, 2023 (DPDPA).
         </p>
       </section>
 
       <section>
         <h2 className={h2} style={h2Style}>
-          5. Sharing with third parties
+          7. Sharing with third parties
         </h2>
         <p>
           We do not sell your personal information. We may share information with:
@@ -144,9 +205,10 @@ export default function PrivacyPolicyPage() {
           </li>
           <li>
             <strong>Infrastructure and service providers:</strong> hosting,
-            logging, email delivery, or customer support tools that help us run the
-            platform, strictly under confidentiality and data-processing
-            arrangements where appropriate.
+            logging, email delivery, media storage, face-embedding computation,
+            or customer support tools that help us run the platform, strictly
+            under confidentiality and data-processing arrangements where
+            appropriate.
           </li>
           <li>
             <strong>Professional advisers:</strong> lawyers, auditors, or
@@ -167,7 +229,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          6. Data retention
+          8. Data retention
         </h2>
         <p>
           We retain personal information only as long as necessary for the purposes
@@ -180,7 +242,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          7. Your rights and choices
+          9. Your rights and choices
         </h2>
         <p>
           Subject to applicable law, you may request access, correction, or
@@ -197,20 +259,25 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          8. Cookies and similar technologies
+          10. Cookies and similar technologies
         </h2>
         <p>
           We use cookies and similar technologies (such as local storage) to
           operate the website and application—for example, to keep you signed in,
           remember preferences, measure basic performance, and improve security.
           You can control cookies through your browser settings; blocking
-          essential cookies may affect how the service functions.
+          essential cookies may affect how the service functions. For a full
+          breakdown, see our{" "}
+          <a href="/cookie-policy" className="text-[#C25A3A] underline">
+            Cookie Policy
+          </a>
+          .
         </p>
       </section>
 
       <section>
         <h2 className={h2} style={h2Style}>
-          9. Security
+          11. Security
         </h2>
         <p>
           We implement technical and organizational measures designed to protect
@@ -223,7 +290,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          10. International transfers
+          12. International transfers
         </h2>
         <p>
           Your information may be processed in India and, where we use service
@@ -234,7 +301,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          11. Children
+          13. Children
         </h2>
         <p>
           Our services are intended for businesses and are not directed at
@@ -245,7 +312,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          12. Changes to this policy
+          14. Changes to this policy
         </h2>
         <p>
           We may update this Privacy Policy from time to time. We will post the
@@ -257,7 +324,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          13. Contact
+          15. Contact
         </h2>
         <p>
           For questions or concerns about privacy or this policy, write to{" "}
