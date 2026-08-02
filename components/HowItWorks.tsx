@@ -7,22 +7,22 @@ import Eyebrow from "@/components/Eyebrow";
 const STEPS = [
   {
     n: "01",
-    title: "Your team keeps shooting",
-    body: "Photos flow into Vyavasth as the event unfolds — no export ritual, no end-of-night upload marathon.",
+    title: "Photos leave the camera on their own",
+    body: "Shoot as you always do: frames reach Vyavasth over FTP while the event runs. No end-of-night upload marathon.",
   },
   {
     n: "02",
-    title: "AI matches every face",
-    body: "Guests register once. Face-matching sorts every frame to the right people and tags the moments worth keeping.",
+    title: "Every face is matched",
+    body: "Guests register once with a selfie. Each frame is sorted to the people in it, and each one stays linked to its original.",
   },
   {
     n: "03",
-    title: "Guests get their photos — live",
-    body: "Each guest opens a branded gallery the same evening. Behind it, the studio already has every original matched and ready.",
+    title: "Guests open their own gallery",
+    body: "One passcode-gated link, your branding on every screen, sorted by Haldi, Sangeet and Reception, not one flat dump.",
   },
 ];
 
-// Mixed event photos — weddings, birthdays, receptions (all events, not one kind).
+// Mixed event photos, weddings, birthdays, receptions (all events, not one kind).
 const GALLERY_PHOTOS = [
   "photo-1528360983277-13d401cdc186",
   "photo-1587271407850-8d438ca9fdf2",
@@ -69,7 +69,7 @@ export default function HowItWorks() {
                 color: "var(--color-primary)",
               }}
             >
-              From the shoot to the guest&apos;s phone — the same night.
+              From the shoot to the guest&apos;s phone, the same night.
             </h2>
             <ol className="mt-1.5 flex flex-col">
               {STEPS.map((s, i) => (

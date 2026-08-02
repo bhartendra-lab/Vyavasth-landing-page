@@ -8,18 +8,25 @@ import HowItWorks from "@/components/HowItWorks";
 import WhySection from "@/components/WhySection";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
+import { getFeatures } from "@/lib/vyavasth-api";
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   name: "Vyavasth",
   applicationCategory: "BusinessApplication",
-  description: "The AI Companion for photography studios.",
+  description: "An AI event gallery that delivers photos to guests during the event.",
   operatingSystem: "Web, iOS, Android",
   offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
 };
 
-export default function Home() {
+export default async function Home() {
+  // The homepage feature strip is DB-driven, so one edit in Mongo updates both
+  // this strip and the pricing showcase. FeatureSection falls back to its
+  // hardcoded highlights if this fetch fails.
+  const featuresResult = await getFeatures({ highlight: true });
+  const features = featuresResult.ok ? featuresResult.data.features : [];
+
   return (
     <main style={{ background: "var(--color-bg)", minHeight: "100vh" }}>
       <script
@@ -31,7 +38,7 @@ export default function Home() {
       <StudioMarquee />
       <ProofBand />
       <ProblemSection />
-      <FeatureSection />
+      <FeatureSection features={features} />
       <HowItWorks />
       <WhySection />
       <CtaSection />

@@ -1,11 +1,14 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight, Check, Sparkles } from "lucide-react";
 import { useEnquiry } from "@/components/EnquiryProvider";
+import HeroBokehLayer from "@/components/hero/HeroBokehLayer";
+import MagneticButton from "@/components/ui/MagneticButton";
 
-// Curated event photos for the live-gallery collage — a deliberate mix of
+// Curated event photos for the live-gallery collage, a deliberate mix of
 // weddings, concerts, conferences and parties (Vyavasth serves all events).
 const HERO_PHOTOS = [
   "photo-1519741497674-611481863552",
@@ -23,9 +26,9 @@ const HERO_PHOTOS = [
 ].map((id) => `https://images.unsplash.com/${id}?w=800&q=80`);
 
 const TRUST_PILLS = [
-  "AI face-matching",
-  "Same-evening delivery",
-  "One place for the studio",
+  "AI face search",
+  "Delivered during the event",
+  "Your branding, end to end",
 ];
 
 function CollageColumn({
@@ -79,6 +82,7 @@ function CollageColumn({
 export default function Hero() {
   const { openEnquiry } = useEnquiry();
   const reduced = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
 
   const fadeUp = (delay = 0) =>
     reduced
@@ -96,6 +100,7 @@ export default function Hero() {
 
   return (
     <section
+      ref={sectionRef}
       className="relative overflow-hidden"
       style={{
         background: "var(--color-bg)",
@@ -105,7 +110,11 @@ export default function Hero() {
       }}
       aria-label="Hero"
     >
-      {/* Warm terracotta glow — subtle, never a gradient background */}
+      {/* Ambient bokeh, behind the terracotta glow. R3F on capable desktops,
+          CSS fallback otherwise; both are pointer-events:none and aria-hidden. */}
+      <HeroBokehLayer sectionRef={sectionRef} />
+
+      {/* Warm terracotta glow, subtle, never a gradient background */}
       <div
         className="pointer-events-none absolute -top-[20%] -right-[10%] -z-10"
         style={{
@@ -135,9 +144,9 @@ export default function Hero() {
               color: "var(--color-primary)",
             }}
           >
-            The{" "}
-            <span style={{ color: "var(--color-accent)" }}>AI Companion</span>{" "}
-            for photography studios.
+            Your guests{" "}
+            <span style={{ color: "var(--color-accent)" }}>find themselves</span>.
+            Before they leave the venue.
           </motion.h1>
 
           <motion.p
@@ -149,31 +158,42 @@ export default function Hero() {
               color: "var(--color-muted)",
             }}
           >
-            Leads, shoots, payments and thousands of photos — scattered across
-            WhatsApp, spreadsheets and Drive links. Vyavasth brings it into one
-            place, and an AI-powered gallery delivers photos to guests{" "}
+            One link, one selfie, and every guest sees only the photos they&apos;re
+            in,{" "}
             <em className="italic" style={{ color: "var(--color-primary)" }}>
-              during
-            </em>{" "}
-            the event.
+              while the event is still running
+            </em>
+            . Behind it, your team gets every original located in a click, in a
+            gallery that carries your studio&apos;s name, not ours.
           </motion.p>
 
-          <motion.div {...fadeUp(0.16)} className="mt-8">
-            <button
-              type="button"
-              onClick={openEnquiry}
-              className="group inline-flex items-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-accent-deep)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
-              style={{
-                background: "var(--color-accent)",
-                boxShadow: "0 6px 18px rgba(194, 90, 58, 0.28)",
-              }}
+          <motion.div {...fadeUp(0.16)} className="mt-8 flex w-full flex-col gap-3.5 sm:w-auto sm:flex-row">
+            {/* Primary (main CTA): glow intensification only, no magnetic pull.
+                Base shadow lives on .cta-glow-primary (not inline) so the hover
+                shadow can win. */}
+            <a
+              href={`${process.env.NEXT_PUBLIC_APP_URL ?? "https://deliver.vyavasth.in"}/login`}
+              className="cta-glow-primary group inline-flex items-center justify-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-[var(--color-accent-deep)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
+              style={{ background: "var(--color-accent)" }}
             >
-              Book a demo
+              Get Started
               <ArrowRight
                 size={18}
                 className="transition-transform duration-200 group-hover:translate-x-1"
               />
-            </button>
+            </a>
+            {/* Secondary (easily accessible): the magnetic pull + a soft
+                terracotta halo that appears from nothing on hover. */}
+            <MagneticButton className="inline-flex w-full sm:w-auto">
+              <button
+                type="button"
+                onClick={openEnquiry}
+                className="cta-glow-secondary inline-flex w-full cursor-pointer items-center justify-center gap-2.5 rounded-full px-7 py-4 text-[15px] font-semibold transition-all duration-200 hover:bg-[var(--color-surface-2)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
+                style={{ border: "1px solid var(--color-line-strong)", color: "var(--color-primary)" }}
+              >
+                Book a demo
+              </button>
+            </MagneticButton>
           </motion.div>
 
           <motion.ul
@@ -288,7 +308,7 @@ export default function Hero() {
                 aria-hidden
               />
 
-              {/* Face-match chip — AI galleries */}
+              {/* Face-match chip, AI galleries */}
               <div
                 className="floaty absolute left-3.5 bottom-14 inline-flex items-center gap-2 whitespace-nowrap rounded-xl px-3 py-2 text-[13px] font-medium"
                 style={{
@@ -331,7 +351,7 @@ export default function Hero() {
                   }}
                   aria-hidden
                 />
-                Delivered live · tonight
+                Delivered · during the event
               </div>
             </div>
           </div>
@@ -340,7 +360,7 @@ export default function Hero() {
             className="hidden max-w-[320px] text-center text-[13px] min-[901px]:block"
             style={{ color: "var(--color-faint)" }}
           >
-            A branded, guest-facing gallery — photos land the same evening.
+            A branded, guest-facing gallery: photos land the same evening.
           </p>
         </motion.div>
       </div>

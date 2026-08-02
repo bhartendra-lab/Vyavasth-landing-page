@@ -9,6 +9,7 @@ import { useEnquiry } from "@/components/EnquiryProvider";
 
 const NAV_LINKS = [
   { label: "Features", href: "/#features" },
+  { label: "Pricing", href: "/pricing" },
   { label: "How it works", href: "/#how" },
   { label: "Why Vyavasth", href: "/#why" },
 ];
@@ -96,15 +97,22 @@ export default function Nav() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-5">
             <button
               type="button"
               onClick={openEnquiry}
-              className="hidden md:inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-deep)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
-              style={{ background: "var(--color-accent)" }}
+              className="hidden md:inline text-sm font-medium transition-colors hover:text-[var(--color-accent)]"
+              style={{ color: "var(--color-primary)" }}
             >
               Book a demo
             </button>
+            <a
+              href={`${process.env.NEXT_PUBLIC_APP_URL ?? "https://deliver.vyavasth.in"}/login`}
+              className="hidden md:inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-deep)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
+              style={{ background: "var(--color-accent)" }}
+            >
+              Get Started
+            </a>
 
             <button
               className="md:hidden p-1 focus:outline-none"
@@ -177,14 +185,21 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
+          <a
+            href={`${process.env.NEXT_PUBLIC_APP_URL ?? "https://deliver.vyavasth.in"}/login`}
+            className="mt-4 flex w-full items-center justify-center rounded-full py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-deep)]"
+            style={{ background: "var(--color-accent)" }}
+          >
+            Get Started
+          </a>
           <button
             type="button"
             onClick={() => {
               setDrawerOpen(false);
               openEnquiry();
             }}
-            className="mt-4 w-full rounded-full py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-deep)]"
-            style={{ background: "var(--color-accent)" }}
+            className="mt-2 w-full rounded-full py-3 text-sm font-semibold transition-colors hover:bg-[var(--color-surface-2)]"
+            style={{ border: "1px solid var(--color-line-strong)", color: "var(--color-primary)" }}
           >
             Book a demo
           </button>

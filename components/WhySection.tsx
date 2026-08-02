@@ -5,16 +5,16 @@ import Eyebrow from "@/components/Eyebrow";
 
 const POINTS = [
   {
-    title: "Runs the business side",
-    body: "Leads, bookings and payments — the parts of the studio that usually live in a dozen chats — handled in one place.",
+    title: "The dreaded part gets quiet",
+    body: "No folder-hunting for originals, no manual sorting, no forty WhatsApp requests. The work that used to eat a week takes an evening.",
   },
   {
-    title: "Cuts the manual work",
-    body: "Original Match ends folder-hunting. Smart Selects ends the curation grind. The dreaded parts of the job get quieter.",
+    title: "The gallery sells for you",
+    body: "Your name and watermark on every screen, and a one-tap review prompt built into the gallery every guest opens.",
   },
   {
-    title: "Made for India",
-    body: "Built hand-in-hand with studios across India — shaped for the way events, guests and celebrations actually run here. 🙏",
+    title: "Made for Indian events",
+    body: "Built with studios across India, shaped around how weddings, families and functions here actually run. 🙏",
   },
 ];
 
@@ -54,7 +54,7 @@ export default function WhySection() {
               letterSpacing: "-0.03em",
             }}
           >
-            One product for the whole studio — not one more tool to juggle.
+            The delivery half of the job, done properly.
           </h2>
         </motion.div>
 

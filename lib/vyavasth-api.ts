@@ -1,3 +1,6 @@
+import type { Plan } from "./plans";
+import type { Feature } from "./features";
+
 const DEFAULT_BASE_URL = "https://api.vyavasth.in";
 
 function getBaseUrl(): string {
@@ -54,6 +57,66 @@ export function createEnquiry(payload: {
     ...payload,
     source: payload.source ?? "landing_page",
   });
+}
+
+/* ── Pricing (public, no auth) ─────────────────────────────────── */
+
+export type PublicCoupon = { code: string; percent_off: number; valid_until: number };
+
+type ApiResult<T> = { ok: true; data: T } | { ok: false; error: string };
+
+/**
+ * GET /billing/plans, every active DH Service (including Free), sorted by
+ * sort_order. Revalidated every 5 minutes so a new admin-created plan shows
+ * up without a redeploy. Never throws; callers render a fallback on `ok: false`.
+ */
+export async function getPlans(): Promise<ApiResult<{ currency: string; plans: Plan[] }>> {
+  try {
+    const res = await fetch(`${getBaseUrl()}/billing/plans`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return { ok: false, error: `Request failed: ${res.status}` };
+    const data = await res.json();
+    return { ok: true, data };
+  } catch {
+    return { ok: false, error: "Something went wrong. Please try again." };
+  }
+}
+
+/** GET /billing/coupons/public, universal coupons only. Empty array is normal. */
+export async function getPublicCoupons(): Promise<ApiResult<{ coupons: PublicCoupon[] }>> {
+  try {
+    const res = await fetch(`${getBaseUrl()}/billing/coupons/public`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return { ok: false, error: `Request failed: ${res.status}` };
+    const data = await res.json();
+    return { ok: true, data };
+  } catch {
+    return { ok: false, error: "Something went wrong. Please try again." };
+  }
+}
+
+/**
+ * GET /features, the marketing capability catalog, sorted by sort_order.
+ * `highlight: true` narrows to the homepage strip. Revalidated every 5 minutes,
+ * same discipline as getPlans. Never throws; callers render a fallback on
+ * `ok: false`.
+ */
+export async function getFeatures(
+  opts?: { highlight?: boolean },
+): Promise<ApiResult<{ features: Feature[] }>> {
+  try {
+    const qs = opts?.highlight ? "?highlight=true" : "";
+    const res = await fetch(`${getBaseUrl()}/features${qs}`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return { ok: false, error: `Request failed: ${res.status}` };
+    const data = await res.json();
+    return { ok: true, data };
+  } catch {
+    return { ok: false, error: "Something went wrong. Please try again." };
+  }
 }
 
 export function createSupportTicket(payload: {

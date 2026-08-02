@@ -46,7 +46,7 @@ export default function CtaSection() {
             color: "var(--color-primary)",
           }}
         >
-          Bring your studio into one place.
+          Deliver the next one while it&apos;s still happening.
         </motion.h2>
         <motion.p
           {...fadeUp(0.1)}
@@ -57,9 +57,9 @@ export default function CtaSection() {
             color: "var(--color-muted)",
           }}
         >
-          See Vyavasth run on your own events — from the first lead to a
-          gallery in your guests&apos; hands the same night. A 20-minute
-          walkthrough, no setup needed.
+          See Vyavasth on your own event, from the first frame off the camera
+          to a gallery in your guests&apos; hands the same evening. Twenty
+          minutes, nothing to set up.
         </motion.p>
         <motion.div
           {...fadeUp(0.15)}

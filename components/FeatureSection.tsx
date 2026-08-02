@@ -1,38 +1,50 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { FolderSearch, Heart, Images, Send } from "lucide-react";
 import Eyebrow from "@/components/Eyebrow";
+import FeatureIcon from "@/components/features/FeatureIcon";
+import { CATEGORY_LABELS, type Feature } from "@/lib/features";
 
-const FEATURES = [
+type Highlight = Pick<Feature, "name" | "description" | "icon" | "category">;
+
+// Fallback, the four highlight features, shown only when getFeatures({ highlight
+// }) fails or comes back empty. Keep in sync with the seed's highlights; the
+// live page is driven by the API so one edit in Mongo updates this strip.
+const FALLBACK: Highlight[] = [
   {
-    Icon: Images,
-    tag: "AI Galleries",
-    title: "Guests find their own photos",
-    body: "Share one link. Each guest takes a quick selfie and instantly sees only the photos they are in — no scrolling through thousands of pictures.",
+    name: "AI Face Search",
+    description:
+      "Guests take one selfie and see only the photos they appear in. No scrolling through four thousand frames, and nobody has to ask the studio to find them.",
+    icon: "ScanFace",
+    category: "discovery",
   },
   {
-    Icon: Heart,
-    tag: "Smart Selects",
-    title: "Your best shots rise to the top",
-    body: "Vyavasth learns which photos guests love and puts your strongest work first — so you are not sorting through everything by hand.",
+    name: "Live Delivery",
+    description:
+      "Photos travel straight from the camera over FTP and reach registered guests while the event is still running. The gallery is live before the function ends.",
+    icon: "Zap",
+    category: "delivery",
   },
   {
-    Icon: FolderSearch,
-    tag: "Original Match",
-    title: "The full-quality original, found for you",
-    body: "Tap any photo a guest liked and Vyavasth pulls up its full-resolution original on its own — no digging through folders or Drive links.",
+    name: "Smart Filters & One-Click Locate",
+    description:
+      "Sort a gallery by family member, most-liked, or the bride-and-groom pairing, then jump from any frame to its original or RAW file in a single click.",
+    icon: "SlidersHorizontal",
+    category: "discovery",
   },
   {
-    Icon: Send,
-    tag: "Live Delivery",
-    title: "Photos delivered the same night",
-    body: "Guests get their gallery while the event is still on — the weeks-long wait people are used to simply disappears.",
+    name: "Studio Branding & Watermark",
+    description:
+      "Your logo, colours and watermark carry through the entire gallery, not just the landing page. Guests remember whose work it is.",
+    icon: "Stamp",
+    category: "brand",
   },
 ];
 
-export default function FeatureSection() {
+export default function FeatureSection({ features = [] }: { features?: Feature[] }) {
   const reduced = useReducedMotion();
+
+  const items: Highlight[] = features.length > 0 ? features : FALLBACK;
 
   const fadeUp = (delay = 0) =>
     reduced
@@ -60,7 +72,7 @@ export default function FeatureSection() {
           className="flex max-w-[640px] flex-col gap-4"
           style={{ marginBottom: "clamp(40px, 6vh, 60px)" }}
         >
-          <Eyebrow>Features, in plain words</Eyebrow>
+          <Eyebrow>What the product does</Eyebrow>
           <h2
             className="font-extrabold"
             style={{
@@ -70,14 +82,14 @@ export default function FeatureSection() {
               color: "var(--color-primary)",
             }}
           >
-            The hard parts of the job — handled for you.
+            The part everyone dreads, handled for you.
           </h2>
         </motion.header>
 
         <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-          {FEATURES.map(({ Icon, tag, title, body }, i) => (
+          {items.map(({ name, description, icon, category }, i) => (
             <motion.article
-              key={tag}
+              key={name}
               {...fadeUp(0.05 + i * 0.06)}
               className="flex flex-col items-start gap-3 rounded-2xl transition-all duration-300 hover:-translate-y-1"
               style={{
@@ -94,13 +106,13 @@ export default function FeatureSection() {
                 }}
                 aria-hidden
               >
-                <Icon size={24} strokeWidth={1.7} />
+                <FeatureIcon name={icon} size={24} />
               </span>
               <span
                 className="text-[11px] font-bold uppercase tracking-[0.06em]"
                 style={{ color: "var(--color-accent)" }}
               >
-                {tag}
+                {CATEGORY_LABELS[category]}
               </span>
               <h3
                 className="font-bold"
@@ -111,13 +123,10 @@ export default function FeatureSection() {
                   color: "var(--color-primary)",
                 }}
               >
-                {title}
+                {name}
               </h3>
-              <p
-                className="text-[15px]"
-                style={{ lineHeight: 1.6, color: "var(--color-muted)" }}
-              >
-                {body}
+              <p className="text-[15px]" style={{ lineHeight: 1.6, color: "var(--color-muted)" }}>
+                {description}
               </p>
             </motion.article>
           ))}

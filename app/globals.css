@@ -4,15 +4,15 @@
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
 }
 
-/* Vyavasth Design System — single source of truth: one accent (terracotta),
+/* Vyavasth Design System, single source of truth: one accent (terracotta),
    cream canvas, one typeface (Plus Jakarta Sans). */
 :root {
-  /* Canvas — cream, always */
+  /* Canvas, cream, always */
   --color-bg: #f5ede0;
   --color-surface: #fbf8f1;
   --color-surface-2: #ede3d3;
 
-  /* Ink — text + dark bands (warm charcoal, never pure black) */
+  /* Ink, text + dark bands (warm charcoal, never pure black) */
   --color-primary: #2a2218;
   --color-muted: #7a6f63;
   --color-faint: #b5ada4;
@@ -21,12 +21,12 @@
   --color-line: #ddd4c4;
   --color-line-strong: #c4b9a8;
 
-  /* Accent — terracotta, the only accent */
+  /* Accent, terracotta, the only accent */
   --color-accent: #c25a3a;
   --color-accent-deep: #a8442a;
   --color-accent-soft: #f7e8e3;
 
-  /* Functional — status only, never decorative */
+  /* Functional, status only, never decorative */
   --color-success: #2e7d52;
   --color-success-soft: #e8f5ee;
 
@@ -34,7 +34,7 @@
   --max-w: 1240px;
   --gutter: clamp(20px, 4vw, 56px);
 
-  /* Elevation — warm charcoal at low opacity */
+  /* Elevation, warm charcoal at low opacity */
   --shadow-subtle: 0 1px 3px rgba(42, 34, 24, 0.08);
   --shadow-raised: 0 8px 24px rgba(42, 34, 24, 0.1);
   --shadow-floating: 0 24px 60px rgba(42, 34, 24, 0.14);
@@ -203,5 +203,100 @@ body {
   .floaty {
     animation: none !important;
     transform: none !important;
+  }
+
+  /* Feature showcase: no hover transition under reduced motion (the lift
+     itself is framer-motion, disabled in JS via useReducedMotion). */
+  .feature-num,
+  .feature-icon-tile {
+    transition: none !important;
+  }
+}
+
+/* ── Pricing: discrete storage-tier slider (index slider, see lib/plans.ts) */
+.range-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 44px;
+  background: transparent;
+  cursor: pointer;
+}
+.range-slider:focus-visible {
+  outline: none;
+}
+.range-slider::-webkit-slider-runnable-track {
+  height: 4px;
+  background: transparent;
+}
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  border: 2px solid var(--color-surface);
+  box-shadow: var(--shadow-subtle);
+}
+.range-slider:focus-visible::-webkit-slider-thumb {
+  box-shadow: 0 0 0 3px rgba(194, 90, 58, 0.4);
+}
+.range-slider::-moz-range-track {
+  height: 4px;
+  background: transparent;
+}
+.range-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: var(--color-accent);
+  border: 2px solid var(--color-surface);
+  box-shadow: var(--shadow-subtle);
+}
+.range-slider:focus-visible::-moz-range-thumb {
+  box-shadow: 0 0 0 3px rgba(194, 90, 58, 0.4);
+}
+
+/* ── Pricing: feature showcase rows (see FeatureShowcase.tsx). Base state for
+   the two-digit index and the icon tile; hover deepens both, but only on true
+   pointer devices so a touch tap never leaves a stuck hover state. The row
+   lift itself is framer-motion (whileHover), gated separately. */
+.feature-num {
+  opacity: 0.55;
+}
+.feature-icon-tile {
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+/* Hero CTAs: terracotta glow (Phase 5, step 2). The primary intensifies its
+   existing shadow on hover; the secondary (outline) grows a soft halo from
+   nothing. Timing comes from each button's `transition-all duration-200`
+   (Tailwind's default easing is cubic-bezier(0.4, 0, 0.2, 1)). Terracotta only,
+   no new colour, and a colour change so it may stay under reduced motion. */
+.cta-glow-primary {
+  box-shadow: 0 6px 18px rgba(194, 90, 58, 0.28);
+}
+.cta-glow-primary:hover {
+  box-shadow: 0 10px 30px rgba(194, 90, 58, 0.42);
+}
+.cta-glow-secondary:hover {
+  box-shadow: 0 8px 26px rgba(194, 90, 58, 0.28);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .feature-num {
+    transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .feature-icon-tile {
+    transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .feature-row:hover .feature-num {
+    opacity: 1;
+  }
+  .feature-row:hover .feature-icon-tile {
+    background: color-mix(in srgb, var(--color-accent) 12%, var(--color-accent-soft));
   }
 }

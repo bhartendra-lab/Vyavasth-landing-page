@@ -28,7 +28,7 @@ export default function ProblemSection() {
         style={{ padding: "0 var(--gutter)" }}
       >
         <motion.div {...fadeUp(0)}>
-          <Eyebrow>The everyday reality</Eyebrow>
+          <Eyebrow>The part that breaks</Eyebrow>
         </motion.div>
 
         <motion.h2
@@ -41,10 +41,10 @@ export default function ProblemSection() {
             color: "var(--color-primary)",
           }}
         >
-          A studio&apos;s work is spread across{" "}
-          <span className="strike">WhatsApp threads</span>,{" "}
-          <span className="strike">spreadsheets</span>,{" "}
-          <span className="strike">Drive links</span> and memory.
+          A wedding ends and the real work starts:{" "}
+          <span className="strike">4,000 photos</span>,{" "}
+          <span className="strike">an expiring link</span>, and{" "}
+          <span className="strike">forty people</span> asking for theirs.
         </motion.h2>
 
         <motion.p
@@ -56,11 +56,7 @@ export default function ProblemSection() {
             color: "var(--color-muted)",
           }}
         >
-          Every lead, shoot, payment and photo lives somewhere different — and
-          the handoff between them is manual. Vyavasth brings the whole studio
-          into one place: one product for the business, and an AI gallery that
-          delivers photos to guests during the event and finds the originals
-          afterward — cutting out the work studios dread most.
+          {`The gallery goes out weeks late, guests scroll past thousands of frames looking for themselves, and every "can you find the one where I'm with dadi?" comes back to you on WhatsApp. Vyavasth turns that into a link the family opens at the venue; each guest sees only their own photos, and every original stays one click from your team.`}
         </motion.p>
       </div>
     </section>

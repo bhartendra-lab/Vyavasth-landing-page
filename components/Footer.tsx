@@ -58,7 +58,7 @@ export default function Footer() {
             className="max-w-[280px] text-sm"
             style={{ lineHeight: 1.6, color: "var(--color-muted)" }}
           >
-            The AI Companion for photography studios.
+            AI event galleries, delivered during the event.
           </p>
           <p
             className="text-sm font-medium"
@@ -76,6 +76,9 @@ export default function Footer() {
           <nav className="flex flex-col gap-2.5" aria-label="Product">
             <Link href="/#features" className={colLink} style={{ color: "var(--color-primary)" }}>
               Features
+            </Link>
+            <Link href="/pricing" className={colLink} style={{ color: "var(--color-primary)" }}>
+              Pricing
             </Link>
             <Link href="/#how" className={colLink} style={{ color: "var(--color-primary)" }}>
               How it works

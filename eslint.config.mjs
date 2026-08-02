@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Generated build output from the Cloudflare (OpenNext) adapter and
+    // wrangler, gitignored, never source. Linting them floods the report.
+    ".open-next/**",
+    ".wrangler/**",
   ]),
 ]);
 

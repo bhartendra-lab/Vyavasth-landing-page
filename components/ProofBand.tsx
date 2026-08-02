@@ -1,8 +1,8 @@
 const PROOF = [
-  "Leads, shoots & payments in one place",
-  "AI face-matching for instant discovery",
-  "Same-evening delivery, during the event",
-  "Originals matched — no folder-hunting",
+  "AI face search: guests find their own photos",
+  "Delivered during the event, not weeks later",
+  "Originals and RAWs located in one click",
+  "Passcode-gated, and branded as yours",
 ];
 
 export default function ProofBand() {

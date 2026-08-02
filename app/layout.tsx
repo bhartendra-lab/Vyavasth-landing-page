@@ -10,14 +10,14 @@ const jakarta = Plus_Jakarta_Sans({
   display: "swap",
 });
 
-const TITLE = "Vyavasth — The AI Companion for photography studios";
+const TITLE = "Vyavasth: AI event galleries, delivered during the event";
 const DESCRIPTION =
-  "Vyavasth runs the business side of a photography studio and delivers photos to guests during the event — AI galleries, face-matching, and same-evening delivery, in one place.";
+  "One link, one selfie, and every guest sees only the photos they're in, while the event is still running. Face search, live delivery and your studio's branding on every screen.";
 
 export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
-  metadataBase: new URL("https://vyavasth.com"),
+  metadataBase: new URL("https://vyavasth.in"),
   alternates: {
     canonical: "/",
   },
