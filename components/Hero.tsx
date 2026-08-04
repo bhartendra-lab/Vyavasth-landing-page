@@ -144,9 +144,8 @@ export default function Hero() {
               color: "var(--color-primary)",
             }}
           >
-            Your guests{" "}
-            <span style={{ color: "var(--color-accent)" }}>find themselves</span>.
-            Before they leave the venue.
+            <span style={{ color: "var(--color-accent)" }}>AI Companion </span>
+            for Photography Studios.
           </motion.h1>
 
           <motion.p

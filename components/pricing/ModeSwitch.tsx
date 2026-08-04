@@ -3,8 +3,8 @@
 type Mode = "event" | "storage";
 
 const TABS: { id: Mode; label: string }[] = [
-  { id: "event", label: "Pay per event" },
   { id: "storage", label: "Storage plan" },
+  { id: "event", label: "Pay per event" }
 ];
 
 export default function ModeSwitch({
@@ -18,7 +18,7 @@ export default function ModeSwitch({
     <div
       role="tablist"
       aria-label="Pricing mode"
-      className="inline-flex items-center gap-1 rounded-full p-1"
+      className="inline-flex items-center justify-center gap-1 self-center rounded-full p-1"
       style={{ background: "var(--color-surface-2)", border: "1px solid var(--color-line)" }}
       onKeyDown={(e) => {
         if (e.key !== "ArrowLeft" && e.key !== "ArrowRight") return;
@@ -40,7 +40,7 @@ export default function ModeSwitch({
             aria-controls={`pricing-panel-${tab.id}`}
             tabIndex={selected ? 0 : -1}
             onClick={() => onChange(tab.id)}
-            className="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
+            className="rounded-full px-5 py-2.5 text-sm font-semibold transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50 cursor-pointer"
             style={
               selected
                 ? { background: "var(--color-accent)", color: "#fff" }

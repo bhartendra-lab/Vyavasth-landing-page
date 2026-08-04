@@ -48,7 +48,7 @@ export default function PricingClient({
   const hasEvent = Boolean(eventPlan);
   const hasStorage = tiers.length > 0;
 
-  const [mode, setMode] = useState<Mode>(() => (hasEvent ? "event" : "storage"));
+  const [mode, setMode] = useState<Mode>(() => (hasStorage ? "storage" : "event"));
   const [qty, setQty] = useState(1);
   const [interval, setInterval_] = useState<Interval>(() =>
     tiers.some((t) => (yearlySavingsPercent(t) ?? 0) > 0) ? "yearly" : "monthly",
@@ -200,7 +200,7 @@ export default function PricingClient({
               }
               subLine={
                 activeStoragePlan
-                  ? `${formatStorage(tier.storage_limit)} · unlimited events · reusable storage`
+                  ? `${formatStorage(tier.storage_limit)} = ${Number(tier.storage_limit * 1000).toLocaleString("en-IN")} photos · unlimited events · reusable storage`
                   : `Not available on ${interval} billing`
               }
               subNote={

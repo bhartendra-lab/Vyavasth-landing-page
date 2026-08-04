@@ -1,7 +1,13 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import {
+  AnimatePresence,
+  motion,
+  useInView,
+  useReducedMotion,
+} from "framer-motion";
 import Eyebrow from "@/components/Eyebrow";
 
 const STEPS = [
@@ -9,44 +15,84 @@ const STEPS = [
     n: "01",
     title: "Photos leave the camera on their own",
     body: "Shoot as you always do: frames reach Vyavasth over FTP while the event runs. No end-of-night upload marathon.",
+    img: "/how-step-1.png",
+    alt: "Camera uploading photos to the Vyavasth cloud and onto a phone.",
   },
   {
     n: "02",
     title: "Every face is matched",
     body: "Guests register once with a selfie. Each frame is sorted to the people in it, and each one stays linked to its original.",
+    img: "/how-step-2.png",
+    alt: "A registered selfie being matched to the faces it appears alongside.",
   },
   {
     n: "03",
     title: "Guests open their own gallery",
     body: "One passcode-gated link, your branding on every screen, sorted by Haldi, Sangeet and Reception, not one flat dump.",
+    img: "/how-step-3.png",
+    alt: "A passcode-gated gallery of event photos opened in a browser.",
   },
 ];
 
-// Mixed event photos, weddings, birthdays, receptions (all events, not one kind).
-const GALLERY_PHOTOS = [
-  "photo-1528360983277-13d401cdc186",
-  "photo-1587271407850-8d438ca9fdf2",
-  "photo-1524863479829-916d8e77f114",
-  "photo-1465495976277-4387d4b0b4c6",
-  "photo-1460978812857-470ed1c77af0",
-].map((id) => `https://images.unsplash.com/${id}?w=800&q=80`);
+const DURATION = 6000; // auto-advance interval (ms)
 
 export default function HowItWorks() {
   const reduced = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const inView = useInView(sectionRef, { amount: 0.4 });
 
-  const fadeUp = (delay = 0) =>
-    reduced
-      ? {}
-      : {
-          initial: { opacity: 0, y: 18 },
-          whileInView: { opacity: 1, y: 0 },
-          viewport: { once: true },
-          transition: { duration: 0.5, ease: "easeOut" as const, delay },
-        };
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const [progress, setProgress] = useState(0);
+
+  const autoplaying = inView && !paused && !reduced;
+
+  // Auto-advance: drive the progress bar and flip to the next step at 6s.
+  useEffect(() => {
+    if (!autoplaying) return;
+    const start = performance.now();
+    const id = setInterval(() => {
+      const p = Math.min((performance.now() - start) / DURATION, 1);
+      setProgress(p);
+      if (p >= 1) {
+        setProgress(0);
+        setActive((a) => (a + 1) % STEPS.length);
+      }
+    }, 50);
+    return () => clearInterval(id);
+  }, [active, autoplaying]);
+
+  const goTo = (i: number) => {
+    setActive(i);
+    setProgress(0);
+  };
+
+  const step = STEPS[active];
+
+  const swap = reduced
+    ? { initial: false as const }
+    : {
+        initial: { opacity: 0, y: 14 },
+        animate: { opacity: 1, y: 0 },
+        exit: { opacity: 0, y: -14 },
+        transition: { duration: 0.45, ease: [0.22, 1, 0.36, 1] as const },
+      };
+
+  const swapImg = reduced
+    ? { initial: false as const }
+    : {
+        initial: { opacity: 0, scale: 0.98 },
+        animate: { opacity: 1, scale: 1 },
+        exit: { opacity: 0, scale: 1.02 },
+        transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] as const },
+      };
 
   return (
     <section
+      ref={sectionRef}
       id="how"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
       style={{
         padding: "clamp(72px, 12vh, 128px) 0",
         background: "var(--color-bg)",
@@ -57,120 +103,142 @@ export default function HowItWorks() {
         style={{ maxWidth: "var(--max-w)", padding: "0 var(--gutter)" }}
       >
         <div className="grid grid-cols-1 items-center gap-11 min-[901px]:grid-cols-2 min-[901px]:gap-[clamp(40px,6vw,88px)]">
-          {/* Copy + steps */}
-          <motion.div {...fadeUp(0)} className="flex flex-col gap-5 min-[901px]:order-first order-last">
-            <Eyebrow>How it works</Eyebrow>
-            <h2
-              className="font-extrabold"
-              style={{
-                fontSize: "clamp(1.9rem, 3.6vw, 2.9rem)",
-                lineHeight: 1.08,
-                letterSpacing: "-0.03em",
-                color: "var(--color-primary)",
-              }}
+          {/* Copy + active step + progress tabs */}
+          <div className="flex flex-col gap-7 min-[901px]:order-first order-last">
+            <div className="flex flex-col gap-5">
+              <Eyebrow>How it works</Eyebrow>
+              <h2
+                className="font-extrabold"
+                style={{
+                  fontSize: "clamp(1.9rem, 3.6vw, 2.9rem)",
+                  lineHeight: 1.08,
+                  letterSpacing: "-0.03em",
+                  color: "var(--color-primary)",
+                }}
+              >
+                From the shoot to the guest&apos;s phone, the same night.
+              </h2>
+            </div>
+
+            {/* Active step — crossfades to the next */}
+            <div
+              className="relative"
+              style={{ minHeight: "clamp(150px, 22vh, 176px)" }}
+              aria-live="polite"
             >
-              From the shoot to the guest&apos;s phone, the same night.
-            </h2>
-            <ol className="mt-1.5 flex flex-col">
-              {STEPS.map((s, i) => (
-                <li
-                  key={s.n}
-                  className="flex gap-5 py-5"
-                  style={{
-                    borderTop: "1px solid var(--color-line)",
-                    borderBottom:
-                      i === STEPS.length - 1
-                        ? "1px solid var(--color-line)"
-                        : undefined,
-                  }}
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={active}
+                  {...swap}
+                  className="flex gap-4"
                 >
                   <span
-                    className="shrink-0 pt-0.5 text-sm font-bold tracking-wide"
-                    style={{ color: "var(--color-accent)" }}
+                    className="shrink-0 font-extrabold leading-none"
+                    style={{
+                      fontSize: "clamp(2.4rem, 4vw, 3rem)",
+                      color: "var(--color-accent)",
+                      letterSpacing: "-0.04em",
+                    }}
                   >
-                    {s.n}
+                    {step.n}
                   </span>
-                  <div>
+                  <div className="pt-1">
                     <h3
-                      className="mb-1.5 font-bold"
+                      className="mb-2 font-bold"
                       style={{
-                        fontSize: "1.08rem",
+                        fontSize: "1.25rem",
                         letterSpacing: "-0.02em",
                         color: "var(--color-primary)",
                       }}
                     >
-                      {s.title}
+                      {step.title}
                     </h3>
                     <p
-                      className="max-w-[420px] text-[15px]"
-                      style={{ lineHeight: 1.6, color: "var(--color-muted)" }}
+                      className="max-w-[440px] text-[15px]"
+                      style={{ lineHeight: 1.65, color: "var(--color-muted)" }}
                     >
-                      {s.body}
+                      {step.body}
                     </p>
                   </div>
-                </li>
-              ))}
-            </ol>
-          </motion.div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
-          {/* Photo grid visual */}
-          <motion.div {...fadeUp(0.1)} className="w-full" aria-hidden="true">
-            <div
-              className="grid gap-3"
-              style={{
-                gridTemplateColumns: "1.35fr 1fr",
-                height: "clamp(400px, 44vw, 500px)",
-              }}
-            >
-              <div
-                className="relative h-full overflow-hidden rounded-xl"
-                style={{ background: "var(--color-surface-2)" }}
+            {/* Progress tabs */}
+            <div className="flex gap-3" role="tablist" aria-label="How it works steps">
+              {STEPS.map((s, i) => {
+                const isActive = i === active;
+                // Active bar fills over the 6s timer (and freezes where it is on
+                // hover-pause); reduced-motion users get a static full bar instead.
+                const fill = isActive ? (reduced ? 100 : progress * 100) : 0;
+                return (
+                  <button
+                    key={s.n}
+                    role="tab"
+                    aria-selected={isActive}
+                    aria-label={`Step ${s.n}: ${s.title}`}
+                    onClick={() => goTo(i)}
+                    className="group flex flex-1 flex-col gap-2 pb-1 text-left"
+                  >
+                    <span
+                      className="text-xs font-bold tracking-wide transition-colors"
+                      style={{
+                        color: isActive
+                          ? "var(--color-accent)"
+                          : "var(--color-muted)",
+                      }}
+                    >
+                      {s.n}
+                    </span>
+                    <span
+                      className="relative h-[3px] w-full overflow-hidden rounded-full"
+                      style={{ background: "var(--color-line)" }}
+                    >
+                      <span
+                        className="absolute inset-y-0 left-0 rounded-full"
+                        style={{
+                          width: `${fill}%`,
+                          background: "var(--color-accent)",
+                          transition: reduced
+                            ? undefined
+                            : "width 60ms linear",
+                        }}
+                      />
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Illustration — crossfades with the active step */}
+          <div
+            className="relative w-full overflow-hidden rounded-2xl"
+            style={{
+              height: "clamp(340px, 40vw, 460px)",
+              background: "#fef5ec",
+              border: "1px solid var(--color-line)",
+              boxShadow: "var(--shadow-raised)",
+            }}
+            aria-hidden="true"
+          >
+            <AnimatePresence>
+              <motion.div
+                key={active}
+                {...swapImg}
+                className="absolute inset-0"
               >
                 <Image
-                  src={GALLERY_PHOTOS[0]}
-                  alt=""
+                  src={step.img}
+                  alt={step.alt}
                   fill
-                  sizes="(max-width: 900px) 100vw, 40vw"
-                  className="object-cover transition-transform duration-1000 ease-out hover:scale-105"
+                  sizes="(max-width: 900px) 100vw, 44vw"
+                  className="object-contain p-2"
+                  priority={active === 0}
                 />
-                <span
-                  className="absolute left-3.5 bottom-3.5 inline-flex items-center gap-2 rounded-full px-3 py-2 text-xs font-semibold"
-                  style={{
-                    background: "rgba(251, 248, 241, 0.94)",
-                    backdropFilter: "blur(8px)",
-                    color: "var(--color-success)",
-                    boxShadow: "var(--shadow-raised)",
-                  }}
-                >
-                  <span
-                    className="h-[7px] w-[7px] rounded-full"
-                    style={{
-                      background: "var(--color-success)",
-                      boxShadow: "0 0 0 4px rgba(46, 125, 82, 0.16)",
-                    }}
-                  />
-                  Delivered live
-                </span>
-              </div>
-              <div className="grid grid-cols-2 grid-rows-2 gap-3">
-                {GALLERY_PHOTOS.slice(1, 5).map((src) => (
-                  <div
-                    key={src}
-                    className="relative overflow-hidden rounded-xl"
-                    style={{ background: "var(--color-surface-2)" }}
-                  >
-                    <Image
-                      src={src}
-                      alt=""
-                      fill
-                      sizes="(max-width: 900px) 50vw, 20vw"
-                      className="object-cover transition-transform duration-1000 ease-out hover:scale-105"
-                    />
-                  </div>
-                ))}
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
