@@ -111,11 +111,14 @@ export function yearlySavingsPercent(tier: StorageTier): number | null {
   return pct > 0 ? pct : null;
 }
 
-/** 150 → "150 GB" · 1024 → "1 TB" · 1536 → "1.5 TB" */
+/**
+ * 150 → "150 GB" · 1000 → "1 TB" · 1500 → "1.5 TB". Decimal units: plans are
+ * sized in GB where 1000 GB = 1 TB, so a 4000 GB plan reads "4 TB", not "3.9 TB".
+ */
 export function formatStorage(gb: number): string {
-  if (gb >= 1024) {
-    const tb = gb / 1024;
-    return `${Number.isInteger(tb) ? tb : tb.toFixed(1)} TB`;
+  if (gb >= 1000) {
+    const tb = Math.round(gb / 100) / 10;
+    return `${tb} TB`;
   }
   return `${gb} GB`;
 }

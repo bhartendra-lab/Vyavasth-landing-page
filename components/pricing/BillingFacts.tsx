@@ -38,7 +38,7 @@ const FACTS: Array<{ term: string; detail: string }> = [
   {
     term: "Event credits never expire",
     detail:
-      "They're cumulative: buy four, use one this month and three next year.",
+      "They're cumulative: buy four, use one this month and three next year. Each event's 3-month validity starts when you create it, not when you buy it.",
   },
 ];
 

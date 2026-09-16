@@ -31,7 +31,7 @@ export const PRICING_FAQS: PricingFaqItem[] = [
   },
   {
     q: "How does storage work? Is it per event?",
-    a: "No. It's a single pool that carries forward across every booking. It doesn't reset when an event ends.",
+    a: "It depends on the plan. On a storage plan, it's a single pool that carries forward across every booking and doesn't reset when an event ends. On the free and pay-per-event plans, each event gets unlimited storage.",
   },
   {
     q: "What if I run out of storage mid-event?",

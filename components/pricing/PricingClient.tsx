@@ -110,7 +110,12 @@ export default function PricingClient({
   const eventFeatures =
     eventPlan?.features && eventPlan.features.length > 0
       ? eventPlan.features
-      : ["Never expires", "All features included"];
+      : [
+          "Unlimited storage per event",
+          "Each event stays live for 3 months from when you create it",
+          "Unused events never expire",
+          "All features included",
+        ];
   const eventHref = eventPlan ? `${APP_URL}/login` : null;
 
   // ── Storage plan ───────────────────────────────────────────────
@@ -158,7 +163,7 @@ export default function PricingClient({
               features={eventFeatures}
               ctaHref={eventHref}
               ctaLabel="Continue →"
-              footnote="GST included. One-time payment — bought events never expire until you utilize one."
+              footnote="GST included. One-time payment. The 3-month validity starts when you create an event, not when you buy it."
             />
           </div>
         )}

@@ -100,10 +100,12 @@ test("yearlySavingsPercent: null when either side is missing", () => {
   assert.equal(yearlySavingsPercent({ storage_limit: 150, monthly: monthly(150, 1800), yearly: null }), null);
 });
 
-test("formatStorage: GB stays GB, TB rounds/formats", () => {
+test("formatStorage: GB stays GB, TB uses decimal units (1000 GB = 1 TB)", () => {
   assert.equal(formatStorage(75), "75 GB");
-  assert.equal(formatStorage(1024), "1 TB");
-  assert.equal(formatStorage(1536), "1.5 TB");
+  assert.equal(formatStorage(500), "500 GB");
+  assert.equal(formatStorage(1000), "1 TB");
+  assert.equal(formatStorage(1500), "1.5 TB");
+  assert.equal(formatStorage(4000), "4 TB");
 });
 
 test("formatInr: lakh grouping, not western thousands grouping", () => {

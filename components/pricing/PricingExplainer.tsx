@@ -48,7 +48,7 @@ export default function PricingExplainer({
     {
       stage: "Stage two",
       title: "Pay per event",
-      body: "One-time payment per event, priced GST-inclusive. Events are cumulative and never expire, so a slow month costs you nothing. Best while you're delivering a handful of events a season.",
+      body: "One-time payment per event, priced GST-inclusive. Each event gets unlimited storage and stays live for 3 months from when you create it, not when you buy it. Unused events carry over, so a slow month costs you nothing. Best while you're delivering a handful of events a season.",
     },
     {
       stage: "Stage three",
