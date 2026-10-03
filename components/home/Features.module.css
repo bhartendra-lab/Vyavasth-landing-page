@@ -1,0 +1,139 @@
+/* Features section, ported from landing_page_v2/features/src/features.src.html.
+   Values are unchanged. Removed: @font-face, :root tokens (globals.css), page
+   resets and the prototype's .stub. The last rule is the padding the joined
+   home page (home/src/build_home.py) applies to #ft. */
+
+.ft{padding:clamp(64px,8vw,112px) clamp(14px,5.300vw,76px)}
+.ft h2{margin:0 auto clamp(28px,4vw,56px);max-width:16em;text-align:center;font-size:clamp(32px,3.900vw,56px);line-height:1.1;letter-spacing:-.035em;font-weight:500;color:var(--brown);text-wrap:balance}
+.bento{max-width:1288px;margin:0 auto;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.c{position:relative;display:flex;flex-direction:column;height:520px;border-radius:24px;overflow:hidden;color:rgba(255,255,255,.94);isolation:isolate;
+  opacity:0;transform:translateY(18px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.c.in{opacity:1;transform:none}
+.c.wide{grid-column:span 2}
+.c .txt{position:relative;z-index:3;padding:32px 32px 0;max-width:600px}
+.c h3{margin:0;font-size:32px;line-height:40px;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
+.c .go{margin-top:14px;display:inline-flex;align-items:center;height:40px;padding:0 16px;border-radius:12px;background:rgba(255,255,255,.92);color:#0f1015;font-size:14px;font-weight:600;text-decoration:none;box-shadow:0 1px 2px rgba(43,20,13,.12);transition:transform .3s var(--ease),background .2s}
+.c .go:hover{transform:scale(1.05) translateY(-2px);background:#fff}
+.c .art{position:relative;flex:1;margin-top:26px;z-index:2;transition:transform .7s var(--ease);transform-origin:50% 100%}
+@media (hover:hover) and (pointer:fine){
+.c:hover .art{transform:scale(1.035)}
+}
+.c1{background:linear-gradient(180deg,#B94F30 0%,#D9623D 48%,#F0A07F 100%)}
+.c2{background:linear-gradient(180deg,#E3B4E1 0%,#EECEEC 55%,#F8E9F7 100%);color:var(--brown)}
+.c3{background:linear-gradient(180deg,#241009 0%,#3a1d13 55%,#7b3420 118%)}
+.c4{background:linear-gradient(180deg,#E39F86 0%,#EFC2B0 55%,#F8E4DB 100%);color:var(--brown)}
+.c2 .go, .c4 .go{background:var(--brown);color:#fff}
+.c2 .go:hover, .c4 .go:hover{background:#3d2016}
+.panel{position:absolute;background:#fff;border-radius:20px;box-shadow:var(--sh);color:var(--ink)}
+.cursor{position:absolute;z-index:6;display:flex;align-items:flex-start;gap:0;pointer-events:none}
+.cursor svg{width:22px;height:22px;flex:none;filter:drop-shadow(0 2px 3px rgba(0,0,0,.25))}
+.cursor span{margin:14px 0 0 -4px;background:var(--brown);color:#fff;font-size:13px;font-weight:700;padding:5px 12px;border-radius:999px;border:2px solid #fff;white-space:nowrap;box-shadow:0 6px 14px rgba(43,20,13,.3)}
+.cursor.t span{background:var(--terra)}
+.cursor.t svg path{fill:var(--terra)}
+.ss{left:32px;right:28%;top:0;bottom:-24px;padding:18px 18px 0}
+.ss .chips{display:flex;flex-wrap:wrap;gap:8px}
+.ss .chips span{font-size:13.5px;font-weight:700;padding:8px 14px;border-radius:999px;background:#f6ebe5;color:#6b5046;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.ss .chips span.on{background:var(--terra);color:#fff}
+.ss .chips svg{width:13px;height:13px}
+.ss .grid{margin-top:14px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.ss .grid i{display:block;position:relative;aspect-ratio:1;border-radius:12px;background:#eee center/cover}
+.ss .grid i b{position:absolute;right:6px;bottom:6px;font:800 11px var(--font-jakarta);font-style:normal;background:#fff;color:var(--terra-dk);padding:3px 7px;border-radius:999px;display:flex;align-items:center;gap:3px;box-shadow:0 2px 6px rgba(0,0,0,.2)}
+.ss .grid i b svg{width:10px;height:10px}
+.ss .grid i.pick{outline:3px solid var(--terra);outline-offset:2px}
+.rawc{right:32px;bottom:44px;width:300px;padding:16px;z-index:4}
+.rawc .f{display:flex;gap:12px;align-items:center}
+.rawc .ic{flex:none;width:44px;height:54px;border-radius:9px 15px 9px 9px;background:linear-gradient(180deg,#3a211a,#2B140D);color:#FFD9C7;font-size:10.5px;font-weight:800;letter-spacing:.06em;display:grid;place-items:end center;padding-bottom:8px}
+.rawc b{display:block;font:700 15px ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:-.02em}
+.rawc small{display:flex;align-items:center;gap:5px;margin-top:4px;font-size:12.5px;font-weight:700;color:#1f7a4d}
+.rawc small svg{width:13px;height:13px}
+.rawc .send{margin-top:14px;height:40px;border-radius:12px;background:var(--brown);color:#fff;font-weight:700;font-size:14px;display:grid;place-items:center}
+.orbit{position:absolute;left:50%;bottom:-140px;width:440px;height:440px;margin-left:-220px}
+.orbit .ring{position:absolute;inset:0;border-radius:50%;border:1.5px dashed rgba(43,20,13,.22)}
+.orbit .ring.r2{inset:86px}
+.av{position:absolute;border-radius:50%;background:#eee center/cover;border:4px solid #fff;box-shadow:0 8px 18px rgba(43,20,13,.22);translate:-50% -50%}
+.av.me{width:128px;height:128px;left:50%;top:50%;border-width:5px}
+.av.s{width:74px;height:74px}
+.av.xs{width:60px;height:60px}
+.lbl{position:absolute;z-index:3;translate:-50% 0;white-space:nowrap;font-size:12.5px;font-weight:800;color:#fff;background:var(--terra);padding:4px 11px;border-radius:999px;border:2px solid #fff;box-shadow:0 5px 12px rgba(43,20,13,.25)}
+.lbl.you{background:var(--brown)}
+.up{left:32px;right:32px;top:6px;bottom:-24px;padding:18px}
+.up .seg{display:flex;gap:6px;background:#f6ebe5;border-radius:12px;padding:5px}
+.up .seg span{flex:1;text-align:center;font-weight:700;font-size:13.5px;padding:8px 0;border-radius:8px;color:#8a7067}
+.up .seg span.on{background:#fff;color:var(--brown);box-shadow:0 1px 4px rgba(43,20,13,.18)}
+.up .r{display:flex;align-items:center;gap:10px;margin-top:14px}
+.up .r .th{flex:none;width:40px;height:40px;border-radius:10px;background:#eee center/cover}
+.up .r b{display:block;font-size:14px;letter-spacing:-.01em}
+.up .r small{display:flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:#1f7a4d;margin-top:2px}
+.up .r small.w{color:#8a7067}
+.up .r small svg{width:12px;height:12px}
+.up .bar{height:6px;border-radius:6px;background:#f0e0d8;margin-top:8px;overflow:hidden}
+.up .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--terra),var(--terra-hot))}
+.up .st{margin-top:14px;padding-top:12px;border-top:1px solid #f0e3dc;display:flex;align-items:center;gap:10px;font-size:13px;font-weight:700;color:#3d2a22}
+.up .st svg{flex:none;width:30px;height:30px}
+.up .st small{display:block;font-weight:600;color:#8a7067;font-size:12px;margin-top:1px}
+.shot{position:absolute;left:36px;bottom:-70px;width:270px;height:360px;border-radius:18px;background:#eee center/cover;border:6px solid #fff;box-shadow:var(--sh);rotate:-4deg}
+.shot::after{content:"YOUR STUDIO";position:absolute;right:12px;bottom:14px;font-size:11px;font-weight:800;letter-spacing:.16em;color:rgba(255,255,255,.92);text-shadow:0 1px 6px rgba(0,0,0,.5)}
+.rev{left:270px;bottom:120px;width:280px;padding:18px;z-index:3;rotate:2deg}
+.rev .stars{display:flex;gap:3px}
+.rev .stars svg{width:20px;height:20px;fill:#F4B400}
+.rev b{display:block;margin-top:9px;font-size:15.5px;letter-spacing:-.015em;line-height:1.3}
+.rev small{display:block;margin-top:8px;font-size:12px;font-weight:600;color:#7a655c}
+.kit{right:-18px;bottom:-34px;width:330px;padding:20px 38px 54px 20px;z-index:2}
+.kit h4{margin:0;font-size:15px;display:flex;align-items:center;gap:8px;letter-spacing:-.01em}
+.kit h4 span{width:26px;height:26px;border-radius:8px;background:var(--terra);display:grid;place-items:center}
+.kit h4 svg{width:15px;height:15px}
+.kit label{display:block;margin:14px 0 7px;font-size:12px;font-weight:800;color:#3d2a22}
+.kit .logos{display:flex;gap:8px}
+.kit .logos i{flex:1;height:54px;border-radius:12px;display:grid;place-items:center;font:800 15px var(--font-jakarta);font-style:normal;letter-spacing:-.02em}
+.kit .sw{display:flex;gap:8px}
+.kit .sw i{flex:1;height:30px;border-radius:9px}
+.kit .tg{display:flex;align-items:center;justify-content:space-between;margin-top:14px;font-size:13px;font-weight:700}
+.kit .tg u{width:38px;height:22px;border-radius:999px;background:var(--terra);position:relative;text-decoration:none}
+.kit .tg u::after{content:"";position:absolute;right:3px;top:3px;width:16px;height:16px;border-radius:50%;background:#fff}
+.also{max-width:1288px;margin:24px auto 0;padding:20px 24px;border-radius:24px;background:#fff;border:1px solid #f0e3dc;display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px}
+.also > b{font-size:14px;font-weight:700;color:#6b5046;margin-right:6px}
+.also span{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px 0 10px;border-radius:999px;background:var(--page);font-size:14px;font-weight:600;color:var(--brown);white-space:nowrap}
+.also span svg{width:18px;height:18px;flex:none}
+.also a{margin-left:auto;display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:700;color:var(--terra-dk);text-decoration:none;white-space:nowrap}
+.also a:hover{color:var(--terra)}
+@media (max-width:1180px){
+.ss{right:22%}
+.rawc{width:270px}
+.shot{width:210px;height:280px;bottom:-60px}
+.rev{left:176px;width:210px;bottom:150px;padding:14px}
+.rev b{font-size:14px}
+.cursor.t{display:none}
+.kit{width:250px;padding:16px 30px 44px 16px}
+}
+@media (max-width:980px){
+.also{margin-top:16px;padding:18px}
+.also > b{flex-basis:100%}
+.also a{margin-left:0;flex-basis:100%;margin-top:4px}
+.dbr{display:none}
+.bento{grid-template-columns:1fr;gap:16px}
+.c, .c.wide{grid-column:auto;height:500px}
+.c .txt{padding:26px 24px 0}
+.c h3{font-size:27px;line-height:34px}
+.c .art{margin-top:22px}
+.ss{left:20px;right:20px;padding:14px 14px 0}
+.ss .grid{grid-template-columns:repeat(3,1fr)}
+.ss .grid i:nth-child(n+7){display:none}
+.ss .chips span{font-size:12.5px;padding:7px 11px}
+.rawc{right:14px;bottom:20px;width:250px;padding:13px}
+.rawc .send{margin-top:10px;height:36px}
+.cursor.c1c{display:none}
+.up{left:20px;right:20px}
+.shot{left:18px;width:170px;height:226px;bottom:-20px}
+.cursor.t{display:none}
+.c4{height:540px!important}
+.rev{left:auto;right:16px;bottom:214px;width:214px;padding:13px}
+.rev b{font-size:14px}
+.kit{right:-30px;bottom:-120px;width:230px}
+}
+@media (prefers-reduced-motion:reduce){
+.c{transition:none;opacity:1;transform:none}
+.c .art{transition:none}
+}
+
+.ft{font-family:var(--font-jakarta),system-ui,sans-serif;line-height:normal;letter-spacing:normal;color:var(--ink)}
+.ft{padding-top:clamp(48px,5.5vw,80px);padding-bottom:clamp(32px,4vw,56px)}

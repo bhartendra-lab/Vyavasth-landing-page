@@ -1,60 +1,56 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import Eyebrow from "@/components/Eyebrow";
-import { PRICING_FAQS } from "./pricing-faqs";
+import { Fragment, useState } from "react";
+import { whatsappUrl } from "@/lib/site-legal";
+import type { PricingFaqGroup } from "./pricing-faqs";
+import styles from "./pricing.module.css";
 
-export default function PricingFaq() {
-  const reduced = useReducedMotion();
-  const fadeUp = reduced
-    ? {}
-    : {
-        initial: { opacity: 0, y: 18 },
-        whileInView: { opacity: 1, y: 0 },
-        viewport: { once: true },
-        transition: { duration: 0.5, ease: "easeOut" as const },
-      };
+/**
+ * The questions, in groups, closed until clicked. The answer height animates
+ * with grid-template-rows 0fr to 1fr (see .a in pricing.module.css). Copy comes
+ * from pricing-faqs.ts, the same source as the FAQPage JSON-LD.
+ */
+export default function PricingFaq({ groups }: { groups: PricingFaqGroup[] }) {
+  const [open, setOpen] = useState<Record<string, boolean>>({});
 
   return (
-    <section style={{ padding: "clamp(64px, 10vh, 112px) 0" }}>
-      <div
-        className="mx-auto flex flex-col gap-8"
-        style={{ maxWidth: 760, padding: "0 var(--gutter)" }}
-      >
-        <motion.div {...fadeUp} className="flex flex-col gap-4">
-          <Eyebrow>Questions</Eyebrow>
-          <h2
-            className="font-extrabold"
-            style={{
-              fontSize: "clamp(1.9rem, 3.6vw, 2.6rem)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.03em",
-              color: "var(--color-primary)",
-            }}
-          >
-            Pricing, plainly explained.
-          </h2>
-        </motion.div>
-
-        <div className="flex flex-col">
-          {PRICING_FAQS.map((item, i) => (
-            <motion.div
-              key={item.q}
-              {...fadeUp}
-              transition={{ duration: 0.5, ease: "easeOut" as const, delay: reduced ? 0 : 0.04 * i }}
-              className="py-6"
-              style={{ borderTop: i === 0 ? "none" : "1px solid var(--color-line)" }}
-            >
-              <h3
-                className="font-bold"
-                style={{ fontSize: "1.05rem", color: "var(--color-primary)" }}
-              >
-                {item.q}
-              </h3>
-              <p className="mt-2 text-[15px]" style={{ lineHeight: 1.6, color: "var(--color-muted)" }}>
-                {item.a}
-              </p>
-            </motion.div>
+    <section className={styles.faq}>
+      <div className={styles.wrap}>
+        <div className={styles.side}>
+          <h2>Questions, answered plainly.</h2>
+          <p>Something else? A person answers on WhatsApp, 24×7.</p>
+          <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">
+            Chat on WhatsApp
+          </a>
+        </div>
+        <div>
+          {groups.map((group, g) => (
+            <Fragment key={group.title}>
+              <div className={styles.grp}>{group.title}</div>
+              {group.items.map((item, i) => {
+                const id = `faq-${g}-${i}`;
+                const isOpen = Boolean(open[id]);
+                return (
+                  <div key={id} className={isOpen ? `${styles.q} ${styles.open}` : styles.q}>
+                    <button
+                      type="button"
+                      id={`${id}-q`}
+                      aria-expanded={isOpen}
+                      aria-controls={`${id}-a`}
+                      onClick={() => setOpen((o) => ({ ...o, [id]: !o[id] }))}
+                    >
+                      {item.q}
+                      <i></i>
+                    </button>
+                    <div className={styles.a} id={`${id}-a`} role="region" aria-labelledby={`${id}-q`} inert={!isOpen}>
+                      <div>
+                        <p>{item.a}</p>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </Fragment>
           ))}
         </div>
       </div>

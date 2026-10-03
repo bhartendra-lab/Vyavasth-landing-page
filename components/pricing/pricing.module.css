@@ -1,0 +1,120 @@
+/* Pricing page, ported from landing_page_v2/pricing/src/pricing.src.html.
+   Values are unchanged. Removed: @font-face, :root tokens (globals.css), page
+   resets, the nav copy (now Nav.module.css) and the closing band (now
+   CtaSection.module.css). The prototype's blanket reduced-motion `*` rule is
+   rewritten at the end for the three sections. */
+
+.top{position:relative;padding:118px clamp(14px,5.3vw,76px) 0}
+.top::before{content:"";position:absolute;left:0;right:0;top:0;height:430px;background:linear-gradient(180deg,#2B140D 0%,#7b3420 34%,#C25A3A 66%,#F3DED8 92%,var(--page) 100%);z-index:0}
+.top > *{position:relative;z-index:1}
+.top h1{margin:0 auto;max-width:14em;text-align:center;color:#fff;font-size:clamp(34px,4.6vw,64px);line-height:1.05;letter-spacing:-.04em;font-weight:500;text-wrap:balance}
+.top .lede{margin:12px auto 0;text-align:center;color:#FFE9DF;font-size:clamp(15px,1.3vw,18px);font-weight:500}
+.jump{display:none}
+.plans{max-width:1288px;margin:30px auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+.p{position:relative;border-radius:24px;padding:28px 28px 26px;display:flex;flex-direction:column;box-shadow:0 2px 4px rgba(43,20,13,.06),0 18px 44px rgba(43,20,13,.16);scroll-margin-top:90px}
+.p .tag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
+.p h2{margin:14px 0 0;font-size:20px;font-weight:700;letter-spacing:-.02em}
+.p .who{margin:3px 0 0;font-size:14px;font-weight:500;opacity:.8}
+.p .amt{margin-top:16px;display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+.p .amt b{font-size:clamp(46px,4.4vw,62px);line-height:1;font-weight:600;letter-spacing:-.05em;font-variant-numeric:tabular-nums}
+.p .amt span{font-size:15px;font-weight:600;opacity:.85}
+.p .sub{margin-top:6px;font-size:14px;font-weight:600;min-height:20px;font-variant-numeric:tabular-nums}
+.p ul{list-style:none;margin:18px 0 0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14.5px;font-weight:500;line-height:1.4}
+.p li{display:flex;gap:9px;align-items:flex-start}
+.p li svg{flex:none;width:17px;height:17px;margin-top:1.500px}
+.p li.catch{font-weight:600}
+.p .sp{flex:1;min-height:20px}
+.p .cta{display:flex;align-items:center;justify-content:center;height:48px;border-radius:14px;font-size:15px;font-weight:700;transition:transform .3s var(--ease),filter .2s}
+.p .cta:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.p .foot{margin-top:10px;text-align:center;font-size:12.5px;font-weight:600;opacity:.75}
+.p .foot a{text-decoration:underline;text-underline-offset:3px}
+.p.free{background:#fff;color:var(--brown);border:1px solid #f0e3dc}
+.p.free .tag{background:var(--terra);color:#fff}
+.p.free .cta{background:var(--terra);color:#fff}
+.p.ev{background:linear-gradient(180deg,#E3B4E1,#EECEEC 50%,#F8E9F7);color:var(--brown)}
+.p.ev .tag{background:rgba(43,20,13,.1)}
+.p.ev .cta{background:var(--brown);color:#fff}
+.p.st{background:linear-gradient(170deg,#3a1d13,#2B140D 60%,#241009);color:#fff}
+.p.st .tag{background:rgba(255,255,255,.12);color:#FFD9C7}
+.p.st .cta{background:linear-gradient(180deg,#fff,#FFEDE3);color:var(--brown)}
+.pick{margin-top:16px;display:flex;gap:6px;padding:5px;border-radius:14px;background:rgba(43,20,13,.08)}
+.p.st .pick{background:rgba(255,255,255,.08)}
+.pick button{flex:1;height:38px;border-radius:10px;font-size:14px;font-weight:700;color:inherit;opacity:.72;transition:background .25s,opacity .25s,color .25s;white-space:nowrap;position:relative}
+.pick button.on{background:#fff;color:var(--brown);opacity:1;box-shadow:0 1px 4px rgba(43,20,13,.2)}
+.pick button:focus-visible, .bill button:focus-visible, .q button:focus-visible{outline:2px solid var(--terra-hot);outline-offset:2px}
+.pick button i{position:absolute;left:50%;top:-9px;translate:-50% 0;font-style:normal;font-size:9px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:var(--terra);color:#fff;padding:2px 6px;border-radius:999px;white-space:nowrap}
+.bill{margin-left:auto;display:inline-flex;gap:2px;padding:3px;border-radius:999px;background:rgba(255,255,255,.1);font-size:12.5px;font-weight:700}
+.bill button{height:28px;padding:0 11px;border-radius:999px;color:#fff;opacity:.7}
+.bill button.on{background:#fff;color:var(--brown);opacity:1}
+.bill em{font-style:normal;color:var(--terra-hot);margin-left:4px}
+.bill button.on em{color:var(--terra)}
+.sthead{display:flex;align-items:center;gap:10px}
+.swap{display:inline-block;transition:opacity .18s,transform .18s}
+.swap.out{opacity:0;transform:translateY(5px)}
+.inc{padding:clamp(56px,7vw,96px) clamp(14px,5.3vw,76px) 0}
+.inc .box{max-width:1288px;margin:0 auto;border-radius:24px;background:#fff;border:1px solid #f0e3dc;padding:clamp(24px,3vw,40px)}
+.inc h2, .faq h2{margin:0;font-size:clamp(26px,2.8vw,40px);line-height:1.1;letter-spacing:-.035em;font-weight:500;color:var(--brown)}
+.inc .g{margin-top:22px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px 18px}
+.inc .g span{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;color:var(--brown)}
+.inc .g svg{flex:none;width:20px;height:20px}
+.inc .note{margin-top:22px;padding-top:18px;border-top:1px solid #f0e3dc;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;font-size:14.5px;font-weight:500;color:#5b4037}
+.inc .note b{color:var(--brown)}
+.inc .note a{font-weight:700;color:var(--terra-dk);white-space:nowrap}
+.faq{padding:clamp(56px,7vw,96px) clamp(14px,5.3vw,76px) clamp(64px,8vw,112px)}
+.faq .wrap{max-width:1288px;margin:0 auto;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.1fr);gap:24px 48px;align-items:start}
+.faq .side{position:sticky;top:100px}
+.faq .side p{margin:14px 0 0;font-size:15.5px;line-height:1.55;color:#5b4037;font-weight:500;max-width:22em}
+.faq .side a{display:inline-flex;margin-top:18px;height:42px;align-items:center;padding:0 16px;border-radius:12px;background:var(--brown);color:#fff;font-size:14px;font-weight:700}
+.grp{font-size:12px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);margin:26px 0 8px}
+.grp:first-child{margin-top:0}
+.q{border-radius:16px;background:#fff;border:1px solid #f0e3dc;margin-top:8px;transition:border-color .25s,box-shadow .25s}
+.q.open{border-color:#e6cfc4;box-shadow:0 8px 24px rgba(43,20,13,.07)}
+.q button{width:100%;display:flex;align-items:center;gap:14px;padding:16px 18px;text-align:left;font-size:16px;font-weight:600;color:var(--brown);letter-spacing:-.01em}
+.q button i{margin-left:auto;flex:none;width:26px;height:26px;border-radius:50%;background:var(--page);position:relative;transition:transform .35s var(--ease),background .25s}
+.q button i::before, .q button i::after{content:"";position:absolute;left:50%;top:50%;width:11px;height:2px;margin:-1px 0 0 -5.500px;border-radius:2px;background:var(--terra-dk);transition:transform .35s var(--ease)}
+.q button i::after{transform:rotate(90deg)}
+.q.open button i{background:var(--peach);transform:rotate(180deg)}
+.q.open button i::after{transform:rotate(0deg)}
+.q .a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s var(--ease)}
+.q.open .a{grid-template-rows:1fr}
+.q .a > div{overflow:hidden}
+.q .a p{margin:0;padding:0 56px 18px 18px;font-size:15px;line-height:1.6;color:#5b4037;font-weight:500}
+@media (max-width:980px){
+.top{padding-top:92px}
+.top::before{height:400px}
+.jump{display:flex;gap:6px;justify-content:center;margin:16px auto 0;max-width:420px}
+.jump a{flex:1;text-align:center;padding:9px 4px;border-radius:14px;background:rgba(255,249,244,.94);color:var(--brown);font-size:11.5px;font-weight:600;line-height:1.25;box-shadow:0 6px 16px rgba(43,20,13,.18)}
+.jump b{display:block;font-size:17px;letter-spacing:-.03em}
+.plans{grid-template-columns:1fr;gap:16px;margin-top:18px}
+.inc .g{grid-template-columns:repeat(2,minmax(0,1fr))}
+.faq .wrap{grid-template-columns:1fr}
+.faq .side{position:static}
+.q .a p{padding-right:18px}
+}
+@media (max-width:420px){
+.inc .g{grid-template-columns:1fr}
+.pick button{font-size:13px}
+.p .tag{white-space:nowrap}
+.bill{font-size:11.5px}
+.bill button{padding:0 9px;white-space:nowrap}
+.bill em{display:none}
+}
+
+.top,.inc,.faq{font-family:var(--font-jakarta),system-ui,sans-serif;line-height:normal;letter-spacing:normal;color:var(--ink)}
+@media (prefers-reduced-motion:reduce){ .top *,.inc *,.faq *{transition:none!important} }
+
+/* ── Additions that are not in the prototype ──
+   1. The "Every feature" box is the scroll target for the home page's Explore
+      buttons (/pricing#features); the margin keeps it clear of the nav pill.
+   2. A plan that has no price for the chosen billing period shows a muted,
+      inert button instead of a link, and a size with no plan for that period
+      is dimmed.
+   3. The quiet fallback shown when the plans API fails (or has no catalog). */
+.inc .box{scroll-margin-top:96px}
+.p .cta[aria-disabled="true"]{opacity:.5;pointer-events:none}
+.pick button:disabled{opacity:.35;cursor:not-allowed}
+.fallback{max-width:1288px;margin:30px auto 0;border-radius:24px;background:#fff;border:1px solid #f0e3dc;padding:28px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;box-shadow:0 2px 4px rgba(43,20,13,.06),0 18px 44px rgba(43,20,13,.16);color:var(--brown)}
+.fallback h2{margin:0;font-size:20px;font-weight:700;letter-spacing:-.02em}
+.fallback p{margin:0;font-size:15px;font-weight:500;color:#5b4037}
+.fallback a{display:inline-flex;align-items:center;height:48px;padding:0 22px;border-radius:14px;background:var(--brown);color:#fff;font-size:15px;font-weight:700;transition:transform .3s var(--ease),filter .2s}
+.fallback a:hover{transform:translateY(-2px);filter:brightness(1.06)}

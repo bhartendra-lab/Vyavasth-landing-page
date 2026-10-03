@@ -1,60 +1,101 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { useEnquiry } from "@/components/EnquiryProvider";
-import type { PublicCoupon } from "@/lib/vyavasth-api";
 import type { Plan } from "@/lib/plans";
 import {
   buildStorageTiers,
   eventPlanOf,
   formatInr,
   formatStorage,
+  freePlanOf,
   nearestAvailableIndex,
   planForTier,
-  planLabel,
   yearlySavingsPercent,
 } from "@/lib/plans";
-import ModeSwitch from "./ModeSwitch";
-import EventQuantity from "./EventQuantity";
-import StorageSlider from "./StorageSlider";
-import IntervalToggle from "./IntervalToggle";
-import PlanSummary from "./PlanSummary";
-import CouponRibbon from "./CouponRibbon";
+import {
+  EVENT_PRESETS,
+  EVENT_VALIDITY_MONTHS,
+  ORIGINAL_TIER_MIN_STORAGE_GB,
+  STORAGE_TIER_BADGES,
+  freeEventsOf,
+  includesOriginal,
+  lowestYearlyTier,
+  photosFor,
+  sameCostEvents,
+} from "@/lib/pricing-display";
+import { LOGIN_URL, buildCheckoutHref } from "@/lib/app-url";
+import { whatsappUrl } from "@/lib/site-legal";
+import PricingErrorFallback from "./PricingErrorFallback";
+import styles from "./pricing.module.css";
 
-type Mode = "event" | "storage";
 type Interval = "monthly" | "yearly";
 
-const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://deliver.vyavasth.in";
-const MAX_QTY = 100;
+const cx = (...c: Array<string | false | undefined>) => c.filter(Boolean).join(" ");
 
-function buildCheckoutHref(planId: string, opts: { qty?: number; coupon?: string | null }): string {
-  const qs = new URLSearchParams({ plan: planId });
-  if (opts.qty && opts.qty > 1) qs.set("qty", String(opts.qty));
-  if (opts.coupon) qs.set("coupon", opts.coupon);
-  return `${APP_URL}/checkout?${qs.toString()}`;
+const Svg = ({ stroke, children }: { stroke: string; children: React.ReactNode }) => (
+  <svg viewBox="0 0 18 18" fill="none" stroke={stroke} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+    {children}
+  </svg>
+);
+const Tick = ({ light }: { light?: boolean }) => (
+  <Svg stroke={light ? "#F0B39D" : "#C25A3A"}><path d="M3.5 9.4l3.4 3.400 7.600-8" /></Svg>
+);
+const Clock = () => (
+  <Svg stroke="currentColor"><circle cx="9" cy="9" r="6.5" /><path d="M9 5.500V9l2.300 1.500" /></Svg>
+);
+const Lock = () => (
+  <Svg stroke="#F0B39D"><rect x="3.5" y="8" width="11" height="7" rx="2" /><path d="M6 8V6a3 3 0 0 1 6 0v2" /></Svg>
+);
+
+/**
+ * A value that fades out, changes, and fades back in (the prototype's `swap`).
+ * React renders the first value only; later values are written to the DOM after
+ * the fade-out, so the text never jumps.
+ */
+function Swap({ value, inherit }: { value: string; inherit?: boolean }) {
+  const [initial] = useState(value);
+  const ref = useRef<HTMLSpanElement>(null);
+  const shown = useRef(value);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el || shown.current === value) return;
+    el.classList.add(styles.out);
+    const t = window.setTimeout(() => {
+      el.textContent = value;
+      shown.current = value;
+      el.classList.remove(styles.out);
+    }, 170);
+    return () => window.clearTimeout(t);
+  }, [value]);
+
+  return (
+    <span
+      ref={ref}
+      className={styles.swap}
+      style={inherit ? { fontSize: "inherit", opacity: 1 } : undefined}
+    >
+      {initial}
+    </span>
+  );
 }
 
-export default function PricingClient({
-  plans,
-  coupons,
-}: {
-  plans: Plan[];
-  coupons: PublicCoupon[];
-}) {
-  const { openEnquiry } = useEnquiry();
-
+export default function PricingClient({ plans }: { plans: Plan[] }) {
   const eventPlan = useMemo(() => eventPlanOf(plans), [plans]);
   const tiers = useMemo(() => buildStorageTiers(plans), [plans]);
-  const hasEvent = Boolean(eventPlan);
-  const hasStorage = tiers.length > 0;
+  const freePlan = useMemo(() => freePlanOf(plans), [plans]);
+  const freeEvents = useMemo(() => freeEventsOf(plans), [plans]);
+  const lowest = useMemo(() => lowestYearlyTier(plans), [plans]);
+  const unit = eventPlan?.event_unit_price ?? 0;
 
-  const [mode, setMode] = useState<Mode>(() => (hasStorage ? "storage" : "event"));
-  const [qty, setQty] = useState(1);
-  const [interval, setInterval_] = useState<Interval>(() =>
-    tiers.some((t) => (yearlySavingsPercent(t) ?? 0) > 0) ? "yearly" : "monthly",
+  const initialInterval = (): Interval =>
+    tiers.some((t) => (yearlySavingsPercent(t) ?? 0) > 0) ? "yearly" : "monthly";
+
+  const [qty, setQty] = useState<number>(EVENT_PRESETS[0]);
+  const [interval, setInterval_] = useState<Interval>(initialInterval);
+  const [tierIndex, setTierIndex] = useState(() =>
+    tiers.length ? nearestAvailableIndex(tiers, Math.min(1, tiers.length - 1), initialInterval()) : 0,
   );
-  const [tierIndex, setTierIndex] = useState(() => Math.min(1, Math.max(0, tiers.length - 1)));
-  const [appliedCoupon, setAppliedCoupon] = useState<string | null>(null);
   const [movedNote, setMovedNote] = useState<string | null>(null);
   const movedNoteTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -75,167 +116,182 @@ export default function PricingClient({
     setInterval_(next);
   }
 
-  // Nothing at all — misconfigured catalog (§9.4).
-  if (!hasEvent && !hasStorage) {
+  // Nothing at all: a misconfigured catalog.
+  if (!eventPlan && tiers.length === 0) {
     return (
-      <section style={{ padding: "24px 0 96px" }}>
-        <div className="mx-auto" style={{ maxWidth: "var(--max-w)", padding: "0 var(--gutter)" }}>
-          <div
-            className="flex flex-col items-start gap-4 rounded-2xl p-8"
-            style={{ background: "var(--color-surface)", border: "1px solid var(--color-line)" }}
-          >
-            <p className="text-lg font-semibold" style={{ color: "var(--color-primary)" }}>
-              We&apos;re updating our pricing.
-            </p>
-            <p style={{ color: "var(--color-muted)" }}>Talk to us and we&apos;ll sort you out.</p>
-            <button
-              type="button"
-              onClick={openEnquiry}
-              className="inline-flex min-h-11 items-center justify-center rounded-full px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-[var(--color-accent-deep)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-accent)]/50"
-              style={{ background: "var(--color-accent)" }}
-            >
-              Book a demo
-            </button>
-          </div>
-        </div>
-      </section>
+      <PricingErrorFallback
+        title="We're updating our pricing."
+        body="Talk to us and we'll sort you out."
+      />
     );
   }
 
-  const showModeSwitch = hasEvent && hasStorage;
-  const activeMode: Mode = hasEvent && hasStorage ? mode : hasEvent ? "event" : "storage";
-
-  // ── Pay per event ──────────────────────────────────────────────
-  const eventPrice = eventPlan ? qty * (eventPlan.event_unit_price ?? 0) : 0;
-  const eventFeatures =
-    eventPlan?.features && eventPlan.features.length > 0
-      ? eventPlan.features
-      : [
-          "Unlimited storage per event",
-          "Each event stays live for 3 months from when you create it",
-          "Unused events never expire",
-          "All features included",
-        ];
-  const eventHref = eventPlan ? `${APP_URL}/login` : null;
+  const freeCount = freeEvents === 1 ? "1 event" : `${freeEvents} events`;
 
   // ── Storage plan ───────────────────────────────────────────────
   const tier = tiers[tierIndex];
-  const activeStoragePlan = tier ? planForTier(tier, interval) : null;
-  const maxSavings = tiers.length
-    ? Math.max(0, ...tiers.map((t) => yearlySavingsPercent(t) ?? 0))
-    : 0;
-  const tierSavings = tier ? yearlySavingsPercent(tier) : null;
-  const storageHref = activeStoragePlan
-    ? buildCheckoutHref(activeStoragePlan._id, { coupon: appliedCoupon })
-    : null;
+  const storagePlan = tier ? planForTier(tier, interval) : null;
+  const maxSavings = tiers.length ? Math.max(0, ...tiers.map((t) => yearlySavingsPercent(t) ?? 0)) : 0;
+  const storagePrice = storagePlan?.price ?? 0;
+  const priceValue = storagePlan ? formatInr(interval === "yearly" ? storagePrice / 12 : storagePrice) : "N/A";
+  const billedValue = !storagePlan
+    ? `Not available on ${interval} billing`
+    : interval === "yearly"
+      ? `${formatInr(storagePrice)} billed yearly`
+      : "Billed every month";
+  const evenEvents = tier ? sameCostEvents(tier, interval, eventPlan?.event_unit_price) : null;
 
   return (
-    <section style={{ padding: "24px 0 96px" }}>
-      <div className="mx-auto flex flex-col gap-8" style={{ maxWidth: "var(--max-w)", padding: "0 var(--gutter)" }}>
-        <CouponRibbon coupons={coupons} onApply={setAppliedCoupon} />
+    <>
+      <nav className={styles.jump} aria-label="Jump to a plan">
+        <a href="#free"><b>{formatInr(freePlan?.price ?? 0)}</b>{freeCount}</a>
+        {eventPlan && <a href="#events"><b>{formatInr(unit)}</b>per event</a>}
+        {lowest && <a href="#storage"><b>{formatInr(lowest.perMonth)}</b>a month</a>}
+      </nav>
 
-        {showModeSwitch && <ModeSwitch mode={mode} onChange={setMode} />}
-
-        {activeMode === "event" && eventPlan && (
-          <div
-            id="pricing-panel-event"
-            role="tabpanel"
-            aria-labelledby={showModeSwitch ? "pricing-tab-event" : undefined}
-            className="grid grid-cols-1 gap-10 rounded-3xl p-8 lg:grid-cols-2 lg:p-10"
-            style={{ background: "var(--color-surface)", border: "1px solid var(--color-line)" }}
-          >
-            <div className="flex flex-col gap-6">
-              <div>
-                <h2 className="text-lg font-bold" style={{ color: "var(--color-primary)" }}>
-                  How many events?
-                </h2>
-                <p className="mt-1 text-sm" style={{ color: "var(--color-muted)" }}>
-                  {formatInr(eventPlan.event_unit_price ?? 0)} per event, GST included.
-                </p>
-              </div>
-              <EventQuantity quantity={qty} onChange={(n) => setQty(Math.min(MAX_QTY, Math.max(1, n)))} onTalkToUs={openEnquiry} />
-            </div>
-
-            <PlanSummary
-              title={planLabel(eventPlan)}
-              priceLine={formatInr(eventPrice)}
-              subLine={`${qty} event${qty === 1 ? "" : "s"} × ${formatInr(eventPlan.event_unit_price ?? 0)}`}
-              features={eventFeatures}
-              ctaHref={eventHref}
-              ctaLabel="Continue →"
-              footnote="GST included. One-time payment. The 3-month validity starts when you create an event, not when you buy it."
-            />
+      <div className={styles.plans}>
+        {/* ── Free ── */}
+        <article className={cx(styles.p, styles.free)} id="free">
+          <span className={styles.tag}>Start here</span>
+          <h2>Free</h2>
+          <p className={styles.who}>To try it on a real wedding</p>
+          <div className={styles.amt}>
+            <b>{formatInr(freePlan?.price ?? 0)}</b>
+            <span>for your first {freeCount}</span>
           </div>
+          <div className={styles.sub}>For every new studio.</div>
+          <ul>
+            <li><Tick />Unlimited storage for {freeEvents === 2 ? "both events" : "each event"}</li>
+            <li><Tick />Every feature unlocked</li>
+            <li className={styles.catch}><Clock />Each event stays live for {EVENT_VALIDITY_MONTHS} months</li>
+          </ul>
+          <span className={styles.sp}></span>
+          <a className={styles.cta} href={LOGIN_URL}>Start free</a>
+          <div className={styles.foot}>Then pick either paid plan.</div>
+        </article>
+
+        {/* ── Pay per event ── */}
+        {eventPlan && (
+          <article className={cx(styles.p, styles.ev)} id="events">
+            <span className={styles.tag}>Pay per event</span>
+            <h2>One wedding at a time</h2>
+            <p className={styles.who}>For a handful of events a season</p>
+            <div className={styles.amt} aria-live="polite">
+              <b><Swap value={formatInr(qty * unit)} inherit /></b>
+              <span>{qty === 1 ? "for 1 event" : `for ${qty} events`}</span>
+            </div>
+            <div className={styles.sub}>{formatInr(unit)} per event, paid once.</div>
+            <div className={styles.pick} role="group" aria-label="How many events">
+              {EVENT_PRESETS.map((n) => (
+                <button
+                  key={n}
+                  type="button"
+                  className={qty === n ? styles.on : undefined}
+                  aria-pressed={qty === n}
+                  onClick={() => setQty(n)}
+                >
+                  {n}
+                </button>
+              ))}
+            </div>
+            <ul>
+              <li><Tick />Unlimited storage per event</li>
+              <li><Tick />Unused events never expire</li>
+              <li className={styles.catch}><Clock />Each event stays live for {EVENT_VALIDITY_MONTHS} months from the day you create it</li>
+            </ul>
+            <span className={styles.sp}></span>
+            <a className={styles.cta} href={LOGIN_URL}>Buy events</a>
+            <div className={styles.foot}>
+              More than 100 events?{" "}
+              <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Talk to us</a>
+            </div>
+          </article>
         )}
 
-        {activeMode === "storage" && hasStorage && (
-          <div
-            id="pricing-panel-storage"
-            role="tabpanel"
-            aria-labelledby={showModeSwitch ? "pricing-tab-storage" : undefined}
-            className="grid grid-cols-1 gap-10 rounded-3xl p-8 lg:grid-cols-2 lg:p-10"
-            style={{ background: "var(--color-surface)", border: "1px solid var(--color-line)" }}
-          >
-            <div className="flex flex-col gap-6">
-              <div className="flex flex-wrap items-center justify-between gap-3">
-                <h2 className="text-lg font-bold" style={{ color: "var(--color-primary)" }}>
-                  Pick a storage tier
-                </h2>
-                <IntervalToggle
-                  interval={interval}
-                  onChange={handleIntervalChange}
-                  maxSavingsPercent={maxSavings > 0 ? maxSavings : null}
+        {/* ── Storage plan ── */}
+        {tier && (
+          <article className={cx(styles.p, styles.st)} id="storage">
+            <div className={styles.sthead}>
+              <span className={styles.tag}>Storage plan</span>
+              <div className={styles.bill} role="group" aria-label="Billing period">
+                <button
+                  type="button"
+                  className={interval === "monthly" ? styles.on : undefined}
+                  aria-pressed={interval === "monthly"}
+                  onClick={() => handleIntervalChange("monthly")}
+                >
+                  Monthly
+                </button>
+                <button
+                  type="button"
+                  className={interval === "yearly" ? styles.on : undefined}
+                  aria-pressed={interval === "yearly"}
+                  onClick={() => handleIntervalChange("yearly")}
+                >
+                  Yearly{maxSavings > 0 && <em>save {maxSavings}%</em>}
+                </button>
+              </div>
+            </div>
+            <h2>Deliver all season</h2>
+            <p className={styles.who}>Unlimited events, one pool of storage</p>
+            <div className={styles.amt} aria-live="polite">
+              <b><Swap value={priceValue} inherit /></b>
+              <span>a month</span>
+            </div>
+            <div className={styles.sub}><Swap value={billedValue} /></div>
+            <div className={styles.pick} role="group" aria-label="Storage size">
+              {tiers.map((t, i) => {
+                const badge = STORAGE_TIER_BADGES[t.storage_limit];
+                return (
+                  <button
+                    key={t.storage_limit}
+                    type="button"
+                    className={i === tierIndex ? styles.on : undefined}
+                    aria-pressed={i === tierIndex}
+                    disabled={!planForTier(t, interval)}
+                    onClick={() => setTierIndex(i)}
+                  >
+                    {formatStorage(t.storage_limit)}
+                    {badge && <i>{badge}</i>}
+                  </button>
+                );
+              })}
+            </div>
+            <ul>
+              <li>
+                <Tick light />
+                <span><Swap value={photosFor(tier.storage_limit).toLocaleString("en-IN")} /> photos, reusable when you delete an event</span>
+              </li>
+              <li>
+                <Tick light />
+                <Swap
+                  value={
+                    includesOriginal(tier.storage_limit)
+                      ? "Original-quality delivery included"
+                      : `HD and 4K delivery. Originals from ${formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)}.`
+                  }
                 />
-              </div>
-              <StorageSlider tiers={tiers} index={tierIndex} interval={interval} onChange={setTierIndex} />
-            </div>
-
-            <PlanSummary
-              title={
-                activeStoragePlan
-                  ? planLabel(activeStoragePlan)
-                  : tier
-                    ? `${formatStorage(tier.storage_limit)} · ${interval === "monthly" ? "Monthly" : "Yearly"}`
-                    : ""
-              }
-              priceLine={
-                activeStoragePlan
-                  ? `${formatInr(activeStoragePlan.price ?? 0)} /${interval === "monthly" ? "month" : "year"}`
-                  : "—"
-              }
-              subLine={
-                activeStoragePlan
-                  ? `${formatStorage(tier.storage_limit)} = ${Number(tier.storage_limit * 1000).toLocaleString("en-IN")} photos · unlimited events · reusable storage`
-                  : `Not available on ${interval} billing`
-              }
-              subNote={
-                activeStoragePlan && interval === "yearly"
-                  ? `${formatInr((activeStoragePlan.price ?? 0) / 12)}/month, billed yearly${
-                      tierSavings ? ` — save ${tierSavings}%` : ""
-                    }`
-                  : null
-              }
-              features={activeStoragePlan?.features ?? []}
-              ctaHref={storageHref}
-              ctaLabel={activeStoragePlan ? "Continue →" : "Choose an available plan"}
-              ctaDisabled={!activeStoragePlan}
-              footnote="Storage plans can be changed or cancelled anytime, but can't be switched back to pay-per-event."
-              movedNote={movedNote}
-            />
-          </div>
-        )}
-
-        {!activeStoragePlan && activeMode === "storage" && (
-          <button
-            type="button"
-            onClick={() => handleIntervalChange(interval === "monthly" ? "yearly" : "monthly")}
-            className="-mt-4 w-fit text-sm font-semibold underline-offset-2 hover:underline"
-            style={{ color: "var(--color-accent)" }}
-          >
-            Switch to {interval === "monthly" ? "yearly" : "monthly"}
-          </button>
+              </li>
+              {evenEvents !== null && (
+                <li>
+                  <Tick light />
+                  <span>Same cost as <Swap value={String(evenEvents)} /> pay-per-event events a year</span>
+                </li>
+              )}
+              <li className={styles.catch}><Lock />You can&apos;t switch back to pay per event</li>
+            </ul>
+            <span className={styles.sp}></span>
+            <a
+              className={styles.cta}
+              href={storagePlan ? buildCheckoutHref(storagePlan._id) : undefined}
+              aria-disabled={!storagePlan}
+            >
+              Choose this plan
+            </a>
+            <div className={styles.foot} aria-live="polite">{movedNote ?? "Change size or cancel anytime."}</div>
+          </article>
         )}
       </div>
-    </section>
+    </>
   );
 }

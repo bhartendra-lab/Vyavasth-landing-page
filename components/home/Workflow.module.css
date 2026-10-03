@@ -1,0 +1,126 @@
+/* Workflow section, ported from landing_page_v2/workflow/src/workflow.src.html.
+   Values are unchanged. Removed: @font-face, :root tokens (globals.css), page
+   resets and the prototype's .stub. The two paddings at the end are the ones
+   the joined home page (home/src/build_home.py) applies to #wf. */
+
+.wf{padding:clamp(64px,9vw,128px) clamp(14px,3vw,40px)}
+.wf-head{max-width:880px;margin:0 auto clamp(32px,5vw,64px);text-align:center}
+.wf-head h2{margin:0;font-size:clamp(34px,5.2vw,68px);line-height:1.03;letter-spacing:-.04em;font-weight:500;color:var(--brown);text-wrap:balance}
+.wf-head p{margin:18px auto 0;max-width:34em;font-size:clamp(16px,1.4vw,19px);line-height:1.55;color:#6b5046;font-weight:500;text-wrap:balance}
+.card{position:relative;max-width:1280px;margin:0 auto;border-radius:clamp(24px,3vw,36px);background:linear-gradient(170deg,#3a1d13 0%,#2B140D 55%,#241009 100%);color:#fff;padding:clamp(22px,3.4vw,52px);overflow:hidden}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 80% at 85% -10%,rgba(194,90,58,.38),transparent 70%);pointer-events:none}
+.steps{position:relative;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));column-gap:clamp(10px,1.4vw,20px)}
+.phase{grid-row:1;font-size:11.5px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,222,216,.62);padding-bottom:10px;margin-bottom:16px;border-bottom:1px solid rgba(243,222,216,.16)}
+.phase.p1{grid-column:1}
+.phase.p2{grid-column:2/6}
+.phase.p3{grid-column:6}
+.step{grid-row:2;display:flex;flex-direction:column;min-width:0}
+.vis{position:relative;aspect-ratio:1/1.02;border-radius:20px;background:rgba(255,255,255,.055);border:1px solid rgba(255,255,255,.08);overflow:hidden;display:grid;place-items:center;
+  opacity:.38;filter:saturate(.35);transform:translateY(8px);transition:opacity .7s var(--ease),filter .7s var(--ease),transform .7s var(--ease),background .7s}
+.step.on .vis{opacity:1;filter:none;transform:none;background:rgba(255,255,255,.085)}
+.rail{position:relative;height:44px}
+.dot{position:absolute;left:14px;top:50%;width:14px;height:14px;margin-top:-7px;border-radius:50%;background:#2B140D;border:2px solid rgba(243,222,216,.35);z-index:2;transition:background .4s,border-color .4s,box-shadow .5s}
+.step.on .dot{background:var(--terra-hot);border-color:#fff;box-shadow:0 0 0 6px rgba(232,112,74,.22)}
+.step h3{margin:0;font-size:clamp(15.5px,1.25vw,18px);font-weight:700;letter-spacing:-.015em;line-height:1.2;color:rgba(255,255,255,.55);transition:color .5s;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+.step p{margin:8px 0 0;font-size:clamp(13px,1.02vw,14.5px);line-height:1.5;color:rgba(243,222,216,.42);transition:color .5s;font-weight:500}
+.step.on h3{color:#fff}
+.step.on p{color:rgba(243,222,216,.82)}
+.ea{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--brown);background:var(--lilac);padding:4px 9px;border-radius:999px;white-space:nowrap}
+.ea::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--terra)}
+.track{position:absolute;z-index:1;background:rgba(243,222,216,.16);border-radius:2px}
+.track i{position:absolute;left:0;top:0;border-radius:2px;background:linear-gradient(90deg,var(--terra),var(--terra-hot))}
+.rider{position:absolute;left:0;top:0;z-index:3;width:38px;height:38px;margin:-19px 0 0 -19px;border-radius:11px;border:2.5px solid #fff;background:#fff center/cover;box-shadow:0 6px 16px rgba(0,0,0,.45);will-change:transform;opacity:0;transition:opacity .4s}
+.rider.show{opacity:1}
+.foot{position:relative;margin-top:clamp(22px,3vw,40px);padding-top:clamp(16px,2vw,24px);border-top:1px solid rgba(243,222,216,.16);display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between;font-size:14px;color:rgba(243,222,216,.8);font-weight:500}
+.foot div{display:block;max-width:46em;line-height:1.5}
+.foot div .ea{margin-right:10px}
+.foot a{color:#fff;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:999px;background:rgba(255,255,255,.1);transition:background .25s,transform .25s var(--ease)}
+.foot a:hover{background:var(--terra);transform:translateY(-1px)}
+.m{width:82%;font-size:11px;color:var(--ink)}
+.mc{background:#fff;border-radius:14px;padding:11px 12px;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+.mc b{display:block;font-size:13.5px;letter-spacing:-.015em}
+.mc small{display:block;color:#7a655c;font-weight:600;font-size:10.5px;margin-top:2px}
+.url{margin-top:9px;display:flex;align-items:center;gap:6px;background:#f6ebe5;border-radius:8px;padding:6px 8px;font-size:10px;font-weight:700;color:var(--terra-dk);white-space:nowrap;overflow:hidden}
+.url svg{flex:none;width:11px;height:11px}
+.btn{margin-top:8px;display:flex;align-items:center;justify-content:center;gap:6px;background:var(--terra);color:#fff;border-radius:8px;padding:7px;font-weight:700;font-size:10.5px}
+.cam{width:66%}
+.cam svg{display:block;width:100%;height:auto;filter:drop-shadow(0 10px 18px rgba(0,0,0,.35))}
+.count{position:absolute;right:10%;top:12%;background:#fff;color:var(--brown);font:700 10px ui-monospace,Menlo,monospace;padding:4px 7px;border-radius:7px;box-shadow:0 6px 14px rgba(0,0,0,.3)}
+.ph2{display:flex;gap:6px;width:92%;align-items:flex-end;justify-content:center}
+.pm{flex:1;max-width:74px;background:#1d0d08;border-radius:13px;padding:4px;box-shadow:0 8px 18px rgba(0,0,0,.35)}
+.pm{min-width:0}
+.pm div{background:#FFF9F4;border-radius:10px;padding:8px 4px 9px;text-align:center;overflow:hidden}
+.pm svg{width:18px;height:18px;display:block;margin:0 auto 5px}
+.pm b{display:block;white-space:nowrap;font-size:9.5px;letter-spacing:-.02em;color:var(--brown);font-variant-numeric:tabular-nums}
+.pm small{display:block;white-space:nowrap;font-size:8.5px;color:#8a7067;font-weight:700;margin-top:1px}
+.pm u{display:block;height:4px;border-radius:4px;background:#f0e0d8;margin-top:6px;overflow:hidden;text-decoration:none}
+.pm u i{display:block;height:100%;border-radius:4px;background:var(--terra)}
+.usb{position:absolute;left:50%;bottom:9%;translate:-50% 0;font-size:9.5px;font-weight:800;letter-spacing:.08em;color:rgba(243,222,216,.75);display:flex;align-items:center;gap:6px;white-space:nowrap}
+.usb svg{width:14px;height:14px}
+.q{display:flex;gap:5px}
+.q span{flex:1;text-align:center;font-weight:800;font-size:10px;padding:6px 0;border-radius:8px;background:#f6ebe5;color:#8a7067}
+.q span.on{background:var(--brown);color:#fff}
+.row{display:flex;align-items:center;gap:7px;margin-top:9px;font-weight:700;font-size:10.5px;color:#3d2a22}
+.row svg{flex:none;width:14px;height:14px}
+.bar{height:5px;border-radius:5px;background:#f0e0d8;margin-top:5px;overflow:hidden}
+.bar i{display:block;height:100%;width:62%;border-radius:5px;background:linear-gradient(90deg,var(--terra),var(--terra-hot))}
+.gal{width:62%;background:#1d0d08;border-radius:16px;padding:5px;box-shadow:0 10px 22px rgba(0,0,0,.4)}
+.gal .sc{background:#FFF9F4;border-radius:12px;padding:6px;display:grid;grid-template-columns:1fr 1fr;gap:4px}
+.gal .sc span{display:block;aspect-ratio:1;border-radius:7px;background:#eee center/cover;position:relative}
+.gal .sc span.new::after{content:"NEW";position:absolute;left:4px;top:4px;font-size:7px;font-weight:800;letter-spacing:.06em;color:#fff;background:var(--terra);padding:2px 4px;border-radius:4px}
+.likes{position:absolute;right:9%;bottom:12%;background:#fff;color:var(--terra-dk);font-weight:800;font-size:11px;padding:5px 9px;border-radius:999px;display:flex;align-items:center;gap:5px;box-shadow:0 6px 14px rgba(0,0,0,.3)}
+.likes svg{width:12px;height:12px}
+.chips{display:flex;flex-wrap:wrap;gap:4px}
+.chips span{font-weight:700;font-size:9.5px;padding:4px 7px;border-radius:999px;background:#f6ebe5;color:#6b5046;white-space:nowrap}
+.chips span.on{background:var(--terra);color:#fff}
+.file{display:flex;align-items:center;gap:7px;margin-top:9px;font:700 10.5px ui-monospace,Menlo,monospace;color:var(--brown)}
+.file em{font:800 8px var(--font-jakarta),sans-serif;letter-spacing:.06em;background:var(--brown);color:#FFD9C7;padding:4px 4px;border-radius:4px}
+.ok{margin-top:7px;display:flex;align-items:center;gap:6px;font-weight:700;font-size:10.5px;color:#1f7a4d}
+.ok svg{width:13px;height:13px}
+@media (max-width:1180px){
+.x{display:none!important}
+.file{font-size:9.5px}
+}
+@media (max-width:980px){
+.steps{display:block;padding-left:34px}
+.phase{margin:26px 0 14px;padding-bottom:8px}
+.phase.p1{margin-top:0}
+.step{position:relative;display:grid;grid-template-columns:1fr minmax(120px,38%);gap:6px 14px;align-items:center;padding:12px 0}
+.step .vis{grid-column:2;grid-row:1/3;aspect-ratio:1/1}
+.step .rail{position:absolute;left:-34px;top:0;bottom:0;height:auto;width:20px}
+.step .dot{left:3px;top:26px;margin:0}
+.step h3{grid-column:1;align-self:end}
+.step p{grid-column:1;align-self:start;margin-top:0}
+.m{width:88%;font-size:9.5px}
+.mc{padding:9px 9px}
+.mc b{font-size:11.5px}
+.x, .usb, .url{display:none!important}
+.row{font-size:9.5px;margin-top:7px}
+.q span{font-size:9px;padding:5px 0}
+.file{font-size:9.5px}
+.ok{font-size:9.5px}
+.chips span{font-size:9px}
+.ph2{width:80%}
+.gal{width:70%}
+.cam{width:72%}
+.foot{font-size:13px}
+}
+@media (max-width:420px){
+.step{grid-template-columns:1fr 124px}
+}
+@media (prefers-reduced-motion:reduce){
+.vis, .dot, .step h3, .step p{transition:none}
+}
+
+.wf{font-family:var(--font-jakarta),system-ui,sans-serif;line-height:normal;letter-spacing:normal;color:var(--ink)}
+.wf{padding-top:clamp(40px,5vw,72px);padding-bottom:clamp(32px,4vw,56px)}
+
+/* ── Additions that are not in the prototype ──
+   1. Desktop pin: the wrapper is as tall as the card plus the extra scroll
+      distance (set in Workflow.tsx), and the card sticks inside it, just below
+      the nav. Nothing above it may have overflow hidden/auto/clip.
+   2. Autoplay mode: steps are focusable and clickable (jump to a step). */
+.pin{position:relative}
+.pin[data-mode="pin"] .card{position:sticky;top:var(--pin-top,88px)}
+.step[data-interactive]{cursor:pointer}
+.step[data-interactive]:focus-visible{outline:2px solid var(--terra-hot);outline-offset:6px;border-radius:12px}

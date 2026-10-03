@@ -41,24 +41,6 @@ async function postOnboarding(path: string, payload: JsonRecord) {
   return { ok: true as const, status: res.status, data };
 }
 
-// The backend requires name, business_name, phone and city; email, website,
-// message and source are optional extras it now records too.
-export function createEnquiry(payload: {
-  name: string;
-  business_name: string;
-  phone: string;
-  city: string;
-  email?: string;
-  website?: string;
-  message?: string;
-  source?: string;
-}) {
-  return postOnboarding("/onboarding/create-enquiry", {
-    ...payload,
-    source: payload.source ?? "landing_page",
-  });
-}
-
 /* ── Pricing (public, no auth) ─────────────────────────────────── */
 
 export type PublicCoupon = { code: string; percent_off: number; valid_until: number };

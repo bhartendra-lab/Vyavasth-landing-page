@@ -6,13 +6,10 @@ import {
   BUSINESS_HOURS,
   GRIEVANCE_OFFICER_EMAIL,
   GRIEVANCE_OFFICER_NAME,
-  GRIEVANCE_OFFICER_PHONE_DISPLAY,
-  GRIEVANCE_OFFICER_PHONE_TEL,
   REGISTERED_ADDRESS,
   RESPONSE_TIME_BUSINESS_HOURS,
   SUPPORT_EMAIL,
-  SUPPORT_PHONE_DISPLAY,
-  SUPPORT_PHONE_TEL,
+  whatsappUrl,
 } from "@/lib/site-legal";
 
 export const metadata: Metadata = {
@@ -53,12 +50,14 @@ export default function ContactPage() {
             </a>
           </li>
           <li>
-            <strong>Phone:</strong>{" "}
+            <strong>WhatsApp:</strong>{" "}
             <a
-              href={`tel:${SUPPORT_PHONE_TEL}`}
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[#C25A3A] underline"
             >
-              {SUPPORT_PHONE_DISPLAY}
+              Chat with us on WhatsApp
             </a>
           </li>
           <li>
@@ -89,12 +88,14 @@ export default function ContactPage() {
             </a>
           </li>
           <li>
-            <strong>Phone:</strong>{" "}
+            <strong>WhatsApp:</strong>{" "}
             <a
-              href={`tel:${GRIEVANCE_OFFICER_PHONE_TEL}`}
+              href={whatsappUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-[#C25A3A] underline"
             >
-              {GRIEVANCE_OFFICER_PHONE_DISPLAY}
+              Chat with us on WhatsApp
             </a>
           </li>
         </ul>

@@ -43,6 +43,26 @@
      contact, about) still reference them; both resolve to Plus Jakarta Sans. */
   --font-syne: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-dm-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
+
+  /* Landing v2 palette, ported unchanged from the landing_page_v2 prototypes.
+     Used by the home and pricing CSS Modules (components/home, pricing.module.css,
+     Nav, CtaSection). The legacy --color-* tokens above stay for other pages. */
+  --terra: #c25a3a;
+  --terra-dk: #9b482e;
+  --terra-hot: #e8704a;
+  --peach: #f3ded8;
+  --brown: #2b140d;
+  --ink: #191717;
+  --lilac: #eeceec;
+  --page: #fbf7f3;
+  --cream: #fff9f4;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --sh-1: 0 1px 2px rgba(43, 20, 13, 0.1), 0 6px 14px rgba(43, 20, 13, 0.14),
+    0 22px 44px rgba(43, 20, 13, 0.22);
+  --sh-2: 0 2px 4px rgba(43, 20, 13, 0.12), 0 12px 24px rgba(43, 20, 13, 0.18),
+    0 36px 70px rgba(43, 20, 13, 0.3);
+  --sh: 0 1px 2px rgba(43, 20, 13, 0.1), 0 8px 18px rgba(43, 20, 13, 0.16),
+    0 24px 48px rgba(43, 20, 13, 0.22);
 }
 
 *,
@@ -57,8 +77,10 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 
+/* No overflow on body: html already clips horizontal overflow, and an
+   overflow value on body would turn it into a scroll container, which stops
+   the home hero's `position: sticky` stage from sticking to the viewport. */
 body {
-  overflow-x: hidden;
   background-color: var(--color-bg);
   color: var(--color-primary);
   font-family: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
@@ -91,212 +113,26 @@ body {
   background: var(--color-muted);
 }
 
-/* ---------------- Shared brand animations ---------------- */
-
-@keyframes marquee-slide {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-50%, 0, 0);
-  }
-}
-
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee-slide 42s linear infinite;
-}
-
-.marquee-paused-on-hover:hover .marquee-track {
-  animation-play-state: paused;
-}
-
-@keyframes collage-up {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(0, -50%, 0);
-  }
-}
-
-@keyframes collage-down {
-  from {
-    transform: translate3d(0, -50%, 0);
-  }
-  to {
-    transform: translate3d(0, 0, 0);
-  }
-}
-
-.collage-column {
-  will-change: transform;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
-  animation-fill-mode: both;
-}
-
-.collage-column-up {
-  animation-name: collage-up;
-}
-
-.collage-column-down {
-  animation-name: collage-down;
-}
-
-@keyframes brand-pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.35;
-  }
-}
-
-.brand-pulse {
-  animation: brand-pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes floaty {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-.floaty {
-  animation: floaty 5s ease-in-out infinite;
-}
-
-/* Strikethrough treatment for the story headline */
-.strike {
-  position: relative;
-  color: var(--color-muted);
-  white-space: nowrap;
-}
-
-.strike::after {
-  content: "";
-  position: absolute;
-  left: -2px;
-  right: -2px;
-  top: 54%;
-  height: 3px;
-  background: var(--color-accent);
-  border-radius: 2px;
-  transform: rotate(-1.2deg);
-}
-
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
 
-  .marquee-track,
-  .collage-column,
-  .brand-pulse,
-  .floaty {
-    animation: none !important;
-    transform: none !important;
-  }
-
-  /* Feature showcase: no hover transition under reduced motion (the lift
-     itself is framer-motion, disabled in JS via useReducedMotion). */
-  .feature-num,
+  /* Feature icon tile (used by the welcome page): no hover transition. */
   .feature-icon-tile {
     transition: none !important;
   }
 }
 
-/* ── Pricing: discrete storage-tier slider (index slider, see lib/plans.ts) */
-.range-slider {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 100%;
-  height: 44px;
-  background: transparent;
-  cursor: pointer;
-}
-.range-slider:focus-visible {
-  outline: none;
-}
-.range-slider::-webkit-slider-runnable-track {
-  height: 4px;
-  background: transparent;
-}
-.range-slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  margin-top: -8px;
-  border-radius: 999px;
-  background: var(--color-accent);
-  border: 2px solid var(--color-surface);
-  box-shadow: var(--shadow-subtle);
-}
-.range-slider:focus-visible::-webkit-slider-thumb {
-  box-shadow: 0 0 0 3px rgba(194, 90, 58, 0.4);
-}
-.range-slider::-moz-range-track {
-  height: 4px;
-  background: transparent;
-}
-.range-slider::-moz-range-thumb {
-  width: 20px;
-  height: 20px;
-  border-radius: 999px;
-  background: var(--color-accent);
-  border: 2px solid var(--color-surface);
-  box-shadow: var(--shadow-subtle);
-}
-.range-slider:focus-visible::-moz-range-thumb {
-  box-shadow: 0 0 0 3px rgba(194, 90, 58, 0.4);
-}
-
-/* ── Pricing: feature showcase rows (see FeatureShowcase.tsx). Base state for
-   the two-digit index and the icon tile; hover deepens both, but only on true
-   pointer devices so a touch tap never leaves a stuck hover state. The row
-   lift itself is framer-motion (whileHover), gated separately. */
-.feature-num {
-  opacity: 0.55;
-}
+/* Feature icon tile. Still used by app/welcome/page.tsx; hover deepens it, but
+   only on true pointer devices so a touch tap never leaves a stuck hover state. */
 .feature-icon-tile {
   background: var(--color-accent-soft);
   color: var(--color-accent);
 }
 
-/* Hero CTAs: terracotta glow (Phase 5, step 2). The primary intensifies its
-   existing shadow on hover; the secondary (outline) grows a soft halo from
-   nothing. Timing comes from each button's `transition-all duration-200`
-   (Tailwind's default easing is cubic-bezier(0.4, 0, 0.2, 1)). Terracotta only,
-   no new colour, and a colour change so it may stay under reduced motion. */
-.cta-glow-primary {
-  box-shadow: 0 6px 18px rgba(194, 90, 58, 0.28);
-}
-.cta-glow-primary:hover {
-  box-shadow: 0 10px 30px rgba(194, 90, 58, 0.42);
-}
-.cta-glow-secondary:hover {
-  box-shadow: 0 8px 26px rgba(194, 90, 58, 0.28);
-}
-
 @media (hover: hover) and (pointer: fine) {
-  .feature-num {
-    transition: opacity 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
   .feature-icon-tile {
     transition: background-color 200ms cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .feature-row:hover .feature-num {
-    opacity: 1;
-  }
-  .feature-row:hover .feature-icon-tile {
-    background: color-mix(in srgb, var(--color-accent) 12%, var(--color-accent-soft));
   }
 }

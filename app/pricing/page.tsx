@@ -1,18 +1,21 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
-import Eyebrow from "@/components/Eyebrow";
 import CtaSection from "@/components/CtaSection";
 import PricingClient from "@/components/pricing/PricingClient";
 import PricingFaq from "@/components/pricing/PricingFaq";
 import PricingErrorFallback from "@/components/pricing/PricingErrorFallback";
-import PricingHeaderCta from "@/components/pricing/PricingHeaderCta";
-import PricingExplainer from "@/components/pricing/PricingExplainer";
-import BillingFacts from "@/components/pricing/BillingFacts";
-import FeatureShowcase from "@/components/features/FeatureShowcase";
-import { PRICING_FAQS } from "@/components/pricing/pricing-faqs";
-import { getPlans, getPublicCoupons, getFeatures } from "@/lib/vyavasth-api";
-import { freePlanOf } from "@/lib/plans";
+import IncludedBox from "@/components/pricing/IncludedBox";
+import {
+  buildPricingFaqGroups,
+  flattenPricingFaqs,
+} from "@/components/pricing/pricing-faqs";
+import { getPlans } from "@/lib/vyavasth-api";
+import { homeFigures } from "@/lib/pricing-display";
+import styles from "@/components/pricing/pricing.module.css";
+
+// The pricing header is deep brown at the top, so the browser chrome matches it.
+export const viewport: Viewport = { themeColor: "#2B140D" };
 
 const TITLE = "Pricing: Vyavasth";
 const DESCRIPTION =
@@ -37,19 +40,12 @@ export const metadata: Metadata = {
 };
 
 export default async function PricingPage() {
-  const [plansResult, couponsResult, featuresResult] = await Promise.all([
-    getPlans(),
-    getPublicCoupons(),
-    getFeatures(),
-  ]);
-
+  const plansResult = await getPlans();
   const plans = plansResult.ok ? plansResult.data.plans : [];
-  const coupons = couponsResult.ok ? couponsResult.data.coupons : [];
-  const features = featuresResult.ok ? featuresResult.data.features : [];
 
-  // The only number the explainer may state is the free plan's included
-  // events, sourced from the API rather than hardcoded.
-  const includedEvents = freePlanOf(plans)?.included_events ?? null;
+  // Free-event count, lowest storage plan and "same cost as N events" for the
+  // FAQ answers, all derived from the plans API.
+  const figures = homeFigures(plans);
 
   const prices = plans
     .map((p) => p.price)
@@ -73,10 +69,11 @@ export default async function PricingPage() {
 
   // Free SEO: the FAQ answers already exist on the page; feeding them into a
   // FAQPage block costs nothing visually. Single source: pricing-faqs.ts.
+  const faqGroups = buildPricingFaqGroups(figures);
   const faqLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: PRICING_FAQS.map((f) => ({
+    mainEntity: flattenPricingFaqs(faqGroups).map((f) => ({
       "@type": "Question",
       name: f.q,
       acceptedAnswer: { "@type": "Answer", text: f.a },
@@ -84,81 +81,23 @@ export default async function PricingPage() {
   };
 
   return (
-    <main style={{ background: "var(--color-bg)", minHeight: "100vh" }}>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify([productLd, faqLd]) }}
       />
       <Nav />
-
-      {/* ── §1 Header + dual CTA ─────────────────────────────────── */}
-      <section style={{ padding: "clamp(120px, 16vh, 160px) 0 32px" }}>
-        <div
-          className="mx-auto flex flex-col gap-4"
-          style={{ maxWidth: "var(--max-w)", padding: "0 var(--gutter)" }}
-        >
-          <Eyebrow>Pricing</Eyebrow>
-          <h1
-            className="font-extrabold"
-            style={{
-              fontSize: "clamp(2.2rem, 5vw, 3.6rem)",
-              lineHeight: 1.05,
-              letterSpacing: "-0.03em",
-              color: "var(--color-primary)",
-              maxWidth: 760,
-            }}
-          >
-            Pay for what you deliver.
-          </h1>
-          <p
-            className="max-w-[560px] text-lg"
-            style={{ color: "var(--color-muted)", lineHeight: 1.6 }}
-          >
-            Start free with two events. Buy events one at a time when work picks up, or move to a storage plan once you're delivering every week.
-          </p>
-          <PricingHeaderCta />
-        </div>
-      </section>
-
-      {/* ── §2 How pricing works ─────────────────────────────────── */}
-      <PricingExplainer includedEvents={includedEvents} />
-
-      {/* ── §3 The calculator ────────────────────────────────────── */}
-      <section style={{ padding: "clamp(24px, 4vh, 40px) 0 0" }}>
-        <div
-          className="mx-auto flex flex-col gap-2"
-          style={{ maxWidth: "var(--max-w)", padding: "0 var(--gutter)" }}
-        >
-          <Eyebrow>The calculator</Eyebrow>
-          <h2
-            className="font-extrabold"
-            style={{
-              fontSize: "clamp(1.9rem, 3.6vw, 2.6rem)",
-              lineHeight: 1.1,
-              letterSpacing: "-0.03em",
-              color: "var(--color-primary)",
-            }}
-          >
-            Work out your number.
-          </h2>
-        </div>
-      </section>
-      {plansResult.ok ? (
-        <PricingClient plans={plans} coupons={coupons} />
-      ) : (
-        <PricingErrorFallback />
-      )}
-
-      {/* ── §4 Everything included ───────────────────────────────── */}
-      <FeatureShowcase features={features} />
-
-      {/* ── §5 Billing, plainly ──────────────────────────────────── */}
-      <BillingFacts />
-
-      {/* ── §6 FAQ → CTA → Footer ────────────────────────────────── */}
-      <PricingFaq />
-      <CtaSection />
+      <main style={{ background: "var(--page)" }}>
+        <section className={styles.top}>
+          <h1>Start free. Pay as you grow.</h1>
+          <p className={styles.lede}>GST included in every price.</p>
+          {plansResult.ok ? <PricingClient plans={plans} /> : <PricingErrorFallback />}
+        </section>
+        <IncludedBox />
+        <PricingFaq groups={faqGroups} />
+        <CtaSection freeEvents={figures.freeEvents} />
+      </main>
       <Footer />
-    </main>
+    </>
   );
 }

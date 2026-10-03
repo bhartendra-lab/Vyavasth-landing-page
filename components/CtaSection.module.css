@@ -1,0 +1,18 @@
+/* Closing band, ported from landing_page_v2/home/src/cta.css. The prototype's
+   #cta5 id scoping is replaced by this module's own scoping. The prototype's
+   mini footer (.ft5) is not used: the site keeps its existing <Footer />. */
+
+.cta5{padding:0 clamp(14px,5.3vw,76px) clamp(40px,5vw,72px);line-height:normal;letter-spacing:normal;color:var(--ink);font-family:var(--font-jakarta),system-ui,sans-serif}
+.band{position:relative;max-width:1288px;margin:0 auto;border-radius:clamp(24px,3vw,36px);overflow:hidden;text-align:center;color:#fff;padding:clamp(64px,9vw,128px) 24px;
+  background:radial-gradient(70% 120% at 100% 0%,rgba(194,90,58,.55),transparent 62%),radial-gradient(60% 110% at 0% 100%,rgba(155,72,46,.5),transparent 60%),linear-gradient(100deg,#241009,#2B140D 45%,#3a1d13)}
+.cta5 h2{margin:0;font-size:clamp(34px,5vw,68px);line-height:1.08;letter-spacing:-.04em;font-weight:500;text-wrap:balance}
+.lg{display:inline-block;vertical-align:-.13em;margin-left:.06em;background:#FFF9F4;border-radius:.26em;padding:.1em .22em .12em}
+.lg img{display:block;height:.82em;width:auto}
+.cta5 p{margin:18px auto 0;font-size:clamp(16px,1.4vw,19px);color:rgba(255,241,233,.86);font-weight:500}
+.btn{margin-top:30px;display:inline-flex;align-items:center;gap:16px;height:62px;padding:0 14px 0 30px;border-radius:999px;background:linear-gradient(180deg,#fff,#FFEDE3);color:#2B140D;font-weight:700;font-size:17px;text-decoration:none;box-shadow:0 10px 24px rgba(0,0,0,.3);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.btn:hover{transform:translateY(-2px) scale(1.03)}
+.btn span{width:40px;height:40px;border-radius:50%;background:#C25A3A;display:grid;place-items:center}
+.btn svg{width:18px;height:18px}
+.alt{margin-top:18px;font-size:14px;font-weight:600;color:rgba(255,241,233,.7)}
+.alt a{color:#fff;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(255,255,255,.4)}
+@media (max-width:600px){ .btn{height:56px;font-size:15.5px;padding:0 10px 0 22px;gap:12px} }

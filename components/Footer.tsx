@@ -1,19 +1,14 @@
-"use client";
-
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { useEnquiry } from "@/components/EnquiryProvider";
 import {
   REGISTERED_ADDRESS,
   SUPPORT_EMAIL,
-  WHATSAPP_NUMBER,
+  whatsappUrl,
 } from "@/lib/site-legal";
 
 const SOCIALS = [
-  { label: "Instagram", href: "https://www.instagram.com/vyavasth" },
-  { label: "LinkedIn", href: "https://www.linkedin.com/company/vyavasth" },
-  { label: "X (Twitter)", href: "https://twitter.com/vyavasth" },
+  { label: "Instagram", href: "https://www.instagram.com/vyavasth.in" },
 ];
 
 const LEGAL_LINKS = [
@@ -31,7 +26,6 @@ const colLink =
   "inline-flex items-center gap-1.5 text-sm transition-colors hover:text-[var(--color-accent)]";
 
 export default function Footer() {
-  const { openEnquiry } = useEnquiry();
   const year = new Date().getFullYear();
 
   return (
@@ -83,9 +77,6 @@ export default function Footer() {
             <Link href="/#how" className={colLink} style={{ color: "var(--color-primary)" }}>
               How it works
             </Link>
-            <Link href="/#why" className={colLink} style={{ color: "var(--color-primary)" }}>
-              Why Vyavasth
-            </Link>
           </nav>
         </div>
 
@@ -95,14 +86,6 @@ export default function Footer() {
             Company
           </h4>
           <div className="flex flex-col items-start gap-2.5">
-            <button
-              type="button"
-              onClick={openEnquiry}
-              className={colLink}
-              style={{ color: "var(--color-primary)" }}
-            >
-              Book a demo
-            </button>
             {SOCIALS.map((s) => (
               <a
                 key={s.label}
@@ -133,7 +116,7 @@ export default function Footer() {
               {SUPPORT_EMAIL}
             </a>
             <a
-              href={`https://wa.me/${WHATSAPP_NUMBER}`}
+              href={whatsappUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className={colLink}

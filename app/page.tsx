@@ -1,14 +1,17 @@
+import type { Viewport } from "next";
 import Nav from "@/components/Nav";
-import Hero from "@/components/Hero";
-import StudioMarquee from "@/components/StudioMarquee";
-import ProofBand from "@/components/ProofBand";
-import ProblemSection from "@/components/ProblemSection";
-import FeatureSection from "@/components/FeatureSection";
-import HowItWorks from "@/components/HowItWorks";
-import WhySection from "@/components/WhySection";
+import Hero from "@/components/home/Hero";
+import Workflow from "@/components/home/Workflow";
+import Features from "@/components/home/Features";
+import Proof from "@/components/home/Proof";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
-import { getFeatures } from "@/lib/vyavasth-api";
+import WhatsAppFab from "@/components/WhatsAppFab";
+import { getPlans } from "@/lib/vyavasth-api";
+import { homeFigures } from "@/lib/pricing-display";
+
+// The home hero is deep brown at the top, so the browser chrome matches it.
+export const viewport: Viewport = { themeColor: "#2B140D" };
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -21,28 +24,28 @@ const jsonLd = {
 };
 
 export default async function Home() {
-  // The homepage feature strip is DB-driven, so one edit in Mongo updates both
-  // this strip and the pricing showcase. FeatureSection falls back to its
-  // hardcoded highlights if this fetch fails.
-  const featuresResult = await getFeatures({ highlight: true });
-  const features = featuresResult.ok ? featuresResult.data.features : [];
+  // Every figure on the home page (free events, per-event price, the lowest
+  // storage plan) is derived from the plans API. If the fetch fails, the
+  // price card renders without figures; nothing is hard-coded.
+  const plansResult = await getPlans();
+  const figures = homeFigures(plansResult.ok ? plansResult.data.plans : []);
 
   return (
-    <main style={{ background: "var(--color-bg)", minHeight: "100vh" }}>
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <Nav />
-      <Hero />
-      <StudioMarquee />
-      <ProofBand />
-      <ProblemSection />
-      <FeatureSection features={features} />
-      <HowItWorks />
-      <WhySection />
-      <CtaSection />
+      <main style={{ background: "var(--page)" }}>
+        <Hero freeEvents={figures.freeEvents} />
+        <Workflow />
+        <Features />
+        <Proof figures={figures} />
+        <CtaSection freeEvents={figures.freeEvents} />
+      </main>
       <Footer />
-    </main>
+      <WhatsAppFab />
+    </>
   );
 }

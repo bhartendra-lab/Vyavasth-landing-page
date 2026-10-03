@@ -1,0 +1,56 @@
+/* The pill nav, ported from landing_page_v2 (hero.css `.nav`, pricing `.nav .on`).
+   Shared by every page that renders <Nav />. The mobile breakpoint is the
+   hero's, so the hero and the nav switch layout together. */
+
+.nav{position:fixed;z-index:50;top:14px;left:50%;translate:-50% 0;width:min(1180px,calc(100% - 28px));height:60px;padding:0 10px 0 22px;display:flex;align-items:center;gap:28px;line-height:normal;letter-spacing:normal;
+  background:rgba(255,249,244,.86);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);border-radius:999px;border:1px solid rgba(255,255,255,.7);
+  box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 10px 30px rgba(43,20,13,.18)}
+/* Home only: the pill drops in once, as in the hero prototype. */
+.intro{opacity:0;transform:translateY(-24px);animation:navIn .9s var(--ease) .15s forwards}
+@keyframes navIn{to{opacity:1;transform:none}}
+.logo{display:flex;align-items:center;height:26px}
+.logo img{height:26px;width:auto;display:block}
+.links{display:flex;gap:26px;margin-left:10px;font-size:14.5px;font-weight:600;color:#4a3229}
+.links a{position:relative;padding:6px 0}
+.links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.links a:hover::after,.links a.on::after{transform:scaleX(1)}
+.sp{flex:1}
+.login{font-size:14.5px;font-weight:600;color:#4a3229;padding:8px 6px}
+.go{height:42px;padding:0 20px;border-radius:999px;background:var(--terra);color:#fff;font-weight:700;font-size:14.5px;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 16px rgba(194,90,58,.42);transition:transform .25s var(--ease),background .25s}
+.go:hover{transform:translateY(-2px) scale(1.03);background:var(--terra-hot)}
+.burger{display:none;width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;cursor:pointer}
+.burger i{display:block;width:18px;height:2px;border-radius:2px;background:#4a3229;box-shadow:0 6px 0 #4a3229,0 -6px 0 #4a3229}
+.nav a:focus-visible,.burger:focus-visible{outline:2px solid var(--terra-hot);outline-offset:3px;border-radius:8px}
+
+/* Mobile menu. The prototype's burger has no behaviour, so this panel is added
+   (it was in the previous nav too): same links, then Log in and Start free. */
+.scrim,.drawer{display:none}
+
+@media (max-width:820px),(max-width:1100px) and (orientation:portrait){
+  .nav{height:54px;padding:0 6px 0 16px;gap:8px;top:10px}
+  .links,.login{display:none}
+  .logo img{height:22px}
+  .go{height:38px;padding:0 15px;font-size:13.5px}
+  .burger{display:flex}
+
+  .scrim{display:block;position:fixed;inset:0;z-index:50;background:rgba(43,20,13,.35);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+  .drawer{display:flex;flex-direction:column;position:fixed;top:0;right:0;bottom:0;z-index:51;width:min(300px,86vw);background:var(--cream);box-shadow:-20px 0 50px rgba(43,20,13,.2);transform:translateX(100%);transition:transform .3s var(--ease);line-height:normal;letter-spacing:normal;color:var(--brown)}
+  .drawer.open{transform:none}
+  .drawerHead{display:flex;align-items:center;justify-content:space-between;height:64px;padding:0 20px;border-bottom:1px solid #f0e3dc}
+  .drawerHead img{height:22px;width:auto;display:block}
+  .close{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;color:#4a3229;cursor:pointer}
+  .drawerNav{display:flex;flex-direction:column;gap:2px;padding:18px 16px}
+  .drawerNav a.item{display:flex;align-items:center;min-height:48px;padding:0 12px;border-radius:12px;font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--brown)}
+  .drawerNav a.item:hover,.drawerNav a.item.on{background:#f6ebe5}
+  .drawerNav a.drawerGo{margin-top:14px;justify-content:center;height:50px;border-radius:999px;background:var(--terra);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;box-shadow:0 6px 16px rgba(194,90,58,.42)}
+}
+@media (prefers-reduced-motion:reduce){
+  .intro{animation-duration:.01s;animation-delay:0s}
+  .drawer{transition:none}
+}
+
+/* Logo-only pill (the /welcome page): the same cream pill, centred, no links. */
+.nav.mini{width:auto;gap:0;padding:0 24px}
+@media (max-width:820px),(max-width:1100px) and (orientation:portrait){
+  .nav.mini{padding:0 20px}
+}

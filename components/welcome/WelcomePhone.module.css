@@ -1,0 +1,29 @@
+/* A still of the hero's phone gallery, for /welcome. Rules adapted from
+   Hero.module.css (.phone ...): same em-based sizing, no motion. The photos are
+   the hero's placeholder illustrations (lib/landing-content.ts). */
+
+.wrap{position:relative;margin:26px auto 0;height:300px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(180deg,#000 60%,transparent 100%);mask-image:linear-gradient(180deg,#000 60%,transparent 100%)}
+.phone{--ph:440px;position:relative;margin:0 auto;width:calc(var(--ph)*.47);height:var(--ph);font-size:calc(var(--ph)/60);line-height:normal;letter-spacing:normal;color:var(--ink);text-align:left}
+.bezel{position:absolute;inset:0;border-radius:4.2em;background:linear-gradient(160deg,#4a2a20,#1d0d08);box-shadow:0 0 0 .12em #6b4034 inset,0 3em 6em rgba(43,20,13,.38),0 1em 2em rgba(43,20,13,.22)}
+.screen{position:absolute;inset:.8em;border-radius:3.5em;background:var(--cream);overflow:hidden}
+.island{position:absolute;left:50%;top:1.1em;width:8em;height:2.2em;margin-left:-4em;border-radius:2em;background:#1d0d08;z-index:3}
+.hd{padding:4em 1.4em 0}
+.row{display:flex;align-items:center;justify-content:space-between;height:3.2em}
+.brand{display:inline-flex;align-items:center;gap:.7em;padding:.4em 1em .4em .4em;border-radius:99em;background:#fff;box-shadow:0 .2em .8em rgba(43,20,13,.14);white-space:nowrap}
+.ap{width:2.4em;height:2.4em;border-radius:50%;background:var(--terra);display:grid;place-items:center}
+.ap svg{width:1.4em;height:1.4em}
+.brand b{font-size:1.05em;letter-spacing:-.01em;color:var(--brown)}
+.ava{position:relative;width:3.2em;height:3.2em;border-radius:50%;overflow:hidden;border:.25em solid #fff;box-shadow:0 .3em 1em rgba(43,20,13,.25);background:#f3ded8}
+.ttl{font-size:2.4em;font-weight:700;letter-spacing:-.035em;margin-top:.42em;white-space:nowrap;color:var(--brown);line-height:1}
+.ttl em{font-family:var(--font-instrument),serif;font-style:italic;font-weight:400}
+.chip{display:inline-flex;align-items:center;gap:.7em;margin-top:.9em;padding:.5em 1.2em .5em .5em;border-radius:99em;background:#fff;box-shadow:0 .3em 1em rgba(43,20,13,.16);font-size:1.2em;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.chip .ok{width:1.9em;height:1.9em;border-radius:50%;background:var(--terra);display:grid;place-items:center}
+.chip .ok svg{width:1em;height:1em}
+.chip b{color:var(--terra);font-variant-numeric:tabular-nums}
+.tabs{display:flex;gap:.5em;margin-top:.95em;font-size:1.1em;font-weight:700;color:#8a7067;white-space:nowrap;overflow:hidden}
+.tabs span{padding:.5em .95em;border-radius:99em;background:#f3e7df}
+.tabs span.on{background:var(--brown);color:#fff}
+.grid{display:flex;gap:.8em;padding:1em 1.2em 0}
+.col{flex:1;display:flex;flex-direction:column;gap:.8em}
+.tile{position:relative;border-radius:1.3em;background:#f1e4dc;overflow:hidden}
