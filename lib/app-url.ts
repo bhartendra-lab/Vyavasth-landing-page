@@ -4,7 +4,7 @@
 
 export const APP_URL = process.env.NEXT_PUBLIC_APP_URL ?? "https://deliver.vyavasth.in";
 
-/** Where "Log in", "Start free" and every free / pay-per-event CTA go. */
+/** Where "Log in" and the pay-per-event "Buy events" button go. */
 export const LOGIN_URL = `${APP_URL}/login`;
 
 /**

@@ -2,12 +2,17 @@
 // (PricingFaq.tsx) and the page's FAQPage JSON-LD (app/pricing/page.tsx).
 // Plain data module (no "use client") so a server component can import it too.
 //
-// Three answers state a figure. None is typed in by hand: the free-event count,
-// the lowest storage size and the "same cost as N events" figure come from the
-// plans API (via homeFigures in lib/pricing-display.ts), and the original-quality
-// threshold and event validity are named constants there.
+// Several answers state a figure. None is typed in by hand: the first-purchase
+// offer, the photo limit and the price of extra capacity, the lowest storage
+// size and the "same cost as N events" figure come from the plans API (via
+// homeFigures in lib/pricing-display.ts), and the original-quality threshold
+// and event validity are named constants there.
+//
+// The offer sentences and the "How does the free event work?" item appear only
+// while the API says the offer is live. With it switched off, nothing here
+// mentions anything free.
 
-import { formatStorage } from "@/lib/plans";
+import { formatCount, formatInr, formatStorage } from "@/lib/plans";
 import {
   EVENT_VALIDITY_MONTHS,
   ORIGINAL_TIER_MIN_STORAGE_GB,
@@ -19,8 +24,16 @@ export type PricingFaqItem = { q: string; a: string };
 export type PricingFaqGroup = { title: string; items: PricingFaqItem[] };
 
 export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
-  const { freeEvents, lowestStorage, sameCostEvents } = figures;
-  const freeLine = freeEvents === 1 ? "one event" : `${numberWord(freeEvents)} events`;
+  const { firstPurchaseOffer: offer, photoCapTerms, lowestStorage, sameCostEvents } = figures;
+  const freeLine = offer
+    ? offer.bonus_events === 1
+      ? "one event"
+      : `${numberWord(offer.bonus_events)} events`
+    : null;
+  const freeCount = offer ? (offer.bonus_events === 1 ? "one free event" : `${numberWord(offer.bonus_events)} free events`) : null;
+  const cap = formatCount(photoCapTerms.cap);
+  const addonSize = formatCount(photoCapTerms.addonSize);
+  const addonPrice = formatInr(photoCapTerms.addonPrice);
   // The comparison sentence needs both figures; without them it is left out
   // rather than guessed.
   const comparison =
@@ -34,10 +47,10 @@ export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
       items: [
         {
           q: "Which plan should I start with?",
-          a: `Start free with ${freeLine}. After that, buy events one at a time while you deliver a handful a season. Move to a storage plan once you deliver regularly${comparison}`,
+          a: `Buy events one at a time while you deliver a handful a season.${freeLine ? ` On your first purchase we add ${freeLine} free.` : ""} Move to a storage plan once you deliver regularly${comparison}`,
         },
         {
-          q: "Do I get every feature on the free plan?",
+          q: "Do I get every feature on pay per event?",
           a: `Yes, with one exception. Original-quality delivery needs a storage plan of ${formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)} or larger. Everything else is included on every plan.`,
         },
         {
@@ -55,12 +68,24 @@ export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
       items: [
         {
           q: "How long does an event stay live?",
-          a: `On the free and pay-per-event plans, each event stays live for ${EVENT_VALIDITY_MONTHS} months from the day you create it, not the day you buy it. Event credits themselves never expire: buy four, use one this month and three next year.`,
+          a: `On pay per event, each event stays live for ${EVENT_VALIDITY_MONTHS} months from the day you create it, not the day you buy it. Event credits themselves never expire: buy four, use one this month and three next year.`,
         },
         {
           q: "How does storage work?",
-          a: "On free and pay per event, every event gets unlimited storage. On a storage plan, you have one pool that carries across all your events and does not reset when an event ends. Delete an event and the space is yours to use again.",
+          a: `On pay per event, each event holds up to ${cap} photos at a time. Delete photos and you can upload more. You can add ${addonSize} more to an event for ${addonPrice}. On a storage plan, you have one pool that carries across all your events and does not reset when an event ends. Delete an event and the space is yours to use again.`,
         },
+        {
+          q: "Is there a photo limit on pay per event?",
+          a: `Yes. Each event holds up to ${cap} photos and videos at a time. Only what is in the event right now counts, so deleting photos frees room to upload more. If you need more, you can add ${addonSize} photos to that event for ${addonPrice}, as many times as you need. Storage plans have no per-event limit.`,
+        },
+        ...(freeCount
+          ? [
+              {
+                q: "How does the free event work?",
+                a: `Buy at least one event and we add ${freeCount} to your account. It is ${freeCount} per studio, whatever number you buy the first time, for studios buying events for the first time. It works exactly like a paid event.`,
+              },
+            ]
+          : []),
         {
           q: "What if I run out of storage in the middle of an event?",
           a: "Uploads pause. They do not fail. Move up a size and they resume straight away, and you pay only the difference.",

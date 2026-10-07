@@ -10,7 +10,10 @@
 .top h1{margin:0 auto;max-width:14em;text-align:center;color:#fff;font-size:clamp(34px,4.6vw,64px);line-height:1.05;letter-spacing:-.04em;font-weight:500;text-wrap:balance}
 .top .lede{margin:12px auto 0;text-align:center;color:#FFE9DF;font-size:clamp(15px,1.3vw,18px);font-weight:500}
 .jump{display:none}
-.plans{max-width:1288px;margin:30px auto 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;align-items:stretch}
+/* Two plans (pay per event, storage) since the Free card was removed. The grid
+   is narrowed with them so each card keeps roughly the width it had as one of
+   three, instead of stretching across a 1288px row. */
+.plans{max-width:900px;margin:30px auto 0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;align-items:stretch}
 .p{position:relative;border-radius:24px;padding:28px 28px 26px;display:flex;flex-direction:column;box-shadow:0 2px 4px rgba(43,20,13,.06),0 18px 44px rgba(43,20,13,.16);scroll-margin-top:90px}
 .p .tag{align-self:flex-start;font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
 .p h2{margin:14px 0 0;font-size:20px;font-weight:700;letter-spacing:-.02em}
@@ -28,9 +31,13 @@
 .p .cta:hover{transform:translateY(-2px);filter:brightness(1.06)}
 .p .foot{margin-top:10px;text-align:center;font-size:12.5px;font-weight:600;opacity:.75}
 .p .foot a{text-decoration:underline;text-underline-offset:3px}
-.p.free{background:#fff;color:var(--brown);border:1px solid #f0e3dc}
-.p.free .tag{background:var(--terra);color:#fff}
-.p.free .cta{background:var(--terra);color:#fff}
+.p .tc{text-decoration:underline;text-underline-offset:3px;font-weight:700;white-space:nowrap}
+.p .tc:focus-visible{outline:2px solid var(--terra-hot);outline-offset:3px;border-radius:4px}
+/* Pay per event: terms. The block every "T&C apply" on the site links to. */
+.terms{max-width:900px;margin:22px auto 0;padding:20px 24px;border-radius:20px;background:#fff;border:1px solid #f0e3dc;color:var(--brown);scroll-margin-top:90px}
+.terms h2{margin:0;font-size:16px;font-weight:700;letter-spacing:-.01em}
+.terms ul{margin:10px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:6px}
+.terms li{font-size:14px;line-height:1.5;color:#5b3b33}
 .p.ev{background:linear-gradient(180deg,#E3B4E1,#EECEEC 50%,#F8E9F7);color:var(--brown)}
 .p.ev .tag{background:rgba(43,20,13,.1)}
 .p.ev .cta{background:var(--brown);color:#fff}

@@ -127,6 +127,27 @@ export default function TermsPage() {
           </a>
           .
         </p>
+        {/* Pay per event. Legal pages are static text, so the figures are
+            written out here. They mirror fields on the Event-based Service in
+            the backend (event_photo_cap, photo_cap_addon_size,
+            photo_cap_addon_price, first_purchase_bonus_events): if those are
+            changed through the admin endpoint, change this paragraph and
+            LAST_UPDATED in lib/site-legal.ts with them. */}
+        <p>
+          <strong>Pay per event.</strong> Events bought one at a time are paid
+          for once and do not renew. Each such event can hold up to{" "}
+          <strong>20,000 photos and videos at a time</strong>. Deleting photos
+          from an event frees room in it, and only what is in the event at that
+          moment counts toward the limit. You may add capacity to an event in
+          blocks of <strong>5,000 photos for ₹50 per block</strong> (GST
+          included). Extra capacity applies to the one event it was bought for,
+          cannot be moved to another event, and is non-refundable once applied.
+          Where we run a first-purchase offer, it gives a studio that is buying
+          events for the first time additional event credit, once per studio
+          whatever number of events is bought, and we may change or withdraw the
+          offer for future purchases at any time. Credit already granted under
+          the offer is not affected.
+        </p>
       </section>
 
       <section>

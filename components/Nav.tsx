@@ -66,11 +66,9 @@ export default function Nav() {
           ))}
         </div>
         <span className={styles.sp} />
-        <a className={styles.login} href={LOGIN_URL}>
-          Log in
-        </a>
+        {/* The only action in the bar, so it takes the primary button style. */}
         <a className={styles.go} href={LOGIN_URL}>
-          Start free
+          Log in
         </a>
         <button
           type="button"
@@ -119,11 +117,8 @@ export default function Nav() {
               {l.label}
             </Link>
           ))}
-          <a className={`${styles.item}`} href={LOGIN_URL}>
-            Log in
-          </a>
           <a className={styles.drawerGo} href={LOGIN_URL}>
-            Start free
+            Log in
           </a>
         </nav>
       </div>

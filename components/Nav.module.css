@@ -23,7 +23,7 @@
 .nav a:focus-visible,.burger:focus-visible{outline:2px solid var(--terra-hot);outline-offset:3px;border-radius:8px}
 
 /* Mobile menu. The prototype's burger has no behaviour, so this panel is added
-   (it was in the previous nav too): same links, then Log in and Start free. */
+   (it was in the previous nav too): same links, then Log in. */
 .scrim,.drawer{display:none}
 
 @media (max-width:820px),(max-width:1100px) and (orientation:portrait){

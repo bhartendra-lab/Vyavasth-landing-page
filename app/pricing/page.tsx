@@ -18,37 +18,50 @@ import styles from "@/components/pricing/pricing.module.css";
 export const viewport: Viewport = { themeColor: "#2B140D" };
 
 const TITLE = "Pricing: Vyavasth";
-const DESCRIPTION =
-  "Pay per event or pick a storage plan. Start free with 2 events. GST included, no hidden fees.";
 
-export const metadata: Metadata = {
-  title: TITLE,
-  description: DESCRIPTION,
-  alternates: { canonical: "/pricing" },
-  openGraph: {
+/**
+ * The description mentions the first-purchase offer only while the plans API
+ * says it is live, so a search result never promises a free event that has
+ * been switched off. (getPlans is the same cached fetch the page itself makes.)
+ */
+export async function generateMetadata(): Promise<Metadata> {
+  const plansResult = await getPlans();
+  const { firstPurchaseOffer } = homeFigures(plansResult.ok ? plansResult.data.plans : []);
+  const description = firstPurchaseOffer
+    ? `Pay per event or pick a storage plan. Buy your first event and get ${firstPurchaseOffer.bonus_events === 1 ? "one" : firstPurchaseOffer.bonus_events} free. GST included, no hidden fees.`
+    : "Pay per event or pick a storage plan. GST included, no hidden fees.";
+  return {
     title: TITLE,
-    description: DESCRIPTION,
-    images: [{ url: "/og-image.png", width: 1200, height: 630, alt: TITLE }],
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: TITLE,
-    description: DESCRIPTION,
-    images: ["/og-image.png"],
-  },
-};
+    description,
+    alternates: { canonical: "/pricing" },
+    openGraph: {
+      title: TITLE,
+      description,
+      images: [{ url: "/og-image.png", width: 1200, height: 630, alt: TITLE }],
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: TITLE,
+      description,
+      images: ["/og-image.png"],
+    },
+  };
+}
 
 export default async function PricingPage() {
   const plansResult = await getPlans();
   const plans = plansResult.ok ? plansResult.data.plans : [];
 
-  // Free-event count, lowest storage plan and "same cost as N events" for the
-  // FAQ answers, all derived from the plans API.
+  // The first-purchase offer, the photo-limit terms, the lowest storage plan
+  // and "same cost as N events" for the FAQ answers, all from the plans API.
   const figures = homeFigures(plans);
+  const offer = figures.firstPurchaseOffer;
 
+  // What can actually be bought: storage plans by their price, pay per event by
+  // its per-event price. The legacy Free plan is not an offer and is left out.
   const prices = plans
-    .map((p) => p.price)
+    .map((p) => (p.service_type === "Event-based" ? p.event_unit_price : p.price))
     .filter((p): p is number => typeof p === "number" && p > 0);
   const lowPrice = prices.length ? Math.min(...prices) : 0;
   const highPrice = prices.length ? Math.max(...prices) : 0;
@@ -63,7 +76,7 @@ export default async function PricingPage() {
       priceCurrency: "INR",
       lowPrice,
       highPrice,
-      offerCount: plans.length,
+      offerCount: prices.length,
     },
   };
 
@@ -89,13 +102,19 @@ export default async function PricingPage() {
       <Nav />
       <main style={{ background: "var(--page)" }}>
         <section className={styles.top}>
-          <h1>Start free. Pay as you grow.</h1>
-          <p className={styles.lede}>GST included in every price.</p>
+          <h1>
+            {offer
+              ? `Buy one event. Get ${offer.bonus_events === 1 ? "one" : offer.bonus_events} free.`
+              : "Pay per event or pick a plan."}
+          </h1>
+          <p className={styles.lede}>
+            {offer ? "On your first purchase. GST included in every price." : "GST included in every price."}
+          </p>
           {plansResult.ok ? <PricingClient plans={plans} /> : <PricingErrorFallback />}
         </section>
         <IncludedBox />
         <PricingFaq groups={faqGroups} />
-        <CtaSection freeEvents={figures.freeEvents} />
+        <CtaSection offer={offer} />
       </main>
       <Footer />
     </>

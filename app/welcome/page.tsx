@@ -12,7 +12,6 @@ import {
 import LogoPill from "@/components/LogoPill";
 import WelcomePhone from "@/components/welcome/WelcomePhone";
 import { WELCOME_POSTER } from "@/lib/landing-content";
-import { FREE_EVENTS_FALLBACK } from "@/lib/pricing-display";
 import {
   WELCOME_EVENT,
   buildSignupUrl,
@@ -126,8 +125,7 @@ export default function WelcomePage() {
           </div>
 
           <p className={styles.signup}>
-            New here? <a href={buildSignupUrl()}>Start free</a>
-            , your first {FREE_EVENTS_FALLBACK} events are on us.{" "}
+            New here? <a href={buildSignupUrl()}>Log in to get started</a>{" "}
             <span className={styles.arrow}>→</span>
           </p>
 

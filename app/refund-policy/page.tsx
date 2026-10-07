@@ -103,6 +103,10 @@ export default function RefundPolicyPage() {
         <ul className={list}>
           <li>Fees charged after the 7-day window from start or renewal.</li>
           <li>
+            Extra photo capacity bought for an event, once it has been applied
+            to that event.
+          </li>
+          <li>
             Any period where the account shows active usage during the 7-day
             window.
           </li>

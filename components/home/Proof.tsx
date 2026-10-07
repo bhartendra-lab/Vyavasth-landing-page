@@ -3,10 +3,9 @@
 import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { LOGIN_URL } from "@/lib/app-url";
 import { OWNER_PHOTOS, STUDIOS, type ImageSlot } from "@/lib/landing-content";
 import { formatInr, formatStorage } from "@/lib/plans";
-import { numberWord, type HomeFigures } from "@/lib/pricing-display";
+import { type HomeFigures } from "@/lib/pricing-display";
 import { whatsappUrl } from "@/lib/site-legal";
 import styles from "./Proof.module.css";
 
@@ -124,7 +123,7 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
     return () => io.disconnect();
   }, []);
 
-  const { freeEvents, eventPrice, lowestStorage } = figures;
+  const { firstPurchaseOffer: offer, eventPrice, lowestStorage } = figures;
   const hasWays = eventPrice !== null || lowestStorage !== null;
 
   return (
@@ -189,17 +188,29 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
           }
         />
 
+        {/* The first-purchase offer while the plans API says it is live;
+            otherwise the plain pay-per-event price. Nothing here is free at
+            signup, so nothing here says "start free". */}
         <article className={cx(styles.c, styles.t, styles.price)} data-card="">
-          <h3>Start free</h3>
-          <div className={styles.big}>{freeEvents === 1 ? "1 event" : `${freeEvents} events`}</div>
-          <p>
-            {freeEvents === 1
-              ? "Unlimited storage for your first event."
-              : `Unlimited storage for your first ${numberWord(freeEvents)} events.`}{" "}
-            Every feature unlocked.
-          </p>
+          {offer ? (
+            <>
+              <h3>First purchase offer</h3>
+              <div className={styles.big}>
+                {offer.bonus_events === 1 ? "1 event free" : `${offer.bonus_events} events free`}
+              </div>
+              <p>
+                Buy your first event and we add {offer.bonus_events} more. Every feature unlocked.
+              </p>
+            </>
+          ) : (
+            <>
+              <h3>Pay per event</h3>
+              {eventPrice !== null && <div className={styles.big}>{formatInr(eventPrice)}</div>}
+              <p>One wedding at a time. Every feature unlocked.</p>
+            </>
+          )}
           <span className={styles.sp}></span>
-          <a className={styles.go} href={LOGIN_URL}>Start your first event free</a>
+          <Link className={styles.go} href="/pricing#events">See pricing</Link>
         </article>
 
         <article className={cx(styles.c, styles.t, styles.sw)} data-card="">
@@ -207,7 +218,7 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
           {hasWays && (
             <div className={styles.ways}>
               {eventPrice !== null && (
-                <div><b>{formatInr(eventPrice)}</b><span>per event, unlimited storage</span></div>
+                <div><b>{formatInr(eventPrice)}</b><span>per event, unlimited photos*</span></div>
               )}
               {lowestStorage && (
                 <div>
@@ -217,7 +228,17 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
               )}
             </div>
           )}
-          <p className={styles.fine}>GST included. Every feature on every plan.</p>
+          <p className={styles.fine}>
+            GST included. Every feature on every plan.
+            {eventPrice !== null && (
+              <>
+                {" "}
+                <Link href="/pricing#photo-terms" style={{ textDecoration: "underline", textUnderlineOffset: 3 }}>
+                  *T&amp;C apply
+                </Link>
+              </>
+            )}
+          </p>
           <span className={styles.sp}></span>
           <Link className={styles.go} href="/pricing">See all plans</Link>
         </article>

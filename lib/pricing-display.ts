@@ -6,7 +6,10 @@
 import {
   buildStorageTiers,
   eventPlanOf,
-  freePlanOf,
+  firstPurchaseOfferOf,
+  photoCapTermsOf,
+  type FirstPurchaseOffer,
+  type PhotoCapTerms,
   type Plan,
   type StorageTier,
 } from "./plans.ts";
@@ -20,17 +23,11 @@ import {
 export const ORIGINAL_TIER_MIN_STORAGE_GB = 500;
 
 /**
- * How long an event stays live after it is created (free and pay-per-event
- * plans). Marketing copy, not an API field; the pricing page already stated
- * this before the redesign.
+ * How long a pay-per-event event stays live after it is created. Marketing
+ * copy, not an API field; the pricing page already stated this before the
+ * redesign.
  */
 export const EVENT_VALIDITY_MONTHS = 3;
-
-/**
- * Free events promised when the plans API is unreachable or the Free plan has
- * no `included_events`. Same fallback the old pricing explainer used.
- */
-export const FREE_EVENTS_FALLBACK = 2;
 
 /**
  * Deliberate, hard-coded marketing labels, keyed by storage size in GB. A badge
@@ -51,12 +48,6 @@ const NUMBER_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Sev
 /** 2 → "two", 11 → "11". Lower case, for use mid-sentence. */
 export function numberWord(n: number): string {
   return n >= 0 && n <= 10 ? NUMBER_WORDS[n].toLowerCase() : String(n);
-}
-
-/** Free events from the Free plan, else the named fallback. */
-export function freeEventsOf(plans: Plan[]): number {
-  const n = freePlanOf(plans)?.included_events;
-  return typeof n === "number" && n > 0 ? n : FREE_EVENTS_FALLBACK;
 }
 
 /** Whether a storage size includes original-quality delivery. */
@@ -99,7 +90,14 @@ export function lowestYearlyTier(
 }
 
 export type HomeFigures = {
-  freeEvents: number;
+  /**
+   * The first-purchase offer (buy an event, get more free), or null whenever it
+   * is not live. Nothing is free at signup any more: this is the only "free"
+   * the site may promise, and only while the API says it is on.
+   */
+  firstPurchaseOffer: FirstPurchaseOffer | null;
+  /** Photo limit per pay-per-event event and the price of extra capacity. */
+  photoCapTerms: PhotoCapTerms;
   /** Pay-per-event price, or null when there is no Event-based plan. */
   eventPrice: number | null;
   /** Lowest storage plan, billed yearly. Null when no yearly plan exists. */
@@ -110,10 +108,12 @@ export type HomeFigures = {
 
 /** Everything the home page and the FAQ need from the plans API, in one object. */
 export function homeFigures(plans: Plan[]): HomeFigures {
-  const eventPrice = eventPlanOf(plans)?.event_unit_price ?? null;
+  const eventPlan = eventPlanOf(plans);
+  const eventPrice = eventPlan?.event_unit_price ?? null;
   const lowest = lowestYearlyTier(plans);
   return {
-    freeEvents: freeEventsOf(plans),
+    firstPurchaseOffer: firstPurchaseOfferOf(eventPlan),
+    photoCapTerms: photoCapTermsOf(eventPlan),
     eventPrice: typeof eventPrice === "number" && eventPrice > 0 ? eventPrice : null,
     lowestStorage: lowest ? { storage_limit: lowest.storage_limit, perMonth: lowest.perMonth } : null,
     sameCostEvents: lowest ? sameCostEvents(lowest.tier, "yearly", eventPrice) : null,

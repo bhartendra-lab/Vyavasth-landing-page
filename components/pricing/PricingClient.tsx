@@ -5,10 +5,13 @@ import type { Plan } from "@/lib/plans";
 import {
   buildStorageTiers,
   eventPlanOf,
+  firstPurchaseOfferOf,
   formatInr,
+  formatOfferDate,
   formatStorage,
-  freePlanOf,
   nearestAvailableIndex,
+  offerLine,
+  payPerEventTerms,
   planForTier,
   yearlySavingsPercent,
 } from "@/lib/plans";
@@ -17,7 +20,6 @@ import {
   EVENT_VALIDITY_MONTHS,
   ORIGINAL_TIER_MIN_STORAGE_GB,
   STORAGE_TIER_BADGES,
-  freeEventsOf,
   includesOriginal,
   lowestYearlyTier,
   photosFor,
@@ -83,9 +85,11 @@ function Swap({ value, inherit }: { value: string; inherit?: boolean }) {
 export default function PricingClient({ plans }: { plans: Plan[] }) {
   const eventPlan = useMemo(() => eventPlanOf(plans), [plans]);
   const tiers = useMemo(() => buildStorageTiers(plans), [plans]);
-  const freePlan = useMemo(() => freePlanOf(plans), [plans]);
-  const freeEvents = useMemo(() => freeEventsOf(plans), [plans]);
   const lowest = useMemo(() => lowestYearlyTier(plans), [plans]);
+  // The first-purchase offer (null whenever the API says it is not live) and
+  // the terms behind "T&C apply": the same lines the app's terms dialog shows.
+  const offer = useMemo(() => firstPurchaseOfferOf(eventPlan), [eventPlan]);
+  const terms = useMemo(() => payPerEventTerms(eventPlan), [eventPlan]);
   const unit = eventPlan?.event_unit_price ?? 0;
 
   const initialInterval = (): Interval =>
@@ -126,8 +130,6 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
     );
   }
 
-  const freeCount = freeEvents === 1 ? "1 event" : `${freeEvents} events`;
-
   // ── Storage plan ───────────────────────────────────────────────
   const tier = tiers[tierIndex];
   const storagePlan = tier ? planForTier(tier, interval) : null;
@@ -144,36 +146,15 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
   return (
     <>
       <nav className={styles.jump} aria-label="Jump to a plan">
-        <a href="#free"><b>{formatInr(freePlan?.price ?? 0)}</b>{freeCount}</a>
         {eventPlan && <a href="#events"><b>{formatInr(unit)}</b>per event</a>}
         {lowest && <a href="#storage"><b>{formatInr(lowest.perMonth)}</b>a month</a>}
       </nav>
 
       <div className={styles.plans}>
-        {/* ── Free ── */}
-        <article className={cx(styles.p, styles.free)} id="free">
-          <span className={styles.tag}>Start here</span>
-          <h2>Free</h2>
-          <p className={styles.who}>To try it on a real wedding</p>
-          <div className={styles.amt}>
-            <b>{formatInr(freePlan?.price ?? 0)}</b>
-            <span>for your first {freeCount}</span>
-          </div>
-          <div className={styles.sub}>For every new studio.</div>
-          <ul>
-            <li><Tick />Unlimited storage for {freeEvents === 2 ? "both events" : "each event"}</li>
-            <li><Tick />Every feature unlocked</li>
-            <li className={styles.catch}><Clock />Each event stays live for {EVENT_VALIDITY_MONTHS} months</li>
-          </ul>
-          <span className={styles.sp}></span>
-          <a className={styles.cta} href={LOGIN_URL}>Start free</a>
-          <div className={styles.foot}>Then pick either paid plan.</div>
-        </article>
-
         {/* ── Pay per event ── */}
         {eventPlan && (
           <article className={cx(styles.p, styles.ev)} id="events">
-            <span className={styles.tag}>Pay per event</span>
+            <span className={styles.tag}>{offer ? offerLine(offer) : "Pay per event"}</span>
             <h2>One wedding at a time</h2>
             <p className={styles.who}>For a handful of events a season</p>
             <div className={styles.amt} aria-live="polite">
@@ -181,6 +162,12 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
               <span>{qty === 1 ? "for 1 event" : `for ${qty} events`}</span>
             </div>
             <div className={styles.sub}>{formatInr(unit)} per event, paid once.</div>
+            {/* Moves with the quantity buttons, so buying 5 visibly gives 6, not 10. */}
+            {offer && (
+              <div className={styles.sub} aria-live="polite">
+                You pay for {qty}. You get <Swap value={String(qty + offer.bonus_events)} inherit />.
+              </div>
+            )}
             <div className={styles.pick} role="group" aria-label="How many events">
               {EVENT_PRESETS.map((n) => (
                 <button
@@ -195,12 +182,21 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
               ))}
             </div>
             <ul>
-              <li><Tick />Unlimited storage per event</li>
+              <li>
+                <Tick />
+                <span>
+                  Upload unlimited photos.{" "}
+                  <a className={styles.tc} href="#photo-terms">T&amp;C apply</a>
+                </span>
+              </li>
               <li><Tick />Unused events never expire</li>
               <li className={styles.catch}><Clock />Each event stays live for {EVENT_VALIDITY_MONTHS} months from the day you create it</li>
             </ul>
             <span className={styles.sp}></span>
             <a className={styles.cta} href={LOGIN_URL}>Buy events</a>
+            {offer && offer.valid_until != null && (
+              <div className={styles.foot}>Offer valid till {formatOfferDate(offer.valid_until)}</div>
+            )}
             <div className={styles.foot}>
               More than 100 events?{" "}
               <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">Talk to us</a>
@@ -292,6 +288,20 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
           </article>
         )}
       </div>
+
+      {/* The terms behind every "T&C apply" on the site, with every figure from
+          the plans API. Always on the page (not a dialog) so /pricing#photo-terms
+          works as a plain link from anywhere. */}
+      {eventPlan && (
+        <section className={styles.terms} id="photo-terms" aria-labelledby="photo-terms-title">
+          <h2 id="photo-terms-title">Pay per event: terms</h2>
+          <ul>
+            {terms.map((line) => (
+              <li key={line}>{line}</li>
+            ))}
+          </ul>
+        </section>
+      )}
     </>
   );
 }

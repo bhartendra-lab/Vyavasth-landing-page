@@ -36,7 +36,7 @@ export default function IncludedBox() {
         </div>
         <div className={styles.note}>
           <span>
-            <b>One exception:</b> original-quality delivery needs a {formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)} storage plan or larger. Everything else is the same on free, per event and storage.
+            <b>One exception:</b> original-quality delivery needs a {formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)} storage plan or larger. Everything else is the same on pay per event and storage.
           </span>
           <Link href="/#features">See what each one does →</Link>
         </div>

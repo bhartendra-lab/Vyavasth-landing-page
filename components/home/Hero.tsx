@@ -2,7 +2,8 @@
 
 import { Fragment, useEffect, useRef, type CSSProperties } from "react";
 import Image from "next/image";
-import { LOGIN_URL } from "@/lib/app-url";
+import Link from "next/link";
+import { offerLine, type FirstPurchaseOffer } from "@/lib/plans";
 import { HERO_GUEST, HERO_TILES } from "@/lib/landing-content";
 import { startHero } from "./hero-engine";
 import styles from "./Hero.module.css";
@@ -41,7 +42,7 @@ function QrFinder({ x, y }: { x: number; y: number }) {
 const pct = (v: number) => `${+v.toFixed(3)}%`;
 const cx = (...c: string[]) => c.join(" ");
 
-export default function Hero({ freeEvents }: { freeEvents: number }) {
+export default function Hero({ offer }: { offer: FirstPurchaseOffer | null }) {
   const heroRef = useRef<HTMLElement>(null);
   const stageRef = useRef<HTMLDivElement>(null);
   const glRef = useRef<HTMLCanvasElement>(null);
@@ -75,10 +76,13 @@ export default function Hero({ freeEvents }: { freeEvents: number }) {
     );
   }, []);
 
-  const trust =
-    freeEvents === 1
-      ? "First event free. Every feature included."
-      : `First ${freeEvents} events free. Every feature included.`;
+  // Nothing is free at signup. The button carries the first-purchase offer while
+  // the plans API says it is live, and plain "See pricing" otherwise; either way
+  // it goes to the pay-per-event card, not to the login page.
+  const cta = offer ? offerLine(offer) : "See pricing";
+  const trust = offer
+    ? "On your first purchase. Every feature included."
+    : "Every feature included from your first event.";
 
   return (
     <section className={styles.hero} ref={heroRef} id="hero">
@@ -306,12 +310,12 @@ export default function Hero({ freeEvents }: { freeEvents: number }) {
             One link. One selfie. Every guest gets their own photos while the function is still on.
           </p>
           <div className={styles["cta-row"]}>
-            <a className={styles.cta} href={LOGIN_URL}>
-              <span>Start your first event free</span>
+            <Link className={styles.cta} href="/pricing#events">
+              <span>{cta}</span>
               <span className={styles.arr}>
                 <svg viewBox="0 0 18 18" fill="none" stroke="#fff" strokeWidth="2.200" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.500 9h11M10 4.500L14.500 9 10 13.500" /></svg>
               </span>
-            </a>
+            </Link>
             <div className={styles.trust}>{trust}</div>
           </div>
         </div>

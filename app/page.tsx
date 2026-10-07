@@ -13,22 +13,26 @@ import { homeFigures } from "@/lib/pricing-display";
 // The home hero is deep brown at the top, so the browser chrome matches it.
 export const viewport: Viewport = { themeColor: "#2B140D" };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  name: "Vyavasth",
-  applicationCategory: "BusinessApplication",
-  description: "An AI event gallery that delivers photos to guests during the event.",
-  operatingSystem: "Web, iOS, Android",
-  offers: { "@type": "Offer", price: "0", priceCurrency: "INR" },
-};
-
 export default async function Home() {
-  // Every figure on the home page (free events, per-event price, the lowest
-  // storage plan) is derived from the plans API. If the fetch fails, the
-  // price card renders without figures; nothing is hard-coded.
+  // Every figure on the home page (the first-purchase offer, per-event price,
+  // the lowest storage plan) is derived from the plans API. If the fetch fails,
+  // the price card renders without figures; nothing is hard-coded.
   const plansResult = await getPlans();
   const figures = homeFigures(plansResult.ok ? plansResult.data.plans : []);
+
+  // No free tier any more, so the structured data states the real entry price
+  // (one event) and no offer at all when the price is unknown.
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: "Vyavasth",
+    applicationCategory: "BusinessApplication",
+    description: "An AI event gallery that delivers photos to guests during the event.",
+    operatingSystem: "Web, iOS, Android",
+    ...(figures.eventPrice !== null
+      ? { offers: { "@type": "Offer", price: String(figures.eventPrice), priceCurrency: "INR" } }
+      : {}),
+  };
 
   return (
     <>
@@ -38,11 +42,11 @@ export default async function Home() {
       />
       <Nav />
       <main style={{ background: "var(--page)" }}>
-        <Hero freeEvents={figures.freeEvents} />
+        <Hero offer={figures.firstPurchaseOffer} />
         <Workflow />
         <Features />
         <Proof figures={figures} />
-        <CtaSection freeEvents={figures.freeEvents} />
+        <CtaSection offer={figures.firstPurchaseOffer} />
       </main>
       <Footer />
       <WhatsAppFab />

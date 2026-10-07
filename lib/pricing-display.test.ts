@@ -2,10 +2,8 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildStorageTiers, type Plan } from "./plans.ts";
 import {
-  FREE_EVENTS_FALLBACK,
   ORIGINAL_TIER_MIN_STORAGE_GB,
   STORAGE_TIER_BADGES,
-  freeEventsOf,
   homeFigures,
   includesOriginal,
   lowestYearlyTier,
@@ -15,7 +13,9 @@ import {
 } from "./pricing-display.ts";
 
 const free = (n?: number): Plan => ({ _id: "free", service_type: "Free", included_events: n, price: 0 });
-const event = (unit: number): Plan => ({ _id: "ev", service_type: "Event-based", event_unit_price: unit });
+const event = (unit: number, extra: Partial<Plan> = {}): Plan => ({
+  _id: "ev", service_type: "Event-based", event_unit_price: unit, ...extra,
+});
 const monthly = (gb: number, price: number): Plan => ({
   _id: `m-${gb}`, service_type: "Monthly", billing_interval: "monthly", storage_limit: gb, price,
 });
@@ -30,11 +30,32 @@ const CATALOG: Plan[] = [
   monthly(500, 2099), yearly(500, 20999),
 ];
 
-test("freeEventsOf reads the Free plan, and falls back when it is missing or empty", () => {
-  assert.equal(freeEventsOf([free(3)]), 3);
-  assert.equal(freeEventsOf([]), FREE_EVENTS_FALLBACK);
-  assert.equal(freeEventsOf([free()]), FREE_EVENTS_FALLBACK);
-  assert.equal(freeEventsOf([free(0)]), FREE_EVENTS_FALLBACK);
+test("homeFigures promises nothing free from the Free plan, whatever it says", () => {
+  // Free events at signup are gone. A Free plan that still lists some (a
+  // legacy value) must not put a free-events figure back on the site.
+  for (const plans of [[free(3), event(399)], [free(0), event(399)], [event(399)]]) {
+    const f = homeFigures(plans);
+    assert.equal(f.firstPurchaseOffer, null);
+    assert.equal("freeEvents" in f, false);
+  }
+});
+
+test("homeFigures carries the first-purchase offer only while the API says it is live", () => {
+  const live = { bonus_events: 1, valid_until: 1767205799000 };
+  assert.deepEqual(homeFigures([event(399, { first_purchase_offer: live })]).firstPurchaseOffer, live);
+  assert.equal(homeFigures([event(399, { first_purchase_offer: null })]).firstPurchaseOffer, null);
+  assert.equal(
+    homeFigures([event(399, { first_purchase_offer: { bonus_events: 0, valid_until: null } })]).firstPurchaseOffer,
+    null,
+  );
+});
+
+test("homeFigures reads the photo-cap terms from the event plan, with the named fallbacks", () => {
+  assert.deepEqual(
+    homeFigures([event(399, { photo_cap: 25000, photo_cap_addon_size: 2500, photo_cap_addon_price: 75 })]).photoCapTerms,
+    { cap: 25000, addonSize: 2500, addonPrice: 75 },
+  );
+  assert.deepEqual(homeFigures([]).photoCapTerms, { cap: 20000, addonSize: 5000, addonPrice: 50 });
 });
 
 test("sameCostEvents rounds up against the API event price", () => {
@@ -61,17 +82,17 @@ test("lowestYearlyTier skips a lower tier that only has a monthly plan", () => {
 
 test("homeFigures derives every number from the plans", () => {
   const f = homeFigures(CATALOG);
-  assert.equal(f.freeEvents, 2);
   assert.equal(f.eventPrice, 399);
   assert.equal(f.lowestStorage?.storage_limit, 75);
   assert.equal(Math.round(f.lowestStorage?.perMonth ?? 0), 625);
   assert.equal(f.sameCostEvents, 19);
 });
 
-test("homeFigures with no plans returns no figures, only the free-events fallback", () => {
+test("homeFigures with no plans returns no figures and no offer", () => {
   const f = homeFigures([]);
   assert.deepEqual(f, {
-    freeEvents: FREE_EVENTS_FALLBACK,
+    firstPurchaseOffer: null,
+    photoCapTerms: { cap: 20000, addonSize: 5000, addonPrice: 50 },
     eventPrice: null,
     lowestStorage: null,
     sameCostEvents: null,
