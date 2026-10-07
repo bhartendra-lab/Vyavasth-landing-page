@@ -136,7 +136,7 @@ export default function TermsPage() {
         <p>
           <strong>Pay per event.</strong> Events bought one at a time are paid
           for once and do not renew. Each such event can hold up to{" "}
-          <strong>20,000 photos and videos at a time</strong>. Deleting photos
+          <strong>20,000 photos at a time</strong>. Deleting photos
           from an event frees room in it, and only what is in the event at that
           moment counts toward the limit. You may add capacity to an event in
           blocks of <strong>5,000 photos for ₹50 per block</strong> (GST

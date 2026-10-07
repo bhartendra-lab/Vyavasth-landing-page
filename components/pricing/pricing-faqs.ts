@@ -76,7 +76,7 @@ export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
         },
         {
           q: "Is there a photo limit on pay per event?",
-          a: `Yes. Each event holds up to ${cap} photos and videos at a time. Only what is in the event right now counts, so deleting photos frees room to upload more. If you need more, you can add ${addonSize} photos to that event for ${addonPrice}, as many times as you need. Storage plans have no per-event limit.`,
+          a: `Yes. Each event holds up to ${cap} photos at a time. Only what is in the event right now counts, so deleting photos frees room to upload more. If you need more, you can add ${addonSize} photos to that event for ${addonPrice}, as many times as you need. Storage plans have no per-event limit.`,
         },
         ...(freeCount
           ? [
