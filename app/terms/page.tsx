@@ -148,6 +148,33 @@ export default function TermsPage() {
           offer for future purchases at any time. Credit already granted under
           the offer is not affected.
         </p>
+        {/* Event validity and paid extension. Static text again, so the
+            figures are written out: the base lifetime mirrors
+            AUTO_DELETE_WINDOW_DAYS and the periods and prices mirror
+            validity_extension_options on the Event-based Service in the
+            backend (the 36 months is VALIDITY_EXTENSION_MAX_AHEAD_MONTHS). If
+            any of those change, change this paragraph and LAST_UPDATED in
+            lib/site-legal.ts with them. The pricing page's own terms list
+            reads the same figures live from the plans API (lib/plans.ts). */}
+        <p>
+          <strong>Event validity and extension.</strong> An event bought one at
+          a time stays live for <strong>3 months</strong> from the day it is
+          created. Before it closes, the studio, or a client the studio has
+          added to that event, may pay to keep it live for longer:{" "}
+          <strong>
+            3 months for ₹199, 6 months for ₹299 or 12 months for ₹499
+          </strong>{" "}
+          (GST included). The time is added to the date the event was due to
+          close, and an event may be extended more than once, up to 36 months
+          ahead. Seven days before an event closes we email the studio and
+          message the clients it added on WhatsApp, each with their own link to
+          extend it. A client who pays is asked for an email address and a
+          state so that a GST invoice can be issued to them. When an event
+          closes, guests can no longer open it, it can no longer be extended,
+          and its photos and videos are permanently deleted about a day later.
+          A validity extension applies to the one event it was bought for,
+          cannot be moved to another event, and is non-refundable once applied.
+        </p>
       </section>
 
       <section>
