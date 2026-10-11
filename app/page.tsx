@@ -29,8 +29,9 @@ export default async function Home() {
     applicationCategory: "BusinessApplication",
     description: "An AI event gallery that delivers photos to guests during the event.",
     operatingSystem: "Web, iOS, Android",
-    ...(figures.eventPrice !== null
-      ? { offers: { "@type": "Offer", price: String(figures.eventPrice), priceCurrency: "INR" } }
+    // As charged, GST included: what a structured-data price means.
+    ...(figures.eventPriceWithGst !== null
+      ? { offers: { "@type": "Offer", price: String(figures.eventPriceWithGst), priceCurrency: "INR" } }
       : {}),
   };
 

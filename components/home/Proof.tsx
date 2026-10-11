@@ -4,8 +4,8 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { OWNER_PHOTOS, STUDIOS, type ImageSlot } from "@/lib/landing-content";
-import { formatInr, formatStorage } from "@/lib/plans";
-import { type HomeFigures } from "@/lib/pricing-display";
+import { formatInr, formatListPrice, formatStorage } from "@/lib/plans";
+import { allGstInclusive, type HomeFigures } from "@/lib/pricing-display";
 import { whatsappUrl } from "@/lib/site-legal";
 import styles from "./Proof.module.css";
 
@@ -123,8 +123,11 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
     return () => io.disconnect();
   }, []);
 
-  const { firstPurchaseOffer: offer, eventPrice, lowestStorage } = figures;
+  const { firstPurchaseOffer: offer, eventPrice, eventGstInclusive, lowestStorage } = figures;
   const hasWays = eventPrice !== null || lowestStorage !== null;
+  // "GST included." only while every price on sale includes it. A price that
+  // does not says "+ GST" beside itself, so nothing more is needed here.
+  const everyPriceHasGst = allGstInclusive(figures.gst) === true;
 
   return (
     <section className={styles.pf} id="proof" ref={rootRef}>
@@ -205,7 +208,7 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
           ) : (
             <>
               <h3>Pay per event</h3>
-              {eventPrice !== null && <div className={styles.big}>{formatInr(eventPrice)}</div>}
+              {eventPrice !== null && <div className={styles.big}>{formatListPrice(eventPrice, eventGstInclusive)}</div>}
               <p>One wedding at a time. Every feature unlocked.</p>
             </>
           )}
@@ -218,18 +221,18 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
           {hasWays && (
             <div className={styles.ways}>
               {eventPrice !== null && (
-                <div><b>{formatInr(eventPrice)}</b><span>per event, unlimited photos*</span></div>
+                <div><b>{formatListPrice(eventPrice, eventGstInclusive)}</b><span>per event, unlimited photos*</span></div>
               )}
               {lowestStorage && (
                 <div>
-                  <b>{formatInr(lowestStorage.perMonth)}</b>
+                  <b>{formatInr(lowestStorage.perMonth)}{lowestStorage.gstInclusive ? "" : " + GST"}</b>
                   <span>a month, billed yearly. {formatStorage(lowestStorage.storage_limit)}, reusable, unlimited events</span>
                 </div>
               )}
             </div>
           )}
           <p className={styles.fine}>
-            GST included. Every feature on every plan.
+            {everyPriceHasGst ? "GST included. " : ""}Every feature on every plan.
             {eventPrice !== null && (
               <>
                 {" "}

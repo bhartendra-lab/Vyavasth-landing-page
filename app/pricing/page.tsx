@@ -11,7 +11,8 @@ import {
   flattenPricingFaqs,
 } from "@/components/pricing/pricing-faqs";
 import { getPlans } from "@/lib/vyavasth-api";
-import { homeFigures } from "@/lib/pricing-display";
+import { allGstInclusive, gstSummary, homeFigures } from "@/lib/pricing-display";
+import { chargedPrice } from "@/lib/plans";
 import styles from "@/components/pricing/pricing.module.css";
 
 // The pricing header is deep brown at the top, so the browser chrome matches it.
@@ -26,10 +27,12 @@ const TITLE = "Pricing: Vyavasth";
  */
 export async function generateMetadata(): Promise<Metadata> {
   const plansResult = await getPlans();
-  const { firstPurchaseOffer } = homeFigures(plansResult.ok ? plansResult.data.plans : []);
+  const { firstPurchaseOffer, gst } = homeFigures(plansResult.ok ? plansResult.data.plans : []);
+  // "GST included" only while every price on sale includes it.
+  const fees = allGstInclusive(gst) ? "GST included, no hidden fees." : "No hidden fees.";
   const description = firstPurchaseOffer
-    ? `Pay per event or pick a storage plan. Buy your first event and get ${firstPurchaseOffer.bonus_events === 1 ? "one" : firstPurchaseOffer.bonus_events} free. GST included, no hidden fees.`
-    : "Pay per event or pick a storage plan. GST included, no hidden fees.";
+    ? `Pay per event or pick a storage plan. Buy your first event and get ${firstPurchaseOffer.bonus_events === 1 ? "one" : firstPurchaseOffer.bonus_events} free. ${fees}`
+    : `Pay per event or pick a storage plan. ${fees}`;
   return {
     title: TITLE,
     description,
@@ -57,11 +60,19 @@ export default async function PricingPage() {
   // and "same cost as N events" for the FAQ answers, all from the plans API.
   const figures = homeFigures(plans);
   const offer = figures.firstPurchaseOffer;
+  // One sentence on GST, from the plans themselves; nothing when none is known.
+  const lede = [offer ? "On your first purchase." : null, gstSummary(figures.gst)].filter(Boolean).join(" ");
 
   // What can actually be bought: storage plans by their price, pay per event by
-  // its per-event price. The legacy Free plan is not an offer and is left out.
+  // its per-event price, each as charged (GST included) since that is what a
+  // structured-data price means. The legacy Free plan is not an offer and is
+  // left out.
   const prices = plans
-    .map((p) => (p.service_type === "Event-based" ? p.event_unit_price : p.price))
+    .map((p) =>
+      p.service_type === "Event-based"
+        ? chargedPrice(p.event_unit_price, p.event_unit_price_with_gst)
+        : chargedPrice(p.price, p.price_with_gst),
+    )
     .filter((p): p is number => typeof p === "number" && p > 0);
   const lowPrice = prices.length ? Math.min(...prices) : 0;
   const highPrice = prices.length ? Math.max(...prices) : 0;
@@ -107,9 +118,7 @@ export default async function PricingPage() {
               ? `Buy one event. Get ${offer.bonus_events === 1 ? "one" : offer.bonus_events} free.`
               : "Pay per event or pick a plan."}
           </h1>
-          <p className={styles.lede}>
-            {offer ? "On your first purchase. GST included in every price." : "GST included in every price."}
-          </p>
+          {lede && <p className={styles.lede}>{lede}</p>}
           {plansResult.ok ? <PricingClient plans={plans} /> : <PricingErrorFallback />}
         </section>
         <IncludedBox />

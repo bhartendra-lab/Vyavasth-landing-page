@@ -6,16 +6,19 @@
 // offer, the photo limit and the price of extra capacity, the lowest storage
 // size and the "same cost as N events" figure come from the plans API (via
 // homeFigures in lib/pricing-display.ts), and the original-quality threshold
-// and event validity are named constants there.
+// and event validity are named constants there. An answer whose figures the
+// API did not give is shortened or left out; no figure is kept here to stand
+// in. The GST answer follows each plan's own GST switch.
 //
 // The offer sentences and the "How does the free event work?" item appear only
 // while the API says the offer is live. With it switched off, nothing here
 // mentions anything free.
 
-import { formatCount, formatInr, formatStorage } from "@/lib/plans";
+import { formatCount, formatListPrice, formatStorage } from "@/lib/plans";
 import {
   EVENT_VALIDITY_MONTHS,
   ORIGINAL_TIER_MIN_STORAGE_GB,
+  gstFaqAnswer,
   numberWord,
   type HomeFigures,
 } from "@/lib/pricing-display";
@@ -31,9 +34,12 @@ export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
       : `${numberWord(offer.bonus_events)} events`
     : null;
   const freeCount = offer ? (offer.bonus_events === 1 ? "one free event" : `${numberWord(offer.bonus_events)} free events`) : null;
-  const cap = formatCount(photoCapTerms.cap);
-  const addonSize = formatCount(photoCapTerms.addonSize);
-  const addonPrice = formatInr(photoCapTerms.addonPrice);
+  // The photo limit and the price of more room, when the plans API gave them.
+  const cap = photoCapTerms ? formatCount(photoCapTerms.cap) : null;
+  const addonSize = photoCapTerms ? formatCount(photoCapTerms.addonSize) : null;
+  const addonPrice = photoCapTerms ? formatListPrice(photoCapTerms.addonPrice, photoCapTerms.gstInclusive) : null;
+  const storagePool =
+    "On a storage plan, you have one pool that carries across all your events and does not reset when an event ends. Delete an event and the space is yours to use again.";
   // The comparison sentence needs both figures; without them it is left out
   // rather than guessed.
   const comparison =
@@ -72,12 +78,18 @@ export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
         },
         {
           q: "How does storage work?",
-          a: `On pay per event, each event holds up to ${cap} photos at a time. Delete photos and you can upload more. You can add ${addonSize} more to an event for ${addonPrice}. On a storage plan, you have one pool that carries across all your events and does not reset when an event ends. Delete an event and the space is yours to use again.`,
+          a: cap
+            ? `On pay per event, each event holds up to ${cap} photos at a time. Delete photos and you can upload more. You can add ${addonSize} more to an event for ${addonPrice}. ${storagePool}`
+            : storagePool,
         },
-        {
-          q: "Is there a photo limit on pay per event?",
-          a: `Yes. Each event holds up to ${cap} photos at a time. Only what is in the event right now counts, so deleting photos frees room to upload more. If you need more, you can add ${addonSize} photos to that event for ${addonPrice}, as many times as you need. Storage plans have no per-event limit.`,
-        },
+        ...(cap
+          ? [
+              {
+                q: "Is there a photo limit on pay per event?",
+                a: `Yes. Each event holds up to ${cap} photos at a time. Only what is in the event right now counts, so deleting photos frees room to upload more. If you need more, you can add ${addonSize} photos to that event for ${addonPrice}, as many times as you need. Storage plans have no per-event limit.`,
+              },
+            ]
+          : []),
         ...(freeCount
           ? [
               {
@@ -101,7 +113,7 @@ export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
       items: [
         {
           q: "Is GST included?",
-          a: "Yes. The price you see is the price you pay. Add your GSTIN and billing address once, and every payment gives you a numbered GST invoice as a PDF, with the tax shown separately.",
+          a: gstFaqAnswer(figures.gst),
         },
         {
           q: "How do I pay?",

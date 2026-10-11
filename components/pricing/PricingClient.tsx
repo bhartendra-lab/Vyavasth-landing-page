@@ -7,8 +7,10 @@ import {
   eventPlanOf,
   firstPurchaseOfferOf,
   formatInr,
+  formatListPrice,
   formatOfferDate,
   formatStorage,
+  gstInclusiveOf,
   nearestAvailableIndex,
   offerLine,
   payPerEventTerms,
@@ -20,6 +22,7 @@ import {
   EVENT_VALIDITY_MONTHS,
   ORIGINAL_TIER_MIN_STORAGE_GB,
   STORAGE_TIER_BADGES,
+  chargedEventPrice,
   includesOriginal,
   lowestYearlyTier,
   photosFor,
@@ -91,6 +94,9 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
   const offer = useMemo(() => firstPurchaseOfferOf(eventPlan), [eventPlan]);
   const terms = useMemo(() => payPerEventTerms(eventPlan), [eventPlan]);
   const unit = eventPlan?.event_unit_price ?? 0;
+  // The GST switch. A price is shown as its plan lists it, and says so when
+  // GST is still to be added; nothing here works out tax.
+  const eventInclusive = gstInclusiveOf(eventPlan);
 
   const initialInterval = (): Interval =>
     tiers.some((t) => (yearlySavingsPercent(t) ?? 0) > 0) ? "yearly" : "monthly";
@@ -141,7 +147,9 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
     : interval === "yearly"
       ? `${formatInr(storagePrice)} billed yearly`
       : "Billed every month";
-  const evenEvents = tier ? sameCostEvents(tier, interval, eventPlan?.event_unit_price) : null;
+  const storageInclusive = gstInclusiveOf(storagePlan);
+  // Compared as charged, GST included on both sides.
+  const evenEvents = tier ? sameCostEvents(tier, interval, chargedEventPrice(eventPlan)) : null;
 
   return (
     <>
@@ -159,9 +167,12 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
             <p className={styles.who}>For a handful of events a season</p>
             <div className={styles.amt} aria-live="polite">
               <b><Swap value={formatInr(qty * unit)} inherit /></b>
-              <span>{qty === 1 ? "for 1 event" : `for ${qty} events`}</span>
+              <span>
+                {qty === 1 ? "for 1 event" : `for ${qty} events`}
+                {eventInclusive ? "" : ", plus GST"}
+              </span>
             </div>
-            <div className={styles.sub}>{formatInr(unit)} per event, paid once.</div>
+            <div className={styles.sub}>{formatListPrice(unit, eventInclusive)} per event, paid once.</div>
             {/* Moves with the quantity buttons, so buying 5 visibly gives 6, not 10. */}
             {offer && (
               <div className={styles.sub} aria-live="polite">
@@ -232,7 +243,7 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
             <p className={styles.who}>Unlimited events, one pool of storage</p>
             <div className={styles.amt} aria-live="polite">
               <b><Swap value={priceValue} inherit /></b>
-              <span>a month</span>
+              <span>{storageInclusive ? "a month" : "a month, plus GST"}</span>
             </div>
             <div className={styles.sub}><Swap value={billedValue} /></div>
             <div className={styles.pick} role="group" aria-label="Storage size">

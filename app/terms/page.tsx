@@ -5,6 +5,19 @@ import {
   REGISTERED_ADDRESS,
   SUPPORT_EMAIL,
 } from "@/lib/site-legal";
+import { getPlans } from "@/lib/vyavasth-api";
+import {
+  baseLifetimeLabel,
+  eventPlanOf,
+  formatCount,
+  formatPrice,
+  gstInclusiveOf,
+  gstNote,
+  photoCapTermsOf,
+  validityBaseDaysOf,
+  validityOptionsOf,
+  validityOptionsSentence,
+} from "@/lib/plans";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions — Vyavasth",
@@ -18,7 +31,26 @@ const h2Style = { fontFamily: "var(--font-syne)", color: "#1A1208" } as const;
 const list = "list-disc pl-5 space-y-2 m-0";
 const muted = { color: "#7A6F63" } as const;
 
-export default function TermsPage() {
+export default async function TermsPage() {
+  // The pay per event figures (photo limit, the size and price of extra
+  // capacity, the validity periods and their prices, and whether GST is in
+  // those prices) are read from the plans API, the same cached request the
+  // pricing page makes. They live on the Event-based Service in the database:
+  // change them there and this page follows within minutes, with no deploy.
+  // Nothing is typed in here. If the request fails, each sentence falls back
+  // to pointing at the pricing page rather than quoting a figure.
+  const plansResult = await getPlans();
+  const eventPlan = plansResult.ok ? eventPlanOf(plansResult.data.plans) : null;
+  const capTerms = photoCapTermsOf(eventPlan);
+  const validityOptions = validityOptionsOf(eventPlan);
+  const gst = gstNote(gstInclusiveOf(eventPlan));
+  const lifetime = baseLifetimeLabel(validityBaseDaysOf(eventPlan));
+  const pricingLink = (
+    <a href="/pricing#photo-terms" className="text-[#C25A3A] underline">
+      pricing page
+    </a>
+  );
+
   return (
     <LegalPageShell title="Terms & Conditions">
       <p style={muted}>
@@ -127,53 +159,71 @@ export default function TermsPage() {
           </a>
           .
         </p>
-        {/* Pay per event. Legal pages are static text, so the figures are
-            written out here. They mirror fields on the Event-based Service in
-            the backend (event_photo_cap, photo_cap_addon_size,
-            photo_cap_addon_price, first_purchase_bonus_events): if those are
-            changed through the admin endpoint, change this paragraph and
-            LAST_UPDATED in lib/site-legal.ts with them. */}
+        {/* Pay per event. Every figure is from the plans API (see the top of
+            this component). The 36 months is VALIDITY_EXTENSION_MAX_AHEAD_MONTHS,
+            a constant in the backend's own code. When a figure changes in the
+            database this text changes with it: update LAST_UPDATED in
+            lib/site-legal.ts by hand when that happens. */}
         <p>
           <strong>Pay per event.</strong> Events bought one at a time are paid
-          for once and do not renew. Each such event can hold up to{" "}
-          <strong>20,000 photos at a time</strong>. Deleting photos
-          from an event frees room in it, and only what is in the event at that
-          moment counts toward the limit. You may add capacity to an event in
-          blocks of <strong>5,000 photos for ₹50 per block</strong> (GST
-          included). Extra capacity applies to the one event it was bought for,
-          cannot be moved to another event, and is non-refundable once applied.
-          Where we run a first-purchase offer, it gives a studio that is buying
-          events for the first time additional event credit, once per studio
-          whatever number of events is bought, and we may change or withdraw the
-          offer for future purchases at any time. Credit already granted under
-          the offer is not affected.
+          for once and do not renew.{" "}
+          {capTerms ? (
+            <>
+              Each such event can hold up to{" "}
+              <strong>{formatCount(capTerms.cap)} photos at a time</strong>.
+              Deleting photos from an event frees room in it, and only what is
+              in the event at that moment counts toward the limit. You may add
+              capacity to an event in blocks of{" "}
+              <strong>
+                {formatCount(capTerms.addonSize)} photos for {formatPrice(capTerms.addonPrice)} per block
+              </strong>{" "}
+              ({gst}).
+            </>
+          ) : (
+            <>
+              Each such event can hold a limited number of photos at a time.
+              Deleting photos from an event frees room in it, and only what is
+              in the event at that moment counts toward the limit. You may add
+              capacity to an event in paid blocks. The limit, the size of a
+              block and its price are shown on our {pricingLink}.
+            </>
+          )}{" "}
+          Extra capacity applies to the one event it was bought for, cannot be
+          moved to another event, and is non-refundable once applied. Where we
+          run a first-purchase offer, it gives a studio that is buying events
+          for the first time additional event credit, once per studio whatever
+          number of events is bought, and we may change or withdraw the offer
+          for future purchases at any time. Credit already granted under the
+          offer is not affected.
         </p>
-        {/* Event validity and paid extension. Static text again, so the
-            figures are written out: the base lifetime mirrors
-            AUTO_DELETE_WINDOW_DAYS and the periods and prices mirror
-            validity_extension_options on the Event-based Service in the
-            backend (the 36 months is VALIDITY_EXTENSION_MAX_AHEAD_MONTHS). If
-            any of those change, change this paragraph and LAST_UPDATED in
-            lib/site-legal.ts with them. The pricing page's own terms list
-            reads the same figures live from the plans API (lib/plans.ts). */}
         <p>
           <strong>Event validity and extension.</strong> An event bought one at
-          a time stays live for <strong>3 months</strong> from the day it is
+          a time stays live for <strong>{lifetime}</strong> from the day it is
           created. Before it closes, the studio, or a client the studio has
-          added to that event, may pay to keep it live for longer:{" "}
-          <strong>
-            3 months for ₹199, 6 months for ₹299 or 12 months for ₹499
-          </strong>{" "}
-          (GST included). The time is added to the date the event was due to
-          close, and an event may be extended more than once, up to 36 months
-          ahead. Seven days before an event closes we email the studio and
-          message the clients it added on WhatsApp, each with their own link to
-          extend it. A client who pays is asked for an email address and a
-          state so that a GST invoice can be issued to them. When an event
-          closes, guests can no longer open it, it can no longer be extended,
-          and its photos and videos are permanently deleted about a day later.
-          A validity extension applies to the one event it was bought for,
-          cannot be moved to another event, and is non-refundable once applied.
+          added to that event, may pay to keep it live for longer
+          {validityOptions.length > 0 ? (
+            <>
+              : <strong>{validityOptionsSentence(validityOptions)}</strong> ({gst}).
+            </>
+          ) : (
+            <>, for the periods and prices shown on our {pricingLink}.</>
+          )}{" "}
+          The time is added to the date the event was due to close, and an
+          event may be extended more than once, up to 36 months ahead. Seven
+          days before an event closes we email the studio and message the
+          clients it added on WhatsApp, each with their own link to extend it.
+          A client who pays is asked for an email address and a state so that a
+          GST invoice can be issued to them. When an event closes, guests can
+          no longer open it, it can no longer be extended, and its photos and
+          videos are permanently deleted about a day later. A validity
+          extension applies to the one event it was bought for, cannot be moved
+          to another event, and is non-refundable once applied.
+        </p>
+        <p>
+          The photo limit, the price of extra capacity and the prices of
+          validity extensions stated above are the ones in force today. We may
+          change them for future purchases. What applies to a purchase is what
+          is shown on our {pricingLink} and at checkout when it is made.
         </p>
       </section>
 

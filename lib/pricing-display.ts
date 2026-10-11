@@ -5,8 +5,10 @@
 
 import {
   buildStorageTiers,
+  chargedPrice,
   eventPlanOf,
   firstPurchaseOfferOf,
+  gstInclusiveOf,
   photoCapTermsOf,
   type FirstPurchaseOffer,
   type PhotoCapTerms,
@@ -63,6 +65,11 @@ export function photosFor(storageGb: number): number {
 /**
  * "Same cost as N pay-per-event events a year": how many events bought one at
  * a time cost at least as much as a year of this plan. Null when incomparable.
+ *
+ * Both sides are compared AS CHARGED, GST included: `eventUnitPrice` is what
+ * one event costs to buy (chargedEventPrice below), and the plan's side is its
+ * with-GST price. One of them may list its price before GST and the other with
+ * it, and the comparison must still be in the same money.
  */
 export function sameCostEvents(
   tier: StorageTier,
@@ -71,19 +78,96 @@ export function sameCostEvents(
 ): number | null {
   if (typeof eventUnitPrice !== "number" || eventUnitPrice <= 0) return null;
   const plan = interval === "monthly" ? tier.monthly : tier.yearly;
-  if (typeof plan?.price !== "number" || plan.price <= 0) return null;
-  const perYear = interval === "monthly" ? plan.price * 12 : plan.price;
+  const price = chargedPrice(plan?.price, plan?.price_with_gst);
+  if (price === null || price <= 0) return null;
+  const perYear = interval === "monthly" ? price * 12 : price;
   return Math.ceil(perYear / eventUnitPrice);
 }
 
-/** The lowest storage tier that has a yearly plan, with its per-month price. */
+/** One event as charged, GST included. Null when there is no such price. */
+export function chargedEventPrice(eventPlan: Plan | null | undefined): number | null {
+  const price = chargedPrice(eventPlan?.event_unit_price, eventPlan?.event_unit_price_with_gst);
+  return price !== null && price > 0 ? price : null;
+}
+
+/**
+ * How GST applies across what is on sale. Each side is true (its prices
+ * include GST), false (they are before GST), "mixed" (storage plans that
+ * disagree with each other), or null when nothing of that kind is on sale.
+ */
+export type GstPicture = { event: boolean | null; storage: boolean | "mixed" | null };
+
+export function gstPictureOf(plans: Plan[]): GstPicture {
+  const eventPlan = eventPlanOf(plans);
+  const modes = new Set(
+    buildStorageTiers(plans)
+      .flatMap((tier) => [tier.monthly, tier.yearly])
+      .filter((plan): plan is Plan => plan !== null)
+      .map(gstInclusiveOf),
+  );
+  return {
+    event: eventPlan ? gstInclusiveOf(eventPlan) : null,
+    storage: modes.size === 0 ? null : modes.size === 1 ? [...modes][0] : "mixed",
+  };
+}
+
+/** True when everything on sale includes GST, false when anything does not, null when nothing is on sale. */
+export function allGstInclusive(picture: GstPicture): boolean | null {
+  const known = [picture.event, picture.storage].filter((side) => side !== null);
+  if (known.length === 0) return null;
+  return known.every((side) => side === true);
+}
+
+/**
+ * One sentence on GST for the pricing page's header, or null when no plan is
+ * known (the plans request failed): the page then says nothing about GST
+ * rather than guess.
+ */
+export function gstSummary(picture: GstPicture): string | null {
+  const { event, storage } = picture;
+  if (event === null && storage === null) return null;
+  if (allGstInclusive(picture)) return "GST included in every price.";
+  if (event !== true && storage !== true && storage !== "mixed") return "Prices are before GST, which is added at checkout.";
+  if (event === false && storage === true) return "Pay per event prices are before GST. Storage plan prices include GST.";
+  if (event === true && storage === false) return "Pay per event prices include GST. Storage plan prices are before GST.";
+  return "Each price says whether GST is included.";
+}
+
+/** The pricing FAQ's answer to "Is GST included?", for the same picture. */
+export function gstFaqAnswer(picture: GstPicture): string {
+  const invoice =
+    "Add your GSTIN and billing address once, and every payment gives you a numbered GST invoice as a PDF, with the tax shown separately.";
+  const { event, storage } = picture;
+  if (allGstInclusive(picture)) return `Yes. The price you see is the price you pay. ${invoice}`;
+  if (event === false && storage === true) {
+    return `Storage plan prices include GST. Pay per event prices, extra photo capacity and validity extensions are shown before GST, which is added at checkout. ${invoice}`;
+  }
+  if (event === true && storage === false) {
+    return `Pay per event prices, extra photo capacity and validity extensions include GST. Storage plan prices are shown before GST, which is added at checkout. ${invoice}`;
+  }
+  if (event !== true && storage !== true && storage !== "mixed" && (event !== null || storage !== null)) {
+    return `Prices are shown before GST, which is added at checkout. You see the full amount, tax included, before you pay. ${invoice}`;
+  }
+  return `Each price says whether GST is included, and you see the full amount, tax included, before you pay. ${invoice}`;
+}
+
+/**
+ * The lowest storage tier that has a yearly plan, with its per-month price as
+ * the plan lists it and whether that price includes GST.
+ */
 export function lowestYearlyTier(
   plans: Plan[],
-): { storage_limit: number; yearlyPrice: number; perMonth: number; tier: StorageTier } | null {
+): { storage_limit: number; yearlyPrice: number; perMonth: number; gstInclusive: boolean; tier: StorageTier } | null {
   for (const tier of buildStorageTiers(plans)) {
     const price = tier.yearly?.price;
     if (typeof price === "number" && price > 0) {
-      return { storage_limit: tier.storage_limit, yearlyPrice: price, perMonth: price / 12, tier };
+      return {
+        storage_limit: tier.storage_limit,
+        yearlyPrice: price,
+        perMonth: price / 12,
+        gstInclusive: gstInclusiveOf(tier.yearly),
+        tier,
+      };
     }
   }
   return null;
@@ -96,26 +180,42 @@ export type HomeFigures = {
    * the site may promise, and only while the API says it is on.
    */
   firstPurchaseOffer: FirstPurchaseOffer | null;
-  /** Photo limit per pay-per-event event and the price of extra capacity. */
-  photoCapTerms: PhotoCapTerms;
-  /** Pay-per-event price, or null when there is no Event-based plan. */
+  /**
+   * Photo limit per pay-per-event event and the price of extra capacity. Null
+   * when the plans API did not give them: no figure is kept on this site to
+   * stand in, so the copy that needs one is left out.
+   */
+  photoCapTerms: PhotoCapTerms | null;
+  /** Pay-per-event price as the plan lists it, or null when there is no Event-based plan. */
   eventPrice: number | null;
-  /** Lowest storage plan, billed yearly. Null when no yearly plan exists. */
-  lowestStorage: { storage_limit: number; perMonth: number } | null;
+  /** Whether `eventPrice` includes GST. */
+  eventGstInclusive: boolean;
+  /** One event as charged, GST included: for structured data and comparisons. */
+  eventPriceWithGst: number | null;
+  /** Lowest storage plan, billed yearly, at its listed price. Null when no yearly plan exists. */
+  lowestStorage: { storage_limit: number; perMonth: number; gstInclusive: boolean } | null;
   /** Events bought one at a time that cost the same as a year of the lowest plan. */
   sameCostEvents: number | null;
+  /** How GST applies across what is on sale. */
+  gst: GstPicture;
 };
 
 /** Everything the home page and the FAQ need from the plans API, in one object. */
 export function homeFigures(plans: Plan[]): HomeFigures {
   const eventPlan = eventPlanOf(plans);
   const eventPrice = eventPlan?.event_unit_price ?? null;
+  const eventPriceWithGst = chargedEventPrice(eventPlan);
   const lowest = lowestYearlyTier(plans);
   return {
     firstPurchaseOffer: firstPurchaseOfferOf(eventPlan),
     photoCapTerms: photoCapTermsOf(eventPlan),
     eventPrice: typeof eventPrice === "number" && eventPrice > 0 ? eventPrice : null,
-    lowestStorage: lowest ? { storage_limit: lowest.storage_limit, perMonth: lowest.perMonth } : null,
-    sameCostEvents: lowest ? sameCostEvents(lowest.tier, "yearly", eventPrice) : null,
+    eventGstInclusive: gstInclusiveOf(eventPlan),
+    eventPriceWithGst,
+    lowestStorage: lowest
+      ? { storage_limit: lowest.storage_limit, perMonth: lowest.perMonth, gstInclusive: lowest.gstInclusive }
+      : null,
+    sameCostEvents: lowest ? sameCostEvents(lowest.tier, "yearly", eventPriceWithGst) : null,
+    gst: gstPictureOf(plans),
   };
 }

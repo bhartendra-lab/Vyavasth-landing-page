@@ -4,6 +4,11 @@ import { buildStorageTiers, type Plan } from "./plans.ts";
 import {
   ORIGINAL_TIER_MIN_STORAGE_GB,
   STORAGE_TIER_BADGES,
+  allGstInclusive,
+  chargedEventPrice,
+  gstFaqAnswer,
+  gstPictureOf,
+  gstSummary,
   homeFigures,
   includesOriginal,
   lowestYearlyTier,
@@ -16,11 +21,11 @@ const free = (n?: number): Plan => ({ _id: "free", service_type: "Free", include
 const event = (unit: number, extra: Partial<Plan> = {}): Plan => ({
   _id: "ev", service_type: "Event-based", event_unit_price: unit, ...extra,
 });
-const monthly = (gb: number, price: number): Plan => ({
-  _id: `m-${gb}`, service_type: "Monthly", billing_interval: "monthly", storage_limit: gb, price,
+const monthly = (gb: number, price: number, extra: Partial<Plan> = {}): Plan => ({
+  _id: `m-${gb}`, service_type: "Monthly", billing_interval: "monthly", storage_limit: gb, price, ...extra,
 });
-const yearly = (gb: number, price: number): Plan => ({
-  _id: `y-${gb}`, service_type: "Yearly", billing_interval: "yearly", storage_limit: gb, price,
+const yearly = (gb: number, price: number, extra: Partial<Plan> = {}): Plan => ({
+  _id: `y-${gb}`, service_type: "Yearly", billing_interval: "yearly", storage_limit: gb, price, ...extra,
 });
 
 const CATALOG: Plan[] = [
@@ -50,12 +55,14 @@ test("homeFigures carries the first-purchase offer only while the API says it is
   );
 });
 
-test("homeFigures reads the photo-cap terms from the event plan, with the named fallbacks", () => {
+test("homeFigures reads the photo-cap terms from the event plan, and has none when the plan does not say", () => {
   assert.deepEqual(
     homeFigures([event(399, { photo_cap: 25000, photo_cap_addon_size: 2500, photo_cap_addon_price: 75 })]).photoCapTerms,
-    { cap: 25000, addonSize: 2500, addonPrice: 75 },
+    { cap: 25000, addonSize: 2500, addonPrice: 75, gstInclusive: true },
   );
-  assert.deepEqual(homeFigures([]).photoCapTerms, { cap: 20000, addonSize: 5000, addonPrice: 50 });
+  // No figure is kept on the site to stand in for the API's.
+  assert.equal(homeFigures([]).photoCapTerms, null);
+  assert.equal(homeFigures([event(399)]).photoCapTerms, null);
 });
 
 test("sameCostEvents rounds up against the API event price", () => {
@@ -92,10 +99,13 @@ test("homeFigures with no plans returns no figures and no offer", () => {
   const f = homeFigures([]);
   assert.deepEqual(f, {
     firstPurchaseOffer: null,
-    photoCapTerms: { cap: 20000, addonSize: 5000, addonPrice: 50 },
+    photoCapTerms: null,
     eventPrice: null,
+    eventGstInclusive: true,
+    eventPriceWithGst: null,
     lowestStorage: null,
     sameCostEvents: null,
+    gst: { event: null, storage: null },
   });
 });
 
@@ -111,4 +121,70 @@ test("photosFor, numberWord and the badge map", () => {
   assert.equal(numberWord(2), "two");
   assert.equal(numberWord(11), "11");
   assert.deepEqual(Object.keys(STORAGE_TIER_BADGES), ["200"]);
+});
+
+/* ── The GST switch ─────────────────────────────────────────────────────── */
+
+// Pay per event listed before GST, storage plans with it: what is asked for now.
+const EXCLUSIVE_EVENT = event(399, { gst_inclusive: false, event_unit_price_with_gst: 470.82 });
+const MIXED: Plan[] = [EXCLUSIVE_EVENT, monthly(75, 749), yearly(75, 7499)];
+const ALL_EXCLUSIVE: Plan[] = [
+  EXCLUSIVE_EVENT,
+  monthly(75, 749, { gst_inclusive: false, price_with_gst: 883.82 }),
+  yearly(75, 7499, { gst_inclusive: false, price_with_gst: 8848.82 }),
+];
+
+test("gstPictureOf: each side of the catalog says whether its prices include GST", () => {
+  assert.deepEqual(gstPictureOf(CATALOG), { event: true, storage: true });
+  assert.deepEqual(gstPictureOf(MIXED), { event: false, storage: true });
+  assert.deepEqual(gstPictureOf(ALL_EXCLUSIVE), { event: false, storage: false });
+  assert.deepEqual(gstPictureOf([]), { event: null, storage: null });
+  assert.deepEqual(gstPictureOf([event(399)]), { event: true, storage: null });
+  // Storage plans that disagree with each other.
+  assert.deepEqual(gstPictureOf([monthly(75, 749), yearly(75, 7499, { gst_inclusive: false })]), { event: null, storage: "mixed" });
+});
+
+test("gstSummary: the header sentence follows the switch, and says nothing when no plan is known", () => {
+  assert.equal(gstSummary(gstPictureOf(CATALOG)), "GST included in every price.");
+  assert.equal(gstSummary(gstPictureOf(MIXED)), "Pay per event prices are before GST. Storage plan prices include GST.");
+  assert.equal(gstSummary(gstPictureOf(ALL_EXCLUSIVE)), "Prices are before GST, which is added at checkout.");
+  assert.equal(gstSummary({ event: true, storage: false }), "Pay per event prices include GST. Storage plan prices are before GST.");
+  assert.equal(gstSummary({ event: true, storage: "mixed" }), "Each price says whether GST is included.");
+  assert.equal(gstSummary({ event: false, storage: null }), "Prices are before GST, which is added at checkout.");
+  assert.equal(gstSummary(gstPictureOf([])), null);
+  assert.equal(allGstInclusive(gstPictureOf([])), null);
+  assert.equal(allGstInclusive(gstPictureOf(MIXED)), false);
+});
+
+test("gstFaqAnswer: never says the listed price is the price paid unless every price includes GST", () => {
+  assert.ok(gstFaqAnswer(gstPictureOf(CATALOG)).startsWith("Yes. The price you see is the price you pay."));
+  for (const picture of [gstPictureOf(MIXED), gstPictureOf(ALL_EXCLUSIVE), gstPictureOf([]), { event: true, storage: "mixed" as const }]) {
+    const answer = gstFaqAnswer(picture);
+    assert.ok(!answer.includes("The price you see is the price you pay"), answer);
+    assert.ok(answer.includes("numbered GST invoice"), answer);
+    assert.doesNotMatch(answer, /[\u2013\u2014]/);
+  }
+  assert.ok(gstFaqAnswer(gstPictureOf(MIXED)).startsWith("Storage plan prices include GST. Pay per event prices"));
+  assert.ok(gstFaqAnswer(gstPictureOf(ALL_EXCLUSIVE)).startsWith("Prices are shown before GST"));
+});
+
+test("homeFigures: an event listed before GST keeps its listed price and carries what it costs to buy", () => {
+  const f = homeFigures(MIXED);
+  assert.equal(f.eventPrice, 399);
+  assert.equal(f.eventGstInclusive, false);
+  assert.equal(f.eventPriceWithGst, 470.82);
+  assert.equal(f.lowestStorage?.gstInclusive, true);
+  assert.deepEqual(f.gst, { event: false, storage: true });
+  // An API from before the switch sends no with-GST figure: the listed price is the charged one.
+  assert.equal(chargedEventPrice(event(399)), 399);
+  assert.equal(chargedEventPrice(null), null);
+});
+
+test("sameCostEvents compares as charged, so a plan with GST and an event before it are in the same money", () => {
+  const tier = buildStorageTiers(MIXED)[0];
+  // 7499 with GST against 470.82 an event: 15.9, not the 18.8 the listed 399 would give.
+  assert.equal(sameCostEvents(tier, "yearly", chargedEventPrice(EXCLUSIVE_EVENT)), 16);
+  assert.equal(homeFigures(MIXED).sameCostEvents, 16);
+  // Both before GST: the same answer as on the listed prices.
+  assert.equal(homeFigures(ALL_EXCLUSIVE).sameCostEvents, 19);
 });
