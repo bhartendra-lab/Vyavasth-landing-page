@@ -7,6 +7,8 @@ import {
   allGstInclusive,
   chargedEventPrice,
   gstFaqAnswer,
+  gstFeesPhrase,
+  noneGstInclusive,
   gstPictureOf,
   gstSummary,
   homeFigures,
@@ -187,4 +189,18 @@ test("sameCostEvents compares as charged, so a plan with GST and an event before
   assert.equal(homeFigures(MIXED).sameCostEvents, 16);
   // Both before GST: the same answer as on the listed prices.
   assert.equal(homeFigures(ALL_EXCLUSIVE).sameCostEvents, 19);
+});
+
+test("gstFeesPhrase: the meta description claims GST included only when every price has it, and before GST only when none does", () => {
+  assert.equal(gstFeesPhrase(gstPictureOf(CATALOG)), "GST included, no hidden fees.");
+  assert.equal(gstFeesPhrase(gstPictureOf(ALL_EXCLUSIVE)), "Prices are before GST, with no hidden fees.");
+  assert.equal(gstFeesPhrase({ event: false, storage: null }), "Prices are before GST, with no hidden fees.");
+  // Mixed, or nothing known: neither claim.
+  for (const picture of [gstPictureOf(MIXED), gstPictureOf([]), { event: true, storage: "mixed" as const }, { event: false, storage: "mixed" as const }]) {
+    assert.equal(gstFeesPhrase(picture), "No hidden fees.");
+  }
+  assert.equal(noneGstInclusive(gstPictureOf(ALL_EXCLUSIVE)), true);
+  assert.equal(noneGstInclusive(gstPictureOf(MIXED)), false);
+  assert.equal(noneGstInclusive(gstPictureOf(CATALOG)), false);
+  assert.equal(noneGstInclusive(gstPictureOf([])), null);
 });

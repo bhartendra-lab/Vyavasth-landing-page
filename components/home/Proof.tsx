@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { OWNER_PHOTOS, STUDIOS, type ImageSlot } from "@/lib/landing-content";
 import { formatInr, formatListPrice, formatStorage } from "@/lib/plans";
-import { allGstInclusive, type HomeFigures } from "@/lib/pricing-display";
+import { gstSummary, type HomeFigures } from "@/lib/pricing-display";
 import { whatsappUrl } from "@/lib/site-legal";
 import styles from "./Proof.module.css";
 
@@ -125,9 +125,10 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
 
   const { firstPurchaseOffer: offer, eventPrice, eventGstInclusive, lowestStorage } = figures;
   const hasWays = eventPrice !== null || lowestStorage !== null;
-  // "GST included." only while every price on sale includes it. A price that
-  // does not says "+ GST" beside itself, so nothing more is needed here.
-  const everyPriceHasGst = allGstInclusive(figures.gst) === true;
+  // One sentence on GST from the plans' own gst_inclusive switch (the same
+  // sentence the pricing page opens with): which prices include GST and which
+  // are before it. Nothing at all when no plan is known.
+  const gstLine = gstSummary(figures.gst);
 
   return (
     <section className={styles.pf} id="proof" ref={rootRef}>
@@ -232,7 +233,7 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
             </div>
           )}
           <p className={styles.fine}>
-            {everyPriceHasGst ? "GST included. " : ""}Every feature on every plan.
+            {gstLine ? `${gstLine} ` : ""}Every feature on every plan.
             {eventPrice !== null && (
               <>
                 {" "}

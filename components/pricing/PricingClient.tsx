@@ -22,7 +22,9 @@ import {
   EVENT_VALIDITY_MONTHS,
   ORIGINAL_TIER_MIN_STORAGE_GB,
   STORAGE_TIER_BADGES,
+  allGstInclusive,
   chargedEventPrice,
+  gstPictureOf,
   includesOriginal,
   lowestYearlyTier,
   photosFor,
@@ -94,9 +96,17 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
   const offer = useMemo(() => firstPurchaseOfferOf(eventPlan), [eventPlan]);
   const terms = useMemo(() => payPerEventTerms(eventPlan), [eventPlan]);
   const unit = eventPlan?.event_unit_price ?? 0;
-  // The GST switch. A price is shown as its plan lists it, and says so when
-  // GST is still to be added; nothing here works out tax.
+  // The GST switch (gst_inclusive on each plan, from the database). A price
+  // is shown as its plan lists it; nothing here works out tax.
+  //
+  // While EVERY price on sale includes GST, the page header says so once and
+  // the cards stay as they were. As soon as any price is before GST, each
+  // card says which kind it is, so a card with GST in its price is never
+  // mistaken for one without.
   const eventInclusive = gstInclusiveOf(eventPlan);
+  const everyPriceHasGst = useMemo(() => allGstInclusive(gstPictureOf(plans)) === true, [plans]);
+  /** ", plus GST", ", GST included", or nothing while the header already covers it. */
+  const cardGstNote = (inclusive: boolean) => (inclusive ? (everyPriceHasGst ? "" : ", GST included") : ", plus GST");
 
   const initialInterval = (): Interval =>
     tiers.some((t) => (yearlySavingsPercent(t) ?? 0) > 0) ? "yearly" : "monthly";
@@ -142,20 +152,24 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
   const maxSavings = tiers.length ? Math.max(0, ...tiers.map((t) => yearlySavingsPercent(t) ?? 0)) : 0;
   const storagePrice = storagePlan?.price ?? 0;
   const priceValue = storagePlan ? formatInr(interval === "yearly" ? storagePrice / 12 : storagePrice) : "N/A";
+  const storageInclusive = gstInclusiveOf(storagePlan);
   const billedValue = !storagePlan
     ? `Not available on ${interval} billing`
     : interval === "yearly"
-      ? `${formatInr(storagePrice)} billed yearly`
+      ? `${formatListPrice(storagePrice, storageInclusive)} billed yearly`
       : "Billed every month";
-  const storageInclusive = gstInclusiveOf(storagePlan);
   // Compared as charged, GST included on both sides.
   const evenEvents = tier ? sameCostEvents(tier, interval, chargedEventPrice(eventPlan)) : null;
 
   return (
     <>
       <nav className={styles.jump} aria-label="Jump to a plan">
-        {eventPlan && <a href="#events"><b>{formatInr(unit)}</b>per event</a>}
-        {lowest && <a href="#storage"><b>{formatInr(lowest.perMonth)}</b>a month</a>}
+        {eventPlan && <a href="#events"><b>{formatListPrice(unit, eventInclusive)}</b>per event</a>}
+        {lowest && (
+          <a href="#storage">
+            <b>{formatInr(lowest.perMonth)}{lowest.gstInclusive ? "" : " + GST"}</b>a month
+          </a>
+        )}
       </nav>
 
       <div className={styles.plans}>
@@ -169,7 +183,7 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
               <b><Swap value={formatInr(qty * unit)} inherit /></b>
               <span>
                 {qty === 1 ? "for 1 event" : `for ${qty} events`}
-                {eventInclusive ? "" : ", plus GST"}
+                {cardGstNote(eventInclusive)}
               </span>
             </div>
             <div className={styles.sub}>{formatListPrice(unit, eventInclusive)} per event, paid once.</div>
@@ -243,7 +257,7 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
             <p className={styles.who}>Unlimited events, one pool of storage</p>
             <div className={styles.amt} aria-live="polite">
               <b><Swap value={priceValue} inherit /></b>
-              <span>{storageInclusive ? "a month" : "a month, plus GST"}</span>
+              <span>a month{cardGstNote(storageInclusive)}</span>
             </div>
             <div className={styles.sub}><Swap value={billedValue} /></div>
             <div className={styles.pick} role="group" aria-label="Storage size">

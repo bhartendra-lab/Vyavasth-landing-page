@@ -11,7 +11,7 @@ import {
   flattenPricingFaqs,
 } from "@/components/pricing/pricing-faqs";
 import { getPlans } from "@/lib/vyavasth-api";
-import { allGstInclusive, gstSummary, homeFigures } from "@/lib/pricing-display";
+import { gstFeesPhrase, gstSummary, homeFigures } from "@/lib/pricing-display";
 import { chargedPrice } from "@/lib/plans";
 import styles from "@/components/pricing/pricing.module.css";
 
@@ -28,8 +28,8 @@ const TITLE = "Pricing: Vyavasth";
 export async function generateMetadata(): Promise<Metadata> {
   const plansResult = await getPlans();
   const { firstPurchaseOffer, gst } = homeFigures(plansResult.ok ? plansResult.data.plans : []);
-  // "GST included" only while every price on sale includes it.
-  const fees = allGstInclusive(gst) ? "GST included, no hidden fees." : "No hidden fees.";
+  // From the plans' own gst_inclusive switch (lib/pricing-display.ts).
+  const fees = gstFeesPhrase(gst);
   const description = firstPurchaseOffer
     ? `Pay per event or pick a storage plan. Buy your first event and get ${firstPurchaseOffer.bonus_events === 1 ? "one" : firstPurchaseOffer.bonus_events} free. ${fees}`
     : `Pay per event or pick a storage plan. ${fees}`;

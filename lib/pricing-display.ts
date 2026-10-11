@@ -118,6 +118,25 @@ export function allGstInclusive(picture: GstPicture): boolean | null {
   return known.every((side) => side === true);
 }
 
+/** True when nothing on sale includes GST, false when anything does, null when nothing is on sale. */
+export function noneGstInclusive(picture: GstPicture): boolean | null {
+  const known = [picture.event, picture.storage].filter((side) => side !== null);
+  if (known.length === 0) return null;
+  return known.every((side) => side === false);
+}
+
+/**
+ * The few words on GST that end a one-line description of the pricing (the
+ * page's meta description): "GST included" only while every price on sale
+ * includes it, "before GST" only while none does, and neither claim when the
+ * two kinds are mixed or no plan is known.
+ */
+export function gstFeesPhrase(picture: GstPicture): string {
+  if (allGstInclusive(picture)) return "GST included, no hidden fees.";
+  if (noneGstInclusive(picture)) return "Prices are before GST, with no hidden fees.";
+  return "No hidden fees.";
+}
+
 /**
  * One sentence on GST for the pricing page's header, or null when no plan is
  * known (the plans request failed): the page then says nothing about GST
@@ -127,7 +146,7 @@ export function gstSummary(picture: GstPicture): string | null {
   const { event, storage } = picture;
   if (event === null && storage === null) return null;
   if (allGstInclusive(picture)) return "GST included in every price.";
-  if (event !== true && storage !== true && storage !== "mixed") return "Prices are before GST, which is added at checkout.";
+  if (noneGstInclusive(picture)) return "Prices are before GST, which is added at checkout.";
   if (event === false && storage === true) return "Pay per event prices are before GST. Storage plan prices include GST.";
   if (event === true && storage === false) return "Pay per event prices include GST. Storage plan prices are before GST.";
   return "Each price says whether GST is included.";
@@ -145,7 +164,7 @@ export function gstFaqAnswer(picture: GstPicture): string {
   if (event === true && storage === false) {
     return `Pay per event prices, extra photo capacity and validity extensions include GST. Storage plan prices are shown before GST, which is added at checkout. ${invoice}`;
   }
-  if (event !== true && storage !== true && storage !== "mixed" && (event !== null || storage !== null)) {
+  if (noneGstInclusive(picture)) {
     return `Prices are shown before GST, which is added at checkout. You see the full amount, tax included, before you pay. ${invoice}`;
   }
   return `Each price says whether GST is included, and you see the full amount, tax included, before you pay. ${invoice}`;
