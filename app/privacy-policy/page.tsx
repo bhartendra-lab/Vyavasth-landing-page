@@ -7,7 +7,7 @@ import {
 } from "@/lib/site-legal";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Vyavasth",
+  title: "Privacy Policy: Vyavasth",
   description:
     "How Vyavasth collects, uses, and protects personal data, including payments, face embeddings, and cookies.",
   alternates: { canonical: "/privacy-policy" },
@@ -34,9 +34,9 @@ export default function PrivacyPolicyPage() {
           1. Who we are
         </h2>
         <p>
-          <strong>{BUSINESS_NAME}</strong> operates a subscription-based SaaS
-          platform for business operations management. Registered address:{" "}
-          {REGISTERED_ADDRESS}. For privacy-related requests, contact{" "}
+          <strong>{BUSINESS_NAME}</strong> operates subscription-based
+          wedding and event photo delivery software for photography studios.
+          Registered address: {REGISTERED_ADDRESS}. For privacy-related requests, contact{" "}
           <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
             {SUPPORT_EMAIL}
           </a>
@@ -150,8 +150,8 @@ export default function PrivacyPolicyPage() {
           <li>Creating and managing your account and subscription.</li>
           <li>
             Providing, maintaining, and improving the Vyavasth platform
-            (including workflows, task tracking, and day-to-day business
-            management features).
+            (including event photos, guest selfies used for face search, photo
+            selections and related event details).
           </li>
           <li>
             Processing payments, renewals, refunds, and billing inquiries in line

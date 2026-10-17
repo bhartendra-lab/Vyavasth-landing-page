@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import CtaSection from "@/components/CtaSection";
@@ -18,7 +19,7 @@ import styles from "@/components/pricing/pricing.module.css";
 // The pricing header is deep brown at the top, so the browser chrome matches it.
 export const viewport: Viewport = { themeColor: "#2B140D" };
 
-const TITLE = "Pricing: Vyavasth";
+const TITLE = "Vyavasth pricing: pay per event or an annual storage plan";
 
 /**
  * The description mentions the first-purchase offer only while the plans API
@@ -121,6 +122,11 @@ export default async function PricingPage() {
           {lede && <p className={styles.lede}>{lede}</p>}
           {plansResult.ok ? <PricingClient plans={plans} /> : <PricingErrorFallback />}
         </section>
+        <p style={{ textAlign: "center", margin: "28px 24px 0", fontSize: 15 }}>
+          <Link href="/pricing/pay-per-event" style={{ color: "#C25A3A", textDecoration: "underline" }}>
+            How pay per event works
+          </Link>
+        </p>
         <IncludedBox />
         <PricingFaq groups={faqGroups} />
         <CtaSection offer={offer} />

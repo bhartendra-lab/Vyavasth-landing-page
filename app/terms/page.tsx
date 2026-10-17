@@ -20,7 +20,7 @@ import {
 } from "@/lib/plans";
 
 export const metadata: Metadata = {
-  title: "Terms & Conditions — Vyavasth",
+  title: "Terms & Conditions: Vyavasth",
   description:
     "Terms of use for the Vyavasth SaaS platform, including billing, IP, face recognition, and governing law in India.",
   alternates: { canonical: "/terms" },
@@ -77,10 +77,11 @@ export default async function TermsPage() {
         </h2>
         <p>
           Vyavasth provides a subscription-based{" "}
-          <strong>SaaS platform for business operations management</strong>,
-          including features to help small and medium businesses and their teams
-          in India manage internal operations, tasks, workflows, and day-to-day
-          business activity in one place. We may add, modify, or discontinue
+          <strong>
+            wedding and event photo delivery software for photography studios
+          </strong>
+          , which helps studios in India upload, deliver and share event photos
+          with their clients and guests, and manage photo selection. We may add, modify, or discontinue
           features to improve the product or comply with law.
         </p>
         <p>

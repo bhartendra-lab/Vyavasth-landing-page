@@ -39,7 +39,7 @@ export const GRIEVANCE_OFFICER_PHONE_DISPLAY = SUPPORT_PHONE_DISPLAY;
 export const GRIEVANCE_OFFICER_PHONE_TEL = SUPPORT_PHONE_TEL;
 
 export const SERVICE_DESCRIPTION_SHORT =
-  "SaaS platform for business operations management";
+  "wedding and event photo delivery software for photography studios";
 
 export const BUSINESS_HOURS =
   "Monday to Friday, 10:00 AM to 6:00 PM IST (excluding public holidays in India)";

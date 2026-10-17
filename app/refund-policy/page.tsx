@@ -3,7 +3,7 @@ import LegalPageShell from "@/components/LegalPageShell";
 import { BUSINESS_NAME, SUPPORT_EMAIL } from "@/lib/site-legal";
 
 export const metadata: Metadata = {
-  title: "Refund & Cancellation Policy — Vyavasth",
+  title: "Refund & Cancellation Policy: Vyavasth",
   description:
     "Refund eligibility, timelines, cancellation, and non-refundable scenarios for Vyavasth subscriptions.",
   alternates: { canonical: "/refund-policy" },

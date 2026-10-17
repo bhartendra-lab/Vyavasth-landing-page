@@ -13,7 +13,7 @@ import {
 } from "@/lib/site-legal";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Vyavasth",
+  title: "Contact Vyavasth: WhatsApp, phone and email support",
   description:
     "Contact Vyavasth for support, billing, and grievances. Registered address, hours, and support form.",
   alternates: { canonical: "/contact" },

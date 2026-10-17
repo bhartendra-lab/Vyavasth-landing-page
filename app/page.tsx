@@ -25,10 +25,23 @@ export default async function Home() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
+    "@id": "https://vyavasth.in/#software",
     name: "Vyavasth",
+    url: "https://vyavasth.in",
+    publisher: { "@id": "https://vyavasth.in/#organization" },
     applicationCategory: "BusinessApplication",
-    description: "An AI event gallery that delivers photos to guests during the event.",
-    operatingSystem: "Web, iOS, Android",
+    description:
+      "Wedding and event photo delivery software for Indian photography studios. Live delivery during the event, one-selfie face search for guests, album selection for couples, and one-click locating of original files.",
+    operatingSystem: "Web, Android",
+    featureList: [
+      "Live photo delivery during the event",
+      "Selfie-based face search for guests",
+      "Album selection with likes and bride or groom side filters",
+      "Locate original RAW files from selected photos",
+      "Studio branding and watermark on every screen",
+      "Google review prompts inside the gallery",
+      "Resumable uploads and reusable storage",
+    ],
     // As charged, GST included: what a structured-data price means.
     ...(figures.eventPriceWithGst !== null
       ? { offers: { "@type": "Offer", price: String(figures.eventPriceWithGst), priceCurrency: "INR" } }

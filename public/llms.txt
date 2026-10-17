@@ -1,0 +1,27 @@
+# Vyavasth
+
+> Vyavasth is wedding and event photo delivery software for photography studios in India. Studios upload photos during the event, guests find every photo they appear in with one selfie, couples finish album selection in hours instead of months, and the studio locates the original RAW files for the selected photos in one click.
+
+Vyavasth is used by wedding and event photography studios across Madhya Pradesh, Uttar Pradesh, Rajasthan, Maharashtra and Gujarat. The team works out of Bhopal, Indore, Gwalior and Jhansi, and the company is registered in Chanderi, Madhya Pradesh. Support is on WhatsApp and phone, and a person answers 24x7.
+
+## Product
+
+- Live delivery: photos appear in the client's gallery while the event is still running, not weeks later on a pen drive or Google Drive link.
+- Face search: each guest opens one link, takes one selfie, and sees only the photos they are in. Guests can also find photos of their own family and friends group, with consent.
+- Album selection (Smart Select): the couple and family like photos inside the gallery. The studio filters selections by bride's side or groom's side, by person, or by total likes, then locates the matching original files to send to the editor.
+- Studio branding: the studio's name, logo and watermark appear on every screen of the gallery. Guests are prompted to leave the studio a Google review from inside the gallery.
+- Uploads: uploads resume on their own if the internet drops. Photos are delivered in HD and 4K quality; original-quality delivery is available on larger plans. Storage is reusable: delete an old event and the space is free again.
+- Android upload app: studios in early access upload straight from the camera over USB during the event. Other studios upload from a laptop through the web app.
+
+## Pricing
+
+Two ways to pay, all prices in Indian rupees: pay per event, or an annual storage plan for studios that shoot many events a year. Current prices, any running offer, the per-event photo limit and how long an event stays live are on the pricing page.
+
+- [Pricing](https://vyavasth.in/pricing): current plans, per-event price, storage plans and FAQ
+
+## Company
+
+- [About Vyavasth](https://vyavasth.in/about)
+- [Contact](https://vyavasth.in/contact)
+- [Instagram](https://www.instagram.com/vyavasth.in)
+- [YouTube](https://www.youtube.com/@Vyavasth)

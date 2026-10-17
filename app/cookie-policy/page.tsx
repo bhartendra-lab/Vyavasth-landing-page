@@ -3,7 +3,7 @@ import LegalPageShell from "@/components/LegalPageShell";
 import { SUPPORT_EMAIL } from "@/lib/site-legal";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy — Vyavasth",
+  title: "Cookie Policy: Vyavasth",
   description:
     "How Vyavasth uses cookies and similar technologies across the Studio dashboard and Guest gallery pages, and what we never use cookies for.",
   alternates: { canonical: "/cookie-policy" },

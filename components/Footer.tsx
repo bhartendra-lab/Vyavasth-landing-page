@@ -9,6 +9,7 @@ import {
 
 const SOCIALS = [
   { label: "Instagram", href: "https://www.instagram.com/vyavasth.in" },
+  { label: "YouTube", href: "https://www.youtube.com/@Vyavasth" },
 ];
 
 const LEGAL_LINKS = [
@@ -68,11 +69,14 @@ export default function Footer() {
             Product
           </h4>
           <nav className="flex flex-col gap-2.5" aria-label="Product">
-            <Link href="/#features" className={colLink} style={{ color: "var(--color-primary)" }}>
+            <Link href="/features" className={colLink} style={{ color: "var(--color-primary)" }}>
               Features
             </Link>
             <Link href="/pricing" className={colLink} style={{ color: "var(--color-primary)" }}>
               Pricing
+            </Link>
+            <Link href="/blog" className={colLink} style={{ color: "var(--color-primary)" }}>
+              Blog
             </Link>
             <Link href="/#how" className={colLink} style={{ color: "var(--color-primary)" }}>
               How it works
