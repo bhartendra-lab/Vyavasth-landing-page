@@ -41,6 +41,9 @@ Families look at photos on their phones, in spare minutes. A gallery where they 
 
 Instead of asking the couple to produce one perfect list, let the couple and close family like the photos they want. The studio then filters those likes: only the couple's picks, the bride's side, the groom's side, or the most liked photos. Galleries built for album selection, such as [Vyavasth's Smart Selects](/features/album-selection), do this filtering for you.
 
+<figure style="margin:1.6em auto;"><img src="/blog/img/smart-selects.jpg" alt="Vyavasth Smart Selects tab showing liked wedding photos with filters for Host picks, Shortlisted, Bride Team and Groom Team" width="800" height="757" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px;border:1px solid rgba(26,18,8,0.08)" /><figcaption style="font-size:14px;color:#7A6F63;margin-top:8px;text-align:center">Smart Selects in Vyavasth: guests' likes, filtered by Host picks, Shortlisted, Bride Team or Groom Team.</figcaption></figure>
+
+
 ### 6. Send reminders with progress, not pressure
 
 "You have chosen 210 of about 350 photos, the Reception is left" works better than "Please complete selection". Progress makes the end visible.

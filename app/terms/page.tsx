@@ -52,7 +52,7 @@ export default async function TermsPage() {
   );
 
   return (
-    <LegalPageShell title="Terms & Conditions">
+    <LegalPageShell showUpdated title="Terms & Conditions">
       <p style={muted}>
         These Terms &amp; Conditions (&ldquo;Terms&rdquo;) govern your access to
         and use of {BUSINESS_NAME}&rsquo;s website and SaaS services.

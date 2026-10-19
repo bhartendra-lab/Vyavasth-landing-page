@@ -25,7 +25,7 @@ const muted = { color: "#7A6F63" } as const;
 
 export default function ContactPage() {
   return (
-    <LegalPageShell title="Contact Us">
+    <LegalPageShell showUpdated title="Contact Us">
       <p style={muted}>{RESPONSE_TIME_BUSINESS_HOURS}</p>
 
       <section>

@@ -21,7 +21,7 @@ const muted = { color: "#7A6F63" } as const;
 
 export default function PrivacyPolicyPage() {
   return (
-    <LegalPageShell title="Privacy Policy">
+    <LegalPageShell showUpdated title="Privacy Policy">
       <p style={muted}>
         This Privacy Policy describes how {BUSINESS_NAME} (&ldquo;we&rdquo;,
         &ldquo;us&rdquo;, or &ldquo;our&rdquo;) handles personal information when

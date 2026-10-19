@@ -61,7 +61,7 @@ function CookieTable({
 
 export default function CookiePolicyPage() {
   return (
-    <LegalPageShell title="Cookie Policy">
+    <LegalPageShell showUpdated title="Cookie Policy">
       <p style={muted}>
         This Cookie Policy explains how Vyavasth uses cookies and similar
         technologies across its surfaces — the Studio dashboard and the Guest

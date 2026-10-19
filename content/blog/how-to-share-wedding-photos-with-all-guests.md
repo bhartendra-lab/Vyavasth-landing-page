@@ -41,6 +41,9 @@ For a small function, a shared Google Photos album or Drive folder is fine. For 
 
 [Face search galleries](/features/face-search-photo-sharing) also work during the wedding, so guests can see Haldi photos before the Sangeet starts.
 
+<figure style="margin:1.6em auto;max-width:320px;"><img src="/blog/img/guest-welcome.jpg" alt="Wedding gallery welcome screen on a phone with a Find my photos button" width="600" height="1299" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px;border:1px solid rgba(26,18,8,0.08)" /><figcaption style="font-size:14px;color:#7A6F63;margin-top:8px;text-align:center">What a guest sees after scanning the QR: the studio-branded gallery and a Find my photos button.</figcaption></figure>
+
+
 ## Which option fits your wedding
 
 | Guests | Best option |

@@ -16,6 +16,9 @@ A QR code for wedding photos lets every guest open the photo gallery by pointing
 3. A guest scans it with the phone camera and the gallery opens in the browser.
 4. With a face search gallery, the guest takes a selfie and sees only the photos they are in. Learn more about [face search galleries](/features/face-search-photo-sharing).
 
+<figure style="margin:1.6em auto;"><img src="/blog/img/access-sharing.jpg" alt="Vyavasth Access and Sharing screen with the guest message, event QR and gallery preferences" width="800" height="675" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px;border:1px solid rgba(26,18,8,0.08)" /><figcaption style="font-size:14px;color:#7A6F63;margin-top:8px;text-align:center">The studio shares one link or QR; face search, downloads and reviews can be switched per event.</figcaption></figure>
+
+
 ## Use one QR for every wedding
 
 If the QR points to a fixed gallery, you need a new print for every event. A better setup is one branded QR for the studio that you point at whichever wedding is live. You print the standee once and reuse it all season.

@@ -54,7 +54,12 @@ The slowest part of every method above is the list itself: someone types it, som
 
 The couple and family like photos directly in the online gallery. The studio filters those likes, for example only the couple's picks or only the bride's side, and shortlists the final set. Because the gallery knows exactly which file each photo came from, it can find the originals for you.
 
-On Vyavasth this is called [Locate Originals](/features/locate-original-raw-files): you choose the folder of originals on your laptop, it matches every shortlisted photo to the exact file you uploaded, and copies those originals into a new folder, bringing the RAW file along when it sits next to the JPG with the same name. It runs in Google Chrome on your own computer, so nothing is uploaded again.
+On Vyavasth this is called [Locate Originals](/features/locate-original-raw-files): you choose the folder of originals on your laptop, it matches every shortlisted photo to the exact file you uploaded, and copies those originals into a "Smartly Selected" folder inside it, bringing the RAW file along when it sits next to the JPG with the same name. It runs in Google Chrome on your own computer, so nothing is uploaded again.
+
+<figure style="margin:1.6em auto;"><img src="/blog/img/smart-selects.jpg" alt="Vyavasth Smart Selects tab showing liked wedding photos with filters for Host picks, Shortlisted, Bride Team and Groom Team" width="800" height="757" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px;border:1px solid rgba(26,18,8,0.08)" /><figcaption style="font-size:14px;color:#7A6F63;margin-top:8px;text-align:center">Smart Selects in Vyavasth: guests' likes, filtered by Host picks, Shortlisted, Bride Team or Groom Team.</figcaption></figure>
+
+<figure style="margin:1.6em auto;"><img src="/blog/img/locate-originals.jpg" alt="Vyavasth Locate Original Images window: pick a folder, match against the shortlist, review, copy" width="700" height="535" loading="lazy" decoding="async" style="width:100%;height:auto;border-radius:12px;border:1px solid rgba(26,18,8,0.08)" /><figcaption style="font-size:14px;color:#7A6F63;margin-top:8px;text-align:center">Locate Originals: pick the folder of originals, Vyavasth matches the shortlist and copies the files.</figcaption></figure>
+
 
 ## Mistakes that cause reprints
 

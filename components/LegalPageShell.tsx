@@ -9,9 +9,12 @@ const text = "#1A1208";
 export default function LegalPageShell({
   title,
   children,
+  showUpdated = false,
 }: {
   title: string;
   children: React.ReactNode;
+  /** Legal pages only: show the legal "Last Updated" date. */
+  showUpdated?: boolean;
 }) {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: "var(--color-bg)" }}>
@@ -23,7 +26,7 @@ export default function LegalPageShell({
             style={{ borderBottom: "1px solid rgba(26,18,8,0.08)" }}
           >
             <p className="text-sm m-0" style={{ color: muted, fontFamily: "var(--font-dm-sans)" }}>
-              Last Updated: {LAST_UPDATED}
+              {showUpdated ? `Last Updated: ${LAST_UPDATED}` : ""}
             </p>
             <Link
               href="/"

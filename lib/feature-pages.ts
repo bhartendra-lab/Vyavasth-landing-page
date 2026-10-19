@@ -7,7 +7,8 @@
 
 export type Step = { title: string; text: string };
 export type Table = { caption: string; head: string[]; rows: string[][] };
-export type Section = { h2: string; paragraphs?: string[]; bullets?: string[]; table?: Table };
+export type Figure = { src: string; alt: string; caption: string; width: number; height: number; mobile?: boolean };
+export type Section = { h2: string; paragraphs?: string[]; bullets?: string[]; table?: Table; figure?: Figure };
 export type FaqItem = { q: string; a: string };
 export type Quote = { text: string; studio: string; city: string };
 
@@ -88,6 +89,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
       },
       {
         h2: "Filters made for Indian weddings",
+        figure: { src: "/blog/img/smart-selects.jpg", alt: "Vyavasth Smart Selects tab with liked wedding photos and filters for Host picks, Shortlisted, Bride Team and Groom Team", caption: "Smart Selects: guests\u2019 likes, filtered by Host picks, Shortlisted, Bride Team or Groom Team.", width: 800, height: 757 },
         bullets: [
           "Host picks: only the photos the hosts liked, the couple and family with the passcode.",
           "Team: the bride's side, the groom's side, or any labels you set for the event.",
@@ -112,7 +114,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     faqs: [
       {
         q: "Does the couple need to install an app to select photos?",
-        a: "No. The gallery opens in the phone's browser from a link or QR code. They sign in with Google so their likes are saved to them.",
+        a: "No. The gallery opens in the phone's browser from a link or QR code. They sign in with their WhatsApp number or Google so their likes are saved to them.",
       },
       {
         q: "Can I see only what the family selected?",
@@ -140,7 +142,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
       "Your client picked 400 photos. Vyavasth finds their original JPG and RAW files on your laptop and copies them into one folder for the editor, in minutes instead of a day of searching.",
     h1: "Your client picked 400 photos. Find their originals in one click.",
     summary:
-      "Locate Originals takes the photos your client shortlisted in the Vyavasth gallery, scans the folder of originals on your laptop, and copies every matching original, along with its RAW file, into one new folder for your editor. Matching happens on your own computer, so your originals are never uploaded again.",
+      "Locate Originals takes the photos your client shortlisted in the Vyavasth gallery, scans the folder of originals on your laptop, and copies every matching original, along with its RAW file, into a “Smartly Selected” folder for your editor. Matching happens on your own computer, so your originals are never uploaded again.",
     stepsHeading: "How Locate Originals works",
     steps: [
       {
@@ -157,7 +159,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
       },
       {
         title: "Hand the folder to your editor",
-        text: "Matched originals, and their RAW files with the same name, are copied into one folder. Your original folder is not changed.",
+        text: "Matched originals, and their RAW files with the same name, are copied into a “Smartly Selected” subfolder inside the folder you picked, ready for your editor. Nothing else in your folder is changed.",
       },
     ],
     sections: [
@@ -170,9 +172,10 @@ export const FEATURE_PAGES: FeaturePage[] = [
       },
       {
         h2: "Good to know",
+        figure: { src: "/blog/img/locate-originals.jpg", alt: "Vyavasth Locate Original Images window: pick a folder, match the shortlist, review, copy", caption: "Locate Originals: pick a folder, Vyavasth matches the shortlist, you review, it copies.", width: 700, height: 535 },
         bullets: [
           "Works in Google Chrome on a laptop or desktop. Other browsers show a note asking you to open the page in Chrome.",
-          "Runs on your computer: originals are read from your drive and copied to a new folder there. Nothing is uploaded again.",
+          "Runs on your computer: originals are read from your drive and copied into a “Smartly Selected” subfolder there. Nothing is uploaded again.",
           "Brings the RAW file along when it sits next to the JPG with the same name.",
           "Run it again whenever the shortlist changes. It always works from the current shortlist.",
         ],
@@ -245,6 +248,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
       },
       {
         h2: "Privacy the family can trust",
+        figure: { src: "/blog/img/guest-signin.jpg", alt: "Private wedding gallery sign-in screen on a phone, with WhatsApp number or Google", caption: "Guests sign in with their WhatsApp number or Google before they see any photos.", width: 600, height: 976, mobile: true },
         bullets: [
           "Each event has one link, and the full gallery opens only with the host's passcode.",
           "Face search is opt-in: guests agree before taking a selfie, and can skip it.",
@@ -257,7 +261,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     faqs: [
       {
         q: "Do guests need to download an app?",
-        a: "No. The gallery opens in the phone's browser from a QR code or link. Guests sign in with Google so their photos and likes stay with them.",
+        a: "No. The gallery opens in the phone's browser from a QR code or link. Guests sign in with their WhatsApp number or Google so their photos and likes stay with them.",
       },
       {
         q: "Can guests see photos they are not in?",

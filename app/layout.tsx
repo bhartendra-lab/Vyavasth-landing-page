@@ -89,7 +89,6 @@ export const metadata: Metadata = {
     type: "website",
     siteName: "Vyavasth",
     locale: "en_IN",
-    url: "/",
   },
   twitter: {
     card: "summary_large_image",

@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -137,6 +138,21 @@ export default async function FeaturePage({
                 {paragraphs}
                 {bullets}
               </>
+            )}
+            {s.figure && (
+              <figure className={s.figure.mobile ? "mx-auto w-full max-w-[320px] my-2" : "w-full my-2"}>
+                <Image
+                  src={s.figure.src}
+                  alt={s.figure.alt}
+                  width={s.figure.width}
+                  height={s.figure.height}
+                  unoptimized
+                  className="w-full h-auto rounded-xl border border-[rgba(26,18,8,0.08)]"
+                />
+                <figcaption className="text-sm text-center mt-2" style={{ color: "#7A6F63" }}>
+                  {s.figure.caption}
+                </figcaption>
+              </figure>
             )}
             {s.table && (
               <div className="overflow-x-auto">

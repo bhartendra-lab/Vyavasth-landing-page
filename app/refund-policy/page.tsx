@@ -16,7 +16,7 @@ const muted = { color: "#7A6F63" } as const;
 
 export default function RefundPolicyPage() {
   return (
-    <LegalPageShell title="Refund & Cancellation Policy">
+    <LegalPageShell showUpdated title="Refund & Cancellation Policy">
       <p style={muted}>
         This policy explains how refunds and cancellations work for paid
         subscriptions to {BUSINESS_NAME}.
