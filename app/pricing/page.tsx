@@ -12,8 +12,26 @@ import {
   flattenPricingFaqs,
 } from "@/components/pricing/pricing-faqs";
 import { getPlans } from "@/lib/vyavasth-api";
-import { gstFeesPhrase, gstSummary, homeFigures } from "@/lib/pricing-display";
-import { chargedPrice } from "@/lib/plans";
+import {
+  ORIGINAL_TIER_MIN_STORAGE_GB,
+  chargedEventPrice,
+  gstFeesPhrase,
+  gstSummary,
+  homeFigures,
+} from "@/lib/pricing-display";
+import {
+  baseLifetimeLabel,
+  buildStorageTiers,
+  chargedPrice,
+  eventPlanOf,
+  formatCount,
+  formatListPrice,
+  formatStorage,
+  gstInclusiveOf,
+  photoCapTermsOf,
+  planForTier,
+  validityBaseDaysOf,
+} from "@/lib/plans";
 import styles from "@/components/pricing/pricing.module.css";
 
 // The pricing header is deep brown at the top, so the browser chrome matches it.
@@ -78,6 +96,67 @@ export default async function PricingPage() {
   const lowPrice = prices.length ? Math.min(...prices) : 0;
   const highPrice = prices.length ? Math.max(...prices) : 0;
 
+  // ── "All plans at a glance": every plan as plain HTML, so a crawler that does
+  // not click sees the 75 GB to 4 TB prices too. Each price is the plan's own,
+  // with its GST wording from formatListPrice (the same number as charged on a
+  // GST-inclusive plan, "+ GST" on one that is not).
+  const eventPlan = eventPlanOf(plans);
+  const capTerms = photoCapTermsOf(eventPlan);
+  const tiers = buildStorageTiers(plans);
+  const eventCharged = chargedEventPrice(eventPlan);
+  const eventListed = eventPlan?.event_unit_price;
+  const eventCell =
+    eventPlan && typeof eventListed === "number" && eventListed > 0
+      ? `${formatListPrice(eventListed, gstInclusiveOf(eventPlan))} per event`
+      : null;
+  const eventWhat = eventPlan
+    ? [
+        "One event",
+        capTerms ? `up to ${formatCount(capTerms.cap)} photos at a time` : null,
+        `live for ${baseLifetimeLabel(validityBaseDaysOf(eventPlan))}`,
+      ]
+        .filter(Boolean)
+        .join(", ")
+    : null;
+  const storageRows = tiers.map((tier) => {
+    const monthly = planForTier(tier, "monthly");
+    const yearly = planForTier(tier, "yearly");
+    const size = formatStorage(tier.storage_limit);
+    return {
+      size,
+      what: `${size} reusable storage${tier.storage_limit >= ORIGINAL_TIER_MIN_STORAGE_GB ? ", original-quality delivery" : ""}`,
+      monthlyCell: monthly && typeof monthly.price === "number" ? `${formatListPrice(monthly.price, gstInclusiveOf(monthly))} a month` : "Not offered",
+      yearlyCell: yearly && typeof yearly.price === "number" ? `${formatListPrice(yearly.price, gstInclusiveOf(yearly))} a year` : "Not offered",
+      monthlyCharged: monthly ? chargedPrice(monthly.price, monthly.price_with_gst) : null,
+      yearlyCharged: yearly ? chargedPrice(yearly.price, yearly.price_with_gst) : null,
+    };
+  });
+  const showTable = plansResult.ok && (eventPlan !== null || tiers.length > 0);
+  const gstLine = gstSummary(figures.gst);
+
+  // One Offer per priced row of that table, as charged (GST included).
+  const rowOffers = [
+    ...(eventPlan && eventCharged !== null
+      ? [
+          {
+            "@type": "Offer",
+            name: "Pay per event",
+            price: String(eventCharged),
+            priceCurrency: "INR",
+            description: eventWhat,
+          },
+        ]
+      : []),
+    ...storageRows.flatMap((r) => [
+      ...(r.monthlyCharged !== null
+        ? [{ "@type": "Offer", name: `${r.size} storage plan, monthly`, price: String(r.monthlyCharged), priceCurrency: "INR", description: `${r.size}, billed monthly` }]
+        : []),
+      ...(r.yearlyCharged !== null
+        ? [{ "@type": "Offer", name: `${r.size} storage plan, yearly`, price: String(r.yearlyCharged), priceCurrency: "INR", description: `${r.size}, billed yearly` }]
+        : []),
+    ]),
+  ];
+
   const productLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -89,6 +168,8 @@ export default async function PricingPage() {
       lowPrice,
       highPrice,
       offerCount: prices.length,
+      // schema.org: an AggregateOffer lists the Offers it summarises.
+      ...(rowOffers.length ? { offers: rowOffers } : {}),
     },
   };
 
@@ -127,6 +208,61 @@ export default async function PricingPage() {
             How pay per event works
           </Link>
         </p>
+        {showTable && (
+          <section className="px-[clamp(14px,5.3vw,76px)] pt-[clamp(56px,7vw,96px)]">
+            <div className="max-w-[1288px] mx-auto rounded-3xl bg-white border border-[#f0e3dc] p-[clamp(24px,3vw,40px)]">
+              <h2 className="m-0 text-[clamp(26px,2.8vw,40px)] leading-[1.1] tracking-[-0.035em] font-medium text-[var(--brown)]">
+                All plans at a glance
+              </h2>
+              <p className="mt-3 mb-5 text-[15px] text-[var(--brown)]">
+                Every plan includes face search, album selection with Smart Selects, Locate Originals,
+                your branding and watermark, and the Google review prompt. Original-quality delivery
+                needs {formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)} or more.
+              </p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-sm border-collapse text-[var(--brown)]">
+                  <caption className="sr-only">Vyavasth plans and prices in rupees</caption>
+                  <thead>
+                    <tr>
+                      {["Plan", "What you get", "Monthly", "Yearly"].map((h) => (
+                        <th
+                          key={h}
+                          scope="col"
+                          className="text-left font-bold py-2.5 px-3 align-top whitespace-nowrap border-b border-[rgba(26,18,8,0.08)]"
+                        >
+                          {h}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {eventPlan && (
+                      <tr>
+                        <th scope="row" className="text-left font-semibold py-2.5 px-3 align-top whitespace-nowrap border-b border-[rgba(26,18,8,0.08)]">
+                          Pay per event
+                        </th>
+                        <td className="py-2.5 px-3 align-top border-b border-[rgba(26,18,8,0.08)]">{eventWhat}</td>
+                        <td className="py-2.5 px-3 align-top whitespace-nowrap border-b border-[rgba(26,18,8,0.08)]">{eventCell ?? "See above"}</td>
+                        <td className="py-2.5 px-3 align-top whitespace-nowrap border-b border-[rgba(26,18,8,0.08)]">No subscription</td>
+                      </tr>
+                    )}
+                    {storageRows.map((r) => (
+                      <tr key={r.size}>
+                        <th scope="row" className="text-left font-semibold py-2.5 px-3 align-top whitespace-nowrap border-b border-[rgba(26,18,8,0.08)]">
+                          {r.size}
+                        </th>
+                        <td className="py-2.5 px-3 align-top border-b border-[rgba(26,18,8,0.08)]">{r.what}</td>
+                        <td className="py-2.5 px-3 align-top whitespace-nowrap border-b border-[rgba(26,18,8,0.08)]">{r.monthlyCell}</td>
+                        <td className="py-2.5 px-3 align-top whitespace-nowrap border-b border-[rgba(26,18,8,0.08)]">{r.yearlyCell}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+              {gstLine && <p className="mt-4 mb-0 text-sm text-[var(--brown)]">{gstLine}</p>}
+            </div>
+          </section>
+        )}
         <IncludedBox />
         <PricingFaq groups={faqGroups} />
         <CtaSection offer={offer} />

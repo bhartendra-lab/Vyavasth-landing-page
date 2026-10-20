@@ -3,6 +3,152 @@ import type { BlogPost } from "./index.ts";
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    "slug": "instagram-for-wedding-photographers",
+    "title": "Instagram for wedding studios: what actually brings enquiries",
+    "seoTitle": "Instagram for wedding photographers: what brings enquiries",
+    "description": "Instagram is where families check a wedding studio before calling. What to post, how to set up the profile, and how to turn DMs into bookings.",
+    "author": "amit",
+    "date": "2026-10-20",
+    "category": "studio-business",
+    "image": "/blog/og/instagram-for-wedding-photographers.png",
+    "html": "<p>For most Indian wedding studios, Instagram is not where clients first hear about you. It is where they check you after a relative mentions your name. A family looks at your profile for thirty seconds and decides whether to call. That changes what you should post.</p>\n<h2 id=\"the-short-answer\">The short answer</h2>\n<p>Make the profile answer three questions fast: do you shoot weddings like ours, are you in our city, and how do we reach you. Then post complete wedding stories, tag everyone involved, and reply to every message quickly on WhatsApp.</p>\n<h2 id=\"1-set-up-the-profile-for-a-thirty-second-visit\">1. Set up the profile for a thirty-second visit</h2>\n<ul>\n<li><strong>Name field:</strong> studio name plus &quot;Wedding Photographer&quot; and your city. The name field is searchable inside Instagram.</li>\n<li><strong>Bio:</strong> one line on your style, the cities you cover, and a WhatsApp link.</li>\n<li><strong>Highlights:</strong> one per type of wedding or function (Haldi, Sangeet, Pheras, Reception, Pre-wedding), plus one for client reviews and one for &quot;How to book&quot;.</li>\n<li><strong>Pinned posts:</strong> your three best complete weddings, not three single photos.</li>\n</ul>\n<h2 id=\"2-post-complete-weddings-not-only-best-shots\">2. Post complete weddings, not only best shots</h2>\n<p>Families want to see that you can cover their whole wedding, not that you took one great photo. For each wedding:</p>\n<ul>\n<li>A carousel of 10 photos that tells the story from Haldi to Vidaai.</li>\n<li>One or two Reels with the moments that move people: varmala, pheras, vidaai, the baraat dance.</li>\n<li>Stories from the day itself, saved to the right highlight.</li>\n</ul>\n<h2 id=\"3-tag-everyone-and-use-collab-posts\">3. Tag everyone, and use Collab posts</h2>\n<p>Every wedding involves a venue, a decorator, a makeup artist and the couple. Tag all of them, and invite the couple or vendors as collaborators on the post, so it appears on their profiles too. Their followers are people planning weddings in your city.</p>\n<p>Always ask the couple before posting, and respect families who want their wedding kept private.</p>\n<h2 id=\"4-use-location-and-city-in-every-post\">4. Use location and city in every post</h2>\n<p>Add the venue as the location, and name the city in the caption. Families search for weddings at venues they know, and a post tagged at a well-known local venue reaches them.</p>\n<h2 id=\"5-turn-dms-into-whatsapp-conversations\">5. Turn DMs into WhatsApp conversations</h2>\n<p>Most enquiries start as an Instagram message and close on WhatsApp. Reply within minutes if you can, share a sample gallery and your packages, and move the conversation to WhatsApp, where families are more comfortable.</p>\n<h2 id=\"6-let-every-wedding-feed-your-profile\">6. Let every wedding feed your profile</h2>\n<p>Guests who receive their photos in a gallery with your studio&#39;s name on it often follow you. A <a href=\"/features/google-reviews-for-photographers\">branded gallery</a> with your Instagram link on every screen turns one wedding into hundreds of profile visits. See also <a href=\"/blog/get-wedding-bookings-small-city-without-ads\">how to get wedding bookings in a small city without ads</a>.</p>\n<h2 id=\"a-weekly-routine-for-a-small-studio\">A weekly routine for a small studio</h2>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Day</th>\n<th>What to do</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>After every wedding</td>\n<td>Stories on the day, saved to highlights</td>\n</tr>\n<tr>\n<td>Within a week</td>\n<td>Carousel of the full wedding, with tags and a Collab invite</td>\n</tr>\n<tr>\n<td>Every week</td>\n<td>One or two Reels from recent weddings</td>\n</tr>\n<tr>\n<td>Every day</td>\n<td>Reply to every DM and move serious enquiries to WhatsApp</td>\n</tr>\n<tr>\n<td>Every month</td>\n<td>Update pinned posts and highlights with your best recent work</td>\n</tr>\n</tbody></table></div>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"does-instagram-bring-wedding-bookings-for-photographers\">Does Instagram bring wedding bookings for photographers?</h3>\n<p>Mostly indirectly. Families usually hear about a studio from someone they know, then check Instagram before calling. A profile that shows complete weddings in their city makes that call more likely.</p>\n<h3 id=\"what-should-a-wedding-photographer-post-on-instagram\">What should a wedding photographer post on Instagram?</h3>\n<p>Complete wedding stories as carousels, Reels of emotional moments, and Stories from the wedding day saved to highlights. Tag the couple, venue and vendors on every post.</p>\n<h3 id=\"should-i-post-every-wedding-i-shoot\">Should I post every wedding I shoot?</h3>\n<p>Only with the couple&#39;s permission. Some families prefer privacy. Post the weddings you are proud of and that match the clients you want more of.</p>\n<h3 id=\"how-fast-should-i-reply-to-instagram-enquiries\">How fast should I reply to Instagram enquiries?</h3>\n<p>As fast as you can, ideally within minutes. Families often message several studios at once, and the first clear reply with packages and a sample gallery usually gets the call.</p>\n",
+    "faqs": [
+      {
+        "q": "Does Instagram bring wedding bookings for photographers?",
+        "a": "Mostly indirectly. Families usually hear about a studio from someone they know, then check Instagram before calling. A profile that shows complete weddings in their city makes that call more likely."
+      },
+      {
+        "q": "What should a wedding photographer post on Instagram?",
+        "a": "Complete wedding stories as carousels, Reels of emotional moments, and Stories from the wedding day saved to highlights. Tag the couple, venue and vendors on every post."
+      },
+      {
+        "q": "Should I post every wedding I shoot?",
+        "a": "Only with the couple's permission. Some families prefer privacy. Post the weddings you are proud of and that match the clients you want more of."
+      },
+      {
+        "q": "How fast should I reply to Instagram enquiries?",
+        "a": "As fast as you can, ideally within minutes. Families often message several studios at once, and the first clear reply with packages and a sample gallery usually gets the call."
+      }
+    ],
+    "readingMinutes": 3,
+    "wordCount": 648,
+    "headings": [
+      {
+        "id": "the-short-answer",
+        "text": "The short answer"
+      },
+      {
+        "id": "1-set-up-the-profile-for-a-thirty-second-visit",
+        "text": "1. Set up the profile for a thirty-second visit"
+      },
+      {
+        "id": "2-post-complete-weddings-not-only-best-shots",
+        "text": "2. Post complete weddings, not only best shots"
+      },
+      {
+        "id": "3-tag-everyone-and-use-collab-posts",
+        "text": "3. Tag everyone, and use Collab posts"
+      },
+      {
+        "id": "4-use-location-and-city-in-every-post",
+        "text": "4. Use location and city in every post"
+      },
+      {
+        "id": "5-turn-dms-into-whatsapp-conversations",
+        "text": "5. Turn DMs into WhatsApp conversations"
+      },
+      {
+        "id": "6-let-every-wedding-feed-your-profile",
+        "text": "6. Let every wedding feed your profile"
+      },
+      {
+        "id": "a-weekly-routine-for-a-small-studio",
+        "text": "A weekly routine for a small studio"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photography-contract-india",
+    "title": "Wedding photography contract essentials for Indian studios",
+    "seoTitle": "Wedding photography contract in India: what to include",
+    "description": "What an Indian wedding studio's contract should cover: advance and balance, deliverables and dates, RAW files, cancellations, and who owns the photos.",
+    "author": "abhishek",
+    "date": "2026-10-20",
+    "category": "studio-business",
+    "image": "/blog/og/wedding-photography-contract-india.png",
+    "html": "<p>Most wedding studios in India still work on a WhatsApp message and a handshake. It works until it does not: a family disputes the balance, a couple demands RAW files, or a date shifts after the advance is spent. A one-page written agreement, signed or accepted on WhatsApp before the advance, prevents most of these fights.</p>\n<p>This is a practical checklist, not legal advice. For anything high-value or unusual, have a lawyer review your template once.</p>\n<h2 id=\"the-short-answer\">The short answer</h2>\n<p>Put eight things in writing before you take the advance: who the client is, the dates and functions covered, the team, the deliverables with dates, the payment schedule, what happens if the wedding is postponed or cancelled, the RAW file policy, and who owns the photos and how each side may use them.</p>\n<h2 id=\"1-client-and-event-details\">1. Client and event details</h2>\n<ul>\n<li>Names and phone numbers of the person paying and the couple.</li>\n<li>Every function covered, with date, venue and hours. &quot;Wedding coverage&quot; is not enough when there are five functions over three days.</li>\n<li>What happens if a function runs over time: an hourly rate, or included up to a limit.</li>\n</ul>\n<h2 id=\"2-team-and-equipment\">2. Team and equipment</h2>\n<ul>\n<li>How many photographers and videographers, and who leads.</li>\n<li>Drone, candid, traditional, cinematic: list what is included, not just the package name.</li>\n</ul>\n<h2 id=\"3-deliverables-and-dates\">3. Deliverables and dates</h2>\n<p>This is where most disputes start. Be specific:</p>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Deliverable</th>\n<th>Write down</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Preview photos</td>\n<td>How many, and by when</td>\n</tr>\n<tr>\n<td>Full edited set</td>\n<td>Approximate number, format, and delivery date</td>\n</tr>\n<tr>\n<td>Album</td>\n<td>Sheets, size, type, and the selection deadline for the couple</td>\n</tr>\n<tr>\n<td>Videos</td>\n<td>Teaser, highlight film and full film, with lengths and dates</td>\n</tr>\n<tr>\n<td>Online gallery</td>\n<td>How long it stays live</td>\n</tr>\n</tbody></table></div>\n<p>Tie the album date to the couple&#39;s selection date: &quot;Album delivered 30 days after selection is final.&quot; Then a slow selection does not count against you. More on that in <a href=\"/blog/why-album-selection-takes-months\">why album selection takes months</a>.</p>\n<h2 id=\"4-payment-schedule\">4. Payment schedule</h2>\n<ul>\n<li>Advance amount, and that it confirms the booking.</li>\n<li>Second instalment, usually on the wedding day or before the first function.</li>\n<li>Balance, and whether the full set or album is released only after it is paid.</li>\n<li>Whether GST is included or extra, and that you will issue an invoice.</li>\n<li>Accepted modes: UPI, bank transfer, card.</li>\n</ul>\n<h2 id=\"5-postponement-and-cancellation\">5. Postponement and cancellation</h2>\n<ul>\n<li><strong>Postponement:</strong> whether the advance moves to a new date, and within how long.</li>\n<li><strong>Cancellation by the client:</strong> how much of the advance is refundable, if any, and by when.</li>\n<li><strong>Cancellation by the studio:</strong> what you refund, and whether you arrange a replacement team.</li>\n<li><strong>Events outside anyone&#39;s control:</strong> what happens if the event cannot take place at all.</li>\n</ul>\n<h2 id=\"6-raw-files\">6. RAW files</h2>\n<p>Couples increasingly ask for RAW files. Decide your policy and write it down: not included, included, or available for an extra fee. If you do not say anything, you will be asked at the worst possible moment.</p>\n<h2 id=\"7-who-owns-the-photos-and-how-they-can-be-used\">7. Who owns the photos, and how they can be used</h2>\n<p>This surprises many studios. Under India&#39;s Copyright Act, when a photograph is taken for payment at the request of a client, the client is the first owner of the copyright unless there is an agreement to the contrary (Section 17(b)). In other words, without a written clause, the couple may own the photos you took.</p>\n<p>If you want to keep the copyright and give the couple a licence for personal use, or simply keep the right to use selected photos on your Instagram and website, say so in the contract. Many studios also add that they will not use photos the couple asks them to keep private.</p>\n<h2 id=\"8-delivery-and-storage\">8. Delivery and storage</h2>\n<ul>\n<li>How photos will be delivered: online gallery, pen drive, or both.</li>\n<li>How long you keep a backup after delivery, so families know when to download their copies.</li>\n</ul>\n<h2 id=\"how-to-get-it-signed-without-making-it-awkward\">How to get it signed without making it awkward</h2>\n<ul>\n<li>Keep it to one or two pages in plain language. Families sign what they can read.</li>\n<li>Send it with the booking confirmation and ask for a &quot;Yes, agreed&quot; reply on WhatsApp if a signature is not practical.</li>\n<li>Use the same template for every wedding, so nothing depends on memory.</li>\n</ul>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"does-a-wedding-photographer-need-a-written-contract-in-india\">Does a wedding photographer need a written contract in India?</h3>\n<p>It is not mandatory, but a short written agreement prevents most disputes over payments, deliverables, delivery dates and RAW files. Agreement on WhatsApp is better than nothing.</p>\n<h3 id=\"who-owns-the-copyright-of-wedding-photos-in-india\">Who owns the copyright of wedding photos in India?</h3>\n<p>Under Section 17(b) of the Copyright Act, when photos are taken for payment at the client&#39;s request, the client is the first owner unless the agreement says otherwise. Studios that want to keep the copyright or use photos in their portfolio should state it in the contract.</p>\n<h3 id=\"should-i-give-raw-files-to-the-client\">Should I give RAW files to the client?</h3>\n<p>That is your choice, but write it down: not included, included, or available for an extra fee. Deciding upfront avoids disputes later.</p>\n<h3 id=\"what-should-happen-if-the-wedding-is-postponed\">What should happen if the wedding is postponed?</h3>\n<p>Write your policy in advance: whether the advance moves to the new date, within what period, and what happens if the new date clashes with another booking.</p>\n",
+    "faqs": [
+      {
+        "q": "Does a wedding photographer need a written contract in India?",
+        "a": "It is not mandatory, but a short written agreement prevents most disputes over payments, deliverables, delivery dates and RAW files. Agreement on WhatsApp is better than nothing."
+      },
+      {
+        "q": "Who owns the copyright of wedding photos in India?",
+        "a": "Under Section 17(b) of the Copyright Act, when photos are taken for payment at the client's request, the client is the first owner unless the agreement says otherwise. Studios that want to keep the copyright or use photos in their portfolio should state it in the contract."
+      },
+      {
+        "q": "Should I give RAW files to the client?",
+        "a": "That is your choice, but write it down: not included, included, or available for an extra fee. Deciding upfront avoids disputes later."
+      },
+      {
+        "q": "What should happen if the wedding is postponed?",
+        "a": "Write your policy in advance: whether the advance moves to the new date, within what period, and what happens if the new date clashes with another booking."
+      }
+    ],
+    "readingMinutes": 4,
+    "wordCount": 832,
+    "headings": [
+      {
+        "id": "the-short-answer",
+        "text": "The short answer"
+      },
+      {
+        "id": "1-client-and-event-details",
+        "text": "1. Client and event details"
+      },
+      {
+        "id": "2-team-and-equipment",
+        "text": "2. Team and equipment"
+      },
+      {
+        "id": "3-deliverables-and-dates",
+        "text": "3. Deliverables and dates"
+      },
+      {
+        "id": "4-payment-schedule",
+        "text": "4. Payment schedule"
+      },
+      {
+        "id": "5-postponement-and-cancellation",
+        "text": "5. Postponement and cancellation"
+      },
+      {
+        "id": "6-raw-files",
+        "text": "6. RAW files"
+      },
+      {
+        "id": "7-who-owns-the-photos-and-how-they-can-be-used",
+        "text": "7. Who owns the photos, and how they can be used"
+      },
+      {
+        "id": "8-delivery-and-storage",
+        "text": "8. Delivery and storage"
+      },
+      {
+        "id": "how-to-get-it-signed-without-making-it-awkward",
+        "text": "How to get it signed without making it awkward"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
     "slug": "album-selection-when-both-families-want-a-say",
     "title": "How to run album selection when both families want a say",
     "seoTitle": "Album selection when both families want a say",

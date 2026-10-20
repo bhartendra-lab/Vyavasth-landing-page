@@ -167,7 +167,8 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
         {eventPlan && <a href="#events"><b>{formatListPrice(unit, eventInclusive)}</b>per event</a>}
         {lowest && (
           <a href="#storage">
-            <b>{formatInr(lowest.perMonth)}{lowest.gstInclusive ? "" : " + GST"}</b>a month
+            <b>{formatInr(lowest.perMonth)}{lowest.gstInclusive ? "" : " + GST"}</b>
+            a month ({formatStorage(lowest.storage_limit)}, billed yearly)
           </a>
         )}
       </nav>
