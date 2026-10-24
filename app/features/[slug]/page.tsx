@@ -4,13 +4,12 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import LegalPageShell from "@/components/LegalPageShell";
 import { whatsappUrl } from "@/lib/site-legal";
-import { FEATURE_PAGES, featureBySlug } from "@/lib/feature-pages";
+import { featureBySlug } from "@/lib/feature-pages";
 
-export const dynamicParams = false;
-
-export function generateStaticParams() {
-  return FEATURE_PAGES.map((p) => ({ slug: p.slug }));
-}
+// Rendered per request, like the blog. Prerendered pages under a dynamic
+// segment 404 on Cloudflare (OpenNext has no incremental cache configured).
+// Unknown slugs still 404 through notFound() below.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({
   params,

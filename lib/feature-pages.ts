@@ -208,7 +208,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
   {
     slug: "face-search-photo-sharing",
     navLabel: "Face search",
-    title: "Wedding photo sharing with face recognition: one selfie, every photo | Vyavasth",
+    title: "AI face search photo sharing for weddings in India | Vyavasth",
     metaDescription:
       "Guests scan one QR, take one selfie and see every wedding photo they are in. Face search galleries for Indian photography studios, with passcode privacy and the studio's branding.",
     h1: "One selfie. Every photo they are in.",

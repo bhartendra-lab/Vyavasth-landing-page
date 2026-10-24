@@ -3,6 +3,217 @@ import type { BlogPost } from "./index.ts";
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    "slug": "ai-face-search-photo-sharing-what-to-check",
+    "title": "AI face search for wedding photos: 8 things to check before you pay",
+    "seoTitle": "AI face search photo sharing app: 8 checks before you pay",
+    "description": "A practical checklist for Indian studios choosing an AI face search photo sharing app: accuracy, live delivery, privacy, photo quality, branding and real cost.",
+    "author": "bhartendra",
+    "date": "2026-10-24",
+    "category": "guest-experience",
+    "image": "/blog/og/ai-face-search-photo-sharing-what-to-check.png",
+    "html": "<p>AI face search has become the standard way to share wedding photos with guests in India. The idea is simple: the studio uploads the photos, guests scan a QR code, take a selfie, and see only the photos they are in. There are now many apps that do this, and on a pricing page they all look alike.</p>\n<p>They are not alike at a 600-guest wedding. This checklist is what we would test before paying for any of them, including ours.</p>\n<h2 id=\"the-short-answer\">The short answer</h2>\n<p>Test face matching on your own difficult photos, check whether photos reach guests during the event or only after, ask how guest selfies and privacy are handled, confirm guests get full-quality downloads, and work out the real cost for a full season including GST. Then check the parts studios forget: album selection, branding, and what happens after the wedding.</p>\n<h2 id=\"1-face-matching-on-your-own-photos-not-the-demo\">1. Face matching on your own photos, not the demo</h2>\n<p>Every demo uses well-lit portraits. Indian weddings give you dark sangeet stages, turmeric-covered faces at the haldi, side profiles during pheras, ghunghat and sehra, and crowded baraat shots with fifty faces.</p>\n<p>Upload one real event, including the hard parts, and check:</p>\n<ul>\n<li>Does a guest&#39;s selfie find them in group photos, not just close-ups?</li>\n<li>Does it find them in low light and in side profile?</li>\n<li>How many wrong photos appear in their results?</li>\n</ul>\n<p>A missed photo is a small loss. A wrong person&#39;s photo in someone&#39;s results is a privacy problem, so wrong matches matter more than missed ones.</p>\n<h2 id=\"2-live-delivery-or-only-after-the-full-upload\">2. Live delivery, or only after the full upload</h2>\n<p>Some apps only work once the whole event is uploaded and processed. Others add photos to each guest&#39;s results as the studio uploads during the wedding.</p>\n<p>If you want guests sharing photos from the haldi while the sangeet is still being set up, ask directly: &quot;If I upload 200 photos now, how long before a guest&#39;s selfie finds them?&quot; See <a href=\"/blog/same-day-photo-delivery-at-weddings\">same-day photo delivery at weddings</a> for how studios run this on the day.</p>\n<h2 id=\"3-how-guests-get-in-and-what-they-agree-to\">3. How guests get in, and what they agree to</h2>\n<p>Guests should be able to open the gallery in a phone browser from a QR code or link, with no app to install. Beyond that, check:</p>\n<ul>\n<li><strong>Consent:</strong> do guests agree before taking a selfie, and can they skip face search and just browse?</li>\n<li><strong>Who sees what:</strong> can a guest see only their own photos, while the full gallery needs a passcode from the family?</li>\n<li><strong>Photos with others:</strong> if the app shows photos of a guest with their family or friends, does it ask both people first?</li>\n<li><strong>Search engines:</strong> are wedding galleries kept out of Google results?</li>\n<li><strong>Opting out:</strong> can the family turn face search off for one wedding if they prefer a passcode-only gallery?</li>\n</ul>\n<p>India&#39;s Digital Personal Data Protection Act treats a face as personal data, and its notice and consent rules apply fully from May 2027. Ask the app how long selfies are kept and how a guest can withdraw. More on this in <a href=\"/blog/is-ai-face-search-safe-for-wedding-guests\">is AI face search safe for wedding guests</a>.</p>\n<h2 id=\"4-full-quality-downloads\">4. Full quality downloads</h2>\n<p>The whole point is to beat WhatsApp compression. Download a photo as a guest and check its size and resolution against your original. Also check whether full-quality delivery is on every plan or only the bigger ones. Background in <a href=\"/blog/send-full-quality-photos-on-whatsapp\">how to send full-quality photos on WhatsApp</a>.</p>\n<h2 id=\"5-your-studio-s-name-on-every-screen\">5. Your studio&#39;s name on every screen</h2>\n<p>Every guest who opens the gallery is a potential client. Check that your logo, colours and watermark appear on every screen, and that the app does not put its own brand in front of yours. A gallery shown to 500 guests should advertise your studio, not the software.</p>\n<h2 id=\"6-the-real-cost-for-a-season\">6. The real cost for a season</h2>\n<p>Pricing pages mix monthly and yearly rates, storage limits, photo limits, event limits and &quot;plus GST&quot;. Work out one number: what will a full season of your weddings cost?</p>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Question</th>\n<th>Why it matters</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Is it priced by storage, by photo count, or per event?</td>\n<td>Decides whether big weddings cost more</td>\n</tr>\n<tr>\n<td>Is GST included or extra?</td>\n<td>18% on top changes the comparison</td>\n</tr>\n<tr>\n<td>How long does an event stay live?</td>\n<td>Some galleries expire, some can stay forever</td>\n</tr>\n<tr>\n<td>Is there a pay-per-event option?</td>\n<td>Useful in the off season</td>\n</tr>\n<tr>\n<td>Are face search and full-quality delivery on every plan?</td>\n<td>Cheap plans sometimes leave them out</td>\n</tr>\n</tbody></table></div>\n<h2 id=\"7-what-happens-after-the-wedding\">7. What happens after the wedding</h2>\n<p>Guest sharing is one day. The couple&#39;s album selection takes weeks or months. If your face search app and your selection tool are different, the couple juggles two links and you match file names by hand. Check whether the same gallery handles album selection and helps you find the original files for the editor. See <a href=\"/blog/album-selection-excel-whatsapp-or-app\">album selection on Excel, WhatsApp or an app</a>.</p>\n<h2 id=\"8-support-during-the-wedding-season\">8. Support during the wedding season</h2>\n<p>Something will go wrong at 11 pm during a sangeet. Ask how you reach support, in which language, and how fast they reply in November.</p>\n<h2 id=\"how-vyavasth-answers-these\">How Vyavasth answers these</h2>\n<p>We build Vyavasth, so read this part with that in mind:</p>\n<ul>\n<li>Face search is opt-in: guests agree before the selfie and can skip it. My People shows photos of two guests together only when both have agreed.</li>\n<li>Photos are added to each guest&#39;s My Photos as you upload during the event.</li>\n<li>Guests sign in with their WhatsApp number or Google. The full gallery opens with the family&#39;s passcode. Face search can be turned off for one event.</li>\n<li>Galleries carry your logo, colours and watermark, and are kept out of Google search.</li>\n<li>Album selection with Smart Selects, and finding the original and RAW files for the editor, are part of the same gallery.</li>\n<li>Plans are priced in rupees, with a pay-per-event option. See <a href=\"/pricing\">pricing</a> and the <a href=\"/features/face-search-photo-sharing\">face search page</a>.</li>\n</ul>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"what-is-ai-face-search-photo-sharing\">What is AI face search photo sharing?</h3>\n<p>It is a way to share event photos where each guest takes a selfie and the app finds every photo they appear in. Guests open the gallery from a QR code or link, so nobody scrolls through thousands of photos.</p>\n<h3 id=\"how-accurate-is-face-search-at-indian-weddings\">How accurate is face search at Indian weddings?</h3>\n<p>It depends on the app and the photos. Low light, side profiles, veils and crowded group shots are the hard cases. Test any app on one of your own real events before paying.</p>\n<h3 id=\"do-guests-need-to-install-an-app-for-face-search\">Do guests need to install an app for face search?</h3>\n<p>Not with most current tools. Guests open the gallery in their phone&#39;s browser from a QR code or link and take a selfie there.</p>\n<h3 id=\"is-face-search-legal-in-india\">Is face search legal in India?</h3>\n<p>Using face search with guests&#39; consent is common practice. India&#39;s DPDP Act treats faces as personal data and its consent and notice rules apply fully from May 2027, so choose a tool where guests agree before taking a selfie and can skip it.</p>\n",
+    "faqs": [
+      {
+        "q": "What is AI face search photo sharing?",
+        "a": "It is a way to share event photos where each guest takes a selfie and the app finds every photo they appear in. Guests open the gallery from a QR code or link, so nobody scrolls through thousands of photos."
+      },
+      {
+        "q": "How accurate is face search at Indian weddings?",
+        "a": "It depends on the app and the photos. Low light, side profiles, veils and crowded group shots are the hard cases. Test any app on one of your own real events before paying."
+      },
+      {
+        "q": "Do guests need to install an app for face search?",
+        "a": "Not with most current tools. Guests open the gallery in their phone's browser from a QR code or link and take a selfie there."
+      },
+      {
+        "q": "Is face search legal in India?",
+        "a": "Using face search with guests' consent is common practice. India's DPDP Act treats faces as personal data and its consent and notice rules apply fully from May 2027, so choose a tool where guests agree before taking a selfie and can skip it."
+      }
+    ],
+    "readingMinutes": 6,
+    "wordCount": 1124,
+    "headings": [
+      {
+        "id": "the-short-answer",
+        "text": "The short answer"
+      },
+      {
+        "id": "1-face-matching-on-your-own-photos-not-the-demo",
+        "text": "1. Face matching on your own photos, not the demo"
+      },
+      {
+        "id": "2-live-delivery-or-only-after-the-full-upload",
+        "text": "2. Live delivery, or only after the full upload"
+      },
+      {
+        "id": "3-how-guests-get-in-and-what-they-agree-to",
+        "text": "3. How guests get in, and what they agree to"
+      },
+      {
+        "id": "4-full-quality-downloads",
+        "text": "4. Full quality downloads"
+      },
+      {
+        "id": "5-your-studio-s-name-on-every-screen",
+        "text": "5. Your studio's name on every screen"
+      },
+      {
+        "id": "6-the-real-cost-for-a-season",
+        "text": "6. The real cost for a season"
+      },
+      {
+        "id": "7-what-happens-after-the-wedding",
+        "text": "7. What happens after the wedding"
+      },
+      {
+        "id": "8-support-during-the-wedding-season",
+        "text": "8. Support during the wedding season"
+      },
+      {
+        "id": "how-vyavasth-answers-these",
+        "text": "How Vyavasth answers these"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
+    "slug": "is-ai-face-search-safe-for-wedding-guests",
+    "title": "Is AI face search safe for wedding guests? Privacy and India's DPDP Act",
+    "seoTitle": "Is face search safe for wedding guests? Privacy and DPDP",
+    "description": "What happens to a guest's selfie, what India's DPDP Act asks of studios and apps, and the privacy settings a family should expect from a face search gallery.",
+    "author": "bhartendra",
+    "date": "2026-10-24",
+    "category": "guest-experience",
+    "image": "/blog/og/is-ai-face-search-safe-for-wedding-guests.png",
+    "html": "<p>When a studio puts a QR code at the wedding entrance and asks guests for a selfie, some relatives will hesitate. That is a reasonable reaction. A selfie is a photo of your face, and a face is about as personal as data gets. This post explains what a face search gallery does with it, what India&#39;s data protection law expects, and what a family should ask before agreeing.</p>\n<p>This is general information, not legal advice.</p>\n<h2 id=\"the-short-answer\">The short answer</h2>\n<p>Face search is safe when guests choose it, when it only shows people photos they are actually in, and when the full gallery stays private. Look for four things: guests agree before taking a selfie and can skip it, nobody appears in someone else&#39;s results without saying yes, the full gallery needs a passcode, and galleries are kept out of search engines.</p>\n<h2 id=\"what-face-search-actually-does-with-a-selfie\">What face search actually does with a selfie</h2>\n<ol>\n<li>The guest takes a selfie in their phone&#39;s browser.</li>\n<li>The software turns the face into a set of numbers that describe it, often called a face template. It is used for comparison and is not shown to anyone as a picture.</li>\n<li>It compares those numbers with the faces found in the event&#39;s photos.</li>\n<li>The guest sees the photos where the faces match.</li>\n</ol>\n<p>The selfie is not posted in the gallery, and other guests do not see it. What matters is who controls the photos, how long the face data is kept, and whether the guest can say no.</p>\n<h2 id=\"what-india-s-dpdp-act-means-here\">What India&#39;s DPDP Act means here</h2>\n<p>The Digital Personal Data Protection Act, 2023, and the DPDP Rules notified in November 2025, cover personal data in digital form. A face in a selfie or photo is personal data. The rules are coming into force in phases: the main duties around notice, consent, data principal rights, security safeguards and breach reporting apply from May 2027.</p>\n<p>In practical terms, the law points to the same things good practice already does:</p>\n<ul>\n<li><strong>Clear notice:</strong> tell guests what the selfie is used for, in plain words, before they take it.</li>\n<li><strong>Real consent:</strong> guests choose face search; they are not forced into it to see any photos.</li>\n<li><strong>Purpose:</strong> use the selfie to find that guest&#39;s photos, not for anything else.</li>\n<li><strong>Retention:</strong> do not keep face data longer than needed.</li>\n<li><strong>Withdrawal:</strong> a guest should be able to change their mind.</li>\n</ul>\n<p>Under the Act, the studio and the software company both have roles in this, so studios should pick an app that makes these steps part of the product rather than something to explain at the door.</p>\n<h2 id=\"privacy-settings-a-family-should-expect\">Privacy settings a family should expect</h2>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Setting</th>\n<th>What it protects</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Face search is opt-in and skippable</td>\n<td>Guests who do not want to give a selfie can still browse</td>\n</tr>\n<tr>\n<td>Guests see only their own photos</td>\n<td>A cousin cannot scroll through everyone&#39;s photos</td>\n</tr>\n<tr>\n<td>Full gallery behind a passcode</td>\n<td>Only the family the studio chooses sees everything</td>\n</tr>\n<tr>\n<td>Photos with others need both people to agree</td>\n<td>Nobody is found through someone else&#39;s selfie without saying yes</td>\n</tr>\n<tr>\n<td>Galleries kept out of Google</td>\n<td>Wedding photos do not show up in a name search</td>\n</tr>\n<tr>\n<td>Face search can be turned off per event</td>\n<td>Families who prefer it can have a passcode-only gallery</td>\n</tr>\n<tr>\n<td>Sign-in before viewing</td>\n<td>The studio knows the gallery is opened by invited guests</td>\n</tr>\n</tbody></table></div>\n<h2 id=\"questions-guests-and-families-commonly-ask\">Questions guests and families commonly ask</h2>\n<p><strong>&quot;Can other people find my photos by uploading my picture?&quot;</strong> In a well-built gallery, face search only works with a live selfie from the guest&#39;s own phone, and features that show photos of two people together ask both of them first. Ask the studio how theirs works.</p>\n<p><strong>&quot;Will my photos be on the internet?&quot;</strong> The gallery is online, because that is how guests receive photos on their phones, but it should not be listed on search engines and the full set should need a passcode.</p>\n<p><strong>&quot;What if I do not want face search at all?&quot;</strong> Skip it and browse, or ask the family. Studios can usually switch face search off for the whole event.</p>\n<h2 id=\"what-studios-can-do-at-the-event\">What studios can do at the event</h2>\n<ul>\n<li>Put one line on the QR standee: &quot;Take a selfie to find your photos. Optional. Your selfie is only used to find your photos.&quot;</li>\n<li>Tell the family in advance, and offer a passcode-only gallery if they prefer.</li>\n<li>Keep the passcode for the full gallery with the immediate family.</li>\n<li>Respect requests to remove a photo, quickly.</li>\n</ul>\n<p>For the wider setup, see <a href=\"/blog/how-to-share-wedding-photos-with-all-guests\">how to share wedding photos with all guests</a> and <a href=\"/blog/qr-code-for-wedding-photos\">QR codes for wedding photos</a>.</p>\n<h2 id=\"how-vyavasth-handles-it\">How Vyavasth handles it</h2>\n<p>Guests agree to face search before taking a selfie and can skip it. My People shows photos of two guests together only when both have agreed. The full gallery opens with the family&#39;s passcode, guests sign in with their WhatsApp number or Google, wedding galleries are kept out of Google search, and face search can be switched off for a single event. Details on the <a href=\"/features/face-search-photo-sharing\">face search page</a>.</p>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"is-it-safe-to-give-a-selfie-to-a-wedding-photo-app\">Is it safe to give a selfie to a wedding photo app?</h3>\n<p>It is reasonably safe when the app uses the selfie only to find your photos, asks for your agreement first, lets you skip it, and keeps the gallery private with a passcode. If any of these is missing, ask the studio before taking the selfie.</p>\n<h3 id=\"does-the-dpdp-act-apply-to-wedding-face-search-in-india\">Does the DPDP Act apply to wedding face search in India?</h3>\n<p>Faces are personal data under the Digital Personal Data Protection Act, 2023. Its main notice and consent duties apply from May 2027 under the phased DPDP Rules, 2025. Getting clear consent before a selfie is the safe practice now.</p>\n<h3 id=\"can-a-guest-refuse-face-search-and-still-get-photos\">Can a guest refuse face search and still get photos?</h3>\n<p>Yes, in a well-designed gallery. The guest can skip the selfie and browse, and the family can share the full gallery passcode with them.</p>\n<h3 id=\"are-wedding-face-search-galleries-public\">Are wedding face search galleries public?</h3>\n<p>They should not be. A good gallery needs a sign-in, shows guests only their own photos, keeps the full set behind a passcode, and is kept out of search engines.</p>\n",
+    "faqs": [
+      {
+        "q": "Is it safe to give a selfie to a wedding photo app?",
+        "a": "It is reasonably safe when the app uses the selfie only to find your photos, asks for your agreement first, lets you skip it, and keeps the gallery private with a passcode. If any of these is missing, ask the studio before taking the selfie."
+      },
+      {
+        "q": "Does the DPDP Act apply to wedding face search in India?",
+        "a": "Faces are personal data under the Digital Personal Data Protection Act, 2023. Its main notice and consent duties apply from May 2027 under the phased DPDP Rules, 2025. Getting clear consent before a selfie is the safe practice now."
+      },
+      {
+        "q": "Can a guest refuse face search and still get photos?",
+        "a": "Yes, in a well-designed gallery. The guest can skip the selfie and browse, and the family can share the full gallery passcode with them."
+      },
+      {
+        "q": "Are wedding face search galleries public?",
+        "a": "They should not be. A good gallery needs a sign-in, shows guests only their own photos, keeps the full set behind a passcode, and is kept out of search engines."
+      }
+    ],
+    "readingMinutes": 5,
+    "wordCount": 995,
+    "headings": [
+      {
+        "id": "the-short-answer",
+        "text": "The short answer"
+      },
+      {
+        "id": "what-face-search-actually-does-with-a-selfie",
+        "text": "What face search actually does with a selfie"
+      },
+      {
+        "id": "what-india-s-dpdp-act-means-here",
+        "text": "What India's DPDP Act means here"
+      },
+      {
+        "id": "privacy-settings-a-family-should-expect",
+        "text": "Privacy settings a family should expect"
+      },
+      {
+        "id": "questions-guests-and-families-commonly-ask",
+        "text": "Questions guests and families commonly ask"
+      },
+      {
+        "id": "what-studios-can-do-at-the-event",
+        "text": "What studios can do at the event"
+      },
+      {
+        "id": "how-vyavasth-handles-it",
+        "text": "How Vyavasth handles it"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
+    "slug": "multi-function-wedding-photo-gallery",
+    "title": "Haldi, mehendi, sangeet, wedding: organising photos of a multi-day wedding",
+    "seoTitle": "Organising photos of a multi-day Indian wedding gallery",
+    "description": "How Indian studios can organise photos from five functions over three days into one gallery that guests, families and the album designer can actually use.",
+    "author": "bharat",
+    "date": "2026-10-24",
+    "category": "delivery",
+    "image": "/blog/og/multi-function-wedding-photo-gallery.png",
+    "html": "<p>An Indian wedding is not one event. It is a tilak or roka, a haldi, a mehendi, a sangeet, the wedding with baraat, varmala and pheras, the vidaai and a reception, often across three days and two venues. A busy wedding gives you 6,000 to 10,000 photos from several cameras. How you organise them decides whether the family enjoys the gallery or gives up after the haldi.</p>\n<h2 id=\"the-short-answer\">The short answer</h2>\n<p>Use one gallery per wedding with one folder per function, named and ordered the way the family lived it. Upload function by function as the wedding goes on, keep one QR code and link for the whole wedding, and let guests use face search so they do not have to know which function they appeared in.</p>\n<h2 id=\"one-gallery-not-five-links\">One gallery, not five links</h2>\n<p>Studios sometimes create a separate link for each function. It feels tidy, but families end up with five links in a WhatsApp group, each with its own passcode, and guests never find the sangeet photos. One wedding should have:</p>\n<ul>\n<li>One gallery link and one QR code for every function.</li>\n<li>One passcode for the full gallery, held by the immediate family.</li>\n<li>One place for album selection later.</li>\n</ul>\n<h2 id=\"folders-that-follow-the-wedding\">Folders that follow the wedding</h2>\n<p>Inside the gallery, make one folder per function and order them by date. Use the names the family uses: a Marwari family&#39;s &quot;Mayra&quot; or a Punjabi family&#39;s &quot;Jaago&quot; should appear as that, not as &quot;Event 3&quot;.</p>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Folder</th>\n<th>Typical photos</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Tilak / Roka</td>\n<td>Rituals, family portraits</td>\n</tr>\n<tr>\n<td>Haldi</td>\n<td>Candid, colour, close family</td>\n</tr>\n<tr>\n<td>Mehendi</td>\n<td>Bride, detail shots, friends</td>\n</tr>\n<tr>\n<td>Sangeet</td>\n<td>Stage, performances, low light</td>\n</tr>\n<tr>\n<td>Baraat</td>\n<td>Groom&#39;s side, procession, dance</td>\n</tr>\n<tr>\n<td>Wedding</td>\n<td>Varmala, pheras, rituals, family groups</td>\n</tr>\n<tr>\n<td>Vidaai</td>\n<td>Emotional moments, close family</td>\n</tr>\n<tr>\n<td>Reception</td>\n<td>Stage photos with every guest</td>\n</tr>\n</tbody></table></div>\n<p>Add one more folder that is not a function: &quot;Highlights&quot;, with your 50 to 100 best photos from the whole wedding. It is the first thing the family shows people, and you can make it the one folder guests see without the full gallery passcode.</p>\n<h2 id=\"upload-function-by-function\">Upload function by function</h2>\n<p>Do not wait for the reception to start uploading. After each function:</p>\n<ol>\n<li>Copy the cards, and keep that copy as your backup.</li>\n<li>Do a quick cull of the obvious rejects: blinks, misfires, duplicates.</li>\n<li>Upload the selects to that function&#39;s folder.</li>\n</ol>\n<p>Guests see the haldi photos while the sangeet is being set up, and they share them in the family groups with your studio&#39;s name on them. That is your best marketing of the whole wedding. The full day plan is in <a href=\"/blog/same-day-photo-delivery-at-weddings\">same-day photo delivery at weddings</a>, and the upload options in <a href=\"/blog/camera-to-cloud-wedding-ftp-usb-card-reader\">camera to cloud at weddings</a>.</p>\n<h2 id=\"let-face-search-do-the-sorting-for-guests\">Let face search do the sorting for guests</h2>\n<p>A guest who came only for the reception does not want to open eight folders. With face search, they take one selfie and see every photo they are in, across every function, in one place. Folders are for the family and the album designer; face search is for guests. See <a href=\"/blog/how-to-share-wedding-photos-with-all-guests\">how to share wedding photos with all guests</a>.</p>\n<h2 id=\"several-photographers-one-gallery\">Several photographers, one gallery</h2>\n<p>At large weddings, three or four photographers shoot at once, and their camera clocks rarely match. Before the wedding, set every camera to the same time. Then the photos in each folder sort in the order things happened, instead of jumping between cameras.</p>\n<h2 id=\"make-album-selection-easier-later\">Make album selection easier later</h2>\n<p>Good folders now save weeks later. When the couple sits down to choose 300 photos from 8,000, they can work function by function: pick the best 40 from the haldi, then the mehendi, and so on. With both families involved, folders also make it easier to split the work. More in <a href=\"/blog/album-selection-when-both-families-want-a-say\">album selection when both families want a say</a> and <a href=\"/blog/why-album-selection-takes-months\">why album selection takes months</a>.</p>\n<h2 id=\"how-this-works-in-vyavasth\">How this works in Vyavasth</h2>\n<p>One event per wedding with a folder for each function, in the order you set, plus a Highlights folder you can make visible to guests without the passcode; one QR and link for every function; face search across all folders as you upload; and album selection with Smart Selects in the same gallery. When the shortlist is ready, <a href=\"/features/locate-original-raw-files\">Locate Originals</a> finds the original and RAW files on your laptop for the editor.</p>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"should-each-wedding-function-have-a-separate-gallery\">Should each wedding function have a separate gallery?</h3>\n<p>Usually not. One gallery per wedding with a folder per function is easier for families and guests: one link, one QR code, one passcode, and one place for album selection.</p>\n<h3 id=\"how-many-photos-does-a-typical-indian-wedding-produce\">How many photos does a typical Indian wedding produce?</h3>\n<p>A multi-day wedding with several photographers often produces 6,000 to 10,000 photos before culling. Organising them by function makes the gallery usable.</p>\n<h3 id=\"when-should-i-upload-photos-during-a-multi-day-wedding\">When should I upload photos during a multi-day wedding?</h3>\n<p>After each function. Upload a quick cull of that function&#39;s photos while the next one is being set up, so guests receive photos the same day.</p>\n<h3 id=\"how-do-guests-find-their-photos-across-many-functions\">How do guests find their photos across many functions?</h3>\n<p>With face search. A guest takes one selfie and sees every photo they are in across all functions, without opening each folder.</p>\n",
+    "faqs": [
+      {
+        "q": "Should each wedding function have a separate gallery?",
+        "a": "Usually not. One gallery per wedding with a folder per function is easier for families and guests: one link, one QR code, one passcode, and one place for album selection."
+      },
+      {
+        "q": "How many photos does a typical Indian wedding produce?",
+        "a": "A multi-day wedding with several photographers often produces 6,000 to 10,000 photos before culling. Organising them by function makes the gallery usable."
+      },
+      {
+        "q": "When should I upload photos during a multi-day wedding?",
+        "a": "After each function. Upload a quick cull of that function's photos while the next one is being set up, so guests receive photos the same day."
+      },
+      {
+        "q": "How do guests find their photos across many functions?",
+        "a": "With face search. A guest takes one selfie and sees every photo they are in across all functions, without opening each folder."
+      }
+    ],
+    "readingMinutes": 4,
+    "wordCount": 827,
+    "headings": [
+      {
+        "id": "the-short-answer",
+        "text": "The short answer"
+      },
+      {
+        "id": "one-gallery-not-five-links",
+        "text": "One gallery, not five links"
+      },
+      {
+        "id": "folders-that-follow-the-wedding",
+        "text": "Folders that follow the wedding"
+      },
+      {
+        "id": "upload-function-by-function",
+        "text": "Upload function by function"
+      },
+      {
+        "id": "let-face-search-do-the-sorting-for-guests",
+        "text": "Let face search do the sorting for guests"
+      },
+      {
+        "id": "several-photographers-one-gallery",
+        "text": "Several photographers, one gallery"
+      },
+      {
+        "id": "make-album-selection-easier-later",
+        "text": "Make album selection easier later"
+      },
+      {
+        "id": "how-this-works-in-vyavasth",
+        "text": "How this works in Vyavasth"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
     "slug": "instagram-for-wedding-photographers",
     "title": "Instagram for wedding studios: what actually brings enquiries",
     "seoTitle": "Instagram for wedding photographers: what brings enquiries",

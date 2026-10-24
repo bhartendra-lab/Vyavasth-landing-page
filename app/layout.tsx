@@ -19,9 +19,9 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-const TITLE = "Vyavasth: Wedding photo delivery and album selection for studios";
+const TITLE = "Vyavasth | Wedding photo sharing with AI face search, India";
 const DESCRIPTION =
-  "Deliver wedding photos while the event is still running. Guests find their photos with one selfie, couples finish album selection in hours, and you locate the originals in one click.";
+  "Wedding photo sharing and album selection app for Indian photography studios. Guests find their photos with one selfie, live during the event. Pay per event or monthly plans.";
 
 const orgLd = [
   {
