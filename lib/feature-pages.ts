@@ -5,9 +5,9 @@
 // Do not add features that are planned but not live. No prices here: link to
 // /pricing instead, so nothing goes stale when plans change. No em dashes.
 
-export type Step = { title: string; text: string };
 export type Table = { caption: string; head: string[]; rows: string[][] };
 export type Figure = { src: string; alt: string; caption: string; width: number; height: number; mobile?: boolean };
+export type Step = { title: string; text: string; image?: Figure };
 export type Section = { h2: string; paragraphs?: string[]; bullets?: string[]; table?: Table; figure?: Figure };
 export type FaqItem = { q: string; a: string };
 export type Quote = { text: string; studio: string; city: string };
@@ -21,6 +21,12 @@ export type FeaturePage = {
   h1: string;
   /** Answer-first summary: what it is, who it is for, the result. */
   summary: string;
+  /** One short line under the h1, max ~110 chars. Falls back to the first sentence of `summary`. */
+  lede?: string;
+  /** Main visual for the hero. Falls back to the first section figure, else no image. */
+  hero?: Figure;
+  /** 3 or 4 short benefit cards. Section hidden when absent. */
+  benefits?: { title: string; text: string }[];
   stepsHeading: string;
   steps: Step[];
   sections: Section[];
@@ -229,8 +235,8 @@ export const FEATURE_PAGES: FeaturePage[] = [
         text: "Vyavasth finds every photo the guest is in, across thousands of photos, and keeps adding new ones as the studio uploads.",
       },
       {
-        title: "Find photos with family and friends",
-        text: "In My People, guests who have both agreed can find the photos they are in together. Nobody is shown in someone else's results without saying yes.",
+        title: "Like, download and share",
+        text: "Guests like their favourites, download them to their phone and share them with family, with your studio's name on every screen.",
       },
     ],
     sections: [
@@ -252,7 +258,6 @@ export const FEATURE_PAGES: FeaturePage[] = [
         bullets: [
           "Each event has one link, and the full gallery opens only with the host's passcode.",
           "Face search is opt-in: guests agree before taking a selfie, and can skip it.",
-          "My People only shows photos of two guests together when both have agreed.",
           "Wedding galleries are kept out of Google search results.",
         ],
       },

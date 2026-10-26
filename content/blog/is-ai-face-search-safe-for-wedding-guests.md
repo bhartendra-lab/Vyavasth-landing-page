@@ -13,7 +13,7 @@ This is general information, not legal advice.
 
 ## The short answer
 
-Face search is safe when guests choose it, when it only shows people photos they are actually in, and when the full gallery stays private. Look for four things: guests agree before taking a selfie and can skip it, nobody appears in someone else's results without saying yes, the full gallery needs a passcode, and galleries are kept out of search engines.
+Face search is safe when guests choose it, when it only shows people photos they are actually in, and when the full gallery stays private. Look for four things: guests agree before taking a selfie and can skip it, guests see only the photos they are in, the full gallery needs a passcode, and galleries are kept out of search engines.
 
 ## What face search actually does with a selfie
 
@@ -45,14 +45,13 @@ Under the Act, the studio and the software company both have roles in this, so s
 | Face search is opt-in and skippable | Guests who do not want to give a selfie can still browse |
 | Guests see only their own photos | A cousin cannot scroll through everyone's photos |
 | Full gallery behind a passcode | Only the family the studio chooses sees everything |
-| Photos with others need both people to agree | Nobody is found through someone else's selfie without saying yes |
 | Galleries kept out of Google | Wedding photos do not show up in a name search |
 | Face search can be turned off per event | Families who prefer it can have a passcode-only gallery |
 | Sign-in before viewing | The studio knows the gallery is opened by invited guests |
 
 ## Questions guests and families commonly ask
 
-**"Can other people find my photos by uploading my picture?"** In a well-built gallery, face search only works with a live selfie from the guest's own phone, and features that show photos of two people together ask both of them first. Ask the studio how theirs works.
+**"Can other people find my photos by uploading my picture?"** In a well-built gallery, face search only works with a live selfie from the guest's own phone. Ask the studio how theirs works.
 
 **"Will my photos be on the internet?"** The gallery is online, because that is how guests receive photos on their phones, but it should not be listed on search engines and the full set should need a passcode.
 
@@ -69,7 +68,7 @@ For the wider setup, see [how to share wedding photos with all guests](/blog/how
 
 ## How Vyavasth handles it
 
-Guests agree to face search before taking a selfie and can skip it. My People shows photos of two guests together only when both have agreed. The full gallery opens with the family's passcode, guests sign in with their WhatsApp number or Google, wedding galleries are kept out of Google search, and face search can be switched off for a single event. Details on the [face search page](/features/face-search-photo-sharing).
+Guests agree to face search before taking a selfie and can skip it. The full gallery opens with the family's passcode, guests sign in with their WhatsApp number or Google, wedding galleries are kept out of Google search, and face search can be switched off for a single event. Details on the [face search page](/features/face-search-photo-sharing).
 
 ## Frequently asked questions
 

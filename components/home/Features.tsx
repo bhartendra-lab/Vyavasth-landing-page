@@ -81,7 +81,7 @@ export default function Features() {
             <h3 style={{ textWrap: "wrap" }}>
               Album selection in hours, not months.<br className={styles.dbr} /> Originals in one click.
             </h3>
-            <Link className={styles.go} href="/pricing#features">Explore Smart Select</Link>
+            <Link className={styles.go} href="/features/album-selection">Explore Smart Select</Link>
           </div>
           <div className={styles.art}>
             <div className={cx(styles.panel, styles.ss)}>
@@ -113,8 +113,8 @@ export default function Features() {
         {/* 2 · My People */}
         <article className={cx(styles.c, styles.c2)} data-card="">
           <div className={styles.txt}>
-            <h3>Every guest gets their own circle.</h3>
-            <Link className={styles.go} href="/pricing#features">Explore My People</Link>
+            <h3>Every guest finds every photo they are in.</h3>
+            <Link className={styles.go} href="/features/face-search-photo-sharing">Explore face search</Link>
           </div>
           <div className={styles.art}>
             <div className={styles.orbit}>
@@ -138,7 +138,7 @@ export default function Features() {
         <article className={cx(styles.c, styles.c3)} data-card="">
           <div className={styles.txt}>
             <h3>Uploads you never have to babysit.</h3>
-            <Link className={styles.go} href="/pricing#features">Explore uploads</Link>
+            <Link className={styles.go} href="/features/live-photo-delivery">Explore uploads</Link>
           </div>
           <div className={styles.art}>
             <div className={cx(styles.panel, styles.up)}>
@@ -167,7 +167,7 @@ export default function Features() {
         <article className={cx(styles.c, styles.wide, styles.c4)} data-card="">
           <div className={styles.txt}>
             <h3>Your name on every screen. Your reviews too.</h3>
-            <Link className={styles.go} href="/pricing#features">Explore branding</Link>
+            <Link className={styles.go} href="/features/google-reviews-for-photographers">Explore branding</Link>
           </div>
           <div className={styles.art}>
             <div className={styles.shot} style={bg(brandShot.src)}></div>

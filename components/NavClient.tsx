@@ -1,20 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { X } from "lucide-react";
+import { ChevronDown, X } from "lucide-react";
 import { LOGIN_URL } from "@/lib/app-url";
 import styles from "./Nav.module.css";
 
 const NAV_LINKS = [
-  { label: "Features", href: "/#features" },
   { label: "Pricing", href: "/pricing" },
   { label: "How it works", href: "/#how" },
 ];
 
-export default function Nav() {
+export type FeatureLink = { label: string; href: string };
+
+export default function NavClient({ featureLinks }: { featureLinks: FeatureLink[] }) {
   const pathname = usePathname();
   const isHome = pathname === "/";
   // The drawer is open only for the path it was opened on, so navigating
@@ -22,6 +23,33 @@ export default function Nav() {
   const [openOn, setOpenOn] = useState<string | null>(null);
   const drawerOpen = openOn === pathname;
   const setDrawerOpen = (open: boolean) => setOpenOn(open ? pathname : null);
+
+  // The Features menu works the same way. Its links are always in the HTML
+  // (CSS hides the panel when closed), so crawlers and keyboards both find them.
+  const [menuOn, setMenuOn] = useState<string | null>(null);
+  const menuOpen = menuOn === pathname;
+  const setMenuOpen = (open: boolean) => setMenuOn(open ? pathname : null);
+  const menuRef = useRef<HTMLDivElement>(null);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOn(null);
+        menuButtonRef.current?.focus();
+      }
+    };
+    const onPointerDown = (e: PointerEvent) => {
+      if (!menuRef.current?.contains(e.target as Node)) setMenuOn(null);
+    };
+    document.addEventListener("keydown", onKeyDown);
+    document.addEventListener("pointerdown", onPointerDown);
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.removeEventListener("pointerdown", onPointerDown);
+    };
+  }, [menuOpen]);
 
   useEffect(() => {
     if (!drawerOpen) return;
@@ -37,6 +65,7 @@ export default function Nav() {
   }, [drawerOpen]);
 
   const isActive = (href: string) => href === pathname;
+  const onFeatures = pathname === "/features" || pathname.startsWith("/features/");
 
   return (
     <>
@@ -54,6 +83,49 @@ export default function Nav() {
           />
         </Link>
         <div className={styles.links}>
+          <div
+            ref={menuRef}
+            className={styles.dd}
+            onPointerEnter={(e) => e.pointerType === "mouse" && setMenuOpen(true)}
+            onPointerLeave={(e) => e.pointerType === "mouse" && setMenuOpen(false)}
+          >
+            <button
+              ref={menuButtonRef}
+              type="button"
+              className={`${styles.ddBtn} ${onFeatures ? styles.on : ""}`}
+              aria-expanded={menuOpen}
+              aria-controls="features-menu"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              Features
+              <ChevronDown size={15} aria-hidden className={styles.caret} />
+            </button>
+            <div
+              id="features-menu"
+              className={`${styles.ddPanel} ${menuOpen ? styles.ddOpen : ""}`}
+            >
+              <div className={styles.ddBox}>
+                {featureLinks.map((l) => (
+                  <Link
+                    key={l.href}
+                    href={l.href}
+                    aria-current={isActive(l.href) ? "page" : undefined}
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+                <Link
+                  href="/features"
+                  className={styles.ddAll}
+                  aria-current={isActive("/features") ? "page" : undefined}
+                  onClick={() => setMenuOpen(false)}
+                >
+                  All features
+                </Link>
+              </div>
+            </div>
+          </div>
           {NAV_LINKS.map((l) => (
             <Link
               key={l.href}
@@ -107,6 +179,25 @@ export default function Nav() {
           </button>
         </div>
         <nav className={styles.drawerNav} aria-label="Mobile navigation">
+          <Link
+            href="/features"
+            className={`${styles.item} ${isActive("/features") ? styles.on : ""}`}
+            onClick={() => setDrawerOpen(false)}
+          >
+            Features
+          </Link>
+          <div className={styles.sub}>
+            {featureLinks.map((l) => (
+              <Link
+                key={l.href}
+                href={l.href}
+                className={`${styles.item} ${isActive(l.href) ? styles.on : ""}`}
+                onClick={() => setDrawerOpen(false)}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </div>
           {NAV_LINKS.map((l) => (
             <Link
               key={l.href}

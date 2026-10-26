@@ -77,7 +77,7 @@ Something will go wrong at 11 pm during a sangeet. Ask how you reach support, in
 
 We build Vyavasth, so read this part with that in mind:
 
-- Face search is opt-in: guests agree before the selfie and can skip it. My People shows photos of two guests together only when both have agreed.
+- Face search is opt-in: guests agree before the selfie and can skip it.
 - Photos are added to each guest's My Photos as you upload during the event.
 - Guests sign in with their WhatsApp number or Google. The full gallery opens with the family's passcode. Face search can be turned off for one event.
 - Galleries carry your logo, colours and watermark, and are kept out of Google search.

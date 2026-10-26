@@ -14,13 +14,27 @@
 .links a{position:relative;padding:6px 0}
 .links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
 .links a:hover::after,.links a.on::after{transform:scaleX(1)}
+/* Features menu. The panel is always in the HTML; closed, it is only hidden. */
+.dd{position:relative}
+.ddBtn{position:relative;display:inline-flex;align-items:center;gap:4px;padding:6px 0;font:inherit;color:inherit;cursor:pointer}
+.ddBtn::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;border-radius:2px;background:var(--terra);transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.ddBtn:hover::after,.ddBtn.on::after,.ddBtn[aria-expanded="true"]::after{transform:scaleX(1)}
+.caret{transition:transform .25s var(--ease)}
+.ddBtn[aria-expanded="true"] .caret{transform:rotate(180deg)}
+.ddPanel{position:absolute;top:100%;left:-18px;padding-top:18px;min-width:248px;visibility:hidden;opacity:0;transform:translateY(-6px);transition:opacity .2s var(--ease),transform .2s var(--ease),visibility 0s linear .2s}
+.ddPanel.ddOpen{visibility:visible;opacity:1;transform:none;transition-delay:0s}
+.ddBox{display:flex;flex-direction:column;gap:2px;padding:8px;border-radius:20px;background:rgba(255,249,244,.98);border:1px solid rgba(255,255,255,.7);box-shadow:0 1px 0 rgba(255,255,255,.8) inset,0 18px 40px rgba(43,20,13,.2)}
+.links .ddBox a{display:block;padding:10px 14px;border-radius:12px;font-size:14.5px;font-weight:600;color:var(--brown);white-space:nowrap}
+.links .ddBox a::after{display:none}
+.links .ddBox a:hover,.links .ddBox a[aria-current="page"]{background:#f6ebe5}
+.links .ddBox a.ddAll{margin-top:4px;border-top:1px solid #f0e3dc;border-radius:0 0 12px 12px;color:var(--terra-dk)}
 .sp{flex:1}
 .login{font-size:14.5px;font-weight:600;color:#4a3229;padding:8px 6px}
 .go{height:42px;padding:0 20px;border-radius:999px;background:var(--terra);color:#fff;font-weight:700;font-size:14.5px;display:inline-flex;align-items:center;gap:8px;box-shadow:0 6px 16px rgba(194,90,58,.42);transition:transform .25s var(--ease),background .25s}
 .go:hover{transform:translateY(-2px) scale(1.03);background:var(--terra-hot)}
 .burger{display:none;width:42px;height:42px;border-radius:50%;align-items:center;justify-content:center;cursor:pointer}
 .burger i{display:block;width:18px;height:2px;border-radius:2px;background:#4a3229;box-shadow:0 6px 0 #4a3229,0 -6px 0 #4a3229}
-.nav a:focus-visible,.burger:focus-visible{outline:2px solid var(--terra-hot);outline-offset:3px;border-radius:8px}
+.nav a:focus-visible,.nav .ddBtn:focus-visible,.burger:focus-visible{outline:2px solid var(--terra-hot);outline-offset:3px;border-radius:8px}
 
 /* Mobile menu. The prototype's burger has no behaviour, so this panel is added
    (it was in the previous nav too): same links, then Log in. */
@@ -42,9 +56,12 @@
   .drawerNav{display:flex;flex-direction:column;gap:2px;padding:18px 16px}
   .drawerNav a.item{display:flex;align-items:center;min-height:48px;padding:0 12px;border-radius:12px;font-size:17px;font-weight:700;letter-spacing:-.01em;color:var(--brown)}
   .drawerNav a.item:hover,.drawerNav a.item.on{background:#f6ebe5}
+  .drawerNav .sub{display:flex;flex-direction:column;gap:2px;margin:0 0 6px 18px;padding-left:10px;border-left:1px solid #f0e3dc}
+  .drawerNav .sub a.item{min-height:42px;font-size:15.5px;font-weight:600}
   .drawerNav a.drawerGo{margin-top:14px;justify-content:center;height:50px;border-radius:999px;background:var(--terra);color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;box-shadow:0 6px 16px rgba(194,90,58,.42)}
 }
 @media (prefers-reduced-motion:reduce){
+  .ddPanel,.caret{transition:none}
   .intro{animation-duration:.01s;animation-delay:0s}
   .drawer{transition:none}
 }

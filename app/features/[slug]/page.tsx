@@ -2,9 +2,11 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import LegalPageShell from "@/components/LegalPageShell";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 import { whatsappUrl } from "@/lib/site-legal";
-import { featureBySlug } from "@/lib/feature-pages";
+import { featureBySlug, type Figure } from "@/lib/feature-pages";
+import styles from "../feature.module.css";
 
 // Rendered per request, like the blog. Prerendered pages under a dynamic
 // segment 404 on Cloudflare (OpenNext has no incremental cache configured).
@@ -28,13 +30,20 @@ export async function generateMetadata({
   };
 }
 
-const h2 = "text-xl font-semibold mt-2 mb-3 tracking-tight";
-const h2Style = { fontFamily: "var(--font-syne)", color: "#1A1208" } as const;
-const list = "list-disc pl-5 space-y-2 m-0";
-const quote = "border-l-2 border-[#C25A3A] pl-4 italic m-0";
-const link = "text-[#C25A3A] underline";
-
 const firstSentence = (s: string) => s.split(/(?<=\.)\s/)[0];
+
+function FigureImage({ figure, priority }: { figure: Figure; priority?: boolean }) {
+  return (
+    <Image
+      src={figure.src}
+      alt={figure.alt}
+      width={figure.width}
+      height={figure.height}
+      unoptimized
+      priority={priority}
+    />
+  );
+}
 
 export default async function FeaturePage({
   params,
@@ -80,189 +89,214 @@ export default async function FeaturePage({
     .map((s) => featureBySlug(s))
     .filter((r): r is NonNullable<typeof r> => r !== undefined);
 
+  // The hero shows `hero`, else the first figure from the details. In the
+  // second case that figure is shown once, in the hero, not again below.
+  const firstSectionFigure = p.sections.find((s) => s.figure)?.figure;
+  const hero = p.hero ?? firstSectionFigure;
+  const heroIsSectionFigure = !p.hero && firstSectionFigure !== undefined;
+  const lede = p.lede ?? firstSentence(p.summary);
+  const whatsapp = whatsappUrl(p.whatsappText);
+
   return (
-    <LegalPageShell title={p.h1}>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+    <div className={styles.page}>
+      <Nav />
+      <main>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
 
-      <p className="text-lg m-0">{p.summary}</p>
-
-      <section>
-        <h2 className={h2} style={h2Style}>
-          {p.stepsHeading}
-        </h2>
-        <ol className="list-none p-0 m-0 grid grid-cols-1 sm:grid-cols-2 gap-5">
-          {p.steps.map((step, i) => (
-            <li key={step.title} className="flex gap-3">
-              <span
-                className="shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-semibold text-white"
-                style={{ backgroundColor: "#C25A3A" }}
-                aria-hidden
-              >
-                {i + 1}
-              </span>
-              <div>
-                <strong>{step.title}</strong>
-                <p className="mt-1 mb-0">{step.text}</p>
+        <section className={`${styles.wrap} ${styles.hero}`}>
+          <div className={`${styles.heroGrid} ${hero ? "" : styles.solo}`}>
+            <div>
+              <p className={styles.crumb}>
+                <Link href="/features">Features</Link>
+              </p>
+              <h1 className={styles.h1}>{p.h1}</h1>
+              <p className={styles.lede}>{lede}</p>
+              <div className={styles.actions}>
+                <a className={styles.primary} href={whatsapp} target="_blank" rel="noopener noreferrer">
+                  Chat on WhatsApp
+                </a>
+                <Link className={styles.secondary} href="/pricing">
+                  See pricing
+                </Link>
               </div>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      {p.sections.map((s) => {
-        const bulletsFirst = s.paragraphs?.[0]?.startsWith("Filters combine");
-        const paragraphs = s.paragraphs?.map((t) => <p key={t}>{t}</p>);
-        const bullets = s.bullets && (
-          <ul className={list}>
-            {s.bullets.map((b) => (
-              <li key={b}>{b}</li>
-            ))}
-          </ul>
-        );
-        return (
-          <section key={s.h2} className="flex flex-col gap-3">
-            <h2 className={h2} style={h2Style}>
-              {s.h2}
-            </h2>
-            {bulletsFirst ? (
-              <>
-                {bullets}
-                {paragraphs}
-              </>
-            ) : (
-              <>
-                {paragraphs}
-                {bullets}
-              </>
-            )}
-            {s.figure && (
-              <figure className={s.figure.mobile ? "mx-auto w-full max-w-[320px] my-2" : "w-full my-2"}>
-                <Image
-                  src={s.figure.src}
-                  alt={s.figure.alt}
-                  width={s.figure.width}
-                  height={s.figure.height}
-                  unoptimized
-                  className="w-full h-auto rounded-xl border border-[rgba(26,18,8,0.08)]"
-                />
-                <figcaption className="text-sm text-center mt-2" style={{ color: "#7A6F63" }}>
-                  {s.figure.caption}
-                </figcaption>
+            </div>
+            {hero && (
+              <figure className={`${styles.frame} ${hero.mobile ? styles.phone : ""}`}>
+                <div className={styles.frameBox}>
+                  <FigureImage figure={hero} priority />
+                </div>
+                <figcaption className={styles.cap}>{hero.caption}</figcaption>
               </figure>
             )}
-            {s.table && (
-              <div className="overflow-x-auto">
-                <table className="w-full text-sm border-collapse">
-                  <caption className="text-left font-semibold mb-2">{s.table.caption}</caption>
-                  <thead>
-                    <tr>
-                      {s.table.head.map((h, i) => (
-                        <th
-                          key={i}
-                          scope="col"
-                          className="text-left font-bold py-2.5 px-3 align-top border-b border-[rgba(26,18,8,0.08)]"
-                        >
-                          {h}
-                        </th>
-                      ))}
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {s.table.rows.map((row) => (
-                      <tr key={row[0]}>
-                        {row.map((cell, i) =>
-                          i === 0 ? (
-                            <th
-                              key={i}
-                              scope="row"
-                              className="text-left font-medium py-2.5 px-3 align-top border-b border-[rgba(26,18,8,0.08)]"
-                            >
-                              {cell}
-                            </th>
-                          ) : (
-                            <td
-                              key={i}
-                              className="py-2.5 px-3 align-top border-b border-[rgba(26,18,8,0.08)]"
-                            >
-                              {cell}
-                            </td>
-                          ),
-                        )}
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
-          </section>
-        );
-      })}
-
-      {p.quote && (
-        <section className="flex flex-col gap-3">
-          <h2 className={h2} style={h2Style}>
-            What studios say
-          </h2>
-          <blockquote className={quote}>{p.quote.text}</blockquote>
-          <p className="m-0">
-            <strong>{p.quote.studio}</strong>, {p.quote.city}
-          </p>
-        </section>
-      )}
-
-      <section className="flex flex-col gap-4">
-        <h2 className={h2} style={h2Style}>
-          Questions
-        </h2>
-        {p.faqs.map((f) => (
-          <div key={f.q}>
-            <h3 className="text-base font-semibold m-0 mb-1">{f.q}</h3>
-            <p className="m-0">{f.a}</p>
           </div>
-        ))}
-      </section>
+        </section>
 
-      <section className="flex flex-col gap-3">
-        <p className="m-0">See it on your next wedding.</p>
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-          <a
-            href={whatsappUrl(p.whatsappText)}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl font-semibold text-white transition-all duration-200 hover:brightness-110 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#C25A3A]/50 no-underline w-full sm:w-auto text-center"
-            style={{ backgroundColor: "#C25A3A", fontFamily: "var(--font-dm-sans)" }}
-          >
-            Chat on WhatsApp
-          </a>
-          <Link href="/pricing" className={link}>
-            See pricing
-          </Link>
-        </div>
-      </section>
+        <section className={`${styles.wrap} ${styles.section}`}>
+          <h2 className={styles.h2}>{p.stepsHeading}</h2>
+          <ol className={styles.steps}>
+            {p.steps.map((step, i) => (
+              <li key={step.title} className={styles.step}>
+                {step.image && (
+                  <Image
+                    className={styles.stepImg}
+                    src={step.image.src}
+                    alt={step.image.alt}
+                    width={step.image.width}
+                    height={step.image.height}
+                    unoptimized
+                  />
+                )}
+                <span className={styles.num} aria-hidden>
+                  {i + 1}
+                </span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
 
-      <section>
-        <h2 className={h2} style={h2Style}>
-          Related features
-        </h2>
-        <ul className={list}>
-          {related.map((r) => (
-            <li key={r.slug}>
-              <Link href={`/features/${r.slug}`} className={link}>
-                {r.navLabel}
-              </Link>
-              <p className="m-0">{firstSentence(r.summary)}</p>
-            </li>
-          ))}
-        </ul>
-        <p className="mt-4 mb-0">
-          <Link href="/features" className={link}>
+        {p.benefits && p.benefits.length > 0 && (
+          <div className={styles.band}>
+            <section className={`${styles.wrap} ${styles.section}`} aria-label="Benefits">
+              <ul className={styles.benefits}>
+                {p.benefits.map((b) => (
+                  <li key={b.title} className={styles.benefit}>
+                    <h3>{b.title}</h3>
+                    <p>{b.text}</p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+        )}
+
+        {p.quote && (
+          <section className={`${styles.wrap} ${styles.section}`} aria-label="What studios say">
+            <figure className={styles.quoteCard}>
+              <blockquote>{p.quote.text}</blockquote>
+              <figcaption>
+                <strong>{p.quote.studio}</strong>, {p.quote.city}
+              </figcaption>
+            </figure>
+          </section>
+        )}
+
+        <section className={`${styles.wrap} ${styles.section}`}>
+          <div className={styles.reading}>
+            <h2 className={styles.h2}>The details</h2>
+            {p.sections.map((s) => {
+              const bulletsFirst = s.paragraphs?.[0]?.startsWith("Filters combine");
+              const paragraphs = s.paragraphs?.map((t) => <p key={t}>{t}</p>);
+              const bullets = s.bullets && (
+                <ul>
+                  {s.bullets.map((b) => (
+                    <li key={b}>{b}</li>
+                  ))}
+                </ul>
+              );
+              const figure = heroIsSectionFigure && s.figure === hero ? undefined : s.figure;
+              return (
+                <div key={s.h2} className={styles.dsec}>
+                  <h2>{s.h2}</h2>
+                  {bulletsFirst ? (
+                    <>
+                      {bullets}
+                      {paragraphs}
+                    </>
+                  ) : (
+                    <>
+                      {paragraphs}
+                      {bullets}
+                    </>
+                  )}
+                  {figure && (
+                    <figure className={`${styles.fig} ${figure.mobile ? styles.mobile : ""}`}>
+                      <FigureImage figure={figure} />
+                      <figcaption>{figure.caption}</figcaption>
+                    </figure>
+                  )}
+                  {s.table && (
+                    <div className={styles.tableWrap}>
+                      <table className={styles.table}>
+                        <caption>{s.table.caption}</caption>
+                        <thead>
+                          <tr>
+                            {s.table.head.map((h, i) => (
+                              <th key={i} scope="col">
+                                {h}
+                              </th>
+                            ))}
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {s.table.rows.map((row) => (
+                            <tr key={row[0]}>
+                              {row.map((cell, i) =>
+                                i === 0 ? (
+                                  <th key={i} scope="row">
+                                    {cell}
+                                  </th>
+                                ) : (
+                                  <td key={i}>{cell}</td>
+                                ),
+                              )}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </section>
+
+        <section className={`${styles.wrap} ${styles.section}`}>
+          <h2 className={styles.h2}>Questions</h2>
+          <div className={styles.faq}>
+            {p.faqs.map((f) => (
+              <details key={f.q}>
+                <summary>
+                  <h3>{f.q}</h3>
+                </summary>
+                <p>{f.a}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <section className={`${styles.wrap} ${styles.section}`}>
+          <h2 className={styles.h2}>Related features</h2>
+          <ul className={styles.related}>
+            {related.map((r) => (
+              <li key={r.slug}>
+                <Link className={styles.card} href={`/features/${r.slug}`}>
+                  <span className={styles.cardTitle}>{r.navLabel}</span>
+                  <span className={styles.cardText}>{firstSentence(r.summary)}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link className={styles.all} href="/features">
             All features
           </Link>
-        </p>
-      </section>
-    </LegalPageShell>
+        </section>
+
+        <div className={styles.wrap}>
+          <section className={styles.final}>
+            <h2>See it on your next wedding.</h2>
+            <a className={styles.primary} href={whatsapp} target="_blank" rel="noopener noreferrer">
+              Chat on WhatsApp
+            </a>
+          </section>
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }
