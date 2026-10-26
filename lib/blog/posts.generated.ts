@@ -3,6 +3,91 @@ import type { BlogPost } from "./index.ts";
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    "slug": "how-to-select-photos-for-wedding-album",
+    "title": "How to select photos for a wedding album: the collections method",
+    "seoTitle": "How to select photos for a wedding album, without months",
+    "description": "Liking 500 photos is not choosing 300. A step by step method for couples and studios to pick photos for every album, calendar and table book, fast.",
+    "author": "abhishek",
+    "date": "2026-10-25",
+    "category": "album-selection",
+    "image": "/blog/og/how-to-select-photos-for-wedding-album.png",
+    "html": "<p>Most couples think album selection is done when they have liked their favourite photos. It is not. Liking 500 photos still leaves someone, usually the studio, to decide which 300 go into the album, which go into the groom&#39;s side album, and which go on the calendar. That is where the back and forth starts: WhatsApp screenshots, &quot;not this one, the other one&quot;, a second round, a third. Months pass, the album is not printed, and the final payment waits with it.</p>\n<p>This guide is for couples, families and the studios that work with them. It replaces &quot;like everything you love&quot; with a method that ends in a final list.</p>\n<h2 id=\"the-short-answer\">The short answer</h2>\n<p>Decide every physical product first: bride&#39;s side album, groom&#39;s side album, calendar, table book, frames. Make one collection for each product, and let only the four to six people who are actually choosing edit them. Fill each collection function by function. A photo can go into more than one collection. Share the collections with the studio as you go, and tell the studio when each one is final. The studio then edits exactly those photos.</p>\n<h2 id=\"why-liking-photos-is-not-enough\">Why liking photos is not enough</h2>\n<p>Likes answer one question: &quot;Do I like this photo?&quot; Album selection needs a different answer: &quot;Does this photo go in this album, on this page, instead of that one?&quot;</p>\n<ul>\n<li><strong>Likes have no destination.</strong> A liked photo might be for the album, the calendar or nothing in particular.</li>\n<li><strong>Everyone&#39;s likes mix together.</strong> Mummy&#39;s 80 likes, the bride&#39;s 300 and a cousin&#39;s 40 end up in one pile, and nobody knows whose choice matters.</li>\n<li><strong>Likes have no limit.</strong> An album has a fixed number of sheets. A like has no idea how many photos fit.</li>\n<li><strong>The studio has to guess.</strong> It ends up making the final cut from the pile, the couple disagrees, and the loop starts again.</li>\n</ul>\n<p>More on the causes in <a href=\"/blog/why-album-selection-takes-months\">why album selection takes months</a>.</p>\n<h2 id=\"step-1-list-every-product-before-anyone-opens-the-gallery\">Step 1: list every product before anyone opens the gallery</h2>\n<p>Indian weddings rarely end with one album. Write down everything the studio will make:</p>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Product</th>\n<th>Who decides</th>\n<th>Ask the studio</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Bride&#39;s side album</td>\n<td>Bride and her family</td>\n<td>Number of sheets, photos per sheet</td>\n</tr>\n<tr>\n<td>Groom&#39;s side album</td>\n<td>Groom and his family</td>\n<td>Number of sheets, photos per sheet</td>\n</tr>\n<tr>\n<td>Calendar</td>\n<td>Couple</td>\n<td>12 or 13 photos, landscape or portrait</td>\n</tr>\n<tr>\n<td>Table book or mini album</td>\n<td>Couple</td>\n<td>Number of pages</td>\n</tr>\n<tr>\n<td>Frames and canvases</td>\n<td>Couple or parents</td>\n<td>How many, and sizes</td>\n</tr>\n</tbody></table></div>\n<p>Ask the studio how many photos fit each product. That number is the target for each collection, and it is what turns &quot;favourites&quot; into a finished list.</p>\n<h2 id=\"step-2-pick-a-small-selection-team\">Step 2: pick a small selection team</h2>\n<p>Every relative can enjoy the gallery and like photos. Only a few people should decide what goes in each album. Pick four to six: usually the couple, one person from each side, and whoever the family trusts with the final call.</p>\n<p>Everyone else&#39;s likes are still useful. The selection team can look at what the family liked before they decide.</p>\n<h2 id=\"step-3-make-one-collection-per-product\">Step 3: make one collection per product</h2>\n<p>A collection is a named list of photos, like a playlist or a Google Photos album. Create one for each product from Step 1: &quot;Bride side album&quot;, &quot;Groom side album&quot;, &quot;Calendar 2027&quot;, &quot;Table book&quot;.</p>\n<p>Two rules make this work:</p>\n<ul>\n<li><strong>One photo can be in several collections.</strong> The varmala photo can go in both albums and on the calendar. Nobody has to choose between sides.</li>\n<li><strong>Each collection has an owner.</strong> The bride&#39;s side fills the bride&#39;s album, the groom&#39;s side fills theirs. That settles most arguments before they start. See <a href=\"/blog/album-selection-when-both-families-want-a-say\">album selection when both families want a say</a>.</li>\n</ul>\n<h2 id=\"step-4-fill-each-collection-one-function-at-a-time\">Step 4: fill each collection one function at a time</h2>\n<p>8,000 photos at once is overwhelming. Go function by function instead: Haldi, Mehendi, Sangeet, the wedding, Vidaai, Reception. For each, decide roughly how many photos it deserves in the album, for example 40 from the wedding and 15 from Haldi, then pick the best that many.</p>\n<p>Some families prefer a separate collection per function first (&quot;Haldi best 150&quot;), then pick the album photos from those. Either works, as long as every collection ends at a number.</p>\n<h2 id=\"step-5-use-people-filters-to-make-sure-nobody-is-missed\">Step 5: use people filters to make sure nobody is missed</h2>\n<p>The most common complaint after an album is printed is &quot;Nani is not in it.&quot; Before you call a collection final, filter the gallery by each important person, both grandmothers, siblings, the bua who came from Canada, and check they appear. A gallery that can filter photos by face makes this a two-minute check instead of an evening of scrolling.</p>\n<h2 id=\"step-6-share-as-you-go-then-mark-it-final\">Step 6: share as you go, then mark it final</h2>\n<p>Do not send the studio a list at the end. Let the studio see the collections while you work, so they can tell you early if a photo is blurred in full size, or if you are over the sheet count.</p>\n<p>When a collection is done, tell the studio clearly that it is final. The studio shortlists exactly those photos, finds the original files and starts editing. For the studio side of that step, see <a href=\"/blog/find-raw-files-from-client-selection\">how to find RAW files from a client&#39;s selection</a>.</p>\n<h2 id=\"likes-or-collections-which-should-you-use\">Likes or collections: which should you use?</h2>\n<p>Not every family wants this much structure, and that is fine.</p>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th></th>\n<th>Likes</th>\n<th>Collections</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Effort for the couple</td>\n<td>Very low</td>\n<td>Medium</td>\n</tr>\n<tr>\n<td>Who makes the final cut</td>\n<td>Studio</td>\n<td>Couple and family</td>\n</tr>\n<tr>\n<td>Works for several albums</td>\n<td>Poorly</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td>Back and forth</td>\n<td>Often several rounds</td>\n<td>Usually one</td>\n</tr>\n<tr>\n<td>Best for</td>\n<td>One album, a studio the family trusts to choose</td>\n<td>Several products, families who want control</td>\n</tr>\n</tbody></table></div>\n<p>Many families do both: everyone likes, and the selection team turns likes into collections.</p>\n<h2 id=\"mistakes-that-bring-the-back-and-forth-back\">Mistakes that bring the back and forth back</h2>\n<ul>\n<li><strong>Too many editors.</strong> If 20 people can change a collection, it never settles. Keep editing to the selection team.</li>\n<li><strong>No target number.</strong> A collection with 600 photos for a 300-photo album is just a bigger like folder.</li>\n<li><strong>No &quot;final&quot; moment.</strong> If the family keeps editing after the studio starts, the album gets redone. Agree on a final date.</li>\n<li><strong>Choosing from compressed copies.</strong> Pick from the full gallery, not from photos forwarded on WhatsApp, so the studio knows exactly which file you mean.</li>\n</ul>\n<h2 id=\"how-studios-can-use-this\">How studios can use this</h2>\n<p>Studios that hand this method to couples at booking get final lists in weeks, not months, and get paid when the album is delivered instead of chasing selections. Put the product list from Step 1 in your contract, with the selection deadline. See the <a href=\"/blog/wedding-photography-contract-india\">wedding photography contract checklist</a>.</p>\n<p>On Vyavasth today, families like photos in the gallery, the studio filters and shortlists them with <a href=\"/features/album-selection\">Smart Selects</a>, and <a href=\"/features/locate-original-raw-files\">Locate Originals</a> copies the original and RAW files of the shortlist into one folder for the editor.</p>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"how-do-we-choose-photos-for-a-wedding-album\">How do we choose photos for a wedding album?</h3>\n<p>List every product the studio will make, pick a small selection team, create one collection per product, and fill each one function by function up to the number of photos the studio says will fit. Share the collections with the studio and mark each one final when done.</p>\n<h3 id=\"how-many-photos-should-we-choose-for-a-wedding-album\">How many photos should we choose for a wedding album?</h3>\n<p>Ask your studio how many sheets the album has and how many photos fit on each. Choose that many, plus a few extra so the designer has options for layouts.</p>\n<h3 id=\"can-the-same-photo-go-in-the-bride-s-side-and-groom-s-side-albums\">Can the same photo go in the bride&#39;s side and groom&#39;s side albums?</h3>\n<p>Yes. Photos like the varmala and pheras usually belong in both. With collections, one photo can sit in several lists without being copied.</p>\n<h3 id=\"who-should-do-the-album-selection\">Who should do the album selection?</h3>\n<p>The couple plus a few trusted family members, usually four to six people. Everyone else can like photos, and the selection team can use those likes as suggestions.</p>\n<h3 id=\"how-long-should-album-selection-take\">How long should album selection take?</h3>\n<p>With a target number for each product and a small selection team, many families finish in a week or two. Agree on a selection deadline with the studio at booking.</p>\n",
+    "faqs": [
+      {
+        "q": "How do we choose photos for a wedding album?",
+        "a": "List every product the studio will make, pick a small selection team, create one collection per product, and fill each one function by function up to the number of photos the studio says will fit. Share the collections with the studio and mark each one final when done."
+      },
+      {
+        "q": "How many photos should we choose for a wedding album?",
+        "a": "Ask your studio how many sheets the album has and how many photos fit on each. Choose that many, plus a few extra so the designer has options for layouts."
+      },
+      {
+        "q": "Can the same photo go in the bride's side and groom's side albums?",
+        "a": "Yes. Photos like the varmala and pheras usually belong in both. With collections, one photo can sit in several lists without being copied."
+      },
+      {
+        "q": "Who should do the album selection?",
+        "a": "The couple plus a few trusted family members, usually four to six people. Everyone else can like photos, and the selection team can use those likes as suggestions."
+      },
+      {
+        "q": "How long should album selection take?",
+        "a": "With a target number for each product and a small selection team, many families finish in a week or two. Agree on a selection deadline with the studio at booking."
+      }
+    ],
+    "readingMinutes": 7,
+    "wordCount": 1319,
+    "headings": [
+      {
+        "id": "the-short-answer",
+        "text": "The short answer"
+      },
+      {
+        "id": "why-liking-photos-is-not-enough",
+        "text": "Why liking photos is not enough"
+      },
+      {
+        "id": "step-1-list-every-product-before-anyone-opens-the-gallery",
+        "text": "Step 1: list every product before anyone opens the gallery"
+      },
+      {
+        "id": "step-2-pick-a-small-selection-team",
+        "text": "Step 2: pick a small selection team"
+      },
+      {
+        "id": "step-3-make-one-collection-per-product",
+        "text": "Step 3: make one collection per product"
+      },
+      {
+        "id": "step-4-fill-each-collection-one-function-at-a-time",
+        "text": "Step 4: fill each collection one function at a time"
+      },
+      {
+        "id": "step-5-use-people-filters-to-make-sure-nobody-is-missed",
+        "text": "Step 5: use people filters to make sure nobody is missed"
+      },
+      {
+        "id": "step-6-share-as-you-go-then-mark-it-final",
+        "text": "Step 6: share as you go, then mark it final"
+      },
+      {
+        "id": "likes-or-collections-which-should-you-use",
+        "text": "Likes or collections: which should you use?"
+      },
+      {
+        "id": "mistakes-that-bring-the-back-and-forth-back",
+        "text": "Mistakes that bring the back and forth back"
+      },
+      {
+        "id": "how-studios-can-use-this",
+        "text": "How studios can use this"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
     "slug": "ai-face-search-photo-sharing-what-to-check",
     "title": "AI face search for wedding photos: 8 things to check before you pay",
     "seoTitle": "AI face search photo sharing app: 8 checks before you pay",
