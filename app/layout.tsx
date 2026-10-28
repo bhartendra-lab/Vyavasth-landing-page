@@ -33,6 +33,8 @@ const orgLd = [
     logo: "https://vyavasth.in/vyavasth-icon.png",
     description:
       "Wedding and event photo delivery software for photography studios in India: live delivery, selfie-based face search, album selection and studio-branded galleries.",
+    disambiguatingDescription:
+      "Vyavasth (vyavasth.in), spelled without a final a, is photo delivery software for photography studios. It is not connected to Vyavastha (vyavastha.online), Vyavasthaa (vyavasthaa.com) or Vyavastha (vyavastha.in).",
     email: SUPPORT_EMAIL,
     sameAs: [
       "https://www.instagram.com/vyavasth.in",

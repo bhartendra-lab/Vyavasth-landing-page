@@ -60,10 +60,17 @@ export const FEATURE_PAGES: FeaturePage[] = [
   {
     slug: "album-selection",
     navLabel: "Album selection",
-    title: "Wedding album selection software for photographers | Vyavasth",
+    title: "Wedding album selection app: couples pick, studios print | Vyavasth",
     metaDescription:
-      "Get couples to finish wedding album selection in hours, not months. The family likes photos in one gallery; you filter by bride's side, groom's side or guest, shortlist, and pull the originals.",
+      "Couples build a collection for every album, calendar and table book, the family likes their favourites, and you see it all in one gallery, then pull the RAW files in one click.",
     h1: "Album selection that couples finish in hours, not months",
+    lede: "Couples build the albums themselves. You shortlist, pull the originals and print.",
+    benefits: [
+      { title: "A collection per album", text: "Bride side, groom side, calendar, table book. One photo can sit in several." },
+      { title: "Only the right people edit", text: "The couple picks the few people who can change collections." },
+      { title: "Likes still work", text: "Families who want you to choose can just like photos." },
+      { title: "Originals in one click", text: "Locate Originals copies the shortlist and its RAW files for your editor." },
+    ],
     summary:
       "Vyavasth's Smart Selects turns album selection into likes inside the wedding gallery. The couple and their family like photos on their phones, the studio filters those likes by the bride's side, the groom's side, a single guest or the most liked, then shortlists the final set and pulls the original files in one go. No pen drives going back and forth, no Excel sheets of file numbers, no chasing the couple for three months.",
     stepsHeading: "How album selection works on Vyavasth",
@@ -94,6 +101,19 @@ export const FEATURE_PAGES: FeaturePage[] = [
         ],
       },
       {
+        h2: "Collections for every album, calendar and table book",
+        paragraphs: [
+          "Indian weddings rarely end with one album. Collections let the couple create a named list for each product, such as Bride side album, Groom side album, Calendar or Table book, or one per function, such as Haldi best 150, and add photos to them while they browse.",
+          "Collections answer the question likes cannot: which album does this photo go in. The studio sees every collection the couple builds, shortlists from it and pulls the originals, instead of guessing the final 300 from a pile of 500 likes.",
+        ],
+        bullets: [
+          "Create, rename and delete collections from the gallery on the phone.",
+          "One photo can be in several collections, so the varmala can go in both albums and on the calendar.",
+          "Only the few people the couple chooses can add to or change collections. Everyone else can still view and like.",
+          "Likes stay as they are, for families who want the studio to make the final pick.",
+        ],
+      },
+      {
         h2: "Filters made for Indian weddings",
         figure: { src: "/blog/img/smart-selects.jpg", alt: "Vyavasth Smart Selects tab with liked wedding photos and filters for Host picks, Shortlisted, Bride Team and Groom Team", caption: "Smart Selects: guests\u2019 likes, filtered by Host picks, Shortlisted, Bride Team or Groom Team.", width: 800, height: 757 },
         bullets: [
@@ -118,6 +138,18 @@ export const FEATURE_PAGES: FeaturePage[] = [
     ],
     quote: KAMAL,
     faqs: [
+      {
+        q: "What are collections in album selection?",
+        a: "Named lists of photos, like albums in Google Photos, that the couple builds inside the gallery, for example Bride side album, Groom side album or Calendar. The studio sees every collection and shortlists from it.",
+      },
+      {
+        q: "Can one photo be in the bride side and groom side albums?",
+        a: "Yes. A photo can be in several collections at once.",
+      },
+      {
+        q: "Who can create and edit collections?",
+        a: "The couple and the few people they choose. Other guests can view and like photos but cannot change collections.",
+      },
       {
         q: "Does the couple need to install an app to select photos?",
         a: "No. The gallery opens in the phone's browser from a link or QR code. They sign in with their WhatsApp number or Google so their likes are saved to them.",
