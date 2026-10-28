@@ -11,10 +11,55 @@ import {
 import { whatsappUrl } from "@/lib/site-legal";
 import styles from "./Workflow.module.css";
 
-const EARLY_ACCESS_MESSAGE = "Hi, I'd like early access to the Vyavasth Android upload app.";
+const EARLY_ACCESS_MESSAGE = "Hi, I'd like early access to the Vyavasth upload app.";
 
 const bg = (src: string) => ({ backgroundImage: `url(${src})` });
 const cx = (...c: Array<string | false | undefined>) => c.filter(Boolean).join(" ");
+
+// A 21×21 QR-looking pattern for the venue standee: three finder squares, a
+// logo square in the middle and pseudo-random modules. Decorative, it encodes nothing.
+const QR_PATH = (() => {
+  const n = 21;
+  const d: string[] = [];
+  let s = 7;
+  const reserved = (x: number, y: number) =>
+    (x < 8 && y < 8) || (x > 12 && y < 8) || (x < 8 && y > 12) || (x > 7 && x < 13 && y > 7 && y < 13);
+  for (let y = 0; y < n; y++) {
+    for (let x = 0; x < n; x++) {
+      s = (Math.imul(s, 1103515245) + 12345) & 0x7fffffff;
+      if (!reserved(x, y) && (s >>> 16) & 1) d.push(`M${x} ${y}h1v1h-1z`);
+    }
+  }
+  for (const [x, y] of [[0, 0], [14, 0], [0, 14]]) {
+    d.push(`M${x} ${y}h7v7h-7zM${x + 1} ${y + 1}v5h5v-5zM${x + 2} ${y + 2}h3v3h-3z`);
+  }
+  return d.join("");
+})();
+
+function WhatsAppIcon() {
+  return (
+    <svg viewBox="0 0 16 16" aria-hidden="true">
+      <path fill="#25D366" d="M8 1a7 7 0 0 0-6.050 10.520L1 15l3.580-.930A7 7 0 1 0 8 1z" />
+      <path fill="#fff" d="M5.700 4.500c.2-.2.500-.2.650.050l.750 1.250c.1.200.050.450-.1.600l-.4.400c.450.950 1.200 1.700 2.150 2.150l.4-.4c.150-.150.400-.2.600-.1l1.250.750c.250.150.250.450.050.650l-.5.550c-.4.400-1 .550-1.550.350A6.100 6.100 0 0 1 5 6.600c-.2-.550-.050-1.150.350-1.550z" />
+    </svg>
+  );
+}
+
+function FolderIcon({ fill = "#E2B98F" }: { fill?: string }) {
+  return (
+    <svg viewBox="0 0 16 14" aria-hidden="true">
+      <path fill={fill} d="M1 2.500A1.500 1.500 0 0 1 2.500 1h3.300l1.600 1.700h6.100A1.500 1.500 0 0 1 15 4.200v7.300a1.500 1.500 0 0 1-1.500 1.500h-11A1.500 1.500 0 0 1 1 11.500z" />
+    </svg>
+  );
+}
+
+function Heart({ fill = "#C25A3A" }: { fill?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill={fill} aria-hidden="true">
+      <path d="M12 21s-7.500-4.700-9.600-9.300C.9 8.300 2.700 4.500 6.300 4.500c2.100 0 3.700 1.200 5.700 3.500 2-2.300 3.600-3.500 5.700-3.500 3.600 0 5.400 3.800 3.900 7.200C19.500 16.300 12 21 12 21z" />
+    </svg>
+  );
+}
 
 function Check({ size, stroke = "#1f7a4d" }: { size?: number; stroke?: string }) {
   return (
@@ -232,90 +277,159 @@ export default function Workflow() {
             </div>
             <div className={styles.rail}><span className={styles.dot} data-dot=""></span></div>
             <h3>Create the event</h3>
-            <p>Set it up in a minute and send the couple their link.</p>
+            <p>Client will be informed on whatsapp with the event link and can share with their friends and family.</p>
           </div>
 
           <div className={cx(styles.phase, styles.p2)}>At the event</div>
+          {/* Steps 2 to 6 animate in two layers: the tile's resting picture,
+              and details that transition in (with delays) once the step is lit. */}
           <div className={styles.step} data-step="">
             <div className={styles.vis}>
-              <div className={styles.cam}>
-                <svg viewBox="0 0 200 140" aria-hidden="true"><rect x="70" y="8" width="60" height="26" rx="8" fill="#E9D8CF" /><rect x="10" y="28" width="180" height="104" rx="18" fill="#FFF4EC" /><rect x="10" y="28" width="180" height="26" rx="13" fill="#E9D8CF" /><rect x="24" y="16" width="30" height="16" rx="5" fill="#C25A3A" /><circle cx="100" cy="86" r="40" fill="#2B140D" /><circle cx="100" cy="86" r="30" fill="#4a2a20" /><circle cx="100" cy="86" r="19" fill="#1d0d08" /><circle cx="91" cy="77" r="6" fill="#fff" opacity=".55" /><circle cx="166" cy="42" r="5" fill="#C25A3A" /><rect x="24" y="66" width="16" height="44" rx="8" fill="#E9D8CF" /></svg>
-              </div>
-              <span className={styles.count}>DSC_4521</span>
-            </div>
-            <div className={styles.rail}><span className={styles.dot} data-dot=""></span></div>
-            <h3>Shoot as you always do</h3>
-            <p>No new camera settings. No change to how your team works.</p>
-          </div>
-
-          <div className={styles.step} data-step="">
-            <div className={styles.vis}>
-              <div className={styles.ph2}>
-                <div className={styles.pm}><div><UploadIcon /><b>84 / 150</b><small>Phone 1</small><u><i style={{ width: "56%" }}></i></u></div></div>
-                <div className={styles.pm} style={{ marginBottom: 14 }}><div><UploadIcon /><b>96 / 120</b><small>Phone 2</small><u><i style={{ width: "80%" }}></i></u></div></div>
-                <div className={cx(styles.pm, styles.x)}><div><UploadIcon /><b>41 / 260</b><small>Phone 3</small><u><i style={{ width: "16%" }}></i></u></div></div>
-              </div>
-              <span className={styles.usb}>
-                <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" aria-hidden="true"><path d="M7 13V3M7 3L5 5M7 3l2 2M4 8v1.500l3 1.500M10 6.500v1.500L7 9.500" /><rect x="3" y="6.500" width="2" height="1.500" fill="currentColor" /><circle cx="10" cy="6" r="1" fill="currentColor" /></svg>
-                OVER USB
-              </span>
-            </div>
-            <div className={styles.rail}><span className={styles.dot} data-dot=""></span></div>
-            <h3>Plug in and upload <span className={styles.ea}>Early access</span></h3>
-            <p>USB from the camera to any Android phone. As many phones, as many times as you like.</p>
-          </div>
-
-          <div className={styles.step} data-step="">
-            <div className={styles.vis}>
-              <div className={styles.m}>
-                <div className={styles.mc}>
-                  <div className={styles.q}><span>HD</span><span className={styles.on}>4K</span><span>Original</span></div>
-                  <div className={styles.row}><Check />Resumes if the network drops</div>
-                  <div className={cx(styles.row, styles.x)} style={{ marginTop: 10 }}>Reusable storage</div>
-                  <div className={cx(styles.bar, styles.x)}><i></i></div>
+              <div className={styles.art} aria-hidden="true">
+                <div className={styles.stand}>
+                  <small>Riya &amp; Arjun</small>
+                  <b>Scan to get your photos</b>
+                  <div className={styles.code}>
+                    <svg viewBox="0 0 21 21" shapeRendering="crispEdges"><path d={QR_PATH} fill="#2B140D" fillRule="evenodd" /><rect x="8.500" y="8.500" width="4" height="4" rx="1" fill="#C25A3A" /></svg>
+                    <i className={styles.scan}></i>
+                  </div>
+                </div>
+                <span className={styles.reg}><i></i><b className={styles.n} style={{ "--to": 142 } as React.CSSProperties}></b> joined</span>
+                <div className={styles.wa}>
+                  <WhatsAppIcon />
+                  <div><b>Your photos are live</b><small>vyavasth.in/riya-arjun</small></div>
                 </div>
               </div>
             </div>
             <div className={styles.rail}><span className={styles.dot} data-dot=""></span></div>
-            <h3>Safe in the cloud</h3>
-            <p>Three quality levels to pick from. Uploads pick up where they stopped.</p>
+            <h3>Place the event QR at the venue</h3>
+            <p>More guests register, and every registered guest gets the gallery link on WhatsApp after your first upload.</p>
           </div>
 
           <div className={styles.step} data-step="">
             <div className={styles.vis}>
-              <div className={styles.gal}>
-                <div className={styles.sc}>
-                  <span style={bg(haldi.src)}></span>
-                  <span className={styles.new} style={bg(sangeet.src)}></span>
-                  <span style={bg(varmala.src)}></span>
-                  <span style={bg(dadi.src)}></span>
+              <div className={styles.art} aria-hidden="true">
+                <svg className={styles.cable} viewBox="0 0 100 100" preserveAspectRatio="none">
+                  <path className={styles.wire} d="M22 49C22 86 74 100 74 83" />
+                  <path className={styles.flow} d="M22 49C22 86 74 100 74 83" />
+                </svg>
+                <div className={styles.ucam}>
+                  <svg viewBox="0 0 200 150"><rect x="70" y="8" width="60" height="26" rx="8" fill="#E9D8CF" /><rect x="10" y="28" width="180" height="104" rx="18" fill="#FFF4EC" /><rect x="10" y="28" width="180" height="26" rx="13" fill="#E9D8CF" /><rect x="24" y="16" width="30" height="16" rx="5" fill="#C25A3A" /><circle cx="100" cy="86" r="40" fill="#2B140D" /><circle cx="100" cy="86" r="30" fill="#4a2a20" /><circle cx="100" cy="86" r="19" fill="#1d0d08" /><circle cx="91" cy="77" r="6" fill="#fff" opacity=".55" /><circle cx="166" cy="42" r="5" fill="#C25A3A" /><rect x="24" y="66" width="16" height="44" rx="8" fill="#E9D8CF" /><rect x="60" y="130" width="22" height="18" rx="4" fill="#3a2a24" /></svg>
                 </div>
+                <div className={styles.uphone}>
+                  <div>
+                    <small><UploadIcon />Uploading</small>
+                    <b className={styles.n} style={{ "--to": 248 } as React.CSSProperties}></b>
+                    <em>photos</em>
+                    <u><i></i></u>
+                    <div className={styles.uthumbs}>
+                      <span style={bg(haldi.src)}></span>
+                      <span style={bg(sangeet.src)}></span>
+                      <span style={bg(varmala.src)}></span>
+                      <span style={bg(dadi.src)}></span>
+                    </div>
+                  </div>
+                  <span className={styles.plug}></span>
+                </div>
+                <span className={styles.done}><Check stroke="#fff" />Done in 48s</span>
+                <span className={styles.cc}>C-to-C</span>
               </div>
-              <span className={styles.likes}>
-                <svg viewBox="0 0 24 24" fill="#C25A3A" aria-hidden="true"><path d="M12 21s-7.500-4.700-9.600-9.300C.9 8.300 2.700 4.500 6.300 4.500c2.100 0 3.700 1.200 5.700 3.500 2-2.300 3.600-3.500 5.700-3.500 3.600 0 5.400 3.800 3.900 7.200C19.500 16.300 12 21 12 21z" /></svg>
-                24
-              </span>
             </div>
             <div className={styles.rail}><span className={styles.dot} data-dot=""></span></div>
-            <h3>Live in their gallery</h3>
-            <p>Photos appear as they land. The family likes their favourites.</p>
+            <h3>Upload with ease while the event happens <span className={styles.ea}>Early access</span></h3>
+            <p>Connect your camera to any phone with a C-to-C cable. Our optimised uploader app finishes the upload in under a minute.</p>
+          </div>
+
+          <div className={styles.step} data-step="">
+            <div className={styles.vis}>
+              <div className={styles.art} aria-hidden="true">
+                <div className={styles.gphone}>
+                  <div>
+                    <div className={styles.gtop}>
+                      <span className={styles.me} style={bg(WORKFLOW_IMAGES.selfie.src)}><Check size={8} stroke="#fff" /></span>
+                      <div><b>Only you</b><small>128 photos found</small></div>
+                    </div>
+                    <div className={styles.gtabs}>
+                      <span className={styles.on}>For you</span>
+                      <span className={styles.uf}>
+                        <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.400" strokeLinecap="round" aria-hidden="true"><path d="M1.500 2.500h9L7 6.500V10L5 9V6.500z" /></svg>
+                        Unknown faces
+                      </span>
+                    </div>
+                    <div className={styles.ggrid}>
+                      {WORKFLOW_IMAGES.gallery.map((p, i) => (
+                        <span key={p.src + i} style={bg(p.src)}>{i === 1 && <i className={styles.lk}><Heart fill="#fff" /></i>}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                <span className={styles.match}><i></i>Face match</span>
+                <span className={styles.alb}><Heart />Liked for the album</span>
+              </div>
+            </div>
+            <div className={styles.rail}><span className={styles.dot} data-dot=""></span></div>
+            <h3>The most premium guest experience</h3>
+            <p>Every guest gets only the photos they are in. Full-gallery guests can also filter photos with unknown faces, and every like helps pick the album.</p>
           </div>
 
           <div className={cx(styles.phase, styles.p3)}>After the event</div>
           <div className={styles.step} data-step="">
             <div className={styles.vis}>
-              <div className={styles.m}>
-                <div className={styles.mc}>
-                  <div className={styles.chips}><span className={styles.on}>Most liked</span><span>Bride&apos;s side</span><span className={styles.x}>Groom&apos;s side</span></div>
-                  <div className={styles.file}><em>RAW</em>DSC_4521.CR3</div>
-                  <div className={styles.ok}><Check />Original located</div>
-                  <div className={cx(styles.btn, styles.x)} style={{ background: "var(--brown)" }}>Send to editor</div>
+              <div className={styles.art} aria-hidden="true">
+                <div className={styles.lliked}>
+                  <span style={bg(sangeet.src)}><Heart fill="#fff" /></span>
+                  <span style={bg(varmala.src)}><Heart fill="#fff" /></span>
+                  <span style={bg(dadi.src)}><Heart fill="#fff" /></span>
+                  <b>86 liked by guests</b>
+                </div>
+                <div className={styles.lwin}>
+                  <div className={styles.lbar}><i></i><i></i><i></i><span>Riya-Arjun / Wedding</span></div>
+                  <div className={styles.lrow}><FolderIcon />RAW<em>6,240 files</em></div>
+                  <div className={styles.lnew}><div>
+                    <div className={styles.lrow}>
+                      <FolderIcon fill="#C25A3A" />Liked by guests
+                      <em><b className={styles.n} style={{ "--to": 86 } as React.CSSProperties}></b> / 86</em>
+                    </div>
+                    <u><i></i></u>
+                    <div className={styles.lfile}><em>RAW</em>DSC_4521.CR3<Check /></div>
+                    <div className={cx(styles.lfile, styles.x)}><em>RAW</em>DSC_4588.CR3<Check /></div>
+                  </div></div>
+                </div>
+                <div className={styles.lbtn}>
+                  <svg viewBox="0 0 12 12" fill="#fff" aria-hidden="true"><path d="M6 .5l1.200 3.300L10.500 5 7.200 6.200 6 9.500 4.800 6.200 1.500 5l3.300-1.200zM10 8.500l.5 1.300 1.300.5-1.300.5-.5 1.300-.5-1.300-1.300-.5 1.300-.5z" /></svg>
+                  Locate originals
+                  <svg className={styles.cursor} viewBox="0 0 16 16" aria-hidden="true"><path d="M2 1.500v11.200l3-2.800 2 4.600 2-.9-2-4.500h4.200z" fill="#fff" stroke="#2B140D" strokeWidth="1.200" strokeLinejoin="round" /></svg>
                 </div>
               </div>
             </div>
             <div className={styles.rail}><span className={styles.dot} data-dot=""></span></div>
-            <h3>Select and locate</h3>
-            <p>The couple picks their album photos with Smart Select. You find the RAWs in one click and send them to your editor.</p>
+            <h3>Locate originals in one click</h3>
+            <p>No more searching filenames for the photos guests liked. Pick the folder your originals live in, click once, and our AI copies them into a new subfolder.</p>
+          </div>
+
+          <div className={styles.step} data-step="">
+            <div className={styles.vis}>
+              <div className={styles.art} aria-hidden="true">
+                <span className={styles.cal}>
+                  <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.300" strokeLinecap="round" aria-hidden="true"><rect x="1.500" y="2.500" width="9" height="8" rx="1.500" /><path d="M1.500 5h9M4 1.300v2M8 1.300v2" /></svg>
+                  2 months later
+                </span>
+                <div className={styles.fan}>
+                  <span style={bg(varmala.src)}></span>
+                  <span style={bg(dadi.src)}></span>
+                  <span style={bg(haldi.src)}></span>
+                </div>
+                <div className={styles.note}>
+                  <b>Thank you, Riya &amp; Arjun <Heart /></b>
+                  <small>Your memory lane is here</small>
+                  <div className={styles.stars}><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div>
+                  <div className={styles.rv}>Review us on Google</div>
+                </div>
+              </div>
+            </div>
+            <div className={styles.rail}><span className={styles.dot} data-dot=""></span></div>
+            <h3>Automatic client retention</h3>
+            <p>Two months later, your client gets a personalised memory lane with a thank-you note and a Google review ask, so they think of you for the next shoot.</p>
           </div>
 
           <div className={styles.track} ref={trackRef}><i ref={fillRef}></i></div>
@@ -325,7 +439,7 @@ export default function Workflow() {
         <div className={styles.foot}>
           <div>
             <span className={styles.ea}>Early access</span>
-            The Android upload app is rolling out to select studios this season. Everyone else plugs the card, camera or hard drive into a laptop and uploads from the web app.
+            The phone upload app is rolling out to select studios this season. Everyone else plugs the card, camera or hard drive into a laptop and uploads from the web app.
           </div>
           <a href={whatsappUrl(EARLY_ACCESS_MESSAGE)} target="_blank" rel="noopener noreferrer">
             Ask to join{" "}

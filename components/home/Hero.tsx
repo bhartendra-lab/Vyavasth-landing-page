@@ -4,6 +4,7 @@ import { Fragment, useEffect, useRef, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { offerLine, type FirstPurchaseOffer } from "@/lib/plans";
+import { LOGIN_URL } from "@/lib/app-url";
 import { HERO_GUEST, HERO_TILES } from "@/lib/landing-content";
 import { startHero } from "./hero-engine";
 import styles from "./Hero.module.css";
@@ -76,12 +77,12 @@ export default function Hero({ offer }: { offer: FirstPurchaseOffer | null }) {
     );
   }, []);
 
-  // Nothing is free at signup. The button carries the first-purchase offer while
-  // the plans API says it is live, and plain "See pricing" otherwise; either way
-  // it goes to the pay-per-event card, not to the login page.
+  // The button carries the free-event offer and goes to login while the plans
+  // API says the offer is live; otherwise it is plain "See pricing" and goes to
+  // the pay-per-event card.
   const cta = offer ? offerLine(offer) : "See pricing";
   const trust = offer
-    ? "On your first purchase. Every feature included."
+    ? "Every feature included."
     : "Every feature included from your first event.";
 
   return (
@@ -310,7 +311,7 @@ export default function Hero({ offer }: { offer: FirstPurchaseOffer | null }) {
             One link. One selfie. Every guest gets their own photos while the function is still on.
           </p>
           <div className={styles["cta-row"]}>
-            <Link className={styles.cta} href="/pricing#events">
+            <Link className={styles.cta} href={offer ? LOGIN_URL : "/pricing#events"}>
               <span>{cta}</span>
               <span className={styles.arr}>
                 <svg viewBox="0 0 18 18" fill="none" stroke="#fff" strokeWidth="2.200" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.500 9h11M10 4.500L14.500 9 10 13.500" /></svg>

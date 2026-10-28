@@ -139,17 +139,25 @@ export const WORKFLOW_PIN_TOP_PX = 88;
 /** "autoplay": how long the line takes to run from step 1 to step 6. */
 export const WORKFLOW_AUTOPLAY_MS = 5000;
 
-/** The gallery tile's four photos, and the photo that rides the line (`rider`). */
+/**
+ * The photos inside the step tiles: the guest gallery and memory lane share
+ * `gallery`, `selfie` is the guest's face in the guest-experience tile, and
+ * `rider` is the photo that rides the line.
+ */
 export const WORKFLOW_IMAGES = {
   gallery: [
     { src: `${BASE}/workflow/haldi.jpg`, placeholder: true },
     { src: `${BASE}/workflow/sangeet.jpg`, placeholder: true },
     { src: `${BASE}/workflow/varmala.jpg`, placeholder: true },
     { src: `${BASE}/workflow/dadi.jpg`, placeholder: true },
+    { src: `${BASE}/features/t_mehendi.jpg`, placeholder: true },
+    { src: `${BASE}/features/t_baraat.jpg`, placeholder: true },
   ],
+  selfie: { src: `${BASE}/features/a_guest.jpg`, placeholder: true },
   rider: { src: `${BASE}/workflow/haldi.jpg`, placeholder: true },
 } as const satisfies {
   gallery: readonly PlaceholderImage[];
+  selfie: PlaceholderImage;
   rider: PlaceholderImage;
 };
 

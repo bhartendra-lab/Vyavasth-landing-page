@@ -197,7 +197,7 @@ export function firstPurchaseOfferOf(plan: Plan | null | undefined): FirstPurcha
 
 /** "Buy 1 event, get 1 free" — the one wording of the offer, used everywhere. */
 export function offerLine(offer: FirstPurchaseOffer): string {
-  return `Buy 1 event, get ${offer.bonus_events} free`;
+  return `Claim your free event now!`;
 }
 
 /** "1 free event" / "2 free events" */
