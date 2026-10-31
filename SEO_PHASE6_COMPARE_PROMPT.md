@@ -1,4 +1,4 @@
-# SEO Phase 6: comparison hub + 5 "Vyavasth vs X" pages (/compare)
+# SEO Phase 6: comparison hub + "Vyavasth vs X" pages (/compare)
 
 Repo: `Vyavasth-landing-page`. Read `AGENTS.md` first. All copy is in `lib/compare-data.ts` (already in the repo, competitor facts checked on 28 Oct 2026). Your job: routes, rendering, structured data, sitemap, footer link and tests. Do not change copy in `lib/compare-data.ts` except to fix a TypeScript error.
 
@@ -18,7 +18,7 @@ From the plans API, never hard-coded: fetch exactly like `app/pricing/page.tsx` 
 
 ## 1. Hub: `app/compare/page.tsx`
 
-- Metadata: title "AI face search photo sharing apps in India: 2026 price comparison | Vyavasth"; description "Kwikpic, FotoOwl, Samaro, PicPapaya, FaceSnap, Photomall, Kamero and Vyavasth compared for Indian studios: how each is priced, entry price, GST and album selection. Checked {CHECKED_ON_LABEL}." (build the string from the constant); canonical `/compare`.
+- Metadata: title "AI face search photo sharing apps in India: 2026 price comparison | Vyavasth"; description "Kwikpic, FotoOwl, Samaro, PicPapaya, FaceSnap, Camtom, Pixieset, Pic-Time and Vyavasth compared for Indian studios: how each is priced, entry price, GST and album selection. Checked {CHECKED_ON_LABEL}." (build the string from the constant); canonical `/compare`.
 - h1: "AI face search photo sharing apps in India, compared"
 - Lede: "How the photo delivery tools Indian studios ask about are priced, what the cheapest paid plan costs, whether GST is extra, and whether album selection is included. Every price is from the tool's own website on {CHECKED_ON_LABEL}. We make Vyavasth, so we also say where the others are better."
 - **Main table** (`<table>` with caption "Photo delivery tools for Indian studios, compared"), columns: Tool | How it is priced | Entry price | GST | Album selection | Details.
@@ -27,7 +27,7 @@ From the plans API, never hard-coded: fetch exactly like `app/pricing/page.tsx` 
   - Then one row per `HUB_ONLY` entry, Details = its `note` plus an external source link.
 - Below the table, h2 "Which one should you choose?" with one short paragraph per competitor: the first sentence of its `verdict` plus a link to its page.
 - h2 "Sources": a list of every source URL (competitors and hub-only), external links `rel="noopener nofollow" target="_blank"`, and the line "Checked on {CHECKED_ON_LABEL}. If something has changed, tell us on WhatsApp and we will update this page." (link `whatsappUrl()`).
-- JSON-LD: `BreadcrumbList` (Home > Compare), `ItemList` of the 5 comparison pages, and `WebPage` with `dateModified: CHECKED_ON`.
+- JSON-LD: `BreadcrumbList` (Home > Compare), `ItemList` of every comparison page (from `COMPETITORS`), and `WebPage` with `dateModified: CHECKED_ON`.
 
 ## 2. `app/compare/[slug]/page.tsx`: one page per `COMPETITORS` entry
 
@@ -37,14 +37,14 @@ Layout (reuse the feature page's visual language: hero band, cards, white rounde
 1. Hero: breadcrumb link "Compare" to `/compare`; h1 `c.h1`; muted line "Prices and features checked on {CHECKED_ON_LABEL}."; `c.verdict` as the lede (larger text; this is the paragraph AI engines quote); WhatsApp CTA (`whatsappUrl("Hi, I am comparing Vyavasth with " + c.name)`) and "See Vyavasth pricing" link.
 2. h2 "Price comparison": `c.pricingModel`, then two tables side by side on desktop, stacked on mobile:
    - **Vyavasth** (caption "Vyavasth"): Plan | What you get | Price you pay. Row 1 pay per event (cap from `photoCapTermsOf`, validity from `EVENT_VALIDITY_MONTHS`), then each yearly storage tier: "{size} reusable storage" and the charged yearly price "+ a year, GST included" (or "including GST" wording per `gstInclusiveOf`).
-   - **{c.name}** (caption `c.name`): Plan | What you get | Listed price | With 18% GST. Listed: `null` → "Not published", `0` → "Free", else `formatInr(n) + " a year"` + (`gstIncluded === false` ? " + GST" : `gstIncluded === null` ? " (GST not stated)" : ""). GST column from `withGst(plan)`; when `gstIncluded === null` show the listed number with no GST added. `plan.note` in small muted text under the plan name.
+   - **{c.name}** (caption `c.name`): Plan | What you get | Listed price | With 18% GST. Listed: `null` → "Not published", `0` → "Free", else (`plan.currency === "USD"` ? `"US$" + n.toLocaleString("en-US") + " a year"` : `formatInr(n) + " a year"`) + (`gstIncluded === false` ? " + GST" : `gstIncluded === null` ? " (GST not stated)" : ""). GST column from `withGst(plan)`; when `gstIncluded === null` show the listed number with no GST added; when `plan.currency === "USD"` (withGst returns null) show "Billed in US$". Never convert dollars to rupees. `plan.note` in small muted text under the plan name.
    - `c.pricingNote` under the tables, then "Source: " + `c.sources` as external links.
 3. h2 "Feature by feature": table with columns (blank) | Vyavasth | {c.name}, one row per `c.rows`, label bold.
 4. Two cards side by side: h2 "Where {c.name} is better" (`theyAreBetterAt`) and h2 "Where Vyavasth is better" (`vyavasthIsBetterAt`). Give the competitor card equal visual weight.
 5. h2 "Which one should you choose?": h3 "Choose {c.name} if" + list, h3 "Choose Vyavasth if" + list.
 6. h2 "Questions": `<details>`/`<summary>` per FAQ like the feature pages (answers in the server HTML).
 7. Closing note (small, muted): "{c.name} is a trademark of its owner. Details about {c.name} come from its public website on {CHECKED_ON_LABEL}. If something has changed, tell us on WhatsApp and we will update this page."
-8. "More comparisons": links to the other 4 pages and `/compare`.
+8. "More comparisons": links to every other comparison page and `/compare`.
 
 All tables: real `<table><caption><thead><tbody><th scope>`, wrapped in an `overflow-x-auto` container so the page never scrolls sideways at 360px.
 
@@ -60,7 +60,7 @@ JSON-LD per page: `FAQPage` from `c.faqs`; `BreadcrumbList` Home > Compare > `c.
 
 - unique slugs, all starting with "vyavasth-vs-"
 - every competitor and hub-only tool has at least one source URL starting with "https://"
-- `withGst`: null → null, 0 → 0, `gstIncluded:false` → `Math.round(x*1.18)`, `true`/`null` → listed value
+- `withGst`: null → null, 0 → 0, `gstIncluded:false` → `Math.round(x*1.18)`, `true`/`null` → listed value, `currency: "USD"` → null
 - no string in `COMPETITORS` or `HUB_ONLY` contains "—" (walk via `JSON.stringify`)
 
 ## Verification (in order, short output)

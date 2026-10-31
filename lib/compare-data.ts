@@ -20,8 +20,10 @@ export type CompetitorPlan = {
   name: string;
   /** What the plan holds, in the competitor's own unit (photos or GB). */
   limit: string;
-  /** Price as listed, in rupees, per year. null when not published. */
+  /** Price as listed, per year, in `currency` (rupees by default). null when not published. */
   listedPerYear: number | null;
+  /** Currency of `listedPerYear`. Defaults to INR. USD prices are shown in US$ and never converted. */
+  currency?: "INR" | "USD";
   /** true: listed price includes GST. false: "+ GST/taxes". null: not stated. */
   gstIncluded: boolean | null;
   note?: string;
@@ -104,7 +106,7 @@ export const COMPETITORS: Competitor[] = [
       "Vyavasth vs Kwikpic for Indian wedding studios: yearly prices with GST, photo limits, album selection, watermarks and face search, and where each one is better.",
     h1: "Vyavasth vs Kwikpic",
     verdict:
-      "Kwikpic is the cheaper way in if you mainly need face search and a branded gallery: its Basic plan costs less than any Vyavasth storage plan, and it has a free plan. Vyavasth puts every feature on every plan, so album selection with collections, bride and groom side filters, Locate Originals, watermarks and the Google review prompt are there from the first rupee. On Kwikpic, client favourites start on Standard, watermarks cost extra on Standard, and instant camera upload is on Premium and Premium Max.",
+      "Kwikpic sells photos the way telecom companies sell data: a pack of 20,000, a reuse allowance of twice that, and a bigger pack when it runs out. It is cheap to start and has a free plan, which is real value. But client favourites start on Standard, the watermark costs ₹1,000 extra there, and instant upload from the camera waits until Premium at ₹28,990 + GST. Vyavasth sells GB you can empty and refill as often as you like, with album selection, watermarks and live upload on every plan from the first rupee.",
     pricingModel:
       "Kwikpic sells yearly plans sized by number of photos, priced plus GST, with quarterly billing on some plans. Vyavasth sells storage plans with GST included, or single events.",
     plans: [
@@ -124,6 +126,7 @@ export const COMPETITORS: Competitor[] = [
       { label: "Face search for guests", vyavasth: V.faceSearch, competitor: "Yes, on all plans, with unlimited events and guests." },
       { label: "Album selection", vyavasth: V.selection, competitor: "\"View client favourites\" from the Standard plan up." },
       { label: "Originals for the editor", vyavasth: V.originals, competitor: "Not listed on the pricing page." },
+      { label: "What the plan limits", vyavasth: "GB of storage. Delete an old event and the space is free again, with no cap on how many times.", competitor: "Number of photos. Each plan lets you store a set number and reuse up to twice that number in the plan year, for example store 20,000 and reuse up to 40,000 on Basic." },
       { label: "Watermark", vyavasth: "Included on every plan.", competitor: "Not listed on Basic or Basic Plus; extra ₹1,000 on Standard; included from Essential Lite up." },
       { label: "Google reviews from the gallery", vyavasth: V.reviews, competitor: "Not listed on the pricing page." },
       { label: "Upload during the event", vyavasth: V.liveUpload, competitor: "Instant upload from camera or folder on Premium and Premium Max." },
@@ -154,6 +157,7 @@ export const COMPETITORS: Competitor[] = [
     faqs: [
       { q: "Is Vyavasth cheaper than Kwikpic?", a: "Not at the entry level. Kwikpic's Basic plan costs less than Vyavasth's smallest storage plan, and Kwikpic has a free plan. Vyavasth includes album selection, watermarks and camera upload on every plan, which need higher Kwikpic plans, and it also sells single events. Compare the plans that have the features you will use." },
       { q: "Does Kwikpic have album selection?", a: "Kwikpic lists \"View client favourites\" from its Standard plan up. Vyavasth's album selection is on every plan and adds collections for each album and filters for the bride's side, groom's side, person and total likes, plus Locate Originals for the editor." },
+      { q: "What happens when a Kwikpic plan's photo count runs out?", a: "Kwikpic plans count photos, not storage. Each plan lists how many photos you can store and lets you reuse up to twice that number by deleting old ones, for example 100,000 stored and 200,000 in total on Standard. Vyavasth storage plans count GB, and deleting an old event frees the space again with no cap on how many times." },
       { q: "Can I move from Kwikpic to Vyavasth?", a: "Yes. Message Vyavasth on WhatsApp and the team will help you set up your next event. Your old Kwikpic galleries can stay where they are." },
     ],
   },
@@ -175,7 +179,7 @@ export const COMPETITORS: Competitor[] = [
       "Vyavasth vs FotoOwl for Indian wedding studios: yearly prices, storage, album selection, camera upload and extras like photo selling and reels, and where each one is better.",
     h1: "Vyavasth vs FotoOwl",
     verdict:
-      "FotoOwl gives more storage for the money on its larger plans and adds extras Vyavasth does not have: a free plan, photo selling, auto-generated reels and guest uploads. Vyavasth includes GST in its storage prices, sells single events, and is built around album selection for Indian weddings: collections for each album, bride and groom side filters, and Locate Originals to hand the editor the right files. If storage per rupee and extras matter most, FotoOwl's bigger plans win. If album selection is the bottleneck, Vyavasth fits better.",
+      "FotoOwl gives more storage per rupee on its big plans, plus photo selling and auto-generated reels, and that is a genuine edge. Read the small print on the best-value Biker plan though: the headline 700 GB is 500 GB for live galleries and 200 GB of \"passive\" storage, and the pricing page never says whether GST goes on top. Vyavasth's storage prices include GST, it sells single events, and its album selection is built for Indian families: collections for each album, bride and groom side filters, and Locate Originals for the editor.",
     pricingModel:
       "FotoOwl sells plans by storage, shown as a monthly figure billed every year, every six months or every month. Vyavasth sells storage plans with GST included, or single events.",
     plans: [
@@ -243,7 +247,7 @@ export const COMPETITORS: Competitor[] = [
       "Vyavasth vs Samaro for Indian wedding studios: yearly prices with GST, storage, album selection, AI culling and editing, camera to cloud, and where each one is better.",
     h1: "Vyavasth vs Samaro",
     verdict:
-      "Samaro is the broader platform: AI culling, AI editing, album design, a WhatsApp bot and camera to cloud sit alongside delivery. Vyavasth does less, costs less per GB once GST is counted, and is built around the slowest part of an Indian wedding: getting the couple and family to finish album selection, then handing the editor the right originals. If you want one subscription for culling, editing, design and delivery, look at Samaro. If delivery and album selection are the job, Vyavasth is the simpler and cheaper fit.",
+      "Samaro wants to run your whole studio: AI culling, AI editing, album design, invites and a WhatsApp bot. If you want all of that, it is impressive. If you just need guests to get their photos and the couple to finish the album, it is a cockpit for a trip to the market. Its pricing page shows a struck-out price, a sale price and a discount code, all plus taxes, so the number you see is rarely the invoice you get. Vyavasth does less, costs less per GB once GST is counted, and the price on our page is the price you pay.",
     pricingModel:
       "Samaro sells monthly or yearly plans by reusable storage, plus taxes, with unlimited events. Vyavasth sells storage plans with GST included, or single events.",
     plans: [
@@ -267,6 +271,8 @@ export const COMPETITORS: Competitor[] = [
       { label: "WhatsApp", vyavasth: "WhatsApp notifications to the studio and hosts.", competitor: "WhatsApp bot for photo sharing and adding guests." },
       { label: "Google reviews from the gallery", vyavasth: V.reviews, competitor: "Not listed on the pricing page." },
       { label: "Storage", vyavasth: V.storage, competitor: "Reusable storage." },
+      { label: "Price shown vs price paid", vyavasth: "Storage plan prices include GST. The price on the page is the price you pay.", competitor: "Listed plus taxes, with a struck-through price and a discount code on the pricing page, so the amount paid depends on the offer running." },
+      { label: "Learning curve", vyavasth: "Delivery, face search and album selection only, so a studio is set up after one event.", competitor: "A much larger product, from culling and editing to album design, invites and a WhatsApp bot, so there is more to learn before it pays off." },
     ],
     theyAreBetterAt: [
       "A wider toolset: AI culling, AI editing, album design, a WhatsApp bot and guest uploads.",
@@ -313,7 +319,7 @@ export const COMPETITORS: Competitor[] = [
       "Vyavasth vs PicPapaya for Indian wedding studios: yearly prices, storage, face search, album selection and branding, and where each one is better.",
     h1: "Vyavasth vs PicPapaya",
     verdict:
-      "PicPapaya is a clean, low-cost face search gallery with a free plan and large storage plans up to 10 TB, and its 1 TB plan costs less than Vyavasth's. Vyavasth costs more at that size but does the work after the wedding too: album selection with collections and bride and groom side filters, Locate Originals for the editor, and a Google review prompt. If you only need guests to find their photos, PicPapaya is a strong, cheaper choice. If album selection is your bottleneck, Vyavasth covers it.",
+      "PicPapaya is a clean, cheap face search gallery, and at 1 TB it beats our price; credit where due. Then the wedding ends and the real work starts. Its India page lists no album selection, so the months of \"which 300 photos go in the album?\" are still yours to run on WhatsApp. Vyavasth covers what happens after the wedding too: collections for each album, side filters, Locate Originals and a Google review prompt.",
     pricingModel:
       "PicPapaya sells plans by storage, billed half-yearly or yearly, with every feature on every plan. Vyavasth sells storage plans with GST included, or single events.",
     plans: [
@@ -379,7 +385,7 @@ export const COMPETITORS: Competitor[] = [
       "Vyavasth vs FaceSnap for Indian wedding studios: yearly prices with GST, image and event limits, album selection, watermarks and face search, and where each one is better.",
     h1: "Vyavasth vs FaceSnap",
     verdict:
-      "FaceSnap has the lowest photographer entry price here and a 30-day free trial, plus extras like a portfolio website and highlight reels. Its plans cap active images and active events, and watermarks are not on the Standard plan. Vyavasth caps storage, not events, and adds album selection with collections, bride and groom side filters and Locate Originals on every plan. If you want the cheapest face search gallery, start with FaceSnap. If album selection is your bottleneck, Vyavasth covers it.",
+      "FaceSnap's ₹2,990 Standard plan is the cheapest way into face search, with a 30-day trial and extras like a portfolio website. The fine print: 25 active events and no watermark on that plan, so your best shots of the season travel the internet without your name on them. Vyavasth puts no cap on events, and your watermark and album selection are on every plan.",
     pricingModel:
       "FaceSnap sells yearly photographer plans by number of active images and active events, plus 18% GST. Vyavasth sells storage plans with GST included, or single events.",
     plans: [
@@ -423,6 +429,197 @@ export const COMPETITORS: Competitor[] = [
       { q: "Does FaceSnap have album selection?", a: "It is not listed on FaceSnap's pricing page. Vyavasth has album selection on every plan." },
     ],
   },
+
+  // ───────────────────────────── Pixieset ─────────────────────────────
+  {
+    slug: "vyavasth-vs-pixieset",
+    name: "Pixieset",
+    site: "pixieset.com",
+    sources: [
+      { label: "Pixieset pricing", url: "https://pixieset.com/pricing/" },
+      { label: "Pixieset client gallery features", url: "https://pixieset.com/client-gallery/" },
+    ],
+    hub: {
+      pricedBy: "Storage, monthly or yearly, in US dollars",
+      entry: "US$8 a month billed yearly (10 GB). Free plan with 3 GB.",
+      albumSelection: "Client favourites and comments on photos",
+      gst: "Billed in US dollars; tax not stated",
+    },
+    title: vsTitle("Pixieset"),
+    metaDescription:
+      "Vyavasth vs Pixieset for Indian wedding studios: prices in rupees vs US dollars, face search, QR sharing, album selection, print store and where each one is better.",
+    h1: "Vyavasth vs Pixieset",
+    verdict:
+      "Pixieset was made in Vancouver for portrait sessions and print sales, and it is excellent at that. It also shows its prices in US dollars when you open it from India, and its gallery and pricing pages say nothing about face search or QR codes. That is fine for a family of four. At a 600-guest sangeet it means 600 people scrolling through 8,000 photos looking for themselves. Vyavasth is built for that night: one QR, one selfie, rupee pricing with GST included, and album selection both families can work in.",
+    pricingModel:
+      "Pixieset sells client gallery plans by storage, billed monthly or yearly in US dollars. Vyavasth sells storage plans in rupees with GST included, or single events.",
+    plans: [
+      { name: "Free", limit: "3 GB", listedPerYear: 0, gstIncluded: null, currency: "USD" },
+      { name: "Basic", limit: "10 GB", listedPerYear: 96, gstIncluded: null, currency: "USD", note: "US$8 a month billed yearly, or US$10 monthly" },
+      { name: "Plus", limit: "100 GB", listedPerYear: 192, gstIncluded: null, currency: "USD", note: "US$16 a month billed yearly, or US$20 monthly" },
+      { name: "Pro", limit: "1,000 GB, RAW uploads", listedPerYear: 288, gstIncluded: null, currency: "USD", note: "US$24 a month billed yearly, or US$30 monthly" },
+      { name: "Ultimate", limit: "Unlimited storage", listedPerYear: 480, gstIncluded: null, currency: "USD", note: "US$40 a month billed yearly, or US$50 monthly" },
+    ],
+    pricingNote:
+      "Pixieset shows prices in US dollars, also when opened from India. We have not converted them, because the rupee amount depends on the exchange rate and your bank's foreign currency charges. Its page does not say how tax applies to Indian customers.",
+    rows: [
+      { label: "How you pay", vyavasth: V.model, competitor: "Monthly or yearly by storage, in US dollars." },
+      { label: "Face search for guests", vyavasth: V.faceSearch, competitor: "Not listed on Pixieset's client gallery or pricing pages." },
+      { label: "QR code for guests", vyavasth: "One QR for each event, for standees and invitations.", competitor: "Not listed on Pixieset's client gallery or pricing pages." },
+      { label: "Album selection", vyavasth: V.selection, competitor: "Clients pick favourites and add comments on photos; you track their favourite lists." },
+      { label: "Upload during the event", vyavasth: V.liveUpload, competitor: "Not listed on the pricing page." },
+      { label: "Selling prints", vyavasth: "Not offered.", competitor: "Built-in print store with automatic fulfilment; no commission on paid plans." },
+      { label: "Website and studio tools", vyavasth: "Not offered.", competitor: "Website builder and Studio Manager as separate Pixieset products." },
+      { label: "Google reviews from the gallery", vyavasth: V.reviews, competitor: "Not listed on the pricing page." },
+    ],
+    theyAreBetterAt: [
+      "A built-in print store with automatic fulfilment.",
+      "A website builder, studio manager and mobile gallery apps from the same company.",
+      "A free plan with 3 GB.",
+    ],
+    vyavasthIsBetterAt: [
+      "Face search: every guest finds their own photos with one selfie.",
+      "One QR per event, and live delivery during the wedding.",
+      "Prices in rupees with GST included, or pay per event.",
+      "Album selection made for Indian weddings, with collections for each album and bride and groom side filters, plus Locate Originals.",
+    ],
+    chooseThemIf: [
+      "You sell prints and shoot for international clients.",
+      "You want your website and gallery from the same company.",
+    ],
+    chooseVyavasthIf: [
+      "You deliver Indian weddings to hundreds of guests who want their own photos the same day.",
+      "You want to pay in rupees, with GST on the invoice.",
+    ],
+    faqs: [
+      { q: "Does Pixieset have face search or QR codes for guests?", a: "Neither is listed on Pixieset's client gallery or pricing pages as of the date above. Vyavasth has both on every plan." },
+      { q: "Can Indian studios pay for Pixieset in rupees?", a: "Pixieset's pricing page shows US dollars, also when opened from India, so the rupee amount depends on the exchange rate and your bank's charges. Vyavasth prices are in rupees with GST included on storage plans." },
+      { q: "Is Pixieset good for Indian weddings?", a: "It is a strong gallery for portraits and print sales. For Indian weddings with hundreds of guests, face search, QR sharing and album selection by both families matter more, and those are where Vyavasth is built." },
+    ],
+  },
+
+  // ───────────────────────────── Pic-Time ─────────────────────────────
+  {
+    slug: "vyavasth-vs-pic-time",
+    name: "Pic-Time",
+    site: "pic-time.com",
+    sources: [{ label: "Pic-Time pricing", url: "https://www.pic-time.com/pricing/client-delivery-suite" }],
+    hub: {
+      pricedBy: "Storage, monthly or yearly, in US dollars",
+      entry: "US$7 a month billed yearly (20 GB). Free plan with 10 GB.",
+      albumSelection: "Not listed as a separate feature; selfie search for clients on Advanced",
+      gst: "Billed in US dollars; tax not stated",
+    },
+    title: vsTitle("Pic-Time"),
+    metaDescription:
+      "Vyavasth vs Pic-Time for Indian wedding studios: prices in rupees vs US dollars, selfie search, print store, album selection and where each one is better.",
+    h1: "Vyavasth vs Pic-Time",
+    verdict:
+      "Pic-Time is a print and product sales machine: 30+ labs, an album builder, marketing automations. Face search exists, but only on the top Advanced plan at US$42 a month, billed in dollars. Vyavasth has face search on every plan, including pay per event, priced in rupees, and is built around Indian weddings: live delivery to hundreds of guests and album selection by both families.",
+    pricingModel:
+      "Pic-Time sells plans by storage, billed monthly or yearly in US dollars. Vyavasth sells storage plans in rupees with GST included, or single events.",
+    plans: [
+      { name: "Free", limit: "10 GB, about 3,000 photos", listedPerYear: 0, gstIncluded: null, currency: "USD" },
+      { name: "Beginner", limit: "20 GB, about 6,000 photos", listedPerYear: 84, gstIncluded: null, currency: "USD", note: "US$7 a month billed yearly, or US$8 monthly" },
+      { name: "Professional", limit: "100 GB, about 30,000 photos", listedPerYear: 252, gstIncluded: null, currency: "USD", note: "US$21 a month billed yearly, or US$25 monthly" },
+      { name: "Advanced", limit: "Unlimited storage (terms apply)", listedPerYear: 504, gstIncluded: null, currency: "USD", note: "US$42 a month billed yearly, or US$50 monthly. Adds selfie search for clients" },
+    ],
+    pricingNote:
+      "Pic-Time shows prices in US dollars. We have not converted them, because the rupee amount depends on the exchange rate and your bank's foreign currency charges. Its page does not say how tax applies to Indian customers.",
+    rows: [
+      { label: "How you pay", vyavasth: V.model, competitor: "Monthly or yearly by storage, in US dollars." },
+      { label: "Face search for guests", vyavasth: V.faceSearch, competitor: "Selfie search for clients on the Advanced plan only." },
+      { label: "Album selection", vyavasth: V.selection, competitor: "Not listed as a separate feature on the pricing page; an album builder is part of the print store." },
+      { label: "Selling prints and products", vyavasth: "Not offered.", competitor: "Print store with 30+ labs, automatic fulfilment, album builder, coupons and gift cards." },
+      { label: "Marketing tools", vyavasth: V.reviews, competitor: "Automated marketing campaigns, slideshows, blogs and a vendor network on higher plans." },
+      { label: "Upload during the event", vyavasth: V.liveUpload, competitor: "Not listed on the pricing page." },
+    ],
+    theyAreBetterAt: [
+      "Selling prints and products, with 30+ labs and automatic fulfilment.",
+      "Marketing automations, slideshows and blogs.",
+      "A free plan with 10 GB.",
+    ],
+    vyavasthIsBetterAt: [
+      "Face search on every plan, not only the top one.",
+      "Prices in rupees with GST included, or pay per event.",
+      "Live delivery during the wedding, and one QR per event.",
+      "Album selection by both families, with collections and side filters, plus Locate Originals.",
+    ],
+    chooseThemIf: [
+      "Print and product sales are a big part of your revenue.",
+      "Your clients are mostly international.",
+    ],
+    chooseVyavasthIf: [
+      "You deliver Indian weddings where hundreds of guests want their own photos.",
+      "You want face search without paying for the top plan, in rupees.",
+    ],
+    faqs: [
+      { q: "Does Pic-Time have face search?", a: "Pic-Time lists selfie search for clients on its Advanced plan. Vyavasth has face search on every plan, including pay per event." },
+      { q: "Is Pic-Time priced in rupees?", a: "Its pricing page shows US dollars. Vyavasth prices are in rupees, with GST included on storage plans." },
+    ],
+  },
+
+  // ───────────────────────────── Camtom ─────────────────────────────
+  {
+    slug: "vyavasth-vs-camtom",
+    name: "Camtom",
+    site: "camtom.in",
+    sources: [{ label: "Camtom home page and pricing", url: "https://www.camtom.in/" }],
+    hub: {
+      pricedBy: "Two yearly plans",
+      entry: "₹1,299 a year (no face recognition), or ₹1,999 a year with AI face recognition",
+      albumSelection: "Unlimited photo selection, multi-user selection, original and RAW photos of the selection in one click",
+      gst: "Not stated",
+    },
+    title: vsTitle("Camtom"),
+    metaDescription:
+      "Vyavasth vs Camtom for Indian studios: yearly price, photo selection, face recognition, CRM and billing tools, gallery experience and where each one is better.",
+    h1: "Vyavasth vs Camtom",
+    verdict:
+      "Camtom is the cheapest tool here at ₹1,299 a year, and it throws in quotations, billing, order booking and expenses. In its own words it is \"order management software\", and that is where it shines. What it does not sell is a premium wedding gallery: its home page talks about selection, CRM and payments, and says photos are kept with Google Cloud and Google Drive without saying how they are served when 500 guests open the link at once. Vyavasth is the gallery your guests see and remember your studio by: live delivery, face search on every plan, collections for each album and a Google review prompt.",
+    pricingModel:
+      "Camtom sells two yearly plans; its page does not mention GST. Vyavasth sells storage plans with GST included, or single events.",
+    plans: [
+      { name: "Elite Photographer", limit: "Unlimited photo selection, no AI face recognition", listedPerYear: 1299, gstIncluded: null },
+      { name: "Professional + AI", limit: "Unlimited photo selection, AI face recognition, e-album flipbook", listedPerYear: 1999, gstIncluded: null },
+    ],
+    pricingNote:
+      "Camtom's page lists these two yearly prices and does not say whether GST is included. Photos have one year validity on both plans. The page does not list a storage limit; it says data is protected with Google Cloud and Google Drive.",
+    rows: [
+      { label: "How you pay", vyavasth: V.model, competitor: "Yearly, ₹1,299 or ₹1,999. GST not stated." },
+      { label: "Face search for guests", vyavasth: V.faceSearch, competitor: "AI face recognition on the ₹1,999 plan only." },
+      { label: "Album selection", vyavasth: V.selection, competitor: "Unlimited photo selection, multi-user selection and a selection timer." },
+      { label: "Originals for the editor", vyavasth: V.originals, competitor: "Original and RAW photos of the selection in one click." },
+      { label: "CRM and billing", vyavasth: "Not offered.", competitor: "Quotations, billing, order booking and calendar, client and team management, payment records, expenses." },
+      { label: "Paid downloads", vyavasth: "Not offered.", competitor: "Free or paid photo downloads for clients." },
+      { label: "Upload during the event", vyavasth: V.liveUpload, competitor: "Not listed on the home page." },
+      { label: "Google reviews from the gallery", vyavasth: V.reviews, competitor: "Not listed on the home page." },
+      { label: "Where photos are stored", vyavasth: "Vyavasth's own cloud storage, sized by your plan.", competitor: "The page says Google Cloud and Google Drive; no storage limit is listed." },
+    ],
+    theyAreBetterAt: [
+      "The lowest yearly price in this comparison.",
+      "Studio CRM and billing tools in the same subscription.",
+      "Paid photo downloads, and desktop, Android and iOS apps.",
+    ],
+    vyavasthIsBetterAt: [
+      "A premium, branded gallery guests see on their phones, with face search on every plan.",
+      "Live delivery while the wedding is still going on.",
+      "Collections for each album and bride and groom side filters.",
+      "A Google review prompt in every gallery.",
+    ],
+    chooseThemIf: [
+      "You want photo selection and a CRM at the lowest yearly cost.",
+      "You want to charge clients for downloads.",
+    ],
+    chooseVyavasthIf: [
+      "The guest gallery is part of how you win the next booking.",
+      "You want photos reaching guests during the wedding, not after.",
+    ],
+    faqs: [
+      { q: "Is Camtom cheaper than Vyavasth?", a: "Yes. Camtom's plans are ₹1,299 and ₹1,999 a year, less than any Vyavasth storage plan. Camtom also includes CRM and billing tools. Vyavasth costs more for a premium guest gallery with face search on every plan, live delivery and album collections." },
+      { q: "Does Camtom store photos on Google Drive?", a: "Camtom's home page says data is protected with Google Cloud and Google Drive, and it does not list a storage limit. Ask Camtom how photos are served to guests at large events. Vyavasth stores and serves photos from its own cloud storage." },
+    ],
+  },
 ];
 
 /** Shown in the hub table only, without their own page. */
@@ -457,9 +654,10 @@ export function competitorBySlug(slug: string): Competitor | undefined {
   return COMPETITORS.find((c) => c.slug === slug);
 }
 
-/** Listed price including 18% GST, rounded to the rupee. null if unknown. */
+/** Listed price including 18% GST, rounded to the rupee. null if unknown or not in rupees. */
 export function withGst(plan: CompetitorPlan): number | null {
   if (plan.listedPerYear === null) return null;
+  if (plan.currency === "USD") return null;
   if (plan.gstIncluded === false) return Math.round(plan.listedPerYear * 1.18);
   return plan.listedPerYear;
 }

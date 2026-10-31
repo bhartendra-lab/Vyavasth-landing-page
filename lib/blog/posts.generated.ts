@@ -3,6 +3,75 @@ import type { BlogPost } from "./index.ts";
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    "slug": "ai-culling-software-for-wedding-photographers-india",
+    "title": "AI culling software for Indian wedding photographers: 4 tools compared (2026)",
+    "seoTitle": "Best AI culling software for wedding photographers in India",
+    "description": "Aftershoot, FilterPixel, Imagen and Narrative compared for Indian wedding studios: prices as shown from India, what each does well, and where each falls short.",
+    "author": "bhartendra",
+    "date": "2026-10-29",
+    "category": "studio-business",
+    "image": "/blog/og/ai-culling-software-for-wedding-photographers-india.png",
+    "html": "<p>A multi-day Indian wedding often leaves a studio with several thousand frames from two or three cameras. Before anyone edits, someone has to throw out the blinks, the misfires and the 14 near-identical shots of the varmala. That is culling, and for many studios it is a full day per wedding.</p>\n<p>AI culling tools do the first pass for you: they group duplicates, flag closed eyes and missed focus, and suggest the best frame in each group. This guide compares four of them on what matters to an Indian studio: price, how they bill, and what they are good at.</p>\n<p><strong>Disclosure:</strong> we make Vyavasth, which delivers photos to guests and runs album selection. We do not make or sell culling software, and none of the companies below paid to be included. Every price was read from the company&#39;s own pricing page on 29 October 2026, opened from India. Prices and offers change often, so check the current page before you buy.</p>\n<h2 id=\"the-short-answer\">The short answer</h2>\n<ul>\n<li><strong>Aftershoot</strong> if you want culling, editing and retouching from one company, priced in rupees.</li>\n<li><strong>FilterPixel</strong> if you cull many weddings and want cloud culling with a fixed number of deep culls a year.</li>\n<li><strong>Imagen</strong> if you already like its AI editing and want culling as part of the same workflow.</li>\n<li><strong>Narrative</strong> if you want a simple, fast culling app at the lowest entry price.</li>\n</ul>\n<h2 id=\"side-by-side\">Side by side</h2>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Tool</th>\n<th>How it bills</th>\n<th>Entry price shown</th>\n<th>Currency shown from India</th>\n<th>Free trial</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Aftershoot</td>\n<td>Monthly, half-yearly or yearly, per product</td>\n<td>Select (culling): ₹399 a month on yearly billing</td>\n<td>Rupees</td>\n<td>30 days</td>\n</tr>\n<tr>\n<td>FilterPixel</td>\n<td>Yearly or monthly, by number of deep-cull shoots</td>\n<td>Standard: US$14.99 a month, billed US$180 a year</td>\n<td>US dollars</td>\n<td>Yes</td>\n</tr>\n<tr>\n<td>Imagen</td>\n<td>Pay per edited photo, culling as an add-on, or a flat yearly plan</td>\n<td>Culling add-on from US$12 a month</td>\n<td>US dollars</td>\n<td>1,000 free edits</td>\n</tr>\n<tr>\n<td>Narrative</td>\n<td>Monthly or yearly, by plan</td>\n<td>Lite: $10 a month on yearly billing</td>\n<td>Dollars ($)</td>\n<td>Free trial of the top plan</td>\n</tr>\n</tbody></table></div>\n<p>None of the four pages says how GST applies to Indian customers. If you need a GST invoice, ask before you pay.</p>\n<h2 id=\"1-aftershoot\">1. Aftershoot</h2>\n<p><strong>Best for:</strong> studios that want culling, editing and retouching from one company and prefer paying in rupees.</p>\n<ul>\n<li><strong>What it does:</strong> AI culling with duplicate grouping and key face detection (Select), AI editing trained on your style (Edit), and portrait retouching (Retouch). You can buy them separately or as a bundle called Complete.</li>\n<li><strong>Price shown from India:</strong> Select costs ₹999 a month on monthly billing, ₹499 a month on half-yearly billing and ₹399 a month on yearly billing. Complete costs ₹4,999, ₹1,599 and ₹1,499 a month on the same three options. The page was running an &quot;India wedding season sale, up to 60% off&quot; when we checked.</li>\n<li><strong>Watch out for:</strong> sale prices change, so note which price you signed up at and what it renews at.</li>\n</ul>\n<h2 id=\"2-filterpixel\">2. FilterPixel</h2>\n<p><strong>Best for:</strong> high-volume studios and event photographers who want culling done in the cloud, without a powerful computer.</p>\n<ul>\n<li><strong>What it does:</strong> a basic AI cull with no limit on every plan, plus &quot;DeepCull&quot; shoots processed in the cloud, with a score and a written reason for every frame. A wedding mode is one of its genre modes. It also learns your edits.</li>\n<li><strong>Price shown from India:</strong> Standard US$14.99 a month (US$180 a year, 20 DeepCull shoots a year), Pro US$34.99 a month (US$420 a year, 70 shoots), Studio US$64.99 a month (US$780 a year, 140 shoots, up to 5 seats). Extra shoots cost US$7.99 each, for up to 5,500 photos per shoot.</li>\n<li><strong>Watch out for:</strong> the deep cull is counted per shoot. A busy wedding season can use up the yearly count, so match the plan to how many weddings you shoot.</li>\n</ul>\n<h2 id=\"3-imagen\">3. Imagen</h2>\n<p><strong>Best for:</strong> studios that already use or want Imagen&#39;s AI editing, which learns your Lightroom style.</p>\n<ul>\n<li><strong>What it does:</strong> AI editing priced per photo, with AI culling sold as an add-on, or everything included in one flat plan.</li>\n<li><strong>Price shown from India:</strong> pay as you go at US$0.05 per edited photo plus a US$7 monthly base fee; AI culling from US$12 a month as an add-on; the Limitless plan at US$129 a month billed yearly includes unlimited editing and AI culling. New accounts get 1,000 free edits.</li>\n<li><strong>Watch out for:</strong> on pay as you go, extra AI tools such as crop, straighten and masking cost US$0.01 per photo each, so the real per-photo price depends on which tools you switch on.</li>\n</ul>\n<h2 id=\"4-narrative\">4. Narrative</h2>\n<p><strong>Best for:</strong> photographers who want a fast culling app with a low starting price.</p>\n<ul>\n<li><strong>What it does:</strong> fast culling on every plan, with advanced AI culling and AI editing presets from the Standard plan up. It exports to Lightroom, Photoshop and Capture One.</li>\n<li><strong>Price shown:</strong> Lite $10 a month on yearly billing ($15 monthly), Standard $20 ($29 monthly), Premium $40 ($59 monthly), Ultra $60 ($79 monthly). There is no free plan; new accounts get a free trial of Ultra.</li>\n<li><strong>Watch out for:</strong> advanced AI culling starts on Standard, not Lite.</li>\n</ul>\n<h2 id=\"how-to-choose\">How to choose</h2>\n<p>Ask yourself four questions:</p>\n<ol>\n<li><strong>How many weddings a season?</strong> Per-shoot limits (FilterPixel) and per-photo pricing (Imagen pay as you go) suit some volumes better than flat plans.</li>\n<li><strong>Do you want editing from the same tool?</strong> Aftershoot and Imagen are strongest when you use them for both.</li>\n<li><strong>Do you need to pay in rupees with a GST invoice?</strong> Only Aftershoot showed rupee prices when we checked.</li>\n<li><strong>What does your computer handle?</strong> Cloud culling (FilterPixel&#39;s DeepCull) takes the load off your machine; check each tool&#39;s system requirements before buying.</li>\n</ol>\n<p>Every tool above has a trial. Run the same wedding through two of them and compare the picks with what your editor would have chosen.</p>\n<h2 id=\"where-culling-fits-in-an-indian-wedding-workflow\">Where culling fits in an Indian wedding workflow</h2>\n<p>Culling is step one. After it, the photos still have to reach the family and guests, and the couple still has to choose what goes in the album:</p>\n<ol>\n<li><strong>Cull</strong> with one of the tools above.</li>\n<li><strong>Edit</strong> in Lightroom or with your editor.</li>\n<li><strong>Deliver</strong> the edited photos to guests, ideally while the wedding is still on. See <a href=\"/blog/same-day-photo-delivery-at-weddings\">same-day photo delivery at weddings</a>.</li>\n<li><strong>Album selection</strong> by the couple and family. See <a href=\"/blog/how-to-select-photos-for-wedding-album\">how to select photos for a wedding album</a>.</li>\n<li><strong>Pull the originals</strong> of the final selection for the album designer. See <a href=\"/blog/find-raw-files-from-client-selection\">finding RAW files from a client&#39;s selection</a>.</li>\n</ol>\n<p>Vyavasth covers steps 3 to 5. Culling tools cover step 1, and many also help with step 2.</p>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"what-is-ai-culling-in-photography\">What is AI culling in photography?</h3>\n<p>Software that does the first pass through a shoot for you: it groups similar frames, flags closed eyes and missed focus, and suggests the best photo in each group, so you start editing with a shortlist instead of every frame.</p>\n<h3 id=\"which-ai-culling-software-is-priced-in-rupees\">Which AI culling software is priced in rupees?</h3>\n<p>Of the four tools here, only Aftershoot showed prices in rupees when opened from India on 29 October 2026. FilterPixel and Imagen showed US dollars, and Narrative showed prices in dollars.</p>\n<h3 id=\"is-ai-culling-good-enough-for-indian-weddings\">Is AI culling good enough for Indian weddings?</h3>\n<p>It is good at the mechanical part: duplicates, blinks and focus. It does not know which aunt matters most or which ritual the family cares about. Most studios use it for the first pass and still review the picks before editing.</p>\n<h3 id=\"can-i-use-ai-culling-with-vyavasth\">Can I use AI culling with Vyavasth?</h3>\n<p>Yes. Cull and edit as usual, then upload the edited photos to Vyavasth for guest delivery and album selection. When the couple finishes selecting, Locate Originals finds the matching original and RAW files on your laptop.</p>\n",
+    "faqs": [
+      {
+        "q": "What is AI culling in photography?",
+        "a": "Software that does the first pass through a shoot for you: it groups similar frames, flags closed eyes and missed focus, and suggests the best photo in each group, so you start editing with a shortlist instead of every frame."
+      },
+      {
+        "q": "Which AI culling software is priced in rupees?",
+        "a": "Of the four tools here, only Aftershoot showed prices in rupees when opened from India on 29 October 2026. FilterPixel and Imagen showed US dollars, and Narrative showed prices in dollars."
+      },
+      {
+        "q": "Is AI culling good enough for Indian weddings?",
+        "a": "It is good at the mechanical part: duplicates, blinks and focus. It does not know which aunt matters most or which ritual the family cares about. Most studios use it for the first pass and still review the picks before editing."
+      },
+      {
+        "q": "Can I use AI culling with Vyavasth?",
+        "a": "Yes. Cull and edit as usual, then upload the edited photos to Vyavasth for guest delivery and album selection. When the couple finishes selecting, Locate Originals finds the matching original and RAW files on your laptop."
+      }
+    ],
+    "readingMinutes": 6,
+    "wordCount": 1253,
+    "headings": [
+      {
+        "id": "the-short-answer",
+        "text": "The short answer"
+      },
+      {
+        "id": "side-by-side",
+        "text": "Side by side"
+      },
+      {
+        "id": "1-aftershoot",
+        "text": "1. Aftershoot"
+      },
+      {
+        "id": "2-filterpixel",
+        "text": "2. FilterPixel"
+      },
+      {
+        "id": "3-imagen",
+        "text": "3. Imagen"
+      },
+      {
+        "id": "4-narrative",
+        "text": "4. Narrative"
+      },
+      {
+        "id": "how-to-choose",
+        "text": "How to choose"
+      },
+      {
+        "id": "where-culling-fits-in-an-indian-wedding-workflow",
+        "text": "Where culling fits in an Indian wedding workflow"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
     "slug": "how-to-select-photos-for-wedding-album",
     "title": "How to select photos for a wedding album: the collections method",
     "seoTitle": "How to select photos for a wedding album, without months",
