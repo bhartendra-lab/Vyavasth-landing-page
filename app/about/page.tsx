@@ -19,9 +19,28 @@ const h2Style = { fontFamily: "var(--font-syne)", color: "#1A1208" } as const;
 const list = "list-disc pl-5 space-y-2 m-0";
 const quote = "border-l-2 border-[#C25A3A] pl-4 italic m-0";
 
+const nameFaqLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "Is Vyavasth the same as Vyavastha?",
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: "No. Vyavasth (vyavasth.in) is wedding and event photo delivery software for photography studios in India. It is not connected to Vyavastha (vyavastha.online), Vyavasthaa (vyavasthaa.com) or Vyavastha (vyavastha.in), which offer different products, plans and prices.",
+      },
+    },
+  ],
+};
+
 export default function AboutPage() {
   return (
     <LegalPageShell title="About Us">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(nameFaqLd) }}
+      />
       <section>
         <p>
           Vyavasth is wedding and event photo delivery software for photography
@@ -48,14 +67,14 @@ export default function AboutPage() {
             <Link href="/features/face-search-photo-sharing" className="text-[#C25A3A] underline">
               <strong>Face search.</strong>
             </Link> Every guest opens one link, takes one
-            selfie, and sees only the photos they are in. With consent, they can
-            also see photos of their own family and friends group.
+            selfie, and sees only the photos they are in.
           </li>
           <li>
             <Link href="/features/album-selection" className="text-[#C25A3A] underline">
               <strong>Album selection.</strong>
             </Link> The couple and family like photos
-            inside the gallery. The studio filters selections by the
+            inside the gallery, and the couple can build collections for each
+            album, calendar or table book. The studio filters selections by the
             bride&apos;s side or the groom&apos;s side, by person, or by total
             likes.
           </li>
@@ -175,6 +194,19 @@ export default function AboutPage() {
             .
           </li>
         </ul>
+      </section>
+
+      <section>
+        <h2 className={h2} style={h2Style}>
+          Vyavasth, not Vyavastha
+        </h2>
+        <p>
+          Vyavasth is spelled without an &ldquo;a&rdquo; at the end, and our only
+          website is vyavasth.in. We are not connected to other businesses with
+          similar names, such as Vyavastha at vyavastha.online, Vyavasthaa at
+          vyavasthaa.com or Vyavastha at vyavastha.in. They offer different
+          products, plans and prices.
+        </p>
       </section>
 
       <section>

@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { FEATURE_PAGES } from "@/lib/feature-pages";
 import { publishedPosts, todayInIndia } from "@/lib/blog";
+import { CHECKED_ON, COMPETITORS } from "@/lib/compare-data";
 
 // Rendered per request so posts appear in the sitemap on their publish date.
 export const dynamic = "force-dynamic";
@@ -23,6 +24,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...FEATURE_PAGES.map((p) => ({
       url: `${BASE}/features/${p.slug}`,
       lastModified: SITE_UPDATED,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    })),
+    { url: `${BASE}/compare`, lastModified: new Date(CHECKED_ON), changeFrequency: "monthly", priority: 0.8 },
+    ...COMPETITORS.map((c) => ({
+      url: `${BASE}/compare/${c.slug}`,
+      lastModified: new Date(CHECKED_ON),
       changeFrequency: "monthly" as const,
       priority: 0.8,
     })),

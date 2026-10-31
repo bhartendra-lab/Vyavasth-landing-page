@@ -4,7 +4,7 @@ import Link from "next/link";
 import {
   ArrowRight,
   ArrowUpRight,
-  CirclePlay,
+  Gift,
   Images,
   MessageCircle,
   type LucideIcon,
@@ -25,7 +25,7 @@ const TITLE = `Welcome: Vyavasth at ${WELCOME_EVENT.name}`;
 // can't export this; keep the two in sync).
 const TAGLINE = "AI event galleries, delivered during the event.";
 const DESCRIPTION =
-  "Get your event photos, chat with the Vyavasth team, and watch our 60-second feature explainers.";
+  "Get your event photos, claim the Photo Fair offer, and chat with the Vyavasth team.";
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -38,18 +38,18 @@ type Card = { Icon: LucideIcon; title: string; subtitle: string; href: string };
 
 // Link targets are unchanged from the original page. A card is live when its
 // link is ready (isLinkReady); otherwise it renders closed, as a quiet badge.
-const GET_PHOTOS: Card = {
-  Icon: Images,
-  title: "Get your photos",
-  subtitle: "Take a selfie, see every photo you're in.",
-  href: WELCOME_EVENT.galleryUrl,
+const CLAIM_OFFER: Card = {
+  Icon: Gift,
+  title: "Claim Photo Fair Offer",
+  subtitle: "Studios: Buy 1 event, Get 2 FREE.",
+  href: WELCOME_EVENT.offerUrl,
 };
 const SECONDARY: Card[] = [
   {
-    Icon: CirclePlay,
-    title: "Watch it work",
-    subtitle: "60-second feature explainers.",
-    href: WELCOME_EVENT.shortsUrl,
+    Icon: Images,
+    title: "Get your photos",
+    subtitle: "Take a selfie, see every photo you're in.",
+    href: WELCOME_EVENT.galleryUrl,
   },
   {
     Icon: MessageCircle,
@@ -113,10 +113,13 @@ export default function WelcomePage() {
               <span className={styles.name}>{WELCOME_EVENT.name}</span>
             </h1>
             <p className={styles.sub}>{TAGLINE}</p>
+            <p className={styles.when}>
+              {WELCOME_EVENT.dates}, {WELCOME_EVENT.venue}
+            </p>
           </header>
 
           <div className={styles.cards}>
-            <WelcomeCard card={GET_PHOTOS} primary />
+            <WelcomeCard card={CLAIM_OFFER} primary />
             <div className={styles.pair}>
               {SECONDARY.map((card) => (
                 <WelcomeCard key={card.title} card={card} />

@@ -75,6 +75,9 @@ export default function Footer() {
             <Link href="/pricing" className={colLink} style={{ color: "var(--color-primary)" }}>
               Pricing
             </Link>
+            <Link href="/compare" className={colLink} style={{ color: "var(--color-primary)" }}>
+              Compare
+            </Link>
             <Link href="/blog" className={colLink} style={{ color: "var(--color-primary)" }}>
               Blog
             </Link>

@@ -18,6 +18,7 @@
 .pre{display:block;font-size:clamp(17px,4.6vw,22px);font-weight:500;letter-spacing:-.01em;line-height:1.2;color:#FFD9C7}
 .name{display:block;margin-top:6px;font-size:clamp(32px,9.4vw,52px);font-weight:500;letter-spacing:-.04em;line-height:1.02;color:#fff;text-wrap:balance}
 .sub{margin:14px auto 0;max-width:24em;font-size:clamp(15px,3.9vw,18px);font-weight:500;line-height:1.45;color:#FFF1E9;text-wrap:balance}
+.when{margin:8px auto 0;max-width:24em;font-size:clamp(13px,3.4vw,15px);font-weight:500;line-height:1.45;color:#FFF1E9;text-wrap:balance}
 
 /* Cards */
 .cards{margin-top:26px;display:flex;flex-direction:column;gap:12px}
