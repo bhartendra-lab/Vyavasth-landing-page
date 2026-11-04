@@ -195,7 +195,7 @@ export function firstPurchaseOfferOf(plan: Plan | null | undefined): FirstPurcha
   };
 }
 
-/** "Buy 1 event, get 1 free" — the one wording of the offer, used everywhere. */
+/** "Claim your free event now!" — the one wording of the offer, used everywhere. */
 export function offerLine(offer: FirstPurchaseOffer): string {
   return `Claim your free event now!`;
 }

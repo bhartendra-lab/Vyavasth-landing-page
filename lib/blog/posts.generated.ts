@@ -3,6 +3,274 @@ import type { BlogPost } from "./index.ts";
 
 export const BLOG_POSTS: BlogPost[] = [
   {
+    "slug": "album-design-software-for-photographers-india",
+    "title": "Album design software for Indian wedding photographers: 4 options (2026)",
+    "seoTitle": "Best album design software for photographers in India",
+    "description": "Karizma, DgFlick Album Xpress, SmartAlbums and Fundy Designer compared for Indian studios: price, licence type, how they install, and who each one suits.",
+    "author": "bharat",
+    "date": "2026-11-04",
+    "category": "album-selection",
+    "image": "/blog/og/album-design-software-for-photographers-india.png",
+    "html": "<p>Once the couple finishes choosing, the photos go to the album designer. In most Indian studios that is one person with a PC, a design tool and a deadline the family keeps asking about. The tool decides how many albums that person can finish in a week.</p>\n<p>This post compares four album design tools Indian studios use, from Indian desktop software to international subscriptions.</p>\n<p><strong>Disclosure:</strong> we make Vyavasth, which runs album selection before the design starts. We do not make album design software, and none of these companies paid to be included. Prices are as listed on the pages linked below on 4 November 2026; check the current price before you buy.</p>\n<h2 id=\"the-short-answer\">The short answer</h2>\n<ul>\n<li><strong>Karizma</strong> for an Indian desktop tool with Indian wedding templates, at a low yearly price.</li>\n<li><strong>DgFlick Album Xpress</strong> if your studio already knows it; it has been a studio staple for years.</li>\n<li><strong>SmartAlbums</strong> for fast drag-and-drop design with online proofing, if you are fine with an international subscription.</li>\n<li><strong>Fundy Designer</strong> if you also sell wall art and want a one-time purchase option.</li>\n</ul>\n<h2 id=\"side-by-side\">Side by side</h2>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Tool</th>\n<th>Licence</th>\n<th>Price as listed</th>\n<th>How it installs</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Karizma</td>\n<td>Yearly, per its Techjockey listing</td>\n<td>From ₹3,500 a year + GST</td>\n<td>USB dongle, Windows and macOS</td>\n</tr>\n<tr>\n<td>DgFlick Album Xpress</td>\n<td>Full version with lifetime upgrades (older retail listing)</td>\n<td>Not listed (listing marked no longer available)</td>\n<td>CD/DVD, Windows and Mac</td>\n</tr>\n<tr>\n<td>SmartAlbums (Pixellu)</td>\n<td>Subscription</td>\n<td>Not shown on the plan page; 14-day free trial</td>\n<td>Download, Windows and Mac, 2 computers per licence</td>\n</tr>\n<tr>\n<td>Fundy Designer</td>\n<td>Yearly lease or one-time purchase</td>\n<td>Album Suite $250 a year; Album/Pro Suite $449 one-time</td>\n<td>Download, unlimited trial without print export</td>\n</tr>\n</tbody></table></div>\n<h2 id=\"1-karizma\">1. Karizma</h2>\n<p><strong>Best for:</strong> Indian studios that want templates built around Indian weddings and a low yearly cost.</p>\n<ul>\n<li><strong>What it does:</strong> album page design with templates, automatic layouts, auto-collage and auto-alignment, basic photo editing, and RAW and PSD support.</li>\n<li><strong>Price as listed:</strong> from ₹3,500 a year excluding GST (₹4,130 including GST) on Techjockey.</li>\n<li><strong>Watch out for:</strong> the dongle. Lose it and you lose the licence until it is replaced.</li>\n</ul>\n<h2 id=\"2-dgflick-album-xpress\">2. DgFlick Album Xpress</h2>\n<p><strong>Best for:</strong> studios that have used it for years and have their templates built in it.</p>\n<ul>\n<li><strong>What it does:</strong> album creation with 800 built-in templates, more downloadable ones, auto resize, auto collage, basic colour correction, and export to JPEG and PDF.</li>\n<li><strong>Price as listed:</strong> the retail listing we found marks it &quot;no longer available&quot; and shows no price. Ask a DgFlick dealer for the current version and price.</li>\n<li><strong>Watch out for:</strong> older versions were sold on CD/DVD; check that the version you buy supports your current Windows or macOS.</li>\n</ul>\n<h2 id=\"3-smartalbums\">3. SmartAlbums</h2>\n<p><strong>Best for:</strong> studios that want very fast drag-and-drop layouts and online proofing for the couple.</p>\n<ul>\n<li><strong>What it does:</strong> album design with smart layouts, plus Cloud Proofing so the couple can review spreads online. One licence works on two computers, on Windows and Mac.</li>\n<li><strong>Price as listed:</strong> paid plans were not shown on the plan page we checked; there is a 14-day free trial with watermarked exports and no card needed.</li>\n<li><strong>Watch out for:</strong> it is billed as an international subscription, so check the price in your currency at checkout.</li>\n</ul>\n<h2 id=\"4-fundy-designer\">4. Fundy Designer</h2>\n<p><strong>Best for:</strong> studios that also sell wall art and cards, and prefer to own the software.</p>\n<ul>\n<li><strong>What it does:</strong> albums, wall art, cards and magazines, in-person sales tools and client slideshows, with online proofing as a &quot;Pro Enhancement&quot;.</li>\n<li><strong>Price as listed:</strong> Album Suite $250 a year; Pro Suite $290 a year or $39 a month (with a one-year commitment); or a one-time Album/Pro Suite purchase at $449, with Pro Enhancements free for 3 months and then $189 a year.</li>\n<li><strong>Watch out for:</strong> the monthly plan needs a year&#39;s commitment, and the trial cannot export print files.</li>\n</ul>\n<h2 id=\"how-to-choose\">How to choose</h2>\n<ol>\n<li><strong>Indian templates or international styles?</strong> Karizma and DgFlick are built around Indian albums; SmartAlbums and Fundy lean towards international layouts.</li>\n<li><strong>Own it or rent it?</strong> Dongle and one-time licences suit studios that hate subscriptions; subscriptions keep you on the latest version.</li>\n<li><strong>Does the couple review spreads online?</strong> SmartAlbums and Fundy include online proofing; with the others, you will send PDFs on WhatsApp.</li>\n<li><strong>Which computers?</strong> Check every tool runs on the designer&#39;s PC before you pay.</li>\n</ol>\n<h2 id=\"the-step-before-design\">The step before design</h2>\n<p>Album design is fast only when the selection is final. If the couple is still changing photos while the designer works, every spread gets redone. Two posts on getting the selection right first:</p>\n<ul>\n<li><a href=\"/blog/how-to-select-photos-for-wedding-album\">How to select photos for a wedding album</a></li>\n<li><a href=\"/blog/find-raw-files-from-client-selection\">Find the RAW files from a client&#39;s selection</a></li>\n</ul>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"which-album-design-software-is-best-for-indian-weddings\">Which album design software is best for Indian weddings?</h3>\n<p>For Indian templates at a low yearly price, Karizma. For fast layouts and online proofing, SmartAlbums. For studios that also sell wall art and want a one-time purchase, Fundy Designer.</p>\n<h3 id=\"is-album-design-software-a-one-time-purchase\">Is album design software a one-time purchase?</h3>\n<p>Some is. Fundy Designer offers a one-time purchase, and older DgFlick versions were sold as full versions with lifetime upgrades. Karizma is listed as yearly, and SmartAlbums is a subscription.</p>\n<h3 id=\"can-couples-review-album-spreads-online\">Can couples review album spreads online?</h3>\n<p>With SmartAlbums (Cloud Proofing) and Fundy Designer (online proofing in Pro Enhancements), yes. With other tools, studios usually export spreads as PDF or images and share them.</p>\n",
+    "faqs": [
+      {
+        "q": "Which album design software is best for Indian weddings?",
+        "a": "For Indian templates at a low yearly price, Karizma. For fast layouts and online proofing, SmartAlbums. For studios that also sell wall art and want a one-time purchase, Fundy Designer."
+      },
+      {
+        "q": "Is album design software a one-time purchase?",
+        "a": "Some is. Fundy Designer offers a one-time purchase, and older DgFlick versions were sold as full versions with lifetime upgrades. Karizma is listed as yearly, and SmartAlbums is a subscription."
+      },
+      {
+        "q": "Can couples review album spreads online?",
+        "a": "With SmartAlbums (Cloud Proofing) and Fundy Designer (online proofing in Pro Enhancements), yes. With other tools, studios usually export spreads as PDF or images and share them."
+      }
+    ],
+    "readingMinutes": 4,
+    "wordCount": 864,
+    "headings": [
+      {
+        "id": "the-short-answer",
+        "text": "The short answer"
+      },
+      {
+        "id": "side-by-side",
+        "text": "Side by side"
+      },
+      {
+        "id": "1-karizma",
+        "text": "1. Karizma"
+      },
+      {
+        "id": "2-dgflick-album-xpress",
+        "text": "2. DgFlick Album Xpress"
+      },
+      {
+        "id": "3-smartalbums",
+        "text": "3. SmartAlbums"
+      },
+      {
+        "id": "4-fundy-designer",
+        "text": "4. Fundy Designer"
+      },
+      {
+        "id": "how-to-choose",
+        "text": "How to choose"
+      },
+      {
+        "id": "the-step-before-design",
+        "text": "The step before design"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
+    "slug": "crm-for-wedding-photographers-india",
+    "title": "CRM software for Indian wedding photographers: 3 tools compared (2026)",
+    "seoTitle": "Best CRM for wedding photographers in India (2026)",
+    "description": "Studio Mithra, WedTrack and Camtom compared for Indian wedding studios: enquiries, quotations, payments, crew and billing, with prices as listed on each site.",
+    "author": "abhishek",
+    "date": "2026-11-04",
+    "category": "studio-business",
+    "image": "/blog/og/crm-for-wedding-photographers-india.png",
+    "html": "<p>Most Indian wedding studios run their business on three things: a WhatsApp chat per client, a notebook or Excel sheet of advances, and the owner&#39;s memory. It works until the season peaks. Then a Sangeet is double-booked, a balance payment slips by two months, and nobody remembers which candid photographer was promised for the Haldi.</p>\n<p>A CRM (customer relationship management) tool puts enquiries, quotations, bookings, crew and payments in one place. This post compares three that are built for Indian studios.</p>\n<p><strong>Disclosure:</strong> we make Vyavasth, which delivers photos and runs album selection. We do not make a CRM, and none of these companies paid to be included. Prices are as listed on each company&#39;s site on 4 November 2026. Check the current page before you buy.</p>\n<h2 id=\"the-short-answer\">The short answer</h2>\n<ul>\n<li><strong>Studio Mithra</strong> if you want a full CRM with proposals, payment milestones and a crew calendar, billed monthly.</li>\n<li><strong>WedTrack</strong> if multi-day weddings with many events and crews are your main headache, and you want to try it free on 5 weddings.</li>\n<li><strong>Camtom</strong> if you want quotations, billing and order booking at the lowest yearly price.</li>\n</ul>\n<h2 id=\"what-a-wedding-studio-crm-should-do\">What a wedding studio CRM should do</h2>\n<p>Before comparing tools, here is what matters for an Indian wedding studio specifically:</p>\n<ol>\n<li><strong>One booking, many functions.</strong> Haldi, Mehendi, Sangeet, wedding and reception are separate events with their own dates, venues and crews, under one client.</li>\n<li><strong>Payment milestones.</strong> Advance at booking, a part on the wedding day, the balance at delivery, in UPI, bank transfer and cash.</li>\n<li><strong>Crew calendar.</strong> Who is shooting where, so two weddings on the same date do not get the same candid photographer.</li>\n<li><strong>Quotations and GST invoices</strong> that look professional on a phone.</li>\n<li><strong>Post-production tracking.</strong> Which weddings are waiting on edits, album selection or printing.</li>\n</ol>\n<h2 id=\"side-by-side\">Side by side</h2>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Tool</th>\n<th>Built for</th>\n<th>Price as listed</th>\n<th>Free trial</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Studio Mithra</td>\n<td>Indian wedding studios</td>\n<td>₹999, ₹1,999 or ₹3,999 a month</td>\n<td>14 days, no card</td>\n</tr>\n<tr>\n<td>WedTrack</td>\n<td>Multi-day Indian weddings</td>\n<td>Not published on its solutions page</td>\n<td>Free with 5 weddings, no card</td>\n</tr>\n<tr>\n<td>Camtom</td>\n<td>Photographers&#39; orders and billing</td>\n<td>₹1,299 a year</td>\n<td>Not stated</td>\n</tr>\n</tbody></table></div>\n<p>None of the three pricing pages says whether GST is added to the subscription.</p>\n<h2 id=\"1-studio-mithra\">1. Studio Mithra</h2>\n<p><strong>Best for:</strong> studios that want proposals, payments and crew in one place and are happy to pay monthly.</p>\n<ul>\n<li><strong>What it does:</strong> a lead pipeline for Instagram, website and referral enquiries; multi-event proposals in rupees (Haldi, wedding, reception) shared as mobile links; payment milestones across UPI, bank and cash; a crew calendar with attendance and expenses; and a post-production board.</li>\n<li><strong>Price as listed:</strong> Studio ₹999 a month (3 seats), Pro ₹1,999 a month (10 seats, GST-ready invoices), Business ₹3,999 a month (25 seats, several brands, custom domain). A yearly option is advertised as &quot;2 months free&quot;.</li>\n<li><strong>Watch out for:</strong> GST-ready invoices start on Pro, not Studio.</li>\n</ul>\n<h2 id=\"2-wedtrack\">2. WedTrack</h2>\n<p><strong>Best for:</strong> studios whose weddings are many events across several days, with large crews.</p>\n<ul>\n<li><strong>What it does:</strong> keeps every event of a multi-day wedding under one booking, each with its own date, venue, crew and deliverables; checks photographer, cinematographer and gear availability on one calendar; tracks payment milestones per event and per wedding; follows photo, video, reel and album edits from ingest to delivery; and gives each client a status link.</li>\n<li><strong>Price as listed:</strong> not shown on its wedding photography page. You can start free with 5 weddings, without a card.</li>\n<li><strong>Watch out for:</strong> without published prices, ask for the full-year cost before you move all your weddings in.</li>\n</ul>\n<h2 id=\"3-camtom\">3. Camtom</h2>\n<p><strong>Best for:</strong> small studios that want quotations, billing and order booking at the lowest yearly cost.</p>\n<ul>\n<li><strong>What it does (CRM side):</strong> quotations, billing and payment receipts, order booking with an order calendar, client and team management, payment records, expenses, and order PDFs. It has desktop, Android and iOS apps.</li>\n<li><strong>Price as listed:</strong> ₹1,299 a year for its Elite Photographer plan.</li>\n<li><strong>Watch out for:</strong> Camtom is order management software first. Judge it on the back office, which is what it is built around.</li>\n</ul>\n<h2 id=\"or-keep-excel-and-whatsapp\">Or keep Excel and WhatsApp?</h2>\n<p>If you shoot fewer than 15 weddings a season and one person handles all bookings, a well-kept Google Sheet and a WhatsApp Business account still work. The moment two people take bookings, or you run two crews on the same date, a CRM pays for itself in the first double-booking it prevents.</p>\n<h2 id=\"where-the-crm-stops-and-delivery-starts\">Where the CRM stops and delivery starts</h2>\n<p>A CRM tracks that the wedding happened, the balance is due and the album is pending. It does not get 8,000 photos to 500 guests, or get the couple to finish choosing 300 of them. That is the delivery and album selection side:</p>\n<ul>\n<li><a href=\"/blog/same-day-photo-delivery-at-weddings\">Same-day photo delivery at weddings</a></li>\n<li><a href=\"/blog/how-to-select-photos-for-wedding-album\">How to select photos for a wedding album</a></li>\n<li><a href=\"/blog/ai-culling-software-for-wedding-photographers-india\">AI culling software for Indian wedding photographers</a></li>\n</ul>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"what-is-the-best-crm-for-wedding-photographers-in-india\">What is the best CRM for wedding photographers in India?</h3>\n<p>It depends on your size. Studio Mithra suits studios that want proposals, payment milestones and a crew calendar on a monthly plan. WedTrack suits studios with large multi-day weddings. Camtom suits small studios that mainly need quotations and billing at a low yearly price.</p>\n<h3 id=\"do-i-need-a-crm-as-a-small-wedding-studio\">Do I need a CRM as a small wedding studio?</h3>\n<p>Not always. Under about 15 weddings a season with one person taking bookings, a shared sheet and WhatsApp Business can be enough. Once several people book or you run more than one crew, a CRM prevents double bookings and missed payments.</p>\n<h3 id=\"does-a-crm-deliver-photos-to-clients\">Does a CRM deliver photos to clients?</h3>\n<p>Usually not. CRMs track bookings, payments and work status. Delivering photos to guests and running album selection need a gallery tool such as Vyavasth.</p>\n<h3 id=\"can-i-issue-gst-invoices-from-a-photography-crm\">Can I issue GST invoices from a photography CRM?</h3>\n<p>Some can. Studio Mithra lists GST-ready invoices from its Pro plan, and Camtom lists billing. Check that the invoice format meets your accountant&#39;s needs before you switch.</p>\n",
+    "faqs": [
+      {
+        "q": "What is the best CRM for wedding photographers in India?",
+        "a": "It depends on your size. Studio Mithra suits studios that want proposals, payment milestones and a crew calendar on a monthly plan. WedTrack suits studios with large multi-day weddings. Camtom suits small studios that mainly need quotations and billing at a low yearly price."
+      },
+      {
+        "q": "Do I need a CRM as a small wedding studio?",
+        "a": "Not always. Under about 15 weddings a season with one person taking bookings, a shared sheet and WhatsApp Business can be enough. Once several people book or you run more than one crew, a CRM prevents double bookings and missed payments."
+      },
+      {
+        "q": "Does a CRM deliver photos to clients?",
+        "a": "Usually not. CRMs track bookings, payments and work status. Delivering photos to guests and running album selection need a gallery tool such as Vyavasth."
+      },
+      {
+        "q": "Can I issue GST invoices from a photography CRM?",
+        "a": "Some can. Studio Mithra lists GST-ready invoices from its Pro plan, and Camtom lists billing. Check that the invoice format meets your accountant's needs before you switch."
+      }
+    ],
+    "readingMinutes": 5,
+    "wordCount": 961,
+    "headings": [
+      {
+        "id": "the-short-answer",
+        "text": "The short answer"
+      },
+      {
+        "id": "what-a-wedding-studio-crm-should-do",
+        "text": "What a wedding studio CRM should do"
+      },
+      {
+        "id": "side-by-side",
+        "text": "Side by side"
+      },
+      {
+        "id": "1-studio-mithra",
+        "text": "1. Studio Mithra"
+      },
+      {
+        "id": "2-wedtrack",
+        "text": "2. WedTrack"
+      },
+      {
+        "id": "3-camtom",
+        "text": "3. Camtom"
+      },
+      {
+        "id": "or-keep-excel-and-whatsapp",
+        "text": "Or keep Excel and WhatsApp?"
+      },
+      {
+        "id": "where-the-crm-stops-and-delivery-starts",
+        "text": "Where the CRM stops and delivery starts"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
+    "slug": "google-drive-for-wedding-photos",
+    "title": "Google Drive for wedding photos: 6 limits studios hit, and when it is still fine",
+    "seoTitle": "Google Drive for wedding photo delivery: 6 limits to know",
+    "description": "Why a shared Google Drive link breaks when a whole wedding opens it: download locks, storage, phone viewing, zip splits, no face search and no album selection.",
+    "author": "bhartendra",
+    "date": "2026-11-04",
+    "category": "delivery",
+    "image": "/blog/og/google-drive-for-wedding-photos.png",
+    "html": "<p>Google Drive is how most Indian studios started delivering online, and for good reason. Everyone already has a Google account, it costs nothing to begin, and the link fits in a WhatsApp message.</p>\n<p>It is also a file store, not a wedding gallery. That difference stays invisible until the night 300 relatives open the same link. This post lists the six limits studios hit most, and the cases where Drive is still the right tool.</p>\n<p><strong>Disclosure:</strong> we make Vyavasth, an online gallery for wedding studios. We use Google Drive ourselves, for files.</p>\n<h2 id=\"1-popular-files-get-locked-for-a-while\">1. Popular files get locked for a while</h2>\n<p>When many people view or download the same shared file in a short time, Drive can block it and show: &quot;Sorry, you can&#39;t view or download this file at this time. Too many users have viewed or downloaded this file recently.&quot;</p>\n<p>Google does not publish the exact limit. Users and IT forums commonly report that the block lifts after about 24 hours. For a wedding, that is the worst possible timing: the link is popular exactly when the family is sharing it in every group.</p>\n<h2 id=\"2-free-storage-runs-out-after-a-few-weddings\">2. Free storage runs out after a few weddings</h2>\n<p>A free Google account has 15 GB, shared between Gmail, Drive and Google Photos. A single wedding of 4,000 edited JPEGs at 5 to 8 MB each is 20 to 30 GB. So a studio delivering on Drive pays for Google One within the first wedding, and for 2 TB within the first season.</p>\n<p>That is fine as a cost. The catch is that the storage belongs to one Google account, often the owner&#39;s personal one, and every wedding the studio ever delivered lives inside it.</p>\n<h2 id=\"3-on-a-phone-drive-feels-like-a-file-manager\">3. On a phone, Drive feels like a file manager</h2>\n<p>Most guests open the link on a phone, from WhatsApp. They see a grid of file names like DSC_4471.JPG, folders inside folders, and a prompt to open the Drive app. There is no cover photo, no studio branding and no order by function unless the studio built folders carefully.</p>\n<p>Guests who cannot find themselves in 4,000 photos in the first minute usually stop looking.</p>\n<h2 id=\"4-downloading-a-whole-folder-gives-you-several-zip-files\">4. Downloading a whole folder gives you several zip files</h2>\n<p>When someone downloads a large folder, Drive packs it into zip files and splits big downloads into several parts. On a phone, that means a folder of zips in Downloads that many relatives do not know how to open, and photos that never reach the gallery app.</p>\n<h2 id=\"5-no-way-for-guests-to-find-their-own-photos\">5. No way for guests to find their own photos</h2>\n<p>Drive has no face search. Each guest scrolls every folder looking for themselves. At a 400-guest wedding, that is the main thing guests want, and the one thing Drive cannot do. For how selfie search works and what to check, see <a href=\"/blog/ai-face-search-photo-sharing-what-to-check\">AI face search for wedding photos: 8 things to check</a>.</p>\n<h2 id=\"6-album-selection-turns-into-screenshots\">6. Album selection turns into screenshots</h2>\n<p>Drive has no likes and no shortlist. Comments need a Google account and are hard to follow across 4,000 files. So families choose album photos by sending screenshots or file numbers on WhatsApp, and someone in the studio decodes them. More on this in <a href=\"/blog/album-selection-excel-whatsapp-or-app\">album selection on Excel, WhatsApp or an app</a>.</p>\n<h2 id=\"when-google-drive-is-still-the-right-tool\">When Google Drive is still the right tool</h2>\n<p>Drive is good at what it was built for:</p>\n<ul>\n<li><strong>Sending RAW files or full-resolution originals</strong> to one person, like an editor or an album designer.</li>\n<li><strong>Backups</strong> of the studio&#39;s own work, alongside a second copy on a hard disk.</li>\n<li><strong>Small shoots</strong> like a portrait session or a product shoot for one client, where only one person opens the link.</li>\n<li><strong>Video files</strong> to a single client, where a gallery adds nothing.</li>\n</ul>\n<p>The rule of thumb: Drive works when one person opens the link. It struggles when the whole wedding does.</p>\n<h2 id=\"google-drive-vs-a-wedding-gallery\">Google Drive vs a wedding gallery</h2>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th></th>\n<th>Google Drive</th>\n<th>Wedding gallery app</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Built for</td>\n<td>Storing and sharing files</td>\n<td>Showing photos to many guests</td>\n</tr>\n<tr>\n<td>300 guests opening the link at once</td>\n<td>Can lock popular files</td>\n<td>Built for it</td>\n</tr>\n<tr>\n<td>Finding your own photos</td>\n<td>Scroll every folder</td>\n<td>Selfie search</td>\n</tr>\n<tr>\n<td>Look on a phone</td>\n<td>File names and folders</td>\n<td>Photos first, studio branding</td>\n</tr>\n<tr>\n<td>Album selection</td>\n<td>Screenshots on WhatsApp</td>\n<td>Likes, shortlist, collections</td>\n</tr>\n<tr>\n<td>Getting photos to the phone gallery</td>\n<td>Zip files</td>\n<td>Save straight to the phone</td>\n</tr>\n<tr>\n<td>Cost</td>\n<td>Google One storage</td>\n<td>Per event or monthly</td>\n</tr>\n</tbody></table></div>\n<h2 id=\"moving-from-drive-to-a-gallery-without-changing-everything\">Moving from Drive to a gallery without changing everything</h2>\n<p>You do not have to drop Drive. Most studios that switch keep Drive for originals and backups, and use a gallery only for what guests see:</p>\n<ol>\n<li>Keep exporting edited JPEGs as you do today.</li>\n<li>Upload them to the gallery by function (haldi, mehendi, wedding, reception).</li>\n<li>Share one gallery link or a QR code at the venue. See <a href=\"/blog/qr-code-for-wedding-photos\">QR code for wedding photos</a>.</li>\n<li>Keep RAW files and originals on Drive or a hard disk for the album designer.</li>\n</ol>\n<p>For a wider look at the options, read <a href=\"/blog/how-to-deliver-wedding-photos-to-clients-india\">how to deliver wedding photos to clients in India</a>.</p>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"why-does-google-drive-say-too-many-users-have-viewed-or-downloaded-this-file\">Why does Google Drive say &quot;too many users have viewed or downloaded this file&quot;?</h3>\n<p>Drive limits how often a shared file can be viewed or downloaded in a short time. When a wedding link is shared widely, popular files can hit that limit and stay blocked for a while, often reported as about 24 hours. Google does not publish the exact numbers.</p>\n<h3 id=\"how-much-google-drive-storage-does-a-wedding-need\">How much Google Drive storage does a wedding need?</h3>\n<p>It depends on photo count and file size. 4,000 edited JPEGs at 5 to 8 MB each come to roughly 20 to 30 GB, which is more than the 15 GB free on a Google account.</p>\n<h3 id=\"is-google-drive-good-for-sending-wedding-photos-to-clients\">Is Google Drive good for sending wedding photos to clients?</h3>\n<p>For sending files to one person, like the couple or an album designer, yes. For sharing a whole wedding with hundreds of guests on their phones, a gallery built for weddings works better, because it handles many viewers, face search and album selection.</p>\n<h3 id=\"can-guests-find-their-own-photos-in-google-drive\">Can guests find their own photos in Google Drive?</h3>\n<p>Not directly. Drive has no face search, so guests scroll through every folder. Wedding gallery apps let a guest take a selfie and see every photo they appear in.</p>\n",
+    "faqs": [
+      {
+        "q": "Why does Google Drive say \"too many users have viewed or downloaded this file\"?",
+        "a": "Drive limits how often a shared file can be viewed or downloaded in a short time. When a wedding link is shared widely, popular files can hit that limit and stay blocked for a while, often reported as about 24 hours. Google does not publish the exact numbers."
+      },
+      {
+        "q": "How much Google Drive storage does a wedding need?",
+        "a": "It depends on photo count and file size. 4,000 edited JPEGs at 5 to 8 MB each come to roughly 20 to 30 GB, which is more than the 15 GB free on a Google account."
+      },
+      {
+        "q": "Is Google Drive good for sending wedding photos to clients?",
+        "a": "For sending files to one person, like the couple or an album designer, yes. For sharing a whole wedding with hundreds of guests on their phones, a gallery built for weddings works better, because it handles many viewers, face search and album selection."
+      },
+      {
+        "q": "Can guests find their own photos in Google Drive?",
+        "a": "Not directly. Drive has no face search, so guests scroll through every folder. Wedding gallery apps let a guest take a selfie and see every photo they appear in."
+      }
+    ],
+    "readingMinutes": 5,
+    "wordCount": 1017,
+    "headings": [
+      {
+        "id": "1-popular-files-get-locked-for-a-while",
+        "text": "1. Popular files get locked for a while"
+      },
+      {
+        "id": "2-free-storage-runs-out-after-a-few-weddings",
+        "text": "2. Free storage runs out after a few weddings"
+      },
+      {
+        "id": "3-on-a-phone-drive-feels-like-a-file-manager",
+        "text": "3. On a phone, Drive feels like a file manager"
+      },
+      {
+        "id": "4-downloading-a-whole-folder-gives-you-several-zip-files",
+        "text": "4. Downloading a whole folder gives you several zip files"
+      },
+      {
+        "id": "5-no-way-for-guests-to-find-their-own-photos",
+        "text": "5. No way for guests to find their own photos"
+      },
+      {
+        "id": "6-album-selection-turns-into-screenshots",
+        "text": "6. Album selection turns into screenshots"
+      },
+      {
+        "id": "when-google-drive-is-still-the-right-tool",
+        "text": "When Google Drive is still the right tool"
+      },
+      {
+        "id": "google-drive-vs-a-wedding-gallery",
+        "text": "Google Drive vs a wedding gallery"
+      },
+      {
+        "id": "moving-from-drive-to-a-gallery-without-changing-everything",
+        "text": "Moving from Drive to a gallery without changing everything"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
+    "slug": "wedding-photo-selection-software-from-cds-to-cloud",
+    "title": "From software CDs to cloud galleries: how wedding photo selection changed in India",
+    "seoTitle": "Wedding photo selection software: from CDs to the cloud",
+    "description": "How Indian studios got couples to choose album photos: studio visits, Windows software sold on Amazon, WhatsApp screenshots and cloud galleries.",
+    "author": "abhishek",
+    "date": "2026-11-04",
+    "category": "album-selection",
+    "image": "/blog/og/wedding-photo-selection-software-from-cds-to-cloud.png",
+    "html": "<p>Every wedding album in India has the same hidden step between the wedding and the printing press: someone has to choose which 300 of 8,000 photos go in. How studios do that has changed more in fifteen years than the cameras have. This is the short history, with a few tools you may still find in a studio cupboard.</p>\n<h2 id=\"era-1-the-studio-visit\">Era 1: the studio visit</h2>\n<p>The original method needed no software at all. The family came to the studio, sat in front of the computer, and the studio&#39;s selection person opened photos one by one.</p>\n<p>We saw this still happening recently. Two women from the bride&#39;s family came to a studio, late and after several reminders. A staff member opened each photo in the image viewer, remembered the file name of every one they liked, then searched the folder and copied each original by hand.</p>\n<p>It worked, slowly. It needed the family to travel, a staff member for a full afternoon, and someone with a very good memory for file names.</p>\n<h2 id=\"era-2-selection-software-on-a-disc\">Era 2: selection software on a disc</h2>\n<p>Then came Windows software that let families choose at home. A good example is <strong>AJANTA ROYAL Select and Sort</strong>, made by Ajanta Photo and Technologies in Nagpur and still listed on Amazon India today at ₹999, first available in September 2019. Its listing describes the workflow of the era:</p>\n<ul>\n<li>The studio exports a <strong>&quot;protected package file&quot;</strong> of the wedding photos that the family &quot;cannot copy or print&quot;.</li>\n<li>The family opens it in a special photo viewer, selects photos and adds comments.</li>\n<li>The studio can <strong>lock the package</strong> after a number of days or views, so &quot;party is unable to see their photos after time limit&quot;.</li>\n<li>When the selected file comes back, the software <strong>&quot;magically sorts&quot;</strong> the selected originals for the studio in minutes.</li>\n</ul>\n<p>It runs on Windows 7, 8 and 10 (64-bit) with 2 GB of RAM, for one user.</p>\n<p>Credit where it is due: the problems it solved are the same ones studios have today. Families should be able to choose at home. Studios should not lose control of their photos. And nobody should match file names by hand. The tool even sorted originals automatically, years before cloud galleries did.</p>\n<p>The limits were the limits of the era. The package travelled on a pen drive. It needed a Windows computer at the family&#39;s home. And one family member chose for everyone, because the file sat on one laptop.</p>\n<p>Album design software from the same era came the same way. DgFlick Album Xpress was sold on CD/DVD with &quot;a lifetime of free upgrades&quot;, and Karizma albums still ships its software on a USB dongle. You paid once, installed it on the studio PC, and it was yours.</p>\n<h2 id=\"era-3-whatsapp-screenshots-and-google-drive\">Era 3: WhatsApp screenshots and Google Drive</h2>\n<p>Smartphones and cheap data broke the pen drive habit. Studios started uploading weddings to Google Drive and sharing the link in the family WhatsApp group. Families chose by sending screenshots, or file numbers typed into a message.</p>\n<p>It was free and everyone already knew how to use it. It also created a new job: someone in the studio decoding forty screenshots from six relatives, half of them of the same photo, then finding each file on the drive. WhatsApp compressed every photo along the way, so families were choosing from blurry copies. And a popular Drive link can hit Google&#39;s download limits right when the whole family opens it. More on that in <a href=\"/blog/album-selection-excel-whatsapp-or-app\">album selection on Excel, WhatsApp or an app</a>.</p>\n<h2 id=\"era-4-cloud-galleries-with-likes\">Era 4: cloud galleries with likes</h2>\n<p>Online client galleries moved selection into the browser. International tools like Pixieset let clients mark favourites and leave comments, and Indian tools added face search so each guest could find their own photos with a selfie.</p>\n<p>Likes fixed the screenshot problem: the studio could see exactly which photo was chosen. But likes have no destination. Liking 500 photos still leaves someone to decide which 300 go in the bride&#39;s album, which in the groom&#39;s, and which on the calendar. So the back and forth moved from WhatsApp into the gallery.</p>\n<h2 id=\"era-5-collections-filters-and-one-click-originals\">Era 5: collections, filters and one-click originals</h2>\n<p>The newest generation of tools treats album selection as a job of its own:</p>\n<ul>\n<li><strong>Collections</strong> for each album, calendar or table book, so a photo has a destination, and one photo can sit in several.</li>\n<li><strong>A small selection team</strong> chosen by the couple, while everyone else can still like photos.</li>\n<li><strong>Filters</strong> by the bride&#39;s side, the groom&#39;s side, by person and by total likes.</li>\n<li><strong>One click to the originals</strong>: the studio&#39;s laptop finds the original and RAW files of the final selection and copies them into one folder for the editor.</li>\n</ul>\n<p>That last one is the descendant of Select and Sort&#39;s &quot;magic sort&quot;, now running from a cloud gallery instead of a package on a pen drive. This is how Vyavasth works, and you can see it on the <a href=\"/features/album-selection\">album selection feature page</a>.</p>\n<h2 id=\"what-changed-in-one-table\">What changed, in one table</h2>\n<div class=\"table-wrap\"><table>\n<thead>\n<tr>\n<th>Era</th>\n<th>How families chose</th>\n<th>What the studio did</th>\n<th>Main pain</th>\n</tr>\n</thead>\n<tbody><tr>\n<td>Studio visit</td>\n<td>Sat with staff at the studio</td>\n<td>Remembered file names, copied by hand</td>\n<td>Travel, staff time</td>\n</tr>\n<tr>\n<td>Software on a disc</td>\n<td>Protected file on a Windows PC at home</td>\n<td>Sorted originals with the software</td>\n<td>One laptop, one chooser, pen drives</td>\n</tr>\n<tr>\n<td>WhatsApp and Drive</td>\n<td>Screenshots and file numbers</td>\n<td>Decoded screenshots, searched folders</td>\n<td>Compression, confusion</td>\n</tr>\n<tr>\n<td>Cloud galleries with likes</td>\n<td>Liked photos on the phone</td>\n<td>Guessed the final cut from the likes</td>\n<td>Likes have no destination</td>\n</tr>\n<tr>\n<td>Collections and one-click originals</td>\n<td>Built a collection per album</td>\n<td>Shortlisted and pulled originals in one click</td>\n<td>Getting families to start</td>\n</tr>\n</tbody></table></div>\n<h2 id=\"what-has-not-changed\">What has not changed</h2>\n<p>Three things are the same in every era: the family wants a say, the studio wants control of its photos, and the album waits until the selection is done. The tools only change how long that wait is. For the method we recommend today, read <a href=\"/blog/how-to-select-photos-for-wedding-album\">how to select photos for a wedding album</a>.</p>\n<h2 id=\"frequently-asked-questions\">Frequently asked questions</h2>\n<h3 id=\"what-is-ajanta-royal-select-and-sort\">What is AJANTA ROYAL Select and Sort?</h3>\n<p>A Windows photo selection program for wedding and event photographers, made by Ajanta Photo and Technologies in Nagpur and sold on Amazon India for ₹999. The studio exports a protected package that the family opens, selects from and sends back, and the software sorts the selected originals.</p>\n<h3 id=\"is-offline-photo-selection-software-still-useful\">Is offline photo selection software still useful?</h3>\n<p>For studios whose clients have little internet access, yes. For most families today, a phone gallery link is easier than installing software on a Windows computer, and it lets several relatives choose at once.</p>\n<h3 id=\"what-is-the-best-way-for-couples-to-select-album-photos-today\">What is the best way for couples to select album photos today?</h3>\n<p>Create one collection per album or product, let a small selection team fill them function by function, and share them with the studio as you go. The studio then pulls the originals of the final selection in one click.</p>\n",
+    "faqs": [
+      {
+        "q": "What is AJANTA ROYAL Select and Sort?",
+        "a": "A Windows photo selection program for wedding and event photographers, made by Ajanta Photo and Technologies in Nagpur and sold on Amazon India for ₹999. The studio exports a protected package that the family opens, selects from and sends back, and the software sorts the selected originals."
+      },
+      {
+        "q": "Is offline photo selection software still useful?",
+        "a": "For studios whose clients have little internet access, yes. For most families today, a phone gallery link is easier than installing software on a Windows computer, and it lets several relatives choose at once."
+      },
+      {
+        "q": "What is the best way for couples to select album photos today?",
+        "a": "Create one collection per album or product, let a small selection team fill them function by function, and share them with the studio as you go. The studio then pulls the originals of the final selection in one click."
+      }
+    ],
+    "readingMinutes": 6,
+    "wordCount": 1132,
+    "headings": [
+      {
+        "id": "era-1-the-studio-visit",
+        "text": "Era 1: the studio visit"
+      },
+      {
+        "id": "era-2-selection-software-on-a-disc",
+        "text": "Era 2: selection software on a disc"
+      },
+      {
+        "id": "era-3-whatsapp-screenshots-and-google-drive",
+        "text": "Era 3: WhatsApp screenshots and Google Drive"
+      },
+      {
+        "id": "era-4-cloud-galleries-with-likes",
+        "text": "Era 4: cloud galleries with likes"
+      },
+      {
+        "id": "era-5-collections-filters-and-one-click-originals",
+        "text": "Era 5: collections, filters and one-click originals"
+      },
+      {
+        "id": "what-changed-in-one-table",
+        "text": "What changed, in one table"
+      },
+      {
+        "id": "what-has-not-changed",
+        "text": "What has not changed"
+      },
+      {
+        "id": "frequently-asked-questions",
+        "text": "Frequently asked questions"
+      }
+    ]
+  },
+  {
     "slug": "ai-culling-software-for-wedding-photographers-india",
     "title": "AI culling software for Indian wedding photographers: 4 tools compared (2026)",
     "seoTitle": "Best AI culling software for wedding photographers in India",
