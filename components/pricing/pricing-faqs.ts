@@ -17,7 +17,6 @@
 import { formatCount, formatListPrice, formatStorage } from "@/lib/plans";
 import {
   EVENT_VALIDITY_MONTHS,
-  ORIGINAL_TIER_MIN_STORAGE_GB,
   gstFaqAnswer,
   numberWord,
   type HomeFigures,
@@ -37,6 +36,7 @@ export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
   // The photo limit and the price of more room, when the plans API gave them.
   const cap = photoCapTerms ? formatCount(photoCapTerms.cap) : null;
   const addonSize = photoCapTerms ? formatCount(photoCapTerms.addonSize) : null;
+  const weight4k = photoCapTerms ? formatCount(photoCapTerms.weight4k) : null;
   const addonPrice = photoCapTerms ? formatListPrice(photoCapTerms.addonPrice, photoCapTerms.gstInclusive) : null;
   const storagePool =
     "On a storage plan, you have one pool that carries across all your events and does not reset when an event ends. Delete an event and the space is yours to use again.";
@@ -57,7 +57,7 @@ export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
         },
         {
           q: "Do I get every feature on pay per event?",
-          a: `Yes, with one exception. Original-quality delivery needs a storage plan of ${formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)} or larger. Everything else is included on every plan.`,
+          a: "Yes, with one exception. Original-quality delivery is on storage plans only. Pay per event delivers in HD or 4K. Everything else is included on every plan.",
         },
         {
           q: "Can I change plans later?",
@@ -79,14 +79,14 @@ export function buildPricingFaqGroups(figures: HomeFigures): PricingFaqGroup[] {
         {
           q: "How does storage work?",
           a: cap
-            ? `On pay per event, each event holds up to ${cap} photos at a time. Delete photos and you can upload more. You can add ${addonSize} more to an event for ${addonPrice}. ${storagePool}`
+            ? `On pay per event, each event includes ${cap} photo uploads, and photos you delete still count. You can add ${addonSize} more uploads to an event for ${addonPrice}. ${storagePool}`
             : storagePool,
         },
         ...(cap
           ? [
               {
                 q: "Is there a photo limit on pay per event?",
-                a: `Yes. Each event holds up to ${cap} photos at a time. Only what is in the event right now counts, so deleting photos frees room to upload more. If you need more, you can add ${addonSize} photos to that event for ${addonPrice}, as many times as you need. Storage plans have no per-event limit.`,
+                a: `Yes. Each event includes ${cap} photo uploads. Every photo you upload counts, including photos you delete later, so deleting does not free room. A 4K photo counts as ${weight4k} uploads. If you need more, you can add ${addonSize} uploads to that event for ${addonPrice}, as many times as you need. Storage plans have no per-event limit.`,
               },
             ]
           : []),

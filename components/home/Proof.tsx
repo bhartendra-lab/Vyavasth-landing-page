@@ -4,7 +4,7 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { OWNER_PHOTOS, STUDIOS, type ImageSlot } from "@/lib/landing-content";
-import { formatInr, formatListPrice, formatStorage } from "@/lib/plans";
+import { formatCount, formatInr, formatListPrice, formatStorage } from "@/lib/plans";
 import { gstSummary, type HomeFigures } from "@/lib/pricing-display";
 import { whatsappUrl } from "@/lib/site-legal";
 import styles from "./Proof.module.css";
@@ -222,7 +222,7 @@ export default function Proof({ figures }: { figures: HomeFigures }) {
           {hasWays && (
             <div className={styles.ways}>
               {eventPrice !== null && (
-                <div><b>{formatListPrice(eventPrice, eventGstInclusive)}</b><span>per event, unlimited photos*</span></div>
+                <div><b>{formatListPrice(eventPrice, eventGstInclusive)}</b><span>{figures.photoCapTerms ? `per event, up to ${formatCount(figures.photoCapTerms.cap)} photos*` : "per event*"}</span></div>
               )}
               {lowestStorage && (
                 <div>

@@ -13,7 +13,6 @@ import {
 } from "@/components/pricing/pricing-faqs";
 import { getPlans } from "@/lib/vyavasth-api";
 import {
-  ORIGINAL_TIER_MIN_STORAGE_GB,
   chargedEventPrice,
   gstFeesPhrase,
   gstSummary,
@@ -112,7 +111,7 @@ export default async function PricingPage() {
   const eventWhat = eventPlan
     ? [
         "One event",
-        capTerms ? `up to ${formatCount(capTerms.cap)} photos at a time` : null,
+        capTerms ? `up to ${formatCount(capTerms.cap)} photo uploads` : null,
         `live for ${baseLifetimeLabel(validityBaseDaysOf(eventPlan))}`,
       ]
         .filter(Boolean)
@@ -124,7 +123,7 @@ export default async function PricingPage() {
     const size = formatStorage(tier.storage_limit);
     return {
       size,
-      what: `${size} reusable storage${tier.storage_limit >= ORIGINAL_TIER_MIN_STORAGE_GB ? ", original-quality delivery" : ""}`,
+      what: `${size} reusable storage, original-quality delivery`,
       monthlyCell: monthly && typeof monthly.price === "number" ? `${formatListPrice(monthly.price, gstInclusiveOf(monthly))} a month` : "Not offered",
       yearlyCell: yearly && typeof yearly.price === "number" ? `${formatListPrice(yearly.price, gstInclusiveOf(yearly))} a year` : "Not offered",
       monthlyCharged: monthly ? chargedPrice(monthly.price, monthly.price_with_gst) : null,
@@ -217,7 +216,7 @@ export default async function PricingPage() {
               <p className="mt-3 mb-5 text-[15px] text-[var(--brown)]">
                 Every plan includes face search, album selection with Smart Selects, Locate Originals,
                 your branding and watermark, and the Google review prompt. Original-quality delivery
-                needs {formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)} or more.
+                is included on every storage plan.
               </p>
               <div className="overflow-x-auto">
                 <table className="w-full text-sm border-collapse text-[var(--brown)]">

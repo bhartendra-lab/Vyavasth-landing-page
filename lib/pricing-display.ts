@@ -17,14 +17,6 @@ import {
 } from "./plans.ts";
 
 /**
- * Smallest storage plan (GB) that allows original-quality delivery. The backend
- * enforces this and the plans API does not expose it, so it is mirrored here.
- * Source of truth: backend/src/services/billing.service.js,
- * `export const ORIGINAL_TIER_MIN_STORAGE_GB = 500`. Change both together.
- */
-export const ORIGINAL_TIER_MIN_STORAGE_GB = 500;
-
-/**
  * How long a pay-per-event event stays live after it is created. Marketing
  * copy, not an API field; the pricing page already stated this before the
  * redesign.
@@ -50,11 +42,6 @@ const NUMBER_WORDS = ["Zero", "One", "Two", "Three", "Four", "Five", "Six", "Sev
 /** 2 → "two", 11 → "11". Lower case, for use mid-sentence. */
 export function numberWord(n: number): string {
   return n >= 0 && n <= 10 ? NUMBER_WORDS[n].toLowerCase() : String(n);
-}
-
-/** Whether a storage size includes original-quality delivery. */
-export function includesOriginal(storageGb: number): boolean {
-  return storageGb >= ORIGINAL_TIER_MIN_STORAGE_GB;
 }
 
 /** 75 → 75000. */

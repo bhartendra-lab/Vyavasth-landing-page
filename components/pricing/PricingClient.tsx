@@ -15,17 +15,16 @@ import {
   offerLine,
   payPerEventTerms,
   planForTier,
+  uploadLimitHeadline,
   yearlySavingsPercent,
 } from "@/lib/plans";
 import {
   EVENT_PRESETS,
   EVENT_VALIDITY_MONTHS,
-  ORIGINAL_TIER_MIN_STORAGE_GB,
   STORAGE_TIER_BADGES,
   allGstInclusive,
   chargedEventPrice,
   gstPictureOf,
-  includesOriginal,
   lowestYearlyTier,
   photosFor,
   sameCostEvents,
@@ -211,7 +210,7 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
               <li>
                 <Tick />
                 <span>
-                  Upload unlimited photos.{" "}
+                  {uploadLimitHeadline(eventPlan)}.{" "}
                   <a className={styles.tc} href="#photo-terms">T&amp;C apply</a>
                 </span>
               </li>
@@ -286,13 +285,8 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
               </li>
               <li>
                 <Tick light />
-                <Swap
-                  value={
-                    includesOriginal(tier.storage_limit)
-                      ? "Original-quality delivery included"
-                      : `HD and 4K delivery. Originals from ${formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)}.`
-                  }
-                />
+                {/* Original file delivery is on every storage plan, whatever its size. */}
+                <span>Original-quality delivery included</span>
               </li>
               {evenEvents !== null && (
                 <li>

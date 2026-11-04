@@ -16,7 +16,6 @@ import {
   validityBaseDaysOf,
   type Plan,
 } from "./plans.ts";
-import { ORIGINAL_TIER_MIN_STORAGE_GB } from "./pricing-display.ts";
 
 export type VyavasthCompare = {
   /** The pay-per-event row; null when there is no usable Event-based plan. */
@@ -68,7 +67,7 @@ export function vyavasthCompare(plans: Plan[]): VyavasthCompare {
       event = {
         what: [
           "One event",
-          cap ? `up to ${formatCount(cap.cap)} photos at a time` : null,
+          cap ? `up to ${formatCount(cap.cap)} photo uploads` : null,
           `live for ${baseLifetimeLabel(validityBaseDaysOf(eventPlan))}`,
         ]
           .filter(Boolean)
@@ -94,7 +93,7 @@ export function vyavasthCompare(plans: Plan[]): VyavasthCompare {
     return [
       {
         size,
-        what: `${size} reusable storage${tier.storage_limit >= ORIGINAL_TIER_MIN_STORAGE_GB ? ", original-quality delivery" : ""}`,
+        what: `${size} reusable storage, original-quality delivery`,
         price,
       },
     ];
