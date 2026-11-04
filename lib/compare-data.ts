@@ -78,7 +78,7 @@ const V = {
   selection:
     "Yes, on every plan. Family likes photos; the couple builds collections for each album, calendar or table book; you filter by bride's side, groom's side, person or total likes.",
   originals: "Locate Originals copies the shortlisted photos and their RAW files from your laptop into one folder for the editor, on every plan.",
-  originalDelivery: "HD and 4K delivery on every plan. Original-quality delivery on storage plans of 500 GB and above.",
+  originalDelivery: "HD and 4K delivery on every plan. Original-quality delivery on every storage plan.",
   branding: "Logo, colours and watermark across the whole gallery, on every plan.",
   reviews: "A Google review prompt inside every gallery.",
   liveUpload: "From the camera over FTP during the event, or from a laptop through the web uploader. Android USB upload app in early access.",

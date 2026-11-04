@@ -21,7 +21,6 @@ import {
   type Plan,
 } from "@/lib/plans";
 import {
-  ORIGINAL_TIER_MIN_STORAGE_GB,
   chargedEventPrice,
   lowestYearlyTier,
 } from "@/lib/pricing-display";
@@ -189,7 +188,7 @@ export default async function PayPerEventPage() {
 
   const bullets: string[] = [
     f.capTerms && addon
-      ? `Up to ${formatCount(f.capTerms.cap)} photos in the event at a time. Delete photos to make room, or add ${addon.size} more for ${addon.price}.`
+      ? `Up to ${formatCount(f.capTerms.cap)} photo uploads per event. Deleted photos still count. Need more? Add ${addon.size} uploads for ${addon.price}.`
       : SEE_PRICES,
     f.lifetime
       ? `The gallery stays live for ${f.lifetime} from the day you create the event.`
@@ -198,7 +197,7 @@ export default async function PayPerEventPage() {
       ? `Extend it later: ${f.extensions.map((o) => `${months(o.months)} for ${formatPrice(o.price)}`).join(", ")}, ${gstNote(f.inclusive)}.`
       : SEE_PRICES,
     "Every feature: face search for guests, album selection with likes and filters, Locate Originals, your branding and watermark, and the Google review prompt.",
-    `Original-quality delivery needs a storage plan of ${formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)} or more.`,
+    "Pay per event delivers in HD or 4K. Original-quality delivery is included on every storage plan.",
   ];
 
   const storageParagraph =

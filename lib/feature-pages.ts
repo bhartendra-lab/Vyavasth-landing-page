@@ -352,7 +352,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
         bullets: [
           "Uploads resume on their own when the internet drops, so a bad venue connection does not lose photos.",
           "Photos are compressed for fast viewing on phones: HD (2560 px, about 1 MB) and 4K (4096 px, about 3 MB).",
-          "Original-quality delivery is available on storage plans of 500 GB and above.",
+          "Original-quality delivery is available on every storage plan.",
           "Storage is reusable. Delete an old event and the space is free for the next one.",
         ],
       },

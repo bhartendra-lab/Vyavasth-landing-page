@@ -50,3 +50,5 @@ next-env.d.ts
 .wrangler/
 
 claude-outputs/
+Claude-outputs/
+Claude_outputs/

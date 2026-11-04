@@ -2,7 +2,6 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { buildStorageTiers, type Plan } from "./plans.ts";
 import {
-  ORIGINAL_TIER_MIN_STORAGE_GB,
   STORAGE_TIER_BADGES,
   allGstInclusive,
   chargedEventPrice,
@@ -12,7 +11,6 @@ import {
   gstPictureOf,
   gstSummary,
   homeFigures,
-  includesOriginal,
   lowestYearlyTier,
   numberWord,
   photosFor,
@@ -60,7 +58,7 @@ test("homeFigures carries the first-purchase offer only while the API says it is
 test("homeFigures reads the photo-cap terms from the event plan, and has none when the plan does not say", () => {
   assert.deepEqual(
     homeFigures([event(399, { photo_cap: 25000, photo_cap_addon_size: 2500, photo_cap_addon_price: 75 })]).photoCapTerms,
-    { cap: 25000, addonSize: 2500, addonPrice: 75, gstInclusive: true },
+    { cap: 25000, weight4k: 4, addonSize: 2500, addonPrice: 75, gstInclusive: true },
   );
   // No figure is kept on the site to stand in for the API's.
   assert.equal(homeFigures([]).photoCapTerms, null);
@@ -109,13 +107,6 @@ test("homeFigures with no plans returns no figures and no offer", () => {
     sameCostEvents: null,
     gst: { event: null, storage: null },
   });
-});
-
-test("original-quality threshold mirrors the backend constant", () => {
-  assert.equal(ORIGINAL_TIER_MIN_STORAGE_GB, 500);
-  assert.equal(includesOriginal(200), false);
-  assert.equal(includesOriginal(500), true);
-  assert.equal(includesOriginal(4000), true);
 });
 
 test("photosFor, numberWord and the badge map", () => {

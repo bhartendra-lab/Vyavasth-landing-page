@@ -49,8 +49,8 @@ export default function FeaturesPage() {
 
       <p className="m-0">
         Everything below is included on every Vyavasth plan, including pay per
-        event. The one exception is original-quality delivery, which needs a
-        storage plan of 500 GB or more.
+        event. The one exception is original-quality delivery, which is on
+        storage plans only. Pay per event delivers in HD or 4K.
       </p>
 
       {FEATURE_PAGES.map((p) => (

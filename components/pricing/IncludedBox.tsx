@@ -1,6 +1,4 @@
 import Link from "next/link";
-import { formatStorage } from "@/lib/plans";
-import { ORIGINAL_TIER_MIN_STORAGE_GB } from "@/lib/pricing-display";
 import styles from "./pricing.module.css";
 
 // The ten capabilities every plan includes. Static marketing copy from the
@@ -36,7 +34,7 @@ export default function IncludedBox() {
         </div>
         <div className={styles.note}>
           <span>
-            <b>One exception:</b> original-quality delivery needs a {formatStorage(ORIGINAL_TIER_MIN_STORAGE_GB)} storage plan or larger. Everything else is the same on pay per event and storage.
+            <b>One exception:</b> original-quality delivery is on storage plans only. Pay per event delivers in HD or 4K. Everything else is the same on pay per event and storage.
           </span>
           <Link href="/#features">See what each one does →</Link>
         </div>

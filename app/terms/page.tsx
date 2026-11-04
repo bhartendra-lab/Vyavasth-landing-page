@@ -170,23 +170,29 @@ export default async function TermsPage() {
           for once and do not renew.{" "}
           {capTerms ? (
             <>
-              Each such event can hold up to{" "}
-              <strong>{formatCount(capTerms.cap)} photos at a time</strong>.
-              Deleting photos from an event frees room in it, and only what is
-              in the event at that moment counts toward the limit. You may add
-              capacity to an event in blocks of{" "}
+              Each such event includes{" "}
+              <strong>{formatCount(capTerms.cap)} photo uploads</strong> over
+              its life. Every photo uploaded to the event counts toward this
+              limit, including photos later deleted: deleting a photo does not
+              restore an upload. A photo uploaded at 4K counts as{" "}
+              <strong>{formatCount(capTerms.weight4k)} uploads</strong>.
+              Original file uploads are not available on these events. You may
+              add capacity to an event in blocks of{" "}
               <strong>
-                {formatCount(capTerms.addonSize)} photos for {formatPrice(capTerms.addonPrice)} per block
+                {formatCount(capTerms.addonSize)} uploads for {formatPrice(capTerms.addonPrice)} per block
               </strong>{" "}
               ({gst}).
             </>
           ) : (
             <>
-              Each such event can hold a limited number of photos at a time.
-              Deleting photos from an event frees room in it, and only what is
-              in the event at that moment counts toward the limit. You may add
-              capacity to an event in paid blocks. The limit, the size of a
-              block and its price are shown on our {pricingLink}.
+              Each such event includes a limited number of photo uploads over
+              its life. Every photo uploaded to the event counts toward this
+              limit, including photos later deleted: deleting a photo does not
+              restore an upload. A photo uploaded at 4K counts as more than
+              one upload, and original file uploads are not available on
+              these events. You may add capacity to an event in paid blocks.
+              The limit, the 4K count, the size of a block and its price are
+              shown on our {pricingLink}.
             </>
           )}{" "}
           Extra capacity applies to the one event it was bought for, cannot be
