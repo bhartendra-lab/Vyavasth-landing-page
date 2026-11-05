@@ -166,9 +166,9 @@ test("firstPurchaseOfferOf: null unless the API sent a live offer with a bonus",
   });
 });
 
-test("offerLine / freeEventsLabel: the bonus comes from the offer, never a fixed 1", () => {
-  assert.equal(offerLine({ bonus_events: 1, valid_until: null }), "Buy 1 event, get 1 free");
-  assert.equal(offerLine({ bonus_events: 2, valid_until: null }), "Buy 1 event, get 2 free");
+test("offerLine / freeEventsLabel: the offer line is one fixed call to action; the label follows the count", () => {
+  assert.equal(offerLine({ bonus_events: 1, valid_until: null }), "Claim your free event now!");
+  assert.equal(offerLine({ bonus_events: 2, valid_until: null }), "Claim your free event now!");
   assert.equal(freeEventsLabel(1), "1 free event");
   assert.equal(freeEventsLabel(2), "2 free events");
 });

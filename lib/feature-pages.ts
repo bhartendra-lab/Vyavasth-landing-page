@@ -9,6 +9,7 @@ export type Table = { caption: string; head: string[]; rows: string[][] };
 export type Figure = { src: string; alt: string; caption: string; width: number; height: number; mobile?: boolean };
 export type Step = { title: string; text: string; image?: Figure };
 export type Section = { h2: string; paragraphs?: string[]; bullets?: string[]; table?: Table; figure?: Figure };
+export type FeatureVideo = { src: string; poster: string; caption: string; width: number; height: number; youtubeId?: string };
 export type FaqItem = { q: string; a: string };
 export type Quote = { text: string; studio: string; city: string };
 
@@ -27,6 +28,16 @@ export type FeaturePage = {
   hero?: Figure;
   /** 3 or 4 short benefit cards. Section hidden when absent. */
   benefits?: { title: string; text: string }[];
+  /** Short looping product recording (muted, no sound needed). */
+  video?: FeatureVideo;
+  /** Honest fit. Both lists 2 to 4 short items. */
+  fit?: { forYou: string[]; notForYou: string[] };
+  /** ISO date the page content was last reviewed, e.g. "2026-10-28". */
+  updated?: string;
+  /** Newest first. Short lines, e.g. { date: "2026-10-26", text: "Collections added" }. */
+  changelog?: { date: string; text: string }[];
+  /** Slugs of /compare pages to link from this feature, e.g. ["vyavasth-vs-kwikpic"]. */
+  compare?: string[];
   stepsHeading: string;
   steps: Step[];
   sections: Section[];
@@ -167,6 +178,23 @@ export const FEATURE_PAGES: FeaturePage[] = [
         a: "Yes. Anyone you share the gallery with can like photos. You decide whose likes count by filtering by host, team or guest.",
       },
     ],
+    updated: "2026-11-04",
+    fit: {
+      forYou: [
+        "Couples and families take weeks to finish choosing album photos",
+        "You make more than one album, calendar or table book per wedding",
+        "Your editor loses hours matching screenshots to file names",
+      ],
+      notForYou: [
+        "Your clients already send a final list on time",
+        "You deliver small shoots with one album and under 200 photos",
+      ],
+    },
+    changelog: [
+      { date: "2026-10-26", text: "Collections: one per album, calendar or table book" }, // CHECK
+      { date: "2026-10-26", text: "Selection team with edit access, chosen by the couple" }, // CHECK
+    ],
+    compare: ["vyavasth-vs-kwikpic", "vyavasth-vs-pixieset", "vyavasth-vs-camtom"],
     related: ["locate-original-raw-files", "face-search-photo-sharing", "live-photo-delivery"],
     whatsappText: "Hi, I want to see how album selection works on Vyavasth",
   },
@@ -238,6 +266,18 @@ export const FEATURE_PAGES: FeaturePage[] = [
         a: "Yes, Locate Originals is part of Smart Selects, which is on every plan.",
       },
     ],
+    updated: "2026-11-04",
+    fit: {
+      forYou: [
+        "Your editor copies selected originals by hand, one file name at a time",
+        "You shoot RAW plus JPEG on two or three cameras",
+      ],
+      notForYou: [
+        "You only ever deliver the edited JPEGs, never print from originals",
+        "Your originals are not on the laptop you work from",
+      ],
+    },
+    compare: ["vyavasth-vs-pixieset", "vyavasth-vs-pic-time"],
     related: ["album-selection", "live-photo-delivery", "face-search-photo-sharing"],
     whatsappText: "Hi, I want to see how Locate Originals works on Vyavasth",
   },
@@ -313,6 +353,19 @@ export const FEATURE_PAGES: FeaturePage[] = [
         a: "Yes. Switch face search off for any single event. Guests then browse the gallery, and the full gallery opens with the family's passcode.",
       },
     ],
+    updated: "2026-11-04",
+    fit: {
+      forYou: [
+        "Your weddings have 200 or more guests",
+        "Guests keep asking you on WhatsApp for their photos",
+        "You want guests to share your gallery, not screenshots of it",
+      ],
+      notForYou: [
+        "Your shoots are couples-only, with no guests to deliver to",
+        "Your clients do not want guests to see any photos",
+      ],
+    },
+    compare: ["vyavasth-vs-kwikpic", "vyavasth-vs-fotoowl", "vyavasth-vs-samaro", "vyavasth-vs-picpapaya", "vyavasth-vs-facesnap"],
     related: ["live-photo-delivery", "google-reviews-for-photographers", "album-selection"],
     whatsappText: "Hi, I want to see a face search gallery on Vyavasth",
   },
@@ -397,6 +450,18 @@ export const FEATURE_PAGES: FeaturePage[] = [
         a: "On pay per event, an event stays live for 3 months and can be extended. On storage plans, you choose when each event expires when you create it: 1, 3 or 6 months, a custom date, or never.",
       },
     ],
+    updated: "2026-11-04",
+    fit: {
+      forYou: [
+        "You have a second person at the venue who can upload",
+        "You want guests sharing your photos while the wedding is still on",
+      ],
+      notForYou: [
+        "The venue has no mobile data and you cannot bring a hotspot",
+        "You never deliver before the full edit is done",
+      ],
+    },
+    compare: ["vyavasth-vs-kwikpic", "vyavasth-vs-samaro", "vyavasth-vs-fotoowl"],
     related: ["face-search-photo-sharing", "album-selection", "google-reviews-for-photographers"],
     whatsappText: "Hi, I want to try live delivery on Vyavasth for my next wedding",
   },
@@ -462,10 +527,29 @@ export const FEATURE_PAGES: FeaturePage[] = [
         a: "Yes. You can serve gallery links from your studio's own domain, set up from Settings.",
       },
     ],
+    updated: "2026-11-04",
+    fit: {
+      forYou: [
+        "Most of your bookings come from people searching on Google",
+        "Happy clients promise a review and then forget",
+      ],
+      notForYou: [
+        "You do not have a Google Business Profile yet (set that up first)",
+      ],
+    },
+    compare: ["vyavasth-vs-kwikpic", "vyavasth-vs-pixieset"],
     related: ["face-search-photo-sharing", "live-photo-delivery", "album-selection"],
     whatsappText: "Hi, I want to know how Vyavasth helps with Google reviews",
   },
 ];
+
+/** Anchor id for a section: lowercase, runs of non-alphanumerics become "-", trimmed. */
+export function sectionId(h2: string): string {
+  return h2
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
 
 export function featureBySlug(slug: string): FeaturePage | undefined {
   return FEATURE_PAGES.find((p) => p.slug === slug);
