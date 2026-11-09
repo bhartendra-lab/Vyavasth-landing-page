@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { LOGIN_URL } from "@/lib/app-url";
-import { offerLine, type FirstPurchaseOffer } from "@/lib/plans";
+import { type FirstPurchaseOffer } from "@/lib/plans";
 import { whatsappUrl } from "@/lib/site-legal";
 import styles from "./CtaSection.module.css";
 
@@ -30,8 +30,8 @@ export default function CtaSection({ offer }: { offer: FirstPurchaseOffer | null
             ? `Buy your first event and get ${offer.bonus_events} more free. Every feature included.`
             : "Every feature included from your first event."}
         </p>
-        <Link className={styles.btn} href={offer ? LOGIN_URL : "/pricing#events"}>
-          {offer ? offerLine(offer) : "See pricing"}
+        <Link className={styles.btn} href={LOGIN_URL}>
+          Claim your free event now!
           <span>
             <svg
               viewBox="0 0 18 18"
