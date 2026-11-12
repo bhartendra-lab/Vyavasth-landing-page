@@ -1,7 +1,8 @@
 ---
-title: WhatsApp ruins your photos: how to send full-quality photos to clients
-seoTitle: How to send full-quality photos on WhatsApp
-description: Why WhatsApp makes wedding photos look soft, what the HD option really does, how to send originals as documents, and when to use a link instead.
+title: "WhatsApp HD or Document: which sends full-quality photos?"
+seoTitle: "WhatsApp HD vs Document: send photos in full quality"
+description: "HD or Document on WhatsApp? HD is still compressed; Document sends the original file. Which to use for photos, and when to send a link instead."
+updated: 2026-11-05
 date: 2026-10-18
 author: bharat
 category: delivery
@@ -49,7 +50,25 @@ For a full set, send one link to a gallery or folder. The client views photos at
 | A full function or the whole wedding | Gallery link |
 | Every guest wants their own photos | Face search gallery link |
 
+## HD vs Document at a glance
+
+| | HD | Document |
+|---|---|---|
+| Quality | Sharper than default, still compressed | Original file, unchanged |
+| Preview in chat | Yes, shows as a photo | No, shows as a file |
+| Saves to the phone gallery | Yes | Only if the client saves it |
+| Best for | Quick previews | Final photos, printing |
+
 ## Frequently asked questions
+
+### Is HD and Document the same in WhatsApp?
+
+No. HD sends a sharper but still compressed photo. Document sends the original file exactly as you saved it, so it is the one to use when quality matters.
+
+### HD or Document: which is better for sending photos on WhatsApp?
+
+Document, if you need full quality, for example for printing. HD is fine for a quick preview that the client will see in the chat.
+
 
 ### Does WhatsApp HD send original quality?
 
