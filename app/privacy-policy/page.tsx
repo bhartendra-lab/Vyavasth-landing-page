@@ -211,6 +211,23 @@ export default function PrivacyPolicyPage() {
             and no third-party tracking.
           </li>
           <li>
+            <strong>Deleting only some of your data:</strong> in the app, go to
+            Settings &rarr; Delete my face data to delete your face template, and
+            everything made from it, without deleting your account. Without the
+            app, email{" "}
+            <a href={`mailto:${SUPPORT_EMAIL}`} className="text-[#C25A3A] underline">
+              {SUPPORT_EMAIL}
+            </a>{" "}
+            and ask us to delete your face data. More detail is at{" "}
+            <a
+              href="https://deliver.vyavasth.in/delete-account"
+              className="text-[#C25A3A] underline"
+            >
+              deliver.vyavasth.in/delete-account
+            </a>
+            .
+          </li>
+          <li>
             <strong>Deleting your account:</strong> in the app, go to Settings
             &rarr; Delete account, or, without the app, visit{" "}
             <a
