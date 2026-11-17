@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import type { ReactNode } from "react";
+import { PAGE_META } from "@/lib/page-meta";
 import LegalPageShell from "@/components/LegalPageShell";
 import { whatsappUrl } from "@/lib/site-legal";
 import { getPlans } from "@/lib/vyavasth-api";
@@ -27,7 +28,7 @@ import {
 
 const SITE = "https://vyavasth.in";
 const PAGE_URL = `${SITE}/pricing/pay-per-event`;
-const TITLE = "Pay per event photo delivery in India: price, limits and GST | Vyavasth";
+const TITLE = PAGE_META.payPerEvent.title;
 
 /** Stands in for any sentence that needs a figure the plans API did not give. */
 const SEE_PRICES = "See current prices on the pricing page.";

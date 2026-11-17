@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PAGE_META } from "@/lib/page-meta";
 import LegalPageShell from "@/components/LegalPageShell";
 import {
   BUSINESS_NAME,
@@ -8,9 +9,8 @@ import {
 } from "@/lib/site-legal";
 
 export const metadata: Metadata = {
-  title: "About Vyavasth: wedding photo delivery software for Indian studios",
-  description:
-    "Vyavasth is wedding and event photo delivery software for photography studios in India. Live delivery, one-selfie face search, album selection in hours and originals in one click.",
+  title: PAGE_META.about.title,
+  description: PAGE_META.about.description,
   alternates: { canonical: "/about" },
 };
 

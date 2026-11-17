@@ -1,6 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import { Instrument_Serif, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
+import { PAGE_META } from "@/lib/page-meta";
+import { GoogleTagManager } from "@next/third-parties/google";
+import ConsentBanner from "@/components/ConsentBanner";
+import { CONSENT_BOOTSTRAP_SCRIPT, GTM_ID } from "@/lib/analytics";
 import { SUPPORT_EMAIL, WHATSAPP_DISPLAY } from "@/lib/site-legal";
 
 const jakarta = Plus_Jakarta_Sans({
@@ -19,9 +23,8 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
 });
 
-const TITLE = "Vyavasth | Wedding photo sharing with AI face search, India";
-const DESCRIPTION =
-  "Wedding photo sharing and album selection app for Indian photography studios. Guests find their photos with one selfie, live during the event. Pay per event or monthly plans.";
+const TITLE = PAGE_META.home.title;
+const DESCRIPTION = PAGE_META.home.description;
 
 const orgLd = [
   {
@@ -111,12 +114,22 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en-IN" className={`${jakarta.variable} ${instrumentSerif.variable}`}>
+      {GTM_ID && (
+        <>
+          {/* Consent defaults must be in the dataLayer before GTM loads. */}
+          <head>
+            <script dangerouslySetInnerHTML={{ __html: CONSENT_BOOTSTRAP_SCRIPT }} />
+          </head>
+          <GoogleTagManager gtmId={GTM_ID} />
+        </>
+      )}
       <body className="min-h-screen antialiased">
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
         />
         {children}
+        <ConsentBanner />
       </body>
     </html>
   );
