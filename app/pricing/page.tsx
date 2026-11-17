@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import Link from "next/link";
+import { PAGE_META, pricingDescription } from "@/lib/page-meta";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import CtaSection from "@/components/CtaSection";
@@ -36,7 +37,7 @@ import styles from "@/components/pricing/pricing.module.css";
 // The pricing header is deep brown at the top, so the browser chrome matches it.
 export const viewport: Viewport = { themeColor: "#2B140D" };
 
-const TITLE = "Vyavasth pricing: pay per event or an annual storage plan";
+const TITLE = PAGE_META.pricing.title;
 
 /**
  * The description mentions the first-purchase offer only while the plans API
@@ -48,9 +49,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const { firstPurchaseOffer, gst } = homeFigures(plansResult.ok ? plansResult.data.plans : []);
   // From the plans' own gst_inclusive switch (lib/pricing-display.ts).
   const fees = gstFeesPhrase(gst);
-  const description = firstPurchaseOffer
-    ? `Pay per event or pick a storage plan. Buy your first event and get ${firstPurchaseOffer.bonus_events === 1 ? "one" : firstPurchaseOffer.bonus_events} free. ${fees}`
-    : `Pay per event or pick a storage plan. ${fees}`;
+  const description = pricingDescription(firstPurchaseOffer?.bonus_events ?? null, fees);
   return {
     title: TITLE,
     description,

@@ -7,6 +7,7 @@ import Proof from "@/components/home/Proof";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
 import WhatsAppFab from "@/components/WhatsAppFab";
+import Link from "next/link";
 import { getPlans } from "@/lib/vyavasth-api";
 import { homeFigures } from "@/lib/pricing-display";
 
@@ -60,6 +61,31 @@ export default async function Home() {
         <Workflow />
         <Features />
         <Proof figures={figures} />
+        <p
+          style={{
+            margin: 0,
+            padding: "0 clamp(14px, 5.3vw, 76px) clamp(40px, 5vw, 64px)",
+            textAlign: "center",
+            fontSize: 15,
+            color: "var(--brown)",
+          }}
+        >
+          Comparing tools?{" "}
+          {["kwikpic", "samaro", "fotoowl", "pixieset"].map((slug) => (
+            <span key={slug}>
+              <Link
+                href={`/compare/vyavasth-vs-${slug}`}
+                style={{ color: "var(--terra)", fontWeight: 600, textDecoration: "underline" }}
+              >
+                Vyavasth vs {{ kwikpic: "Kwikpic", samaro: "Samaro", fotoowl: "FotoOwl", pixieset: "Pixieset" }[slug]}
+              </Link>
+              {" · "}
+            </span>
+          ))}
+          <Link href="/compare" style={{ color: "var(--terra)", fontWeight: 600, textDecoration: "underline" }}>
+            All comparisons
+          </Link>
+        </p>
         <CtaSection offer={figures.firstPurchaseOffer} />
       </main>
       <Footer />

@@ -71,9 +71,9 @@ export const FEATURE_PAGES: FeaturePage[] = [
   {
     slug: "album-selection",
     navLabel: "Album selection",
-    title: "Wedding album selection app: couples pick, studios print | Vyavasth",
+    title: "Wedding album selection app for couples and studios | Vyavasth",
     metaDescription:
-      "Couples build a collection for every album, calendar and table book, the family likes their favourites, and you see it all in one gallery, then pull the RAW files in one click.",
+      "Couples build a collection for every album, calendar and table book, the family likes their favourites, and you see it all in one gallery.",
     h1: "Album selection that couples finish in hours, not months",
     lede: "Couples build the albums themselves. You shortlist, pull the originals and print.",
     benefits: [
@@ -205,7 +205,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     navLabel: "Locate originals",
     title: "Find the RAW files for your client's selected photos | Vyavasth",
     metaDescription:
-      "Your client picked 400 photos. Vyavasth finds their original JPG and RAW files on your laptop and copies them into one folder for the editor, in minutes instead of a day of searching.",
+      "Your client picked 400 photos. Vyavasth finds their original JPG and RAW files on your laptop and copies them into one folder for the editor.",
     h1: "Your client picked 400 photos. Find their originals in one click.",
     summary:
       "Locate Originals takes the photos your client shortlisted in the Vyavasth gallery, scans the folder of originals on your laptop, and copies every matching original, along with its RAW file, into a “Smartly Selected” folder for your editor. Matching happens on your own computer, so your originals are never uploaded again.",
@@ -288,7 +288,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     navLabel: "Face search",
     title: "AI face search photo sharing for weddings in India | Vyavasth",
     metaDescription:
-      "Guests scan one QR, take one selfie and see every wedding photo they are in. Face search galleries for Indian photography studios, with passcode privacy and the studio's branding.",
+      "Guests scan one QR, take one selfie and see every wedding photo they are in. Face search galleries for Indian photography studios.",
     h1: "One selfie. Every photo they are in.",
     summary:
       "Vyavasth gives every wedding one gallery link and QR code. A guest opens it, takes a selfie, and sees only the photos they appear in, while the event is still running. The couple and family get the full gallery with a passcode, and every screen carries the studio's name and logo.",
@@ -376,7 +376,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     navLabel: "Live delivery",
     title: "Live wedding photo delivery during the event | Vyavasth",
     metaDescription:
-      "Deliver wedding photos while the event is still running. Upload from the camera or laptop, photos reach the family's gallery in real time, and uploads resume on their own if the internet drops.",
+      "Deliver wedding photos while the event is still running. Upload from the camera or laptop and photos reach the family's gallery in real time.",
     h1: "Deliver photos while the wedding is still going on",
     summary:
       "With Vyavasth, photos reach the family's gallery during the event instead of weeks later on a pen drive. Studios upload from the camera, from a laptop, or from the Vyavasth Android app, and the gallery updates as each batch lands. Guests find their photos with a selfie, and the couple starts liking photos for the album the same night.",
@@ -472,7 +472,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     navLabel: "Google reviews and branding",
     title: "Get more Google reviews from every wedding you deliver | Vyavasth",
     metaDescription:
-      "Every Vyavasth gallery asks happy guests for a Google review and carries your studio's logo, watermark and social links, so each wedding you deliver brings in reviews and followers.",
+      "Every Vyavasth gallery asks happy guests for a Google review and carries your studio's logo, watermark and social links.",
     h1: "Turn every wedding you deliver into Google reviews",
     summary:
       "The moment a guest finds their photos is the moment they are happiest with your work. Every Vyavasth gallery shows a one-tap Google review prompt at that moment, and carries your studio's logo, colours, watermark and social links on every screen. Studios using it see reviews and Instagram followers grow with each wedding they deliver.",

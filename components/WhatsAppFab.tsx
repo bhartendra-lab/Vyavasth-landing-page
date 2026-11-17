@@ -1,3 +1,6 @@
+"use client";
+
+import { trackEvent } from "@/lib/analytics";
 import { whatsappUrl } from "@/lib/site-legal";
 import styles from "./WhatsAppFab.module.css";
 
@@ -9,6 +12,7 @@ export default function WhatsAppFab() {
       href={whatsappUrl()}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={() => trackEvent("contact_click", { method: "whatsapp" })}
       aria-label="Chat with us on WhatsApp"
       title="Chat with us on WhatsApp"
     >
