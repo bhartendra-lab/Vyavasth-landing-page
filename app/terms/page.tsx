@@ -344,13 +344,23 @@ export default async function TermsPage() {
         <ul className={list}>
           <li>Embeddings are stored for the lifetime of the published gallery.</li>
           <li>
-            When a Guest uses face search, the submitted selfie is converted to
-            an embedding in-session, matched, then discarded. The selfie is not
-            stored.
+            When a Guest uses face search on the web gallery, the submitted
+            selfie is converted to an embedding in-session, matched, then
+            discarded. The selfie is not stored.
+          </li>
+          <li>
+            In the Vyavasth guest app, a Guest aged 18 or over may choose to save
+            a face template in their app account, so it can be matched in the
+            events that Guest adds. The selfie image is deleted once the template
+            is created, and the Guest can delete the template or the account at
+            any time. Details are in our Privacy Policy (&ldquo;The Vyavasth
+            guest app&rdquo;).
           </li>
           <li>
             Embeddings are never used for profiling, advertising, retargeting, or
-            cross-event or cross-platform identification.
+            cross-platform identification, and never for cross-event
+            identification except a Guest&rsquo;s own saved template in the
+            events they add to their app account.
           </li>
           <li>
             Vyavasth does not set advertising or retargeting cookies on gallery

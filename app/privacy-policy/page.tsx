@@ -9,7 +9,7 @@ import {
 export const metadata: Metadata = {
   title: "Privacy Policy: Vyavasth",
   description:
-    "How Vyavasth collects, uses, and protects personal data, including payments, face embeddings, and cookies.",
+    "How Vyavasth collects, uses, and protects personal data, including payments, face embeddings, the Vyavasth guest app, and cookies.",
   alternates: { canonical: "/privacy-policy" },
 };
 
@@ -25,8 +25,8 @@ export default function PrivacyPolicyPage() {
       <p style={muted}>
         This Privacy Policy describes how {BUSINESS_NAME} (&ldquo;we&rdquo;,
         &ldquo;us&rdquo;, or &ldquo;our&rdquo;) handles personal information when
-        you use our website and SaaS services. By using our services, you agree
-        to this policy.
+        you use our website and SaaS services, and the Vyavasth guest app for
+        Android and iOS. By using our services, you agree to this policy.
       </p>
 
       <section>
@@ -73,7 +73,9 @@ export default function PrivacyPolicyPage() {
             <strong>Event media and derived data:</strong> Studios upload photos
             and videos that may contain identifiable individuals; automated
             processing generates face embeddings; a Guest&rsquo;s face-search
-            selfie is processed in-session and not stored.
+            selfie on the web gallery is processed in-session and not stored. In
+            the Vyavasth app, a Guest can choose to keep a face template in their
+            account (see &ldquo;The Vyavasth guest app&rdquo; below).
           </li>
           <li>
             <strong>Payment and billing information:</strong> when you subscribe,
@@ -96,21 +98,30 @@ export default function PrivacyPolicyPage() {
         <p>
           Face embeddings derived from event media are treated as sensitive
           personal data. Their purpose is strictly limited to letting a Guest
-          find their own photos within a specific published gallery. They are
-          never used for cross-event identification, profiling, or advertising.
+          find their own photos: within a specific published gallery, or, for a
+          Guest who chooses to save a face template in the Vyavasth app, within
+          the events that Guest adds to their own account. They are never used
+          for profiling or advertising, and never to identify anyone across
+          events without that Guest&rsquo;s consent.
         </p>
         <ul className={list}>
           <li>
             <strong>Legal basis:</strong> consent, recorded when a Guest accepts
-            the Terms and submits a selfie for face search.
+            the Terms and submits a selfie for face search, or, in the app, when
+            the Guest ticks the face consent box before taking a selfie.
           </li>
           <li>
-            <strong>Selfies:</strong> converted to an embedding in-session,
-            matched, then discarded. The selfie is not stored.
+            <strong>Selfies:</strong> on the web gallery, converted to an
+            embedding in-session, matched, then discarded; the selfie is not
+            stored. In the app, the selfie image is deleted as soon as the face
+            template has been created from it.
           </li>
           <li>
-            <strong>Embeddings:</strong> retained for the lifetime of the
-            published gallery.
+            <strong>Embeddings:</strong> those derived from event media are
+            retained for the lifetime of the published gallery. An app
+            Guest&rsquo;s saved face template is retained until the Guest deletes
+            it or their account, or after 12 months without using the app (we
+            notify the Guest about 14 days before).
           </li>
           <li>
             <strong>Sub-processors:</strong> the providers that compute and
@@ -125,11 +136,16 @@ export default function PrivacyPolicyPage() {
           4. Guest data
         </h2>
         <ul className={list}>
-          <li>Guests are not registered Members; they access galleries via share links.</li>
+          <li>
+            Guests who use a gallery in a web browser are not registered
+            Members; they access galleries via share links. Guests who use the
+            Vyavasth app have an app account, described in the next section.
+          </li>
           <li>Images of Guests may appear in media uploaded by a Studio.</li>
           <li>
-            Face search produces a temporary embedding only. Guests who do not
-            use face search have no embedding stored against them.
+            On the web gallery, face search produces a temporary embedding only.
+            Guests who do not use face search, on the web or in the app, have no
+            embedding stored against them.
           </li>
           <li>
             A Guest may request deletion of their face embedding by emailing{" "}
@@ -143,7 +159,78 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          5. Why we collect information and how we use it
+          5. The Vyavasth guest app
+        </h2>
+        <p>
+          The Vyavasth app for Android and iOS lets Guests of events covered by
+          Studios using Vyavasth find and save their photos. It is intended for
+          people aged 18 and over. In addition to the rest of this policy:
+        </p>
+        <ul className={list}>
+          <li>
+            <strong>Account:</strong> you sign in with your WhatsApp number (we
+            send a one-time code by WhatsApp), your Google account, or your
+            Apple ID. We keep your name, the phone number or email address that
+            comes with the sign-in method you choose, an account identifier, and
+            your sign-in sessions.
+          </li>
+          <li>
+            <strong>Selfie and face template (biometric data):</strong> face
+            matching is optional and happens only after you agree on the consent
+            screen. You take one selfie; we create a face template (a numerical
+            representation of your face) from it and then delete the selfie
+            image. We keep the face template in your account to find you in the
+            photos of the events you add, and only those events. You can delete
+            it at any time in Settings (&ldquo;Delete my face data&rdquo;).
+          </li>
+          <li>
+            <strong>Events and activity:</strong> the events you join, the photos
+            matched to you, your likes, and your notification settings.
+          </li>
+          <li>
+            <strong>Consent records:</strong> when you gave or withdrew consent
+            to face matching, kept as proof of consent. They contain no photos or
+            face data.
+          </li>
+          <li>
+            <strong>Notifications:</strong> if you allow notifications, we keep a
+            push token for your device so we can tell you when new photos are
+            ready. You can turn notifications off in the app or in your
+            phone&rsquo;s settings.
+          </li>
+          <li>
+            <strong>Camera and photos:</strong> the camera is used only for the
+            selfie and to scan gallery QR codes. Photos you save go to your
+            phone; the app cannot read your photo library.
+          </li>
+          <li>
+            <strong>Service providers:</strong> face matching, hosting, message
+            delivery (WhatsApp) and push notification delivery are carried out
+            by service providers acting on our instructions, as described in
+            &ldquo;Sharing with third parties&rdquo;. The app has no advertising
+            and no third-party tracking.
+          </li>
+          <li>
+            <strong>Deleting your account:</strong> in the app, go to Settings
+            &rarr; Delete account, or, without the app, visit{" "}
+            <a
+              href="https://deliver.vyavasth.in/delete-account"
+              className="text-[#C25A3A] underline"
+            >
+              deliver.vyavasth.in/delete-account
+            </a>
+            . Within 24 hours we delete your account, face template, matched
+            photos, likes and event memberships. We keep the consent record
+            (legal proof) and records of WhatsApp sign-in messages we sent you
+            (billing); neither contains photos or face data. Studios that added
+            you to their guest list keep your name on that list.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className={h2} style={h2Style}>
+          6. Why we collect information and how we use it
         </h2>
         <p>We use personal information for purposes including:</p>
         <ul className={list}>
@@ -176,7 +263,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          6. Legal bases (where applicable)
+          7. Legal bases (where applicable)
         </h2>
         <p>
           Depending on the context, we rely on performance of a contract,
@@ -190,7 +277,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          7. Sharing with third parties
+          8. Sharing with third parties
         </h2>
         <p>
           We do not sell your personal information. We may share information with:
@@ -205,7 +292,8 @@ export default function PrivacyPolicyPage() {
           </li>
           <li>
             <strong>Infrastructure and service providers:</strong> hosting,
-            logging, email delivery, media storage, face-embedding computation,
+            logging, email, WhatsApp and push notification delivery, media
+            storage, face-embedding computation,
             or customer support tools that help us run the platform, strictly
             under confidentiality and data-processing arrangements where
             appropriate.
@@ -229,7 +317,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          8. Data retention
+          9. Data retention
         </h2>
         <p>
           We retain personal information only as long as necessary for the purposes
@@ -242,7 +330,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          9. Your rights and choices
+          10. Your rights and choices
         </h2>
         <p>
           Subject to applicable law, you may request access, correction, or
@@ -259,7 +347,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          10. Cookies and similar technologies
+          11. Cookies and similar technologies
         </h2>
         <p>
           We use cookies and similar technologies (such as local storage) to
@@ -277,7 +365,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          11. Security
+          12. Security
         </h2>
         <p>
           We implement technical and organizational measures designed to protect
@@ -290,7 +378,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          12. International transfers
+          13. International transfers
         </h2>
         <p>
           Your information may be processed in India and, where we use service
@@ -301,18 +389,20 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          13. Children
+          14. Children
         </h2>
         <p>
           Our services are intended for businesses and are not directed at
-          children. If you believe we have collected information from a child,
-          please contact us and we will take appropriate steps.
+          children. The Vyavasth guest app is intended for people aged 18 and
+          over, who confirm their age before face matching. If you believe we
+          have collected information from a child, please contact us and we
+          will take appropriate steps.
         </p>
       </section>
 
       <section>
         <h2 className={h2} style={h2Style}>
-          14. Changes to this policy
+          15. Changes to this policy
         </h2>
         <p>
           We may update this Privacy Policy from time to time. We will post the
@@ -324,7 +414,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          15. Contact
+          16. Contact
         </h2>
         <p>
           For questions or concerns about privacy or this policy, write to{" "}
