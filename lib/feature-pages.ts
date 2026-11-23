@@ -78,7 +78,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     lede: "Couples build the albums themselves. You shortlist, pull the originals and print.",
     benefits: [
       { title: "A collection per album", text: "Bride side, groom side, calendar, table book. One photo can sit in several." },
-      { title: "Only the right people edit", text: "The couple picks the few people who can change collections." },
+      { title: "Only the right people edit", text: "The couple picks up to six people who can edit, and sends the final selection." },
       { title: "Likes still work", text: "Families who want you to choose can just like photos." },
       { title: "Originals in one click", text: "Locate Originals copies the shortlist and its RAW files for your editor." },
     ],
@@ -120,8 +120,18 @@ export const FEATURE_PAGES: FeaturePage[] = [
         bullets: [
           "Create, rename and delete collections from the gallery on the phone.",
           "One photo can be in several collections, so the varmala can go in both albums and on the calendar.",
-          "Only the few people the couple chooses can add to or change collections. Everyone else can still view and like.",
+          "You set the album size for each collection, so the couple sees \"182 of 250\" while they choose and knows when to stop.",
+          "The couple picks up to six people who can edit the selection, from their own Guest Control screen. Everyone else can still view and like.",
+          "A \"liked but not in a collection\" view shows photos someone loved that have not been placed yet.",
+          "When a collection is ready, the couple sends it to you from the gallery, so you know exactly when to start.",
           "Likes stay as they are, for families who want the studio to make the final pick.",
+        ],
+      },
+      {
+        h2: "Face filter: find every photo of Nani in two taps",
+        paragraphs: [
+          "The most common complaint after an album is printed is that someone important is missing from it. In the gallery, the couple and family can tap the faces of the people they care about and see only the photos those people are in, then add the best ones to a collection.",
+          "You switch the face filter on or off for each event, from the gallery preferences in Access & Sharing.",
         ],
       },
       {
@@ -162,6 +172,18 @@ export const FEATURE_PAGES: FeaturePage[] = [
         a: "The couple and the few people they choose. Other guests can view and like photos but cannot change collections.",
       },
       {
+        q: "Can I set how many photos go in each album?",
+        a: "Yes. Set an album size for each collection, from 1 to 5,000 photos. The couple sees how many they have chosen against that number while they work.",
+      },
+      {
+        q: "How many people can edit the album selection?",
+        a: "Up to six, chosen by the couple from their Guest Control screen in the gallery. Everyone else can view and like photos but cannot change collections.",
+      },
+      {
+        q: "Can the family find photos of one person quickly?",
+        a: "Yes. With the face filter on, they tap a face in the gallery and see only the photos that person is in.",
+      },
+      {
         q: "Does the couple need to install an app to select photos?",
         a: "No. The gallery opens in the phone's browser from a link or QR code. They sign in with their WhatsApp number or Google so their likes are saved to them.",
       },
@@ -178,7 +200,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
         a: "Yes. Anyone you share the gallery with can like photos. You decide whose likes count by filtering by host, team or guest.",
       },
     ],
-    updated: "2026-11-04",
+    updated: "2026-11-20",
     fit: {
       forYou: [
         "Couples and families take weeks to finish choosing album photos",
@@ -191,6 +213,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
       ],
     },
     changelog: [
+      { date: "2026-11-20", text: "Album size for each collection, face filter and sending the final selection" }, // CHECK dates
       { date: "2026-10-26", text: "Collections: one per album, calendar or table book" }, // CHECK
       { date: "2026-10-26", text: "Selection team with edit access, chosen by the couple" }, // CHECK
     ],

@@ -3,7 +3,7 @@ title: "How to select photos for a wedding album: the collections method"
 seoTitle: "How to select photos for a wedding album, without months"
 description: Liking 500 photos is not choosing 300. A step by step method for couples and studios to pick photos for every album, calendar and table book, fast.
 date: 2026-10-25
-updated: 2026-10-28
+updated: 2026-11-20
 author: abhishek
 category: album-selection
 ---
@@ -97,7 +97,14 @@ Many families do both: everyone likes, and the selection team turns likes into c
 
 Studios that hand this method to couples at booking get final lists in weeks, not months, and get paid when the album is delivered instead of chasing selections. Put the product list from Step 1 in your contract, with the selection deadline. See the [wedding photography contract checklist](/blog/wedding-photography-contract-india).
 
-On Vyavasth, the couple builds collections inside the wedding gallery, one per album, calendar or table book, and only the few people they choose can change them. Everyone else can still like photos. The studio sees every collection, shortlists it with [Smart Selects](/features/album-selection), and [Locate Originals](/features/locate-original-raw-files) copies the original and RAW files into one folder for the editor.
+On Vyavasth, every step of this method is built into the wedding gallery:
+
+- **Collections:** the couple builds one per album, calendar or table book, and one photo can sit in several.
+- **Album size:** the studio sets how many photos each collection should have, so the couple sees "182 of 250" while they choose and knows when to stop.
+- **Selection team:** the couple picks up to six people who can edit the selection, from their own Guest Control screen. Everyone else can still view and like photos.
+- **Face filter:** tap the faces of Nani, the bua from Canada or the best friend, and the gallery shows only the photos they are in. Step 5 takes two minutes.
+- **Nothing left behind:** a "liked but not in a collection" view shows photos someone loved that have not been placed yet.
+- **Final means final:** when a collection is ready, the couple sends it to the studio from the gallery. The studio then shortlists it with [Smart Selects](/features/album-selection), and [Locate Originals](/features/locate-original-raw-files) copies the original and RAW files into one folder for the editor.
 
 ## Frequently asked questions
 

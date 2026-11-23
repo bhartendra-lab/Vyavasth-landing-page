@@ -87,7 +87,7 @@ export default async function CompareHubPage() {
             <p className={f.lede}>
               How the photo delivery tools Indian studios ask about are priced, what the cheapest paid plan costs,
               whether GST is extra, and whether album selection is included. Every price is from the tool&apos;s own
-              website on {CHECKED_ON_LABEL}. We make Vyavasth, so we also say where the others are better.
+              website on {CHECKED_ON_LABEL}. We make Vyavasth, and we only state what each tool lists itself.
             </p>
           </div>
         </section>
