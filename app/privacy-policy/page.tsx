@@ -9,7 +9,7 @@ import {
 export const metadata: Metadata = {
   title: "Privacy Policy: Vyavasth",
   description:
-    "How Vyavasth collects, uses, and protects personal data, including payments, face embeddings, the Vyavasth guest app, and cookies.",
+    "How Vyavasth collects, uses, and protects personal data, including payments, face embeddings, the Vyavasth guest app, the Vyavasth Studio app, and cookies.",
   alternates: { canonical: "/privacy-policy" },
 };
 
@@ -25,8 +25,8 @@ export default function PrivacyPolicyPage() {
       <p style={muted}>
         This Privacy Policy describes how {BUSINESS_NAME} (&ldquo;we&rdquo;,
         &ldquo;us&rdquo;, or &ldquo;our&rdquo;) handles personal information when
-        you use our website and SaaS services, and the Vyavasth guest app for
-        Android and iOS. By using our services, you agree to this policy.
+        you use our website and SaaS services, the Vyavasth guest app and the
+        Vyavasth Studio app for Android and iOS. By using our services, you agree to this policy.
       </p>
 
       <section>
@@ -247,7 +247,65 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          6. Why we collect information and how we use it
+          6. The Vyavasth Studio app
+        </h2>
+        <p>
+          The Vyavasth Studio app for Android and iOS is for Studios: it uploads
+          photos from a camera connected by USB-C or from the phone, and manages
+          events, sharing, QR codes, selections and Studio settings. It uses the
+          same account as the Vyavasth dashboard. In addition to the rest of
+          this policy:
+        </p>
+        <ul className={list}>
+          <li>
+            <strong>What it collects:</strong> account details (name, email
+            address, WhatsApp number, Studio name, address, website, social
+            links and logo); billing details you enter (legal name, GSTIN,
+            billing address) for tax invoices; the names, phone numbers and
+            email addresses of clients you add to an event; the photos you
+            upload, with the information the camera stores inside them (EXIF),
+            which can include the date, camera settings and the location where
+            a photo was taken; and crash reports (what went wrong, device model
+            and system version, without your name, email, IP address or
+            photos).
+          </li>
+          <li>
+            <strong>What it does not do:</strong> it does not read your contacts
+            or your photo library (you choose photos with the system&apos;s
+            picker), does not use your location, microphone or the phone&apos;s
+            camera, shows no ads and does not track you across other
+            companies&apos; apps or websites. A camera connected by cable is read
+            only when you choose to upload from it. Payments are not made in the
+            app.
+          </li>
+          <li>
+            <strong>Service providers:</strong> photos are stored with our cloud
+            storage providers; when you search for your Studio&apos;s address,
+            the text you type is sent to Google Places; crash reports go to our
+            crash-reporting provider. They process this data only on our behalf.
+          </li>
+          <li>
+            <strong>Deleting your account:</strong> in the app, Studio › Delete
+            account, or at{" "}
+            <a
+              href="https://deliver.vyavasth.in/delete-studio-account"
+              className="text-[#C25A3A] underline"
+            >
+              deliver.vyavasth.in/delete-studio-account
+            </a>
+            . Access ends at once. After 30 days we delete the Studio, its
+            events, photos, galleries, QR codes and the people on them; within
+            those 30 days you can ask us to restore it. We keep, as the law
+            requires or for disputes: invoices, payment, renewal and accounting
+            records, the billing audit trail, consent logs and records of
+            WhatsApp messages sent.
+          </li>
+        </ul>
+      </section>
+
+      <section>
+        <h2 className={h2} style={h2Style}>
+          7. Why we collect information and how we use it
         </h2>
         <p>We use personal information for purposes including:</p>
         <ul className={list}>
@@ -280,7 +338,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          7. Legal bases (where applicable)
+          8. Legal bases (where applicable)
         </h2>
         <p>
           Depending on the context, we rely on performance of a contract,
@@ -294,7 +352,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          8. Sharing with third parties
+          9. Sharing with third parties
         </h2>
         <p>
           We do not sell your personal information. We may share information with:
@@ -334,7 +392,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          9. Data retention
+          10. Data retention
         </h2>
         <p>
           We retain personal information only as long as necessary for the purposes
@@ -347,7 +405,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          10. Your rights and choices
+          11. Your rights and choices
         </h2>
         <p>
           Subject to applicable law, you may request access, correction, or
@@ -364,7 +422,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          11. Cookies and similar technologies
+          12. Cookies and similar technologies
         </h2>
         <p>
           We use cookies and similar technologies (such as local storage) to
@@ -382,7 +440,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          12. Security
+          13. Security
         </h2>
         <p>
           We implement technical and organizational measures designed to protect
@@ -395,7 +453,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          13. International transfers
+          14. International transfers
         </h2>
         <p>
           Your information may be processed in India and, where we use service
@@ -406,7 +464,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          14. Children
+          15. Children
         </h2>
         <p>
           Our services are intended for businesses and are not directed at
@@ -419,7 +477,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          15. Changes to this policy
+          16. Changes to this policy
         </h2>
         <p>
           We may update this Privacy Policy from time to time. We will post the
@@ -431,7 +489,7 @@ export default function PrivacyPolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          16. Contact
+          17. Contact
         </h2>
         <p>
           For questions or concerns about privacy or this policy, write to{" "}
