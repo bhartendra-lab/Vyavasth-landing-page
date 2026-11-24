@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ChevronDown, X } from "lucide-react";
+import { trackEvent } from "@/lib/analytics";
 import { LOGIN_URL } from "@/lib/app-url";
 import styles from "./Nav.module.css";
 
@@ -139,7 +140,11 @@ export default function NavClient({ featureLinks }: { featureLinks: FeatureLink[
         </div>
         <span className={styles.sp} />
         {/* The only action in the bar, so it takes the primary button style. */}
-        <a className={styles.go} href={LOGIN_URL}>
+        <a
+          className={styles.go}
+          href={LOGIN_URL}
+          onClick={() => trackEvent("login_click", { location: "nav" })}
+        >
           Log in
         </a>
         <button
@@ -208,7 +213,11 @@ export default function NavClient({ featureLinks }: { featureLinks: FeatureLink[
               {l.label}
             </Link>
           ))}
-          <a className={styles.drawerGo} href={LOGIN_URL}>
+          <a
+            className={styles.drawerGo}
+            href={LOGIN_URL}
+            onClick={() => trackEvent("login_click", { location: "nav_drawer" })}
+          >
             Log in
           </a>
         </nav>

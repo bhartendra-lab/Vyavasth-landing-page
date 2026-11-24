@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { PAGE_META } from "@/lib/page-meta";
 import { whatsappUrl } from "@/lib/site-legal";
 import { CHECKED_ON, CHECKED_ON_LABEL, COMPETITORS, HUB_ONLY } from "@/lib/compare-data";
 import f from "../features/feature.module.css";
@@ -13,8 +14,8 @@ import { Ext, SeePrices, firstSentence, loadVyavasth } from "./shared";
 export const dynamic = "force-dynamic";
 
 const SITE = "https://vyavasth.in";
-const TITLE = "AI face search photo sharing apps in India: 2026 price comparison | Vyavasth";
-const DESCRIPTION = `Kwikpic, FotoOwl, Samaro, PicPapaya, FaceSnap, Photomall, Kamero and Vyavasth compared for Indian studios: how each is priced, entry price, GST and album selection. Checked ${CHECKED_ON_LABEL}.`;
+const TITLE = PAGE_META.compare.title;
+const DESCRIPTION = PAGE_META.compare.description;
 
 export const metadata: Metadata = {
   title: TITLE,
@@ -86,7 +87,7 @@ export default async function CompareHubPage() {
             <p className={f.lede}>
               How the photo delivery tools Indian studios ask about are priced, what the cheapest paid plan costs,
               whether GST is extra, and whether album selection is included. Every price is from the tool&apos;s own
-              website on {CHECKED_ON_LABEL}. We make Vyavasth, so we also say where the others are better.
+              website on {CHECKED_ON_LABEL}. We make Vyavasth, and we only state what each tool lists itself.
             </p>
           </div>
         </section>

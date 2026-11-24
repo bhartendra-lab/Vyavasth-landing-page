@@ -1,5 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
+import TrackedLink from "@/components/TrackedLink";
 import { LOGIN_URL } from "@/lib/app-url";
 import { type FirstPurchaseOffer } from "@/lib/plans";
 import { whatsappUrl } from "@/lib/site-legal";
@@ -30,7 +30,12 @@ export default function CtaSection({ offer }: { offer: FirstPurchaseOffer | null
             ? `Buy your first event and get ${offer.bonus_events} more free. Every feature included.`
             : "Every feature included from your first event."}
         </p>
-        <Link className={styles.btn} href={LOGIN_URL}>
+        <TrackedLink
+          className={styles.btn}
+          href={LOGIN_URL}
+          event="cta_click"
+          eventParams={{ location: "bottom_cta" }}
+        >
           Claim your free event now!
           <span>
             <svg
@@ -45,7 +50,7 @@ export default function CtaSection({ offer }: { offer: FirstPurchaseOffer | null
               <path d="M3.5 9h11M10 4.5L14.5 9 10 13.5" />
             </svg>
           </span>
-        </Link>
+        </TrackedLink>
         <div className={styles.alt}>
           or{" "}
           <a href={whatsappUrl()} target="_blank" rel="noopener noreferrer">

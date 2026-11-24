@@ -29,6 +29,7 @@ import {
   photosFor,
   sameCostEvents,
 } from "@/lib/pricing-display";
+import { trackEvent } from "@/lib/analytics";
 import { LOGIN_URL, buildCheckoutHref } from "@/lib/app-url";
 import { whatsappUrl } from "@/lib/site-legal";
 import PricingErrorFallback from "./PricingErrorFallback";
@@ -218,7 +219,13 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
               <li className={styles.catch}><Clock />Each event stays live for {EVENT_VALIDITY_MONTHS} months from the day you create it</li>
             </ul>
             <span className={styles.sp}></span>
-            <a className={styles.cta} href={LOGIN_URL}>Buy events</a>
+            <a
+              className={styles.cta}
+              href={LOGIN_URL}
+              onClick={() => trackEvent("select_plan", { plan: "pay_per_event" })}
+            >
+              Buy events
+            </a>
             {offer && offer.valid_until != null && (
               <div className={styles.foot}>Offer valid till {formatOfferDate(offer.valid_until)}</div>
             )}
@@ -301,6 +308,7 @@ export default function PricingClient({ plans }: { plans: Plan[] }) {
               className={styles.cta}
               href={storagePlan ? buildCheckoutHref(storagePlan._id) : undefined}
               aria-disabled={!storagePlan}
+              onClick={() => trackEvent("select_plan", { plan: "storage_subscription" })}
             >
               Choose this plan
             </a>

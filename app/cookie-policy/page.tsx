@@ -64,8 +64,9 @@ export default function CookiePolicyPage() {
     <LegalPageShell showUpdated title="Cookie Policy">
       <p style={muted}>
         This Cookie Policy explains how Vyavasth uses cookies and similar
-        technologies across its surfaces — the Studio dashboard and the Guest
-        gallery pages — and, just as importantly, what we never use cookies for.
+        technologies across its surfaces — the marketing website (vyavasth.in),
+        the Studio dashboard and the Guest gallery pages — and, just as
+        importantly, what we never use cookies for.
       </p>
 
       <section>
@@ -111,7 +112,8 @@ export default function CookiePolicyPage() {
           We do not use <code>sessionid</code>, <code>csrftoken</code>, or any
           server-session cookie. The Studio profile (<code>dlp_company</code>)
           is held in your browser&rsquo;s local storage, which is not a cookie.
-          Product-analytics cookies are not set.
+          Analytics and advertising cookies are set on the dashboard only if
+          you accept them in the cookie banner (see section 4).
         </p>
       </section>
 
@@ -146,23 +148,82 @@ export default function CookiePolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          4. What Vyavasth does not use cookies for
+          4. Analytics and advertising cookies (website and Studio dashboard)
         </h2>
-        <p>On any surface — including Guest gallery pages — Vyavasth does not set:</p>
-        <ul className={list}>
-          <li>advertising or retargeting cookies;</li>
-          <li>cross-site tracking cookies;</li>
-          <li>
-            third-party marketing pixels — there is no Facebook Pixel and no
-            Google Ads cookie.
-          </li>
-        </ul>
-        <p>A Guest&rsquo;s presence in a gallery is never used for ad targeting.</p>
+        <p>
+          On our marketing website (vyavasth.in) and the Studio dashboard
+          (deliver.vyavasth.in) we use analytics and advertising cookies, but{" "}
+          <strong>only if you click &ldquo;Accept&rdquo;</strong> on the
+          cookie banner. Until then, nothing in this section is set. They help
+          us understand which pages are useful and measure whether our
+          advertising on Meta platforms works. You can change your choice at any
+          time using &ldquo;Cookie settings&rdquo; in the website footer, or by
+          clearing the site&rsquo;s data in your browser to see the banner
+          again.
+        </p>
+        <CookieTable
+          rows={[
+            {
+              name: "_ga, _ga_*",
+              purpose:
+                "Google Analytics. Distinguishes visitors and sessions so we can count visits and see which pages are used.",
+              type: "Analytics, set only with consent",
+              duration: "Up to 2 years",
+            },
+            {
+              name: "_fbp, _fbc",
+              purpose:
+                "Meta Pixel. Lets us measure the results of our ads on Facebook and Instagram and show our ads to people who visited the site. _fbc is set only if you arrive from a Meta ad.",
+              type: "Advertising, set only with consent",
+              duration: "Up to 90 days",
+            },
+            {
+              name: "vyavasth-consent",
+              purpose:
+                "Remembers your cookie choice. Stored in local storage, not a cookie.",
+              type: "First-party, essential",
+              duration: "Until you clear browser storage",
+            },
+          ]}
+        />
+        <p>
+          Google and Meta process this data under their own privacy policies.
+          We never send them your name, phone number, email address or any
+          event or photo content.
+        </p>
       </section>
 
       <section>
         <h2 className={h2} style={h2Style}>
-          5. Other tracking technologies
+          5. What Vyavasth does not use cookies for
+        </h2>
+        <p>
+          On Guest gallery pages, Vyavasth does not set:
+        </p>
+        <ul className={list}>
+          <li>advertising or retargeting cookies;</li>
+          <li>cross-site tracking cookies;</li>
+          <li>
+            third-party marketing pixels — there is no Facebook Pixel, no
+            Google Analytics and no Google Ads cookie on those pages.
+          </li>
+        </ul>
+        <p>A Guest&rsquo;s presence in a gallery is never used for ad targeting.</p>
+        <p>
+          Guest gallery pages do count page views, in aggregate only, and
+          without cookies. When a gallery page opens, your browser tells our own
+          server only the kind of page it was (for example &ldquo;a gallery
+          page&rdquo;), never the gallery&rsquo;s address or any identifier. Our
+          server then passes an anonymous count to Google Analytics. Google does
+          not receive your IP address, device details, cookies or any identifier
+          from that count, no Google script runs on the page, and nothing is
+          stored on your device, so there is no cookie banner on those pages.
+        </p>
+      </section>
+
+      <section>
+        <h2 className={h2} style={h2Style}>
+          6. Other tracking technologies
         </h2>
         <p>
           Our surfaces are served through Cloudflare, which may set edge
@@ -175,21 +236,22 @@ export default function CookiePolicyPage() {
 
       <section>
         <h2 className={h2} style={h2Style}>
-          6. Controlling cookies
+          7. Controlling cookies
         </h2>
         <p>
           You can view, block, or delete cookies through your browser settings,
           and clear local storage from the same controls. Blocking strictly
           necessary cookies (such as the dashboard&rsquo;s authentication
-          cookie) will prevent you from staying signed in. Because we do not use
-          advertising or analytics cookies, there is nothing to opt out of for
-          tracking.
+          cookie) will prevent you from staying signed in. Analytics and
+          advertising cookies on the marketing website and the Studio dashboard
+          are off unless you accept them, and you can withdraw consent at any
+          time.
         </p>
       </section>
 
       <section>
         <h2 className={h2} style={h2Style}>
-          7. Updates and contact
+          8. Updates and contact
         </h2>
         <p>
           We may update this Cookie Policy from time to time and will revise

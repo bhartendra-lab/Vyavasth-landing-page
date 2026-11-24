@@ -3,10 +3,10 @@ import Link from "next/link";
 import LegalPageShell from "@/components/LegalPageShell";
 import { whatsappUrl } from "@/lib/site-legal";
 import { FEATURE_PAGES } from "@/lib/feature-pages";
+import { PAGE_META } from "@/lib/page-meta";
 
-const TITLE = "Vyavasth features: album selection, face search, live delivery and more";
-const DESCRIPTION =
-  "What Vyavasth does for wedding and event photography studios in India: album selection in hours, originals in one click, one-selfie face search, live delivery and Google reviews from every gallery.";
+const TITLE = PAGE_META.features.title;
+const DESCRIPTION = PAGE_META.features.description;
 
 export const metadata: Metadata = {
   title: TITLE,

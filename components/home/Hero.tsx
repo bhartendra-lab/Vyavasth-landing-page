@@ -4,6 +4,7 @@ import { Fragment, useEffect, useRef, type CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { type FirstPurchaseOffer } from "@/lib/plans";
+import { trackEvent } from "@/lib/analytics";
 import { LOGIN_URL } from "@/lib/app-url";
 import { HERO_GUEST, HERO_TILES } from "@/lib/landing-content";
 import { startHero } from "./hero-engine";
@@ -309,7 +310,11 @@ export default function Hero({ offer }: { offer: FirstPurchaseOffer | null }) {
             One link. One selfie. Every guest gets their own photos while the function is still on.
           </p>
           <div className={styles["cta-row"]}>
-            <Link className={styles.cta} href={LOGIN_URL}>
+            <Link
+              className={styles.cta}
+              href={LOGIN_URL}
+              onClick={() => trackEvent("cta_click", { location: "hero" })}
+            >
               <span>{cta}</span>
               <span className={styles.arr}>
                 <svg viewBox="0 0 18 18" fill="none" stroke="#fff" strokeWidth="2.200" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M3.500 9h11M10 4.500L14.500 9 10 13.500" /></svg>

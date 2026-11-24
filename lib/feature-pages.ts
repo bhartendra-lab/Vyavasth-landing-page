@@ -71,14 +71,14 @@ export const FEATURE_PAGES: FeaturePage[] = [
   {
     slug: "album-selection",
     navLabel: "Album selection",
-    title: "Wedding album selection app: couples pick, studios print | Vyavasth",
+    title: "Wedding album selection app for couples and studios | Vyavasth",
     metaDescription:
-      "Couples build a collection for every album, calendar and table book, the family likes their favourites, and you see it all in one gallery, then pull the RAW files in one click.",
+      "Couples build a collection for every album, calendar and table book, the family likes their favourites, and you see it all in one gallery.",
     h1: "Album selection that couples finish in hours, not months",
     lede: "Couples build the albums themselves. You shortlist, pull the originals and print.",
     benefits: [
       { title: "A collection per album", text: "Bride side, groom side, calendar, table book. One photo can sit in several." },
-      { title: "Only the right people edit", text: "The couple picks the few people who can change collections." },
+      { title: "Only the right people edit", text: "The couple picks up to six people who can edit, and sends the final selection." },
       { title: "Likes still work", text: "Families who want you to choose can just like photos." },
       { title: "Originals in one click", text: "Locate Originals copies the shortlist and its RAW files for your editor." },
     ],
@@ -120,8 +120,18 @@ export const FEATURE_PAGES: FeaturePage[] = [
         bullets: [
           "Create, rename and delete collections from the gallery on the phone.",
           "One photo can be in several collections, so the varmala can go in both albums and on the calendar.",
-          "Only the few people the couple chooses can add to or change collections. Everyone else can still view and like.",
+          "You set the album size for each collection, so the couple sees \"182 of 250\" while they choose and knows when to stop.",
+          "The couple picks up to six people who can edit the selection, from their own Guest Control screen. Everyone else can still view and like.",
+          "A \"liked but not in a collection\" view shows photos someone loved that have not been placed yet.",
+          "When a collection is ready, the couple sends it to you from the gallery, so you know exactly when to start.",
           "Likes stay as they are, for families who want the studio to make the final pick.",
+        ],
+      },
+      {
+        h2: "Face filter: find every photo of Nani in two taps",
+        paragraphs: [
+          "The most common complaint after an album is printed is that someone important is missing from it. In the gallery, the couple and family can tap the faces of the people they care about and see only the photos those people are in, then add the best ones to a collection.",
+          "You switch the face filter on or off for each event, from the gallery preferences in Access & Sharing.",
         ],
       },
       {
@@ -162,6 +172,18 @@ export const FEATURE_PAGES: FeaturePage[] = [
         a: "The couple and the few people they choose. Other guests can view and like photos but cannot change collections.",
       },
       {
+        q: "Can I set how many photos go in each album?",
+        a: "Yes. Set an album size for each collection, from 1 to 5,000 photos. The couple sees how many they have chosen against that number while they work.",
+      },
+      {
+        q: "How many people can edit the album selection?",
+        a: "Up to six, chosen by the couple from their Guest Control screen in the gallery. Everyone else can view and like photos but cannot change collections.",
+      },
+      {
+        q: "Can the family find photos of one person quickly?",
+        a: "Yes. With the face filter on, they tap a face in the gallery and see only the photos that person is in.",
+      },
+      {
         q: "Does the couple need to install an app to select photos?",
         a: "No. The gallery opens in the phone's browser from a link or QR code. They sign in with their WhatsApp number or Google so their likes are saved to them.",
       },
@@ -178,7 +200,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
         a: "Yes. Anyone you share the gallery with can like photos. You decide whose likes count by filtering by host, team or guest.",
       },
     ],
-    updated: "2026-11-04",
+    updated: "2026-11-20",
     fit: {
       forYou: [
         "Couples and families take weeks to finish choosing album photos",
@@ -191,6 +213,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
       ],
     },
     changelog: [
+      { date: "2026-11-20", text: "Album size for each collection, face filter and sending the final selection" }, // CHECK dates
       { date: "2026-10-26", text: "Collections: one per album, calendar or table book" }, // CHECK
       { date: "2026-10-26", text: "Selection team with edit access, chosen by the couple" }, // CHECK
     ],
@@ -205,7 +228,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     navLabel: "Locate originals",
     title: "Find the RAW files for your client's selected photos | Vyavasth",
     metaDescription:
-      "Your client picked 400 photos. Vyavasth finds their original JPG and RAW files on your laptop and copies them into one folder for the editor, in minutes instead of a day of searching.",
+      "Your client picked 400 photos. Vyavasth finds their original JPG and RAW files on your laptop and copies them into one folder for the editor.",
     h1: "Your client picked 400 photos. Find their originals in one click.",
     summary:
       "Locate Originals takes the photos your client shortlisted in the Vyavasth gallery, scans the folder of originals on your laptop, and copies every matching original, along with its RAW file, into a “Smartly Selected” folder for your editor. Matching happens on your own computer, so your originals are never uploaded again.",
@@ -288,7 +311,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     navLabel: "Face search",
     title: "AI face search photo sharing for weddings in India | Vyavasth",
     metaDescription:
-      "Guests scan one QR, take one selfie and see every wedding photo they are in. Face search galleries for Indian photography studios, with passcode privacy and the studio's branding.",
+      "Guests scan one QR, take one selfie and see every wedding photo they are in. Face search galleries for Indian photography studios.",
     h1: "One selfie. Every photo they are in.",
     summary:
       "Vyavasth gives every wedding one gallery link and QR code. A guest opens it, takes a selfie, and sees only the photos they appear in, while the event is still running. The couple and family get the full gallery with a passcode, and every screen carries the studio's name and logo.",
@@ -376,7 +399,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     navLabel: "Live delivery",
     title: "Live wedding photo delivery during the event | Vyavasth",
     metaDescription:
-      "Deliver wedding photos while the event is still running. Upload from the camera or laptop, photos reach the family's gallery in real time, and uploads resume on their own if the internet drops.",
+      "Deliver wedding photos while the event is still running. Upload from the camera or laptop and photos reach the family's gallery in real time.",
     h1: "Deliver photos while the wedding is still going on",
     summary:
       "With Vyavasth, photos reach the family's gallery during the event instead of weeks later on a pen drive. Studios upload from the camera, from a laptop, or from the Vyavasth Android app, and the gallery updates as each batch lands. Guests find their photos with a selfie, and the couple starts liking photos for the album the same night.",
@@ -472,7 +495,7 @@ export const FEATURE_PAGES: FeaturePage[] = [
     navLabel: "Google reviews and branding",
     title: "Get more Google reviews from every wedding you deliver | Vyavasth",
     metaDescription:
-      "Every Vyavasth gallery asks happy guests for a Google review and carries your studio's logo, watermark and social links, so each wedding you deliver brings in reviews and followers.",
+      "Every Vyavasth gallery asks happy guests for a Google review and carries your studio's logo, watermark and social links.",
     h1: "Turn every wedding you deliver into Google reviews",
     summary:
       "The moment a guest finds their photos is the moment they are happiest with your work. Every Vyavasth gallery shows a one-tap Google review prompt at that moment, and carries your studio's logo, colours, watermark and social links on every screen. Studios using it see reviews and Instagram followers grow with each wedding they deliver.",

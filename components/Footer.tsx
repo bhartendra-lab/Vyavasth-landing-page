@@ -1,6 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import CookieSettingsButton from "@/components/CookieSettingsButton";
+import { COMPETITORS } from "@/lib/compare-data";
 import {
   REGISTERED_ADDRESS,
   SUPPORT_EMAIL,
@@ -37,7 +39,7 @@ export default function Footer() {
       }}
     >
       <div
-        className="mx-auto grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1.2fr]"
+        className="mx-auto grid grid-cols-1 gap-10 py-14 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1.2fr_1fr_1.2fr]"
         style={{ maxWidth: "var(--max-w)", padding: "56px var(--gutter) 40px" }}
       >
         {/* Brand */}
@@ -84,6 +86,25 @@ export default function Footer() {
             <Link href="/#how" className={colLink} style={{ color: "var(--color-primary)" }}>
               How it works
             </Link>
+          </nav>
+        </div>
+
+        {/* Compare */}
+        <div>
+          <h4 className={colHeading} style={{ color: "var(--color-faint)" }}>
+            Compare
+          </h4>
+          <nav className="flex flex-col gap-2.5" aria-label="Comparisons">
+            {COMPETITORS.map((c) => (
+              <Link
+                key={c.slug}
+                href={`/compare/${c.slug}`}
+                className={colLink}
+                style={{ color: "var(--color-primary)" }}
+              >
+                Vyavasth vs {c.name}
+              </Link>
+            ))}
           </nav>
         </div>
 
@@ -164,6 +185,10 @@ export default function Footer() {
                 {l.label}
               </Link>
             ))}
+            <CookieSettingsButton
+              className="text-xs transition-colors hover:text-[var(--color-accent)]"
+              style={{ color: "var(--color-muted)" }}
+            />
           </nav>
         </div>
       </div>

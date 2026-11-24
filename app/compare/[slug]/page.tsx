@@ -263,45 +263,24 @@ export default async function ComparePage({
         </section>
 
         <section className={`${f.wrap} ${f.section}`}>
-          <div className={`${styles.twoUp} ${styles.cards}`} style={{ marginTop: 0 }}>
-            <div className={styles.card}>
-              <h2>Where {c.name} is better</h2>
-              <ul>
-                {c.theyAreBetterAt.map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
-            <div className={styles.card}>
-              <h2>Where Vyavasth is better</h2>
-              <ul>
-                {c.vyavasthIsBetterAt.map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
+          <h2 className={f.h2}>Why studios choose Vyavasth over {c.name}</h2>
+          <div className={styles.card}>
+            <ul>
+              {c.vyavasthIsBetterAt.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
           </div>
         </section>
 
         <section className={`${f.wrap} ${f.section}`}>
-          <h2 className={f.h2}>Which one should you choose?</h2>
-          <div className={`${styles.twoUp} ${styles.cards}`}>
-            <div className={styles.card}>
-              <h3>Choose {c.name} if</h3>
-              <ul>
-                {c.chooseThemIf.map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
-            <div className={styles.card}>
-              <h3>Choose Vyavasth if</h3>
-              <ul>
-                {c.chooseVyavasthIf.map((x) => (
-                  <li key={x}>{x}</li>
-                ))}
-              </ul>
-            </div>
+          <h2 className={f.h2}>Vyavasth is made for you if</h2>
+          <div className={styles.card}>
+            <ul>
+              {c.chooseVyavasthIf.map((x) => (
+                <li key={x}>{x}</li>
+              ))}
+            </ul>
           </div>
         </section>
 

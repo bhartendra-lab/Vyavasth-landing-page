@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { PAGE_META } from "@/lib/page-meta";
 import LegalPageShell from "@/components/LegalPageShell";
 import ContactPageForm from "@/components/ContactPageForm";
 import {
@@ -13,9 +14,8 @@ import {
 } from "@/lib/site-legal";
 
 export const metadata: Metadata = {
-  title: "Contact Vyavasth: WhatsApp, phone and email support",
-  description:
-    "Contact Vyavasth for support, billing, and grievances. Registered address, hours, and support form.",
+  title: PAGE_META.contact.title,
+  description: PAGE_META.contact.description,
   alternates: { canonical: "/contact" },
 };
 
