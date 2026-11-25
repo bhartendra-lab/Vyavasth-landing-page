@@ -124,7 +124,13 @@ export default function CookiePolicyPage() {
         <p>
           On a published gallery, Vyavasth sets no first-party cookie. A
           Guest&rsquo;s session token is stored in the browser&rsquo;s local
-          storage, not a cookie. The only cookies a Guest may encounter are:
+          storage, not a cookie. Two more small items are kept in the browser
+          so we can count how a gallery is used (see section 5): a random device
+          ID (<code>vy_gdev</code>, local storage, kept until you clear the
+          site&rsquo;s data) and a note that this visit has already been counted
+          (<code>vy_gm</code>, session storage, gone when you close the tab).
+          Neither holds your name, phone number, face or any account detail.
+          The only cookies a Guest may encounter are:
         </p>
         <CookieTable
           rows={[
@@ -195,6 +201,20 @@ export default function CookiePolicyPage() {
               duration: "30 days",
             },
             {
+              name: "vy_attribution",
+              purpose:
+                "Studio dashboard only. Remembers the campaign tags in the link you arrived by (utm_source and similar, an ad click ID, the page you landed on) and, from a Vyavasth WhatsApp link, the reference to that message. Kept in local storage until you sign up, then sent once to our own server and removed. Never sent to Google or Meta.",
+              type: "First-party, campaign measurement",
+              duration: "Up to 30 days",
+            },
+            {
+              name: "ph_* (PostHog)",
+              purpose:
+                "Studio dashboard only. Product analytics and screen recordings, so we can see where Studios get stuck. We record the pages you open and key steps (signing up, creating an event, uploading, sharing). In recordings, everything you type, all text and all images are hidden. You are known only by an internal studio ID, never by name, phone number or email. Sent through our own domain to PostHog, our analytics provider. Stored in local storage.",
+              type: "Analytics, unless you opt out",
+              duration: "Until you clear browser storage",
+            },
+            {
               name: "vyavasth-consent",
               purpose:
                 "Remembers your choice (OK or opt out). Stored in local storage, not a cookie.",
@@ -227,14 +247,25 @@ export default function CookiePolicyPage() {
         </ul>
         <p>A Guest&rsquo;s presence in a gallery is never used for ad targeting.</p>
         <p>
-          Guest gallery pages do count page views, in aggregate only, and
-          without cookies. When a gallery page opens, your browser tells our own
-          server only the kind of page it was (for example &ldquo;a gallery
-          page&rdquo;), never the gallery&rsquo;s address or any identifier. Our
-          server then passes an anonymous count to Google Analytics. Google does
-          not receive your IP address, device details, cookies or any identifier
-          from that count, no Google script runs on the page, and nothing is
-          stored on your device, so there is no cookie banner on those pages.
+          Guest gallery pages do count page views, in aggregate only. When a
+          gallery page opens, your browser tells our own server only the kind
+          of page it was (for example &ldquo;a gallery page&rdquo;), never the
+          gallery&rsquo;s address or any identifier. Our server then passes an
+          anonymous count to Google Analytics. Google does not receive your IP
+          address, device details, cookies or any identifier from that count,
+          and no Google script runs on the page.
+        </p>
+        <p>
+          Separately, so a Studio can see how its own gallery is used, our own
+          server counts what happens in it: the gallery being opened, a photo
+          being opened, a download, a share, and a selfie search being used.
+          Each count carries a random device ID made in your browser (section
+          3), which lets the Studio see how many different devices opened the
+          gallery rather than only how many times. The ID is not linked to your
+          name, phone number, face or account, is never sent to Google, Meta or
+          anyone else, and is not used for advertising. If your browser sends
+          Do Not Track or Global Privacy Control, nothing is counted. You can
+          remove the ID at any time by clearing the site&rsquo;s data.
         </p>
       </section>
 

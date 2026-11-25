@@ -62,7 +62,9 @@ export default function PrivacyPolicyPage() {
             <strong>Account and usage data:</strong> login activity, device and
             browser type, IP address, pages or features accessed, timestamps, and
             diagnostic or performance data needed to operate and secure the
-            service.
+            service. This includes how you found us: the campaign tags in the
+            link you arrived by, an ad click ID, and, if you came from a
+            Vyavasth WhatsApp message, which message it was.
           </li>
           <li>
             <strong>Content you upload:</strong> documents, files, or other
@@ -325,6 +327,16 @@ export default function PrivacyPolicyPage() {
             details or event photos.
           </li>
           <li>
+            <strong>Product analytics (PostHog):</strong> on the Studio
+            dashboard only, unless you opt out (in the EEA, the UK and
+            Switzerland, only after you click OK). PostHog receives the pages
+            you open, key steps such as signing up, creating an event or
+            uploading, and screen recordings in which everything you type, all
+            text and all images are hidden. You are identified only by an
+            internal studio ID, never by name, phone number or email. The data
+            is sent through our own domain.
+          </li>
+          <li>
             <strong>Professional advisers:</strong> lawyers, auditors, or
             accountants when required.
           </li>
@@ -385,9 +397,12 @@ export default function PrivacyPolicyPage() {
           Switzerland, only after you click OK); you can change your choice at
           any time from
           &ldquo;Cookie settings&rdquo; in the footer. You can control cookies through your browser settings; blocking
-          essential cookies may affect how the service functions. Guest gallery pages use no cookies and no advertising or
-          analytics scripts; we only count page views in aggregate, through our
-          own server, without any identifier or gallery address. For a full
+          essential cookies may affect how the service functions. Guest gallery pages use no cookies and no third-party scripts. Our own
+          server counts how a gallery is used (opened, a photo opened,
+          downloaded, shared, selfie search used) using a random device ID kept
+          in your browser, which is not linked to your name, phone number, face
+          or account, is never shared, and is not counted if your browser sends
+          Do Not Track or Global Privacy Control. For a full
           breakdown, see our{" "}
           <a href="/cookie-policy" className="text-[#C25A3A] underline">
             Cookie Policy
