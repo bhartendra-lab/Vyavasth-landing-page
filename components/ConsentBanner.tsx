@@ -12,8 +12,9 @@ import {
 import styles from "./ConsentBanner.module.css";
 
 /**
- * Cookie consent banner. Renders nothing unless analytics is configured.
- * Both choices are equally prominent; nothing is tracked until "Accept".
+ * Cookie notice, shown until the visitor picks OK or Opt out. Renders nothing
+ * unless analytics is configured. Tracking is on by default outside
+ * CONSENT_REQUIRED_REGIONS (lib/analytics.ts); there it waits for OK.
  */
 export default function ConsentBanner() {
   const [open, setOpen] = useState(false);
@@ -42,25 +43,25 @@ export default function ConsentBanner() {
       className={styles.banner}
       role="dialog"
       aria-live="polite"
-      aria-label="Cookie preferences"
+      aria-label="Cookie notice"
     >
       <p className={styles.text}>
         We use cookies to measure how the site is used and to show Vyavasth ads
-        on other platforms. Declining changes nothing about how the site works.{" "}
+        on other platforms. Opting out changes nothing about how the site works.{" "}
         <Link href="/cookie-policy" className={styles.link}>
           Cookie Policy
         </Link>
       </p>
       <div className={styles.actions}>
         <button type="button" className={styles.btn} onClick={() => choose("denied")}>
-          Decline
+          Opt out
         </button>
         <button
           type="button"
           className={`${styles.btn} ${styles.primary}`}
           onClick={() => choose("granted")}
         >
-          Accept
+          OK
         </button>
       </div>
     </div>

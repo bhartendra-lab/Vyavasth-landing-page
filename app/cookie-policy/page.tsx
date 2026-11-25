@@ -112,8 +112,8 @@ export default function CookiePolicyPage() {
           We do not use <code>sessionid</code>, <code>csrftoken</code>, or any
           server-session cookie. The Studio profile (<code>dlp_company</code>)
           is held in your browser&rsquo;s local storage, which is not a cookie.
-          Analytics and advertising cookies are set on the dashboard only if
-          you accept them in the cookie banner (see section 4).
+          The dashboard also uses analytics and advertising cookies, which you
+          can opt out of at any time (see section 4).
         </p>
       </section>
 
@@ -152,14 +152,17 @@ export default function CookiePolicyPage() {
         </h2>
         <p>
           On our marketing website (vyavasth.in) and the Studio dashboard
-          (deliver.vyavasth.in) we use analytics and advertising cookies, but{" "}
-          <strong>only if you click &ldquo;Accept&rdquo;</strong> on the
-          cookie banner. Until then, nothing in this section is set. They help
-          us understand which pages are useful and measure whether our
-          advertising on Meta platforms works. You can change your choice at any
-          time using &ldquo;Cookie settings&rdquo; in the website footer, or by
-          clearing the site&rsquo;s data in your browser to see the banner
-          again.
+          (deliver.vyavasth.in) we use analytics and advertising cookies. They
+          help us understand which pages are useful, where Studios get stuck,
+          and whether our advertising on Google and Meta works. For visitors in
+          India and most other countries they are on by default, and the cookie
+          banner lets you{" "}
+          <strong>opt out with one tap</strong>. For visitors in the European
+          Economic Area, the United Kingdom and Switzerland, nothing in this
+          section is set until you click &ldquo;OK&rdquo;. You can change your
+          choice at any time using &ldquo;Cookie settings&rdquo; in the website
+          footer, or by clearing the site&rsquo;s data in your browser to see
+          the banner again.
         </p>
         <CookieTable
           rows={[
@@ -167,20 +170,34 @@ export default function CookiePolicyPage() {
               name: "_ga, _ga_*",
               purpose:
                 "Google Analytics. Distinguishes visitors and sessions so we can count visits and see which pages are used.",
-              type: "Analytics, set only with consent",
+              type: "Analytics, unless you opt out",
               duration: "Up to 2 years",
             },
             {
               name: "_fbp, _fbc",
               purpose:
                 "Meta Pixel. Lets us measure the results of our ads on Facebook and Instagram and show our ads to people who visited the site. _fbc is set only if you arrive from a Meta ad.",
-              type: "Advertising, set only with consent",
+              type: "Advertising, unless you opt out",
               duration: "Up to 90 days",
+            },
+            {
+              name: "_gcl_au, _gcl_aw",
+              purpose:
+                "Google Ads. Lets us see whether someone who clicked one of our Google ads went on to sign up or buy, so we stop paying for ads that do not work. _gcl_aw is set only if you arrive from a Google ad.",
+              type: "Advertising, unless you opt out",
+              duration: "Up to 90 days",
+            },
+            {
+              name: "vy_acq",
+              purpose:
+                "Set on the Studio dashboard only when you open a link from a Vyavasth WhatsApp message. Holds a random reference to that message so we know which message led to a signup. Never sent to Google or Meta.",
+              type: "First-party, campaign measurement",
+              duration: "30 days",
             },
             {
               name: "vyavasth-consent",
               purpose:
-                "Remembers your cookie choice. Stored in local storage, not a cookie.",
+                "Remembers your choice (OK or opt out). Stored in local storage, not a cookie.",
               type: "First-party, essential",
               duration: "Until you clear browser storage",
             },
@@ -244,8 +261,8 @@ export default function CookiePolicyPage() {
           necessary cookies (such as the dashboard&rsquo;s authentication
           cookie) will prevent you from staying signed in. Analytics and
           advertising cookies on the marketing website and the Studio dashboard
-          are off unless you accept them, and you can withdraw consent at any
-          time.
+          can be turned off at any time with &ldquo;Opt out&rdquo; on the
+          cookie banner or &ldquo;Cookie settings&rdquo; in the footer.
         </p>
       </section>
 

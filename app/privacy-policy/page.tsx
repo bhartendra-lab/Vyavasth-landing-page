@@ -317,8 +317,10 @@ export default function PrivacyPolicyPage() {
           </li>
           <li>
             <strong>Analytics and advertising providers:</strong> Google
-            (Google Analytics) and Meta (Meta Pixel), on our marketing website
-            only and only if you accept cookies. They receive pseudonymous
+            (Google Analytics, Google Ads) and Meta (Meta Pixel), on our
+            marketing website and the Studio dashboard, unless you opt out
+            (in the EEA, the UK and Switzerland, only after you click OK).
+            They receive pseudonymous
             identifiers and page and click events, never your name, contact
             details or event photos.
           </li>
@@ -377,9 +379,11 @@ export default function PrivacyPolicyPage() {
           We use cookies and similar technologies (such as local storage) to
           operate the website and application—for example, to keep you signed in,
           remember preferences, measure basic performance, and improve security.
-          On our marketing website, analytics and advertising cookies (Google
-          Analytics and Meta Pixel) are used only if you accept them in the
-          cookie banner; you can change your choice at any time from
+          On our marketing website and the Studio dashboard, analytics and
+          advertising cookies (Google Analytics, Google Ads and Meta Pixel) are
+          on unless you opt out on the cookie banner (in the EEA, the UK and
+          Switzerland, only after you click OK); you can change your choice at
+          any time from
           &ldquo;Cookie settings&rdquo; in the footer. You can control cookies through your browser settings; blocking
           essential cookies may affect how the service functions. Guest gallery pages use no cookies and no advertising or
           analytics scripts; we only count page views in aggregate, through our
