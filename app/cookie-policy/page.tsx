@@ -190,7 +190,7 @@ export default function CookiePolicyPage() {
             {
               name: "vy_acq",
               purpose:
-                "Set on the Studio dashboard only when you open a link from a Vyavasth WhatsApp message. Holds a random reference to that message so we know which message led to a signup. Never sent to Google or Meta.",
+                "Set only when you open a link from a Vyavasth WhatsApp message. Holds a random reference to that message so we know which message led to a signup on the Studio dashboard. Never sent to Google or Meta.",
               type: "First-party, campaign measurement",
               duration: "30 days",
             },
