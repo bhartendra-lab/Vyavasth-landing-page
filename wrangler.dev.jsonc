@@ -18,6 +18,12 @@
     },
   ],
 
+  // Read at request time (the worker re-renders pages every 5 minutes), so
+  // the dev site keeps reading the dev API after the build. Not secret.
+  "vars": {
+    "VYAVASTH_API_BASE_URL": "https://dev.api.vyavasth.in",
+  },
+
   "observability": {
     "enabled": true,
   },
