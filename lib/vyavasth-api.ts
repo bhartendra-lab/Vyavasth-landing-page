@@ -1,5 +1,6 @@
 import type { Plan } from "./plans";
 import type { Feature } from "./features";
+import type { ExclusiveCoupon } from "./exclusive-offer";
 
 const DEFAULT_BASE_URL = "https://api.vyavasth.in";
 
@@ -76,6 +77,25 @@ export async function getPublicCoupons(): Promise<ApiResult<{ coupons: PublicCou
     return { ok: true, data };
   } catch {
     return { ok: false, error: "Something went wrong. Please try again." };
+  }
+}
+
+/**
+ * GET /billing/coupons/exclusive, the one exclusive offer (the top banner and
+ * the pop-up), or null when none is live. Revalidated every 5 minutes, so
+ * switching it off in the database clears the site without a redeploy. Never
+ * throws: no offer is the fallback.
+ */
+export async function getExclusiveCoupon(): Promise<ExclusiveCoupon | null> {
+  try {
+    const res = await fetch(`${getBaseUrl()}/billing/coupons/exclusive`, {
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) return null;
+    const data = (await res.json()) as { coupon?: ExclusiveCoupon | null };
+    return data?.coupon ?? null;
+  } catch {
+    return null;
   }
 }
 

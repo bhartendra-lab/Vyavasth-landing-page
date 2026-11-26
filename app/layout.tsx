@@ -4,6 +4,8 @@ import "./globals.css";
 import { PAGE_META } from "@/lib/page-meta";
 import { GoogleTagManager } from "@next/third-parties/google";
 import ConsentBanner from "@/components/ConsentBanner";
+import ExclusiveOffer from "@/components/offer/ExclusiveOffer";
+import { getExclusiveCoupon } from "@/lib/vyavasth-api";
 import { CONSENT_BOOTSTRAP_SCRIPT, GTM_ID } from "@/lib/analytics";
 import { SUPPORT_EMAIL, WHATSAPP_DISPLAY } from "@/lib/site-legal";
 
@@ -107,7 +109,7 @@ export const viewport: Viewport = {
   themeColor: "#F5EDE0",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -128,6 +130,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgLd) }}
         />
+        {/* The exclusive offer (top strip + pop-up), or nothing when none is live. */}
+        <ExclusiveOffer coupon={await getExclusiveCoupon()} />
         {children}
         <ConsentBanner />
       </body>
