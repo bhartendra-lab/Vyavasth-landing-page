@@ -455,12 +455,9 @@ export default function PrivacyPolicyPage() {
           Switzerland, only after you click OK); you can change your choice at
           any time from
           &ldquo;Cookie settings&rdquo; in the footer. You can control cookies through your browser settings; blocking
-          essential cookies may affect how the service functions. Guest gallery pages use no cookies and no third-party scripts. Our own
-          server counts how a gallery is used (opened, a photo opened,
-          downloaded, shared, selfie search used) using a random device ID kept
-          in your browser, which is not linked to your name, phone number, face
-          or account, is never shared, and is not counted if your browser sends
-          Do Not Track or Global Privacy Control. For a full
+          essential cookies may affect how the service functions. Guest gallery pages use no cookies and no advertising or
+          analytics scripts; we only count page views in aggregate, through our
+          own server, without any identifier or gallery address. For a full
           breakdown, see our{" "}
           <a href="/cookie-policy" className="text-[#C25A3A] underline">
             Cookie Policy
