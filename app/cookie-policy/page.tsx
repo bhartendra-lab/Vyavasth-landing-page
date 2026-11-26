@@ -195,13 +195,6 @@ export default function CookiePolicyPage() {
               duration: "30 days",
             },
             {
-              name: "vy_attribution",
-              purpose:
-                "Studio dashboard only. Remembers the campaign tags in the link you arrived by (utm_source and similar, an ad click ID, the page you landed on) and, from a Vyavasth WhatsApp link, the reference to that message. Kept in local storage until you sign up, then sent once to our own server and removed. Never sent to Google or Meta.",
-              type: "First-party, campaign measurement",
-              duration: "Up to 30 days",
-            },
-            {
               name: "ph_* (PostHog)",
               purpose:
                 "Studio dashboard only. Product analytics and screen recordings, so we can see where Studios get stuck. We record the pages you open and key steps (signing up, creating an event, uploading, sharing). In recordings, everything you type, all text and all images are hidden. You are known only by an internal studio ID, never by name, phone number or email. Sent through our own domain to PostHog, our analytics provider. Stored in local storage.",

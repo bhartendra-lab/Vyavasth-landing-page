@@ -62,9 +62,8 @@ export default function PrivacyPolicyPage() {
             <strong>Account and usage data:</strong> login activity, device and
             browser type, IP address, pages or features accessed, timestamps, and
             diagnostic or performance data needed to operate and secure the
-            service. This includes how you found us: the campaign tags in the
-            link you arrived by, an ad click ID, and, if you came from a
-            Vyavasth WhatsApp message, which message it was.
+            service. If you signed up after opening a link in a Vyavasth WhatsApp
+            message, we also record which message it was.
           </li>
           <li>
             <strong>Content you upload:</strong> documents, files, or other
