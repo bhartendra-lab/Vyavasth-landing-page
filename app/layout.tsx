@@ -82,6 +82,18 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
+  // Fixed, unhashed icon URLs in /public. Google's favicon guidelines want a
+  // stable URL and a square size that is a multiple of 48px.
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "48x48" },
+      { url: "/favicon-48x48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon-96x96.png", sizes: "96x96", type: "image/png" },
+      { url: "/favicon-192x192.png", sizes: "192x192", type: "image/png" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
